@@ -6,6 +6,8 @@ import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { ADSENSE_CLIENT } from "@/components/adsense/adsense-provider";
+import { AdSenseScript } from "@/components/adsense/adsense-provider";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -203,12 +205,8 @@ export default async function LocaleLayout({ children, params }: Props) {
         {/* Google AdSense Verification */}
         <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
 
-        {/* Google AdSense Script (Server-side injection for faster loading) */}
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-          crossOrigin="anonymous"
-        />
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="vUtilyx-verify" />
 
         <link
           rel="alternate"
@@ -256,6 +254,10 @@ export default async function LocaleLayout({ children, params }: Props) {
           enableSystem
           disableTransitionOnChange
         >
+          {/* Google Analytics */}
+          <GoogleAnalytics />
+          {/* AdSense script (client-side only to prevent hydration mismatch) */}
+          <AdSenseScript />
           <NextIntlClientProvider messages={messages}>
             {children}
           </NextIntlClientProvider>
