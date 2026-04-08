@@ -117,7 +117,7 @@ export function PdfSign() {
       try {
         const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
         if (cancelled) return
-        // Load worker via fetch + Blob URL to avoid CSP/path issues in standalone mode
+        // Load worker via fetch + Blob URL to avoid CSP/path issues
         try {
           const resp = await fetch('/pdf.worker.min.mjs')
           if (resp.ok) {
@@ -125,11 +125,9 @@ export function PdfSign() {
             const blob = new Blob([workerText], { type: 'text/javascript' })
             pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob)
           } else {
-            // Fallback: direct path
             pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
           }
         } catch {
-          // Fetch failed — worker will run on main thread (fake worker)
           pdfjsLib.GlobalWorkerOptions.workerSrc = ''
         }
         pdfjsRef.current = pdfjsLib
@@ -142,6 +140,45 @@ export function PdfSign() {
     loadPdfJs()
     return () => { cancelled = true }
   }, [])
+
+  // ── Render Page (standalone function, not in useCallback to avoid stale closure) ──
+  const renderPdfPage = async (pageNum: number) => {
+    const pdfDoc = pdfDocRef.current
+    const canvas = canvasRef.current
+    if (!pdfDoc || !canvas) return
+
+    try {
+      setLoading(true)
+      const page = await pdfDoc.getPage(pageNum)
+      const container = containerRef.current
+      const maxWidth = container ? container.clientWidth : 800
+      const unscaledViewport = page.getViewport({ scale: 1 })
+      const scale = maxWidth / unscaledViewport.width
+      const viewport = page.getViewport({ scale })
+
+      const ctx = canvas.getContext('2d')!
+      canvas.width = viewport.width
+      canvas.height = viewport.height
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      await page.render({ canvasContext: ctx, viewport }).promise
+    } catch (err) {
+      console.error('Render error:', err)
+      toast.error('Erreur lors du rendu de la page')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // ── Trigger render when page changes or PDF loads ───────────────
+  useEffect(() => {
+    if (!pdfDocRef.current) return
+    // Wait for canvas to be mounted in DOM
+    const timer = setTimeout(() => {
+      renderPdfPage(currentPage)
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [currentPage, numPages])
 
   // ── Load PDF ────────────────────────────────────────────────────
   const loadPdf = useCallback(
@@ -159,6 +196,9 @@ export function PdfSign() {
         setSelectedId(null)
         setActiveTool('select')
         toast.success('PDF chargé avec succès')
+
+        // Render first page after state updates and DOM is ready
+        setTimeout(() => renderPdfPage(1), 150)
       } catch (err) {
         console.error('PDF load error:', err)
         toast.error('Impossible de charger le PDF. Vérifiez que le fichier est valide.')
@@ -168,37 +208,6 @@ export function PdfSign() {
     },
     []
   )
-
-  // ── Render Page ─────────────────────────────────────────────────
-  const renderPage = useCallback(async () => {
-    const pdfDoc = pdfDocRef.current
-    if (!pdfDoc || !canvasRef.current) return
-    try {
-      setLoading(true)
-      const page = await pdfDoc.getPage(currentPage)
-      const scale = 1.5
-      const viewport = page.getViewport({ scale })
-
-      const canvas = canvasRef.current
-      const ctx = canvas.getContext('2d')!
-      canvas.width = viewport.width
-      canvas.height = viewport.height
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      await page.render({ canvasContext: ctx, viewport }).promise
-    } catch (err) {
-      console.error('Render error:', err)
-      toast.error('Erreur lors du rendu de la page')
-    } finally {
-      setLoading(false)
-    }
-  }, [currentPage])
-
-  useEffect(() => {
-    if (pdfDocRef.current) {
-      renderPage()
-    }
-  }, [renderPage])
 
   // ── File handlers ───────────────────────────────────────────────
   const handleFiles = useCallback(
