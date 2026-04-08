@@ -5,6 +5,8 @@ import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
+
+// Existing tools
 import { PdfCompress } from '@/components/tools/pdf/pdf-compress'
 import { PdfMerge } from '@/components/tools/pdf/pdf-merge'
 import { ImgConvert } from '@/components/tools/image/img-convert'
@@ -15,6 +17,31 @@ import { JsonCsv } from '@/components/tools/dev-seo/json-csv'
 import { RegexTester } from '@/components/tools/dev-seo/regex-tester'
 import { MetaTags } from '@/components/tools/dev-seo/meta-tags'
 import { SitemapRobots } from '@/components/tools/dev-seo/sitemap-robots'
+
+// New tools — Text
+import { WordCounter } from '@/components/tools/text-tools/word-counter'
+import { CaseConverter } from '@/components/tools/text-tools/case-converter'
+import { LoremIpsumGenerator } from '@/components/tools/text-tools/lorem-ipsum-generator'
+import { Base64EncodeDecode } from '@/components/tools/text-tools/base64-encode-decode'
+import { TextDiffChecker } from '@/components/tools/text-tools/text-diff-checker'
+
+// New tools — Generators
+import { QrCodeGenerator } from '@/components/tools/generators/qr-code-generator'
+import { PasswordGenerator } from '@/components/tools/generators/password-generator'
+import { HashGenerator } from '@/components/tools/generators/hash-generator'
+import { ColorPicker } from '@/components/tools/generators/color-picker'
+
+// New tools — Dev & SEO
+import { JsonFormatter } from '@/components/tools/dev-seo/json-formatter'
+import { UrlEncodeDecode } from '@/components/tools/dev-seo/url-encode-decode'
+import { CssGradientGenerator } from '@/components/tools/dev-seo/css-gradient-generator'
+import { MarkdownPreview } from '@/components/tools/dev-seo/markdown-preview'
+
+// New tools — Calculators
+import { BmiCalculator } from '@/components/tools/calculators/bmi-calculator'
+import { AgeCalculator } from '@/components/tools/calculators/age-calculator'
+import { PercentageCalculator } from '@/components/tools/calculators/percentage-calculator'
+import { UnitConverter } from '@/components/tools/calculators/unit-converter'
 
 // pdfjs-dist uses DOMMatrix — SSR incompatible
 const PdfConvert = dynamic(
@@ -48,6 +75,24 @@ import {
   Braces,
   Terminal,
   Globe,
+  // New icons
+  Type,
+  Wand2,
+  Calculator,
+  Hash,
+  QrCode,
+  KeyRound,
+  Palette,
+  Heart,
+  Calendar,
+  Percent,
+  ArrowRightLeft,
+  Link,
+  Paintbrush,
+  FileCode,
+  ArrowDownUp,
+  Diff,
+  Lock,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -68,6 +113,19 @@ function ToolLoader({ label }: { label: string }) {
   )
 }
 
+/* ── Placeholder ─────────────────────────────────────────────────────── */
+function Placeholder({ name }: { name: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
+      <div className="rounded-2xl bg-primary/10 p-4">
+        <Sparkles className="h-8 w-8 text-primary" />
+      </div>
+      <p className="text-lg font-semibold">{name}</p>
+      <p className="text-sm text-muted-foreground">Cet outil sera bientôt disponible.</p>
+    </div>
+  )
+}
+
 /* ── Component Map ───────────────────────────────────────────────────── */
 const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'pdf-compress': PdfCompress,
@@ -82,11 +140,32 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'regex-tester': RegexTester,
   'meta-tags': MetaTags,
   'sitemap-robots': SitemapRobots,
+  'json-formatter': JsonFormatter,
+  'url-encode-decode': UrlEncodeDecode,
+  'css-gradient-generator': CssGradientGenerator,
+  'markdown-preview': MarkdownPreview,
+  'word-counter': WordCounter,
+  'case-converter': CaseConverter,
+  'lorem-ipsum-generator': LoremIpsumGenerator,
+  'base64-encode-decode': Base64EncodeDecode,
+  'text-diff-checker': TextDiffChecker,
+  'qr-code-generator': QrCodeGenerator,
+  'password-generator': PasswordGenerator,
+  'hash-generator': HashGenerator,
+  'color-picker': ColorPicker,
+  'bmi-calculator': BmiCalculator,
+  'age-calculator': AgeCalculator,
+  'percentage-calculator': PercentageCalculator,
+  'unit-converter': UnitConverter,
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FileDown, Merge, PenTool, RefreshCw, Maximize2, Scissors,
   Braces, Terminal, Globe, FileText, Code,
+  // New icons
+  Type, Wand2, Calculator, Hash, QrCode, KeyRound, Palette,
+  Heart, Calendar, Percent, ArrowRightLeft, Link, Paintbrush,
+  FileCode, ArrowDownUp, Diff, Lock,
 }
 
 // Image icon mapped separately (reserved keyword)
@@ -128,18 +207,36 @@ const moduleGradients: Record<string, string> = {
   pdf: 'from-red-500/20 via-orange-500/10 to-amber-500/20',
   image: 'from-emerald-500/20 via-teal-500/10 to-cyan-500/20',
   'dev-seo': 'from-violet-500/20 via-purple-500/10 to-fuchsia-500/20',
+  'text-tools': 'from-blue-500/20 via-sky-500/10 to-cyan-500/20',
+  generators: 'from-rose-500/20 via-pink-500/10 to-fuchsia-500/20',
+  calculators: 'from-amber-500/20 via-orange-500/10 to-yellow-500/20',
 }
 
 const moduleIconColors: Record<string, string> = {
-  pdf: 'text-red-400 bg-red-500/10',
-  image: 'text-emerald-400 bg-emerald-500/10',
-  'dev-seo': 'text-violet-400 bg-violet-500/10',
+  pdf: 'text-red-500 bg-red-50 dark:bg-red-950/30',
+  image: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/30',
+  'dev-seo': 'text-violet-500 bg-violet-50 dark:bg-violet-950/30',
+  'text-tools': 'text-blue-500 bg-blue-50 dark:bg-blue-950/30',
+  generators: 'text-rose-500 bg-rose-50 dark:bg-rose-950/30',
+  calculators: 'text-amber-500 bg-amber-50 dark:bg-amber-950/30',
+}
+
+const moduleBadgeClasses: Record<string, string> = {
+  pdf: 'category-badge-pdf',
+  image: 'category-badge-image',
+  'dev-seo': 'category-badge-dev-seo',
+  'text-tools': 'category-badge-text-tools',
+  generators: 'category-badge-generators',
+  calculators: 'category-badge-calculators',
 }
 
 const moduleIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   pdf: FileText,
   image: ImageIcon,
   'dev-seo': Code,
+  'text-tools': Type,
+  generators: Wand2,
+  calculators: Calculator,
 }
 
 /* ── Theme Toggle ────────────────────────────────────────────────────── */
@@ -167,7 +264,7 @@ function ThemeToggle() {
   )
 }
 
-/* ── Module Card (Premium) ───────────────────────────────────────────── */
+/* ── Module Card ─────────────────────────────────────────────────────── */
 function ModuleCard({ module, index }: { module: typeof modules[0]; index: number }) {
   const { setActiveModule } = useToolsStore()
   const IconComponent = moduleIcons[module.id] || Code
@@ -177,7 +274,7 @@ function ModuleCard({ module, index }: { module: typeof modules[0]; index: numbe
   return (
     <motion.div variants={itemVariants}>
       <Card
-        className="group relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 glass-card hover:border-primary/20 h-full"
+        className="group relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 glass-card card-hover-lift h-full"
         onClick={() => setActiveModule(module.id)}
       >
         {/* Background gradient on hover */}
@@ -233,7 +330,7 @@ function ToolQuickAccess({
   return (
     <motion.div variants={itemVariants}>
       <button
-        className="group flex flex-col items-center gap-3 p-4 rounded-xl glass-card hover:border-primary/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full text-center"
+        className="group flex flex-col items-center gap-3 p-4 rounded-xl glass-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full text-center card-hover-lift"
         onClick={() => {
           setActiveModule(moduleId)
           useToolsStore.getState().setActiveTool(tool.id)
@@ -299,7 +396,7 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
               className={`
                 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200
                 ${isActive
-                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
+                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/25'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/60'
                 }
               `}
@@ -344,7 +441,7 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
   )
 }
 
-/* ── Home Page (Premium) ─────────────────────────────────────────────── */
+/* ── Home Page ───────────────────────────────────────────────────────── */
 function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -375,6 +472,13 @@ function HomePage() {
         {/* Background glow */}
         <div className="absolute inset-0 -z-10 mesh-gradient-strong" />
 
+        {/* Animated orbs */}
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="orb orb-1" />
+          <div className="orb orb-2" />
+          <div className="orb orb-3" />
+        </div>
+
         {/* Logo */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -397,7 +501,7 @@ function HomePage() {
           transition={{ delay: 0.15, duration: 0.5 }}
           className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4"
         >
-          <span className="gradient-text">Utilyx</span>
+          <span className="gradient-text-hero">Utilyx</span>
         </motion.h1>
 
         <motion.p
@@ -407,8 +511,8 @@ function HomePage() {
           className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-8"
         >
           Suite multi-outils <span className="text-foreground font-medium">100% gratuite</span> et{' '}
-          <span className="text-foreground font-medium">privée</span>. Compressez vos PDF, optimisez vos
-          images et boostez votre SEO — tout directement dans votre navigateur.
+          <span className="text-foreground font-medium">privée</span>. PDF, images, SEO, texte, générateurs
+          et calculateurs — tout directement dans votre navigateur.
         </motion.p>
 
         {/* Search bar */}
@@ -436,16 +540,16 @@ function HomePage() {
           className="flex flex-wrap items-center justify-center gap-4 mt-8 text-xs text-muted-foreground"
         >
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card">
-            <Shield className="h-3.5 w-3.5 text-emerald-400" />
+            <Shield className="h-3.5 w-3.5 text-emerald-500" />
             <span>100% Privé</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card">
-            <Zap className="h-3.5 w-3.5 text-amber-400" />
+            <Zap className="h-3.5 w-3.5 text-amber-500" />
             <span>Rapide & Offline</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card">
             <Sparkles className="h-3.5 w-3.5 text-primary" />
-            <span>12 Outils Premium</span>
+            <span>28+ Outils Premium</span>
           </div>
         </motion.div>
       </motion.section>
@@ -533,6 +637,32 @@ function HomePage() {
   )
 }
 
+/* ── Footer Column ──────────────────────────────────────────────────── */
+function FooterColumn({ moduleId, title }: { moduleId: ModuleId; title: string }) {
+  const mod = modules.find(m => m.id === moduleId)
+  if (!mod) return null
+  return (
+    <div>
+      <h3 className="text-sm font-semibold mb-3">{title}</h3>
+      <ul className="space-y-2">
+        {mod.tools.map(tool => (
+          <li key={tool.id}>
+            <button
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => {
+                useToolsStore.getState().setActiveModule(moduleId)
+                useToolsStore.getState().setActiveTool(tool.id)
+              }}
+            >
+              {tool.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 /* ── Main App ────────────────────────────────────────────────────────── */
 export default function Home() {
   const { activeModule } = useToolsStore()
@@ -558,7 +688,7 @@ export default function Home() {
               <span className="gradient-text">Utilyx</span>
             </button>
 
-            {/* Nav */}
+            {/* Nav — responsive: icons on mobile, text on desktop */}
             <nav className="flex items-center gap-1">
               {modules.map((mod) => {
                 const IconComponent = moduleIcons[mod.id] || Code
@@ -570,12 +700,15 @@ export default function Home() {
                     size="sm"
                     className={`
                       text-xs sm:text-sm rounded-lg transition-all duration-200
-                      ${isActive ? 'bg-primary/10 text-primary hover:bg-primary/15' : 'hover:bg-muted/60'}
+                      ${isActive
+                        ? 'bg-primary/10 text-primary hover:bg-primary/15 font-semibold'
+                        : 'hover:bg-muted/60'
+                      }
                     `}
                     onClick={() => useToolsStore.getState().setActiveModule(mod.id)}
                   >
-                    <IconComponent className="h-4 w-4 mr-1.5" />
-                    <span className="hidden sm:inline">{mod.label}</span>
+                    <IconComponent className="h-4 w-4 sm:mr-1.5" />
+                    <span className="hidden md:inline">{mod.label}</span>
                   </Button>
                 )
               })}
@@ -602,9 +735,9 @@ export default function Home() {
       {/* ── Footer ─────────────────────────────────────────────── */}
       <footer className="border-t border-border/50 mt-auto">
         <div className="container mx-auto px-4 py-8 sm:py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8 mb-8">
             {/* Brand */}
-            <div className="sm:col-span-2 lg:col-span-1">
+            <div className="col-span-2 sm:col-span-3 lg:col-span-1">
               <div className="flex items-center gap-2 font-bold text-lg mb-3">
                 <div className="rounded-lg bg-primary/10 p-1.5">
                   <Sparkles className="h-4 w-4 text-primary" />
@@ -612,69 +745,16 @@ export default function Home() {
                 <span className="gradient-text">Utilyx</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Suite multi-outils 100% gratuite et privée. Tous les traitements sont effectués localement dans votre navigateur.
+                Suite multi-outils 100% gratuite et privée.
               </p>
             </div>
 
-            {/* PDF Tools */}
-            <div>
-              <h3 className="text-sm font-semibold mb-3">PDF & Documents</h3>
-              <ul className="space-y-2">
-                {modules.find(m => m.id === 'pdf')?.tools.map(tool => (
-                  <li key={tool.id}>
-                    <button
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      onClick={() => {
-                        useToolsStore.getState().setActiveModule('pdf')
-                        useToolsStore.getState().setActiveTool(tool.id)
-                      }}
-                    >
-                      {tool.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Image Tools */}
-            <div>
-              <h3 className="text-sm font-semibold mb-3">Images</h3>
-              <ul className="space-y-2">
-                {modules.find(m => m.id === 'image')?.tools.map(tool => (
-                  <li key={tool.id}>
-                    <button
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      onClick={() => {
-                        useToolsStore.getState().setActiveModule('image')
-                        useToolsStore.getState().setActiveTool(tool.id)
-                      }}
-                    >
-                      {tool.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Dev Tools */}
-            <div>
-              <h3 className="text-sm font-semibold mb-3">Dev & SEO</h3>
-              <ul className="space-y-2">
-                {modules.find(m => m.id === 'dev-seo')?.tools.map(tool => (
-                  <li key={tool.id}>
-                    <button
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      onClick={() => {
-                        useToolsStore.getState().setActiveModule('dev-seo')
-                        useToolsStore.getState().setActiveTool(tool.id)
-                      }}
-                    >
-                      {tool.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <FooterColumn moduleId="pdf" title="PDF & Documents" />
+            <FooterColumn moduleId="image" title="Images" />
+            <FooterColumn moduleId="dev-seo" title="Dev & SEO" />
+            <FooterColumn moduleId="text-tools" title="Text Tools" />
+            <FooterColumn moduleId="generators" title="Generators" />
+            <FooterColumn moduleId="calculators" title="Calculators" />
           </div>
 
           {/* Bottom bar */}
@@ -684,11 +764,11 @@ export default function Home() {
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-1.5">
-                <Shield className="h-3 w-3 text-emerald-400" />
+                <Shield className="h-3 w-3 text-emerald-500" />
                 <span>Données 100% locales</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Zap className="h-3 w-3 text-amber-400" />
+                <Zap className="h-3 w-3 text-amber-500" />
                 <span>Zéro inscription requise</span>
               </div>
             </div>

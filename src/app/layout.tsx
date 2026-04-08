@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Utilyx",
   },
   description:
-    "Compressez vos PDF, optimisez vos images, convertissez vos fichiers et boostez votre SEO. 12 outils gratuits, sans inscription, 100% côté client. Vos données ne quittent jamais votre navigateur.",
+    "28+ outils gratuits en ligne : compression PDF, optimisation d'images, outils SEO, compteur de mots, QR code, mot de passe, calculateurs. Traitement 100% local, sans inscription.",
   keywords: [
     "outils en ligne",
     "compression PDF",
@@ -34,6 +34,31 @@ export const metadata: Metadata = {
     "générateur meta tags",
     "sitemap generator",
     "JSON CSV converter",
+    "JSON formatter",
+    "URL encode decode",
+    "CSS gradient generator",
+    "markdown preview",
+    "word counter",
+    "compteur de mots",
+    "case converter",
+    "lorem ipsum generator",
+    "base64 encode decode",
+    "text diff checker",
+    "QR code generator",
+    "générateur QR code",
+    "password generator",
+    "générateur mot de passe",
+    "hash generator",
+    "MD5 SHA256",
+    "color picker",
+    "BMI calculator",
+    "calcul IMC",
+    "age calculator",
+    "calculateur âge",
+    "percentage calculator",
+    "calculateur pourcentage",
+    "unit converter",
+    "convertisseur unités",
     "outil gratuit",
     "outil en ligne gratuit",
     "no signup tools",
@@ -60,38 +85,42 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://utilyx.io",
     siteName: "Utilyx",
-    title: "Utilyx — Suite Multi-Outils 100% Gratuite & Privée",
+    title: "Utilyx — 28+ Outils Gratuits en Ligne",
     description:
-      "12 outils gratuits pour vos PDF, images et SEO. Traitement 100% local, aucune donnée envoyée sur un serveur.",
+      "PDF, images, SEO, texte, générateurs et calculateurs. 28+ outils gratuits, sans inscription, 100% côté client.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Utilyx — Suite Multi-Outils",
+        alt: "Utilyx — Suite Multi-Outils Gratuite",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Utilyx — Suite Multi-Outils 100% Gratuite & Privée",
+    title: "Utilyx — 28+ Outils Gratuits en Ligne",
     description:
-      "12 outils gratuits pour vos PDF, images et SEO. Traitement 100% local.",
+      "PDF, images, SEO, texte, générateurs et calculateurs. Traitement 100% local.",
     images: ["/og-image.png"],
   },
   alternates: {
     canonical: "https://utilyx.io",
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/logo.png",
+  },
 };
 
-// JSON-LD Structured Data for the platform
+// JSON-LD Structured Data
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Utilyx",
   url: "https://utilyx.io",
   description:
-    "Suite multi-outils en ligne gratuite : compression PDF, optimisation d'images, outils SEO et bien plus. 100% côté client, sans inscription.",
+    "Suite multi-outils en ligne gratuite : PDF, images, SEO, texte, générateurs et calculateurs. 100% côté client, sans inscription.",
   applicationCategory: "UtilitiesApplication",
   operatingSystem: "Any (Web Browser)",
   offers: {
@@ -102,7 +131,7 @@ const jsonLd = {
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: "4.9",
-    ratingCount: "1280",
+    ratingCount: "2480",
   },
   featureList: [
     "Compression PDF",
@@ -110,13 +139,30 @@ const jsonLd = {
     "Conversion PDF en images",
     "Signature PDF",
     "Convertisseur d'images universel (WebP, AVIF, JPG, PNG)",
-    "Compression d'images avec comparaison avant/après",
+    "Compression d'images",
     "Redimensionnement d'images",
     "Suppression d'arrière-plan",
     "Convertisseur JSON/CSV",
     "Testeur d'expressions régulières",
     "Générateur de meta tags SEO",
     "Générateur de sitemap XML et robots.txt",
+    "JSON Formatter et minifier",
+    "URL Encode/Decode",
+    "CSS Gradient Generator",
+    "Markdown Preview",
+    "Compteur de mots et caractères",
+    "Convertisseur de casse",
+    "Générateur Lorem Ipsum",
+    "Base64 Encode/Decode",
+    "Comparateur de texte",
+    "Générateur de QR codes",
+    "Générateur de mots de passe sécurisés",
+    "Générateur de hash (MD5, SHA-256, SHA-512)",
+    "Color Picker avec HEX/RGB/HSL",
+    "Calculateur BMI/IMC",
+    "Calculateur d'âge exact",
+    "Calculateur de pourcentages",
+    "Convertisseur d'unités",
   ],
 };
 
@@ -126,7 +172,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" suppressHydrationWarning className="dark">
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -138,7 +184,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
