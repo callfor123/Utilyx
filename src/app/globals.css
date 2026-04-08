@@ -357,3 +357,49 @@
 .markdown-preview table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 0.875em; }
 .markdown-preview th, .markdown-preview td { border: 1px solid var(--border); padding: 0.5em 0.75em; text-align: left; color: var(--foreground); }
 .markdown-preview th { background: var(--muted); font-weight: 600; }
+
+/* ── AdSense Ad Styles ────────────────────────────────────────────── */
+.ad-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ad-container ins.adsbygoogle {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Smooth fade-in for ads */
+.ad-container {
+  animation: ad-fade-in 0.5s ease-out;
+}
+
+@keyframes ad-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ensure ads don't break layout */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
+/* Ad separator line */
+.ad-separator {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.ad-separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+  opacity: 0.5;
+}

@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { useRouter, usePathname } from 'next/navigation'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
 import { routing, type Locale } from '@/i18n/routing'
-
+import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom } from '@/components/adsense'
 // Existing tools
 import { PdfCompress } from '@/components/tools/pdf/pdf-compress'
 import { PdfMerge } from '@/components/tools/pdf/pdf-merge'
@@ -114,6 +114,7 @@ import {
   Smartphone,
   Unlock,
   ShieldCheck,
+  X,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -491,6 +492,9 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
         })}
       </div>
 
+      {/* Ad Banner — Above the active tool */}
+      <AdBanner className="mb-4" />
+
       <AnimatePresence mode="wait">
         {activeTool && ActiveToolComponent ? (
           <motion.div
@@ -519,6 +523,9 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* In-Feed Ad — Below the active tool */}
+      {activeTool && <AdInFeed className="mt-6" />}
     </motion.div>
   )
 }
@@ -669,6 +676,9 @@ function HomePage() {
         )}
       </AnimatePresence>
 
+      {/* Ad Banner — Between Hero and Categories */}
+      {!searchQuery.trim() && <AdBanner className="my-4" />}
+
       {/* Module Cards */}
       {!searchQuery.trim() && (
         <motion.section
@@ -687,6 +697,9 @@ function HomePage() {
           </div>
         </motion.section>
       )}
+
+      {/* In-Feed Ad — Between Categories and All Tools */}
+      {!searchQuery.trim() && <AdInFeed className="my-4" />}
 
       {/* All Tools */}
       {!searchQuery.trim() && (
@@ -714,6 +727,9 @@ function HomePage() {
           </div>
         </motion.section>
       )}
+
+      {/* Leaderboard Ad — Bottom of Homepage */}
+      {!searchQuery.trim() && <AdLeaderboard className="mt-8" />}
     </div>
   )
 }
@@ -803,6 +819,11 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Top Banner Ad — Below Header (Desktop) */}
+      <div className="hidden sm:block w-full">
+        <AdBanner className="py-2" />
+      </div>
+
       {/* Main Content */}
       <main className="flex-1">
         <div className="container mx-auto px-4 py-6 sm:py-8 max-w-5xl">
@@ -857,6 +878,9 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Sticky Bottom Ad — Mobile only */}
+      <AdStickyBottom />
     </div>
   )
 }

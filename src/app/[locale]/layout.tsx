@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { ADSENSE_CLIENT } from "@/components/adsense/adsense-provider";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -199,6 +200,16 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={lang} dir={dir} suppressHydrationWarning>
       <head>
+        {/* Google AdSense Verification */}
+        <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
+
+        {/* Google AdSense Script (Server-side injection for faster loading) */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+        />
+
         <link
           rel="alternate"
           hrefLang="x-default"
