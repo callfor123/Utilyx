@@ -163,12 +163,10 @@ export function PdfSign() {
       const offCtx = offscreen.getContext('2d')!
       await page.render({ canvasContext: offCtx, viewport }).promise
 
-      // Copy to visible canvas flipped vertically for correct orientation
+      // Copy to visible canvas
       canvas.width = viewport.width
       canvas.height = viewport.height
       const ctx = canvas.getContext('2d')!
-      ctx.translate(0, viewport.height)
-      ctx.scale(1, -1)
       ctx.drawImage(offscreen, 0, 0)
     } catch (err) {
       console.error('Render error:', err)
@@ -669,7 +667,7 @@ export function PdfSign() {
       }
 
       const modifiedBytes = await pdfDocLib.save()
-      const blob = new Blob([modifiedBytes], { type: 'application/pdf' })
+      const blob = new Blob([modifiedBytes as BlobPart], { type: 'application/pdf' })
       const fileName = file.name.replace(/\.pdf$/i, '') + '-signe.pdf'
       downloadBlob(blob, fileName)
       toast.success('PDF signé téléchargé !')

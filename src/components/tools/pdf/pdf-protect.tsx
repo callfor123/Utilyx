@@ -16,10 +16,6 @@ export function PdfProtect() {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [subject, setSubject] = useState('')
-  const [keywords, setKeywords] = useState('')
   const [isProtecting, setIsProtecting] = useState(false)
   const [result, setResult] = useState<{
     protectedBlob: Blob
@@ -42,10 +38,6 @@ export function PdfProtect() {
     setFile(null)
     setPassword('')
     setConfirmPassword('')
-    setTitle('')
-    setAuthor('')
-    setSubject('')
-    setKeywords('')
     setResult(null)
   }
 
@@ -72,31 +64,59 @@ export function PdfProtect() {
 
     try {
       const arrayBuffer = await file.arrayBuffer()
-      const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true })
+      const pdfBytes = new Uint8Array(arrayBuffer)
 
-      // Set metadata
-      if (title) pdfDoc.setTitle(title)
-      if (author) pdfDoc.setAuthor(author)
-      if (subject) pdfDoc.setSubject(subject)
-      if (keywords) pdfDoc.setKeywords(keywords.split(',').map((k) => k.trim()).filter(Boolean))
+      const encoder = new TextEncoder()
+      const passwordBuffer = encoder.encode(password)
 
-      // Embed protection flag in producer metadata
-      const protectionHash = await crypto.subtle.digest(
-        'SHA-256',
-        new TextEncoder().encode(password)
+      const salt = crypto.getRandomValues(new Uint8Array(16))
+      const iv = crypto.getRandomValues(new Uint8Array(12))
+
+      const keyMaterial = await crypto.subtle.importKey(
+        'raw',
+        passwordBuffer,
+        'PBKDF2',
+        false,
+        ['deriveBits', 'deriveKey']
       )
-      const hashArray = Array.from(new Uint8Array(protectionHash))
-      const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
 
-      pdfDoc.setProducer(`Utilyx PDF Protector [hash:${hashHex}]`)
+      const aesKey = await crypto.subtle.deriveKey(
+        {
+          name: 'PBKDF2',
+          salt,
+          iterations: 100000,
+          hash: 'SHA-256',
+        },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt', 'decrypt']
+      )
 
-      const protectedBytes = await pdfDoc.save({
-        useObjectStreams: true,
-        addDefaultPage: false,
-      })
+      const encryptedContent = await crypto.subtle.encrypt(
+        { name: 'AES-GCM', iv },
+        aesKey,
+        pdfBytes
+      )
+
+      const header = encoder.encode('UTILYX_PDF_V1|')
+      const protectedBytes = new Uint8Array(
+        header.length + salt.length + iv.length + encryptedContent.byteLength
+      )
+      protectedBytes.set(header, 0)
+      protectedBytes.set(salt, header.length)
+      protectedBytes.set(iv, header.length + salt.length)
+      protectedBytes.set(new Uint8Array(encryptedContent), header.length + salt.length + iv.length)
 
       const protectedBlob = new Blob([protectedBytes], { type: 'application/pdf' })
-      const pageCount = pdfDoc.getPageCount()
+
+      let pageCount = 0
+      try {
+        const tempPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true })
+        pageCount = tempPdf.getPageCount()
+      } catch {
+        pageCount = 0
+      }
 
       setResult({
         protectedBlob,
@@ -152,10 +172,10 @@ export function PdfProtect() {
             <Info className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
             <div>
               <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
-                Protection via métadonnées
+                Chiffrement AES-256-GCM
               </p>
               <p className="text-xs text-amber-700 dark:text-amber-300 mt-0.5">
-                Le mot de passe est hashé (SHA-256) et intégré dans les métadonnées du PDF. Les métadonnées personnalisées (titre, auteur, etc.) sont également appliquées.
+                Votre PDF est chiffré avec AES-256-GCM via PBKDF2. Sans le bon mot de passe, il est impossible de lire le contenu.
               </p>
             </div>
           </div>
@@ -223,45 +243,6 @@ export function PdfProtect() {
                   {confirmPassword && password !== confirmPassword && (
                     <p className="text-xs text-red-500">Les mots de passe ne correspondent pas.</p>
                   )}
-                </div>
-              </div>
-
-              {/* Metadata section */}
-              <div className="rounded-lg border p-4 space-y-4">
-                <h3 className="text-sm font-semibold">Métadonnées du PDF</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Titre</Label>
-                    <Input
-                      placeholder="Titre du document"
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Auteur</Label>
-                    <Input
-                      placeholder="Nom de l'auteur"
-                      value={author}
-                      onChange={(e) => setAuthor(e.target.value)}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Sujet</Label>
-                    <Input
-                      placeholder="Sujet du document"
-                      value={subject}
-                      onChange={(e) => setSubject(e.target.value)}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Mots-clés</Label>
-                    <Input
-                      placeholder="mot1, mot2, mot3"
-                      value={keywords}
-                      onChange={(e) => setKeywords(e.target.value)}
-                    />
-                  </div>
                 </div>
               </div>
 

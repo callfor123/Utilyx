@@ -52,19 +52,72 @@ export function PdfUnlock() {
 
     try {
       const arrayBuffer = await file.arrayBuffer()
+      const bytes = new Uint8Array(arrayBuffer)
 
-      // Load with the provided password
-      const pdfDoc = await PDFDocument.load(arrayBuffer, {
-        password: password,
-        ignoreEncryption: false,
-      })
+      const headerStr = new TextDecoder().decode(bytes.slice(0, 14))
+      let pageCount = 0
+      let unlockedBytes: Uint8Array
 
-      const pageCount = pdfDoc.getPageCount()
+      if (headerStr === 'UTILYX_PDF_V1|') {
+        const salt = bytes.slice(14, 30)
+        const iv = bytes.slice(30, 42)
+        const encryptedContent = bytes.slice(42)
 
-      // Save without encryption — this removes the password protection
-      const unlockedBytes = await pdfDoc.save()
+        const encoder = new TextEncoder()
+        const passwordBuffer = encoder.encode(password)
 
-      const unlockedBlob = new Blob([unlockedBytes], { type: 'application/pdf' })
+        const keyMaterial = await crypto.subtle.importKey(
+          'raw',
+          passwordBuffer,
+          'PBKDF2',
+          false,
+          ['deriveBits', 'deriveKey']
+        )
+
+        const aesKey = await crypto.subtle.deriveKey(
+          {
+            name: 'PBKDF2',
+            salt,
+            iterations: 100000,
+            hash: 'SHA-256',
+          },
+          keyMaterial,
+          { name: 'AES-GCM', length: 256 },
+          false,
+          ['encrypt', 'decrypt']
+        )
+
+        try {
+          const decryptedContent = await crypto.subtle.decrypt(
+            { name: 'AES-GCM', iv },
+            aesKey,
+            encryptedContent
+          )
+          unlockedBytes = new Uint8Array(decryptedContent)
+        } catch {
+          toast.error('Mot de passe incorrect. Veuillez réessayer.')
+          setIsUnlocking(false)
+          return
+        }
+
+        try {
+          const tempPdf = await PDFDocument.load(unlockedBytes, { ignoreEncryption: true })
+          pageCount = tempPdf.getPageCount()
+        } catch {
+          pageCount = 0
+        }
+      } else {
+        const pdfDoc = await PDFDocument.load(arrayBuffer, {
+          password,
+          ignoreEncryption: false,
+        } as any)
+
+        pageCount = pdfDoc.getPageCount()
+        const savedBytes = await pdfDoc.save()
+        unlockedBytes = new Uint8Array(savedBytes)
+      }
+
+      const unlockedBlob = new Blob([unlockedBytes as BlobPart], { type: 'application/pdf' })
 
       setResult({
         unlockedBlob,
