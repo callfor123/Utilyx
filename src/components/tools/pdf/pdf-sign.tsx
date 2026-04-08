@@ -141,7 +141,7 @@ export function PdfSign() {
     return () => { cancelled = true }
   }, [])
 
-  // ── Render Page (standalone function, not in useCallback to avoid stale closure) ──
+  // ── Render Page (offscreen + flip for correct orientation) ──
   const renderPdfPage = async (pageNum: number) => {
     const pdfDoc = pdfDocRef.current
     const canvas = canvasRef.current
@@ -151,17 +151,25 @@ export function PdfSign() {
       setLoading(true)
       const page = await pdfDoc.getPage(pageNum)
       const container = containerRef.current
-      const maxWidth = container ? container.clientWidth : 800
+      const maxWidth = container ? Math.max(container.clientWidth, 400) : 800
       const unscaledViewport = page.getViewport({ scale: 1 })
-      const scale = maxWidth / unscaledViewport.width
+      const scale = Math.max(maxWidth / unscaledViewport.width, 0.5)
       const viewport = page.getViewport({ scale })
 
-      const ctx = canvas.getContext('2d')!
+      // Render to offscreen canvas first (pdfjs handles viewport transform)
+      const offscreen = document.createElement('canvas')
+      offscreen.width = viewport.width
+      offscreen.height = viewport.height
+      const offCtx = offscreen.getContext('2d')!
+      await page.render({ canvasContext: offCtx, viewport }).promise
+
+      // Copy to visible canvas flipped vertically for correct orientation
       canvas.width = viewport.width
       canvas.height = viewport.height
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      await page.render({ canvasContext: ctx, viewport }).promise
+      const ctx = canvas.getContext('2d')!
+      ctx.translate(0, viewport.height)
+      ctx.scale(1, -1)
+      ctx.drawImage(offscreen, 0, 0)
     } catch (err) {
       console.error('Render error:', err)
       toast.error('Erreur lors du rendu de la page')
@@ -626,8 +634,8 @@ export function PdfSign() {
 
         for (const el of pageElements) {
           const pdfX = (el.x / 100) * pw
-          // PDF y is bottom-up, overlay y is top-down
-          const pdfY = ph - (el.y / 100) * ph
+          // Canvas is flipped: visual top = PDF bottom, so visual Y% = PDF Y%
+          const pdfY = (el.y / 100) * ph
           const pdfW = (el.width / 100) * pw
           const pdfH = (el.height / 100) * ph
 
