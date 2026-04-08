@@ -4,7 +4,10 @@ import React, { useState, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
+import { useRouter, usePathname } from 'next/navigation'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
+import { routing, type Locale } from '@/i18n/routing'
 
 // Existing tools
 import { PdfCompress } from '@/components/tools/pdf/pdf-compress'
@@ -18,59 +21,55 @@ import { RegexTester } from '@/components/tools/dev-seo/regex-tester'
 import { MetaTags } from '@/components/tools/dev-seo/meta-tags'
 import { SitemapRobots } from '@/components/tools/dev-seo/sitemap-robots'
 
-// New tools — Text
+// Text tools
 import { WordCounter } from '@/components/tools/text-tools/word-counter'
 import { CaseConverter } from '@/components/tools/text-tools/case-converter'
 import { LoremIpsumGenerator } from '@/components/tools/text-tools/lorem-ipsum-generator'
 import { Base64EncodeDecode } from '@/components/tools/text-tools/base64-encode-decode'
 import { TextDiffChecker } from '@/components/tools/text-tools/text-diff-checker'
 
-// New tools — Generators
+// Generators
 import { QrCodeGenerator } from '@/components/tools/generators/qr-code-generator'
 import { PasswordGenerator } from '@/components/tools/generators/password-generator'
 import { HashGenerator } from '@/components/tools/generators/hash-generator'
 import { ColorPicker } from '@/components/tools/generators/color-picker'
 
-// New tools — Dev & SEO
+// Dev & SEO
 import { JsonFormatter } from '@/components/tools/dev-seo/json-formatter'
 import { UrlEncodeDecode } from '@/components/tools/dev-seo/url-encode-decode'
 import { CssGradientGenerator } from '@/components/tools/dev-seo/css-gradient-generator'
 import { MarkdownPreview } from '@/components/tools/dev-seo/markdown-preview'
 
-// New tools — Calculators
+// Calculators
 import { BmiCalculator } from '@/components/tools/calculators/bmi-calculator'
 import { AgeCalculator } from '@/components/tools/calculators/age-calculator'
 import { PercentageCalculator } from '@/components/tools/calculators/percentage-calculator'
 import { UnitConverter } from '@/components/tools/calculators/unit-converter'
 
-// New tools — PDF
+// Dynamic imports
 const PdfUnlock = dynamic(
   () => import('@/components/tools/pdf/pdf-unlock').then(m => ({ default: m.PdfUnlock })),
-  { ssr: false, loading: () => <ToolLoader label="Déverrouiller PDF" /> }
+  { ssr: false, loading: () => <ToolLoader label="PDF Unlock" /> }
 )
 const PdfProtect = dynamic(
   () => import('@/components/tools/pdf/pdf-protect').then(m => ({ default: m.PdfProtect })),
-  { ssr: false, loading: () => <ToolLoader label="Protéger PDF" /> }
+  { ssr: false, loading: () => <ToolLoader label="PDF Protect" /> }
 )
-
-// HEIC converter uses heic2any (browser-only)
 const HeicToJpgDynamic = dynamic(
   () => import('@/components/tools/image/heic-to-jpg').then(m => ({ default: m.HeicToJpg })),
-  { ssr: false, loading: () => <ToolLoader label="HEIC vers JPG" /> }
+  { ssr: false, loading: () => <ToolLoader label="HEIC to JPG" /> }
 )
 const FaviconGeneratorDynamic = dynamic(
   () => import('@/components/tools/image/favicon-generator').then(m => ({ default: m.FaviconGenerator })),
-  { ssr: false, loading: () => <ToolLoader label="Générateur de Favicon" /> }
+  { ssr: false, loading: () => <ToolLoader label="Favicon Generator" /> }
 )
-
-// pdfjs-dist uses DOMMatrix — SSR incompatible
 const PdfConvert = dynamic(
   () => import('@/components/tools/pdf/pdf-convert').then(m => ({ default: m.PdfConvert })),
-  { ssr: false, loading: () => <ToolLoader label="Conversion PDF" /> }
+  { ssr: false, loading: () => <ToolLoader label="PDF Convert" /> }
 )
 const PdfSign = dynamic(
   () => import('@/components/tools/pdf/pdf-sign').then(m => ({ default: m.PdfSign })),
-  { ssr: false, loading: () => <ToolLoader label="Signature PDF" /> }
+  { ssr: false, loading: () => <ToolLoader label="PDF Sign" /> }
 )
 
 import {
@@ -95,7 +94,6 @@ import {
   Braces,
   Terminal,
   Globe,
-  // New icons
   Type,
   Wand2,
   Calculator,
@@ -122,29 +120,64 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
+/* ── Locale Labels ────────────────────────────────────────────────────── */
+const localeLabels: Record<string, string> = {
+  fr: 'Français',
+  en: 'English',
+  es: 'Español',
+  de: 'Deutsch',
+  ar: 'العربية',
+  pt: 'Português',
+}
+
+/* ── Translated Modules Hook ─────────────────────────────────────────── */
+function useTranslatedModules() {
+  const t = useTranslations('Tools')
+  const tMod = useTranslations('Modules')
+
+  return modules.map(mod => ({
+    ...mod,
+    label: tMod(`${mod.id}.label`),
+    description: tMod(`${mod.id}.description`),
+    tools: mod.tools.map(tool => ({
+      ...tool,
+      label: t(`${tool.id}.label`),
+      description: t(`${tool.id}.description`),
+    })),
+  }))
+}
 
 /* ── Tool Loader ─────────────────────────────────────────────────────── */
 function ToolLoader({ label }: { label: string }) {
+  const t = useTranslations('Common')
   return (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
       <div className="relative">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary/30 border-t-primary" />
         <div className="absolute inset-0 animate-ping rounded-full bg-primary/10" />
       </div>
-      <p className="text-sm text-muted-foreground">Chargement de {label}…</p>
+      <p className="text-sm text-muted-foreground">{t('loading', { label })}</p>
     </div>
   )
 }
 
 /* ── Placeholder ─────────────────────────────────────────────────────── */
 function Placeholder({ name }: { name: string }) {
+  const t = useTranslations('Common')
   return (
     <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
       <div className="rounded-2xl bg-primary/10 p-4">
         <Sparkles className="h-8 w-8 text-primary" />
       </div>
       <p className="text-lg font-semibold">{name}</p>
-      <p className="text-sm text-muted-foreground">Cet outil sera bientôt disponible.</p>
+      <p className="text-sm text-muted-foreground">{t('comingSoon')}</p>
     </div>
   )
 }
@@ -189,13 +222,11 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FileDown, Merge, PenTool, RefreshCw, Maximize2, Scissors,
   Braces, Terminal, Globe, FileText, Code,
-  // New icons
   Type, Wand2, Calculator, Hash, QrCode, KeyRound, Palette,
   Heart, Calendar, Percent, ArrowRightLeft, Link, Paintbrush,
   FileCode, ArrowDownUp, Diff, Lock, Smartphone, Unlock, ShieldCheck,
 }
 
-// Image icon mapped separately (reserved keyword)
 toolIconMap['Image'] = ImageIcon
 
 function getToolIcon(iconName: string): React.ComponentType<{ className?: string }> {
@@ -229,7 +260,7 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-/* ── Module Color Gradient ───────────────────────────────────────────── */
+/* ── Module Colors ───────────────────────────────────────────────────── */
 const moduleGradients: Record<string, string> = {
   pdf: 'from-red-500/20 via-orange-500/10 to-amber-500/20',
   image: 'from-emerald-500/20 via-teal-500/10 to-cyan-500/20',
@@ -248,15 +279,6 @@ const moduleIconColors: Record<string, string> = {
   calculators: 'text-amber-500 bg-amber-50 dark:bg-amber-950/30',
 }
 
-const moduleBadgeClasses: Record<string, string> = {
-  pdf: 'category-badge-pdf',
-  image: 'category-badge-image',
-  'dev-seo': 'category-badge-dev-seo',
-  'text-tools': 'category-badge-text-tools',
-  generators: 'category-badge-generators',
-  calculators: 'category-badge-calculators',
-}
-
 const moduleIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   pdf: FileText,
   image: ImageIcon,
@@ -269,6 +291,7 @@ const moduleIcons: Record<string, React.ComponentType<{ className?: string }>> =
 /* ── Theme Toggle ────────────────────────────────────────────────────── */
 function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const t = useTranslations('Common')
   return (
     <TooltipProvider>
       <Tooltip>
@@ -284,15 +307,51 @@ function ThemeToggle() {
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          {theme === 'dark' ? 'Mode clair' : 'Mode sombre'}
+          {theme === 'dark' ? t('lightMode') : t('darkMode')}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
   )
 }
 
+/* ── Language Selector ───────────────────────────────────────────────── */
+function LanguageSelector() {
+  const router = useRouter()
+  const pathname = usePathname()
+  const currentLocale = pathname.split('/')[1] || 'fr'
+
+  const switchLocale = (locale: string) => {
+    const segments = pathname.split('/')
+    segments[1] = locale
+    router.push(segments.join('/'))
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="sm" className="gap-1.5">
+          <Globe className="h-4 w-4" />
+          <span className="hidden sm:inline text-xs uppercase font-semibold">{currentLocale}</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[160px]">
+        {routing.locales.map(locale => (
+          <DropdownMenuItem
+            key={locale}
+            onClick={() => switchLocale(locale)}
+            className={locale === currentLocale ? 'bg-primary/10 font-semibold' : ''}
+          >
+            <span className="mr-2 text-base">{locale === 'ar' ? '🇸🇦' : locale === 'de' ? '🇩🇪' : locale === 'en' ? '🇬🇧' : locale === 'es' ? '🇪🇸' : locale === 'fr' ? '🇫🇷' : '🇧🇷'}</span>
+            {localeLabels[locale]}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+
 /* ── Module Card ─────────────────────────────────────────────────────── */
-function ModuleCard({ module, index }: { module: typeof modules[0]; index: number }) {
+function ModuleCard({ module, index }: { module: ReturnType<typeof useTranslatedModules>[0]; index: number }) {
   const { setActiveModule } = useToolsStore()
   const IconComponent = moduleIcons[module.id] || Code
   const gradient = moduleGradients[module.id] || ''
@@ -304,11 +363,9 @@ function ModuleCard({ module, index }: { module: typeof modules[0]; index: numbe
         className="group relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 glass-card card-hover-lift h-full"
         onClick={() => setActiveModule(module.id)}
       >
-        {/* Background gradient on hover */}
         <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
         <CardContent className="relative p-6 flex flex-col h-full gap-4">
-          {/* Icon + arrow */}
           <div className="flex items-start justify-between">
             <div className={`rounded-2xl p-3 transition-transform duration-300 group-hover:scale-110 ${iconColor}`}>
               <IconComponent className="h-7 w-7" />
@@ -318,13 +375,11 @@ function ModuleCard({ module, index }: { module: typeof modules[0]; index: numbe
             </div>
           </div>
 
-          {/* Text */}
           <div className="flex-1">
             <h3 className="text-lg font-semibold mb-1.5 tracking-tight">{module.label}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{module.description}</p>
           </div>
 
-          {/* Tool badges */}
           <div className="flex flex-wrap gap-1.5">
             {module.tools.slice(0, 3).map((tool) => (
               <Badge key={tool.id} variant="secondary" className="text-[11px] font-normal bg-muted/60 hover:bg-muted">
@@ -378,7 +433,10 @@ function ToolQuickAccess({
 /* ── Module View ─────────────────────────────────────────────────────── */
 function ModuleView({ moduleId }: { moduleId: ModuleId }) {
   const { setActiveModule, activeTool, setActiveTool } = useToolsStore()
-  const mod = modules.find((m) => m.id === moduleId)
+  const translatedModules = useTranslatedModules()
+  const t = useTranslations('Common')
+
+  const mod = translatedModules.find((m) => m.id === moduleId)
   if (!mod) return null
 
   const ActiveToolComponent = activeTool ? toolComponentMap[activeTool] : null
@@ -393,7 +451,6 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
       transition={{ duration: 0.3, ease: 'easeOut' }}
       className="space-y-6"
     >
-      {/* Back + title */}
       <div className="flex items-center gap-3">
         <Button
           variant="ghost"
@@ -402,7 +459,7 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
           className="shrink-0 hover:bg-muted/60"
         >
           <ArrowLeft className="h-4 w-4 mr-1" />
-          Accueil
+          {t('home')}
         </Button>
         <div className="h-5 w-px bg-border" />
         <div className={`rounded-lg p-1.5 ${iconColor}`}>
@@ -411,7 +468,6 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
         <h1 className="text-lg font-semibold tracking-tight">{mod.label}</h1>
       </div>
 
-      {/* Tool tabs */}
       <div className="flex flex-wrap gap-2 p-1.5 glass-card rounded-xl">
         {mod.tools.map((tool) => {
           const ToolIcon = getToolIcon(tool.icon)
@@ -435,7 +491,6 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
         })}
       </div>
 
-      {/* Active tool content */}
       <AnimatePresence mode="wait">
         {activeTool && ActiveToolComponent ? (
           <motion.div
@@ -459,7 +514,7 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
               <Sparkles className="h-8 w-8 text-muted-foreground/50" />
             </div>
             <p className="text-muted-foreground text-sm">
-              Sélectionnez un outil ci-dessus pour commencer
+              {t('selectTool')}
             </p>
           </motion.div>
         )}
@@ -471,11 +526,13 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
 /* ── Home Page ───────────────────────────────────────────────────────── */
 function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
+  const t = useTranslations('Common')
+  const translatedModules = useTranslatedModules()
 
   const filteredTools = useMemo(() => {
     if (!searchQuery.trim()) return []
     const q = searchQuery.toLowerCase()
-    return modules.flatMap((mod) =>
+    return translatedModules.flatMap((mod) =>
       mod.tools
         .filter(
           (tool) =>
@@ -485,28 +542,25 @@ function HomePage() {
         )
         .map((tool) => ({ ...tool, moduleId: mod.id, moduleLabel: mod.label }))
     )
-  }, [searchQuery])
+  }, [searchQuery, translatedModules])
 
   return (
     <div className="space-y-12">
-      {/* ── Hero ─────────────────────────────────────────────────── */}
+      {/* Hero */}
       <motion.section
         variants={fadeUp}
         initial="hidden"
         animate="visible"
         className="relative text-center py-8 sm:py-12"
       >
-        {/* Background glow */}
         <div className="absolute inset-0 -z-10 mesh-gradient-strong" />
 
-        {/* Animated orbs */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="orb orb-1" />
           <div className="orb orb-2" />
           <div className="orb orb-3" />
         </div>
 
-        {/* Logo */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -521,7 +575,6 @@ function HomePage() {
           </div>
         </motion.div>
 
-        {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -537,12 +590,12 @@ function HomePage() {
           transition={{ delay: 0.25, duration: 0.5 }}
           className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg leading-relaxed mb-8"
         >
-          Suite multi-outils <span className="text-foreground font-medium">100% gratuite</span> et{' '}
-          <span className="text-foreground font-medium">privée</span>. PDF, images, SEO, texte, générateurs
-          et calculateurs — tout directement dans votre navigateur.
+          {t('description', {
+            free: t('freeLabel'),
+            private: t('privateLabel'),
+          })}
         </motion.p>
 
-        {/* Search bar */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -552,14 +605,13 @@ function HomePage() {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             type="text"
-            placeholder="Rechercher un outil…"
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-11 h-12 rounded-xl glass-card border-border/50 focus:border-primary/40 text-base"
           />
         </motion.div>
 
-        {/* Trust badges */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -568,20 +620,20 @@ function HomePage() {
         >
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card">
             <Shield className="h-3.5 w-3.5 text-emerald-500" />
-            <span>100% Privé</span>
+            <span>{t('private')}</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card">
             <Zap className="h-3.5 w-3.5 text-amber-500" />
-            <span>Rapide & Offline</span>
+            <span>{t('fastOffline')}</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card">
             <Sparkles className="h-3.5 w-3.5 text-primary" />
-            <span>32+ Outils Premium</span>
+            <span>{t('toolCount')}</span>
           </div>
         </motion.div>
       </motion.section>
 
-      {/* ── Search Results ────────────────────────────────────────── */}
+      {/* Search Results */}
       <AnimatePresence>
         {searchQuery.trim() && (
           <motion.div
@@ -593,7 +645,7 @@ function HomePage() {
             {filteredTools.length > 0 ? (
               <div>
                 <h2 className="text-sm font-medium text-muted-foreground mb-3">
-                  {filteredTools.length} outil{filteredTools.length > 1 ? 's' : ''} trouvé{filteredTools.length > 1 ? 's' : ''}
+                  {t('toolsFound', { count: filteredTools.length })}
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                   {filteredTools.map((tool) => (
@@ -608,14 +660,16 @@ function HomePage() {
               </div>
             ) : (
               <div className="text-center py-10">
-                <p className="text-muted-foreground text-sm">Aucun outil trouvé pour « {searchQuery} »</p>
+                <p className="text-muted-foreground text-sm">
+                  {t('noResults', { query: searchQuery })}
+                </p>
               </div>
             )}
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* ── Module Cards ─────────────────────────────────────────── */}
+      {/* Module Cards */}
       {!searchQuery.trim() && (
         <motion.section
           variants={containerVariants}
@@ -623,18 +677,18 @@ function HomePage() {
           animate="visible"
         >
           <motion.div variants={itemVariants} className="mb-5">
-            <h2 className="text-xl font-semibold tracking-tight">Catégories</h2>
-            <p className="text-sm text-muted-foreground mt-1">Choisissez une catégorie pour explorer ses outils</p>
+            <h2 className="text-xl font-semibold tracking-tight">{t('categories')}</h2>
+            <p className="text-sm text-muted-foreground mt-1">{t('categoriesDesc')}</p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {modules.map((mod, i) => (
+            {translatedModules.map((mod, i) => (
               <ModuleCard key={mod.id} module={mod} index={i} />
             ))}
           </div>
         </motion.section>
       )}
 
-      {/* ── All Tools ─────────────────────────────────────────────── */}
+      {/* All Tools */}
       {!searchQuery.trim() && (
         <motion.section
           variants={containerVariants}
@@ -643,11 +697,11 @@ function HomePage() {
           viewport={{ once: true, margin: '-50px' }}
         >
           <motion.div variants={itemVariants} className="mb-5">
-            <h2 className="text-xl font-semibold tracking-tight">Tous les outils</h2>
-            <p className="text-sm text-muted-foreground mt-1">Accès rapide à tous les outils disponibles</p>
+            <h2 className="text-xl font-semibold tracking-tight">{t('allTools')}</h2>
+            <p className="text-sm text-muted-foreground mt-1">{t('allToolsDesc')}</p>
           </motion.div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-            {modules.flatMap((mod) =>
+            {translatedModules.flatMap((mod) =>
               mod.tools.map((tool) => (
                 <ToolQuickAccess
                   key={tool.id}
@@ -666,7 +720,8 @@ function HomePage() {
 
 /* ── Footer Column ──────────────────────────────────────────────────── */
 function FooterColumn({ moduleId, title }: { moduleId: ModuleId; title: string }) {
-  const mod = modules.find(m => m.id === moduleId)
+  const translatedModules = useTranslatedModules()
+  const mod = translatedModules.find(m => m.id === moduleId)
   if (!mod) return null
   return (
     <div>
@@ -693,18 +748,20 @@ function FooterColumn({ moduleId, title }: { moduleId: ModuleId; title: string }
 /* ── Main App ────────────────────────────────────────────────────────── */
 export default function Home() {
   const { activeModule } = useToolsStore()
+  const t = useTranslations('Common')
+  const tMod = useTranslations('Modules')
+  const tFooter = useTranslations('Footer')
+  const translatedModules = useTranslatedModules()
 
   return (
     <div className="min-h-screen flex flex-col bg-background relative">
-      {/* Subtle grid background */}
       <div className="fixed inset-0 bg-grid -z-50 pointer-events-none" />
       <div className="fixed inset-0 mesh-gradient -z-40 pointer-events-none" />
 
-      {/* ── Header ─────────────────────────────────────────────── */}
+      {/* Header */}
       <header className="sticky top-0 z-50 w-full">
         <div className="glass-strong border-b border-border/50">
           <div className="container mx-auto flex h-14 items-center px-4">
-            {/* Logo */}
             <button
               className="flex items-center gap-2.5 font-bold text-lg mr-auto hover:opacity-80 transition-opacity"
               onClick={() => useToolsStore.getState().setActiveModule('home')}
@@ -715,9 +772,8 @@ export default function Home() {
               <span className="gradient-text">Utilyx</span>
             </button>
 
-            {/* Nav — responsive: icons on mobile, text on desktop */}
             <nav className="flex items-center gap-1">
-              {modules.map((mod) => {
+              {translatedModules.map((mod) => {
                 const IconComponent = moduleIcons[mod.id] || Code
                 const isActive = activeModule === mod.id
                 return (
@@ -740,13 +796,14 @@ export default function Home() {
                 )
               })}
               <div className="w-px h-5 bg-border mx-1.5" />
+              <LanguageSelector />
               <ThemeToggle />
             </nav>
           </div>
         </div>
       </header>
 
-      {/* ── Main Content ────────────────────────────────────────── */}
+      {/* Main Content */}
       <main className="flex-1">
         <div className="container mx-auto px-4 py-6 sm:py-8 max-w-5xl">
           <AnimatePresence mode="wait">
@@ -759,11 +816,10 @@ export default function Home() {
         </div>
       </main>
 
-      {/* ── Footer ─────────────────────────────────────────────── */}
+      {/* Footer */}
       <footer className="border-t border-border/50 mt-auto">
         <div className="container mx-auto px-4 py-8 sm:py-10">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8 mb-8">
-            {/* Brand */}
             <div className="col-span-2 sm:col-span-3 lg:col-span-1">
               <div className="flex items-center gap-2 font-bold text-lg mb-3">
                 <div className="rounded-lg bg-primary/10 p-1.5">
@@ -772,31 +828,30 @@ export default function Home() {
                 <span className="gradient-text">Utilyx</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Suite multi-outils 100% gratuite et privée.
+                {tFooter('tagline')}
               </p>
             </div>
 
-            <FooterColumn moduleId="pdf" title="PDF & Documents" />
-            <FooterColumn moduleId="image" title="Images" />
-            <FooterColumn moduleId="dev-seo" title="Dev & SEO" />
-            <FooterColumn moduleId="text-tools" title="Text Tools" />
-            <FooterColumn moduleId="generators" title="Generators" />
-            <FooterColumn moduleId="calculators" title="Calculators" />
+            <FooterColumn moduleId="pdf" title={tMod('pdf.label')} />
+            <FooterColumn moduleId="image" title={tMod('image.label')} />
+            <FooterColumn moduleId="dev-seo" title={tMod('dev-seo.label')} />
+            <FooterColumn moduleId="text-tools" title={tMod('text-tools.label')} />
+            <FooterColumn moduleId="generators" title={tMod('generators.label')} />
+            <FooterColumn moduleId="calculators" title={tMod('calculators.label')} />
           </div>
 
-          {/* Bottom bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border/50">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Utilyx. Tous droits réservés.
+              {t('copyright', { year: new Date().getFullYear() })}
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-1.5">
                 <Shield className="h-3 w-3 text-emerald-500" />
-                <span>Données 100% locales</span>
+                <span>{t('localData')}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Zap className="h-3 w-3 text-amber-500" />
-                <span>Zéro inscription requise</span>
+                <span>{t('noSignup')}</span>
               </div>
             </div>
           </div>
