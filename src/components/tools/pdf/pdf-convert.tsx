@@ -31,12 +31,14 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-// Use local worker copied to /public
+// Use local worker copied to /public — disable worker for reliability
 let pdfjsLib: any = null
 async function getPdfjs() {
   if (!pdfjsLib) {
     pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
+    // Disable external worker — use main thread (fake worker)
+    // This avoids CSP and standalone serving issues
+    pdfjsLib.GlobalWorkerOptions.workerSrc = ''
   }
   return pdfjsLib
 }

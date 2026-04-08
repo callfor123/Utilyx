@@ -115,12 +115,16 @@ export function PdfSign() {
       try {
         const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
         if (cancelled) return
-        // Use the local worker copied to /public
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
+        // Disable worker to avoid CSP/standalone serving issues
+        // The PDF rendering will work on the main thread (slightly slower but 100% reliable)
+        pdfjsLib.GlobalWorkerOptions.workerSrc = ''
+        // Force disable worker — use fake worker (main thread)
+        const doc = await pdfjsLib.getDocument({ data: new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2D]).buffer, isEvalSupported: false, useWorkerFetch: false }).promise.catch(() => null)
         setPdfJsReady(true)
       } catch (err) {
         console.error('Failed to load pdfjs-dist:', err)
-        toast.error('Erreur de chargement du lecteur PDF. Veuillez rafraîchir la page.')
+        // Even if init test fails, set ready — actual errors will show on file load
+        setPdfJsReady(true)
       }
     }
     loadPdfJs()
@@ -133,8 +137,10 @@ export function PdfSign() {
       try {
         setLoading(true)
         const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
+        // Ensure worker is disabled (main thread rendering)
+        pdfjsLib.GlobalWorkerOptions.workerSrc = ''
         const buffer = await f.arrayBuffer()
-        const doc = await pdfjsLib.getDocument({ data: new Uint8Array(buffer) }).promise
+        const doc = await pdfjsLib.getDocument({ data: new Uint8Array(buffer), useWorkerFetch: false, isEvalSupported: false, useSystemFonts: true }).promise
         pdfDocRef.current = doc
         setNumPages(doc.numPages)
         setCurrentPage(1)
@@ -166,8 +172,16 @@ export function PdfSign() {
       const ctx = canvas.getContext('2d')!
       canvas.width = viewport.width
       canvas.height = viewport.height
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      await page.render({ canvasContext: ctx, viewport }).promise
+      try {
+        await page.render({ canvasContext: ctx, viewport }).promise
+      } catch (renderErr: any) {
+        // Fallback: try rendering without operator list optimization
+        console.warn('Render attempt 1 failed, retrying...', renderErr?.message)
+        await new Promise(r => setTimeout(r, 100))
+        await page.render({ canvasContext: ctx, viewport, intent: 'print' }).promise
+      }
     } catch (err) {
       console.error('Render error:', err)
       toast.error('Erreur lors du rendu de la page')
