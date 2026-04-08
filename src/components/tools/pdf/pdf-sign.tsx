@@ -42,12 +42,8 @@ import {
 } from '@/components/ui/tooltip'
 import { Separator } from '@/components/ui/separator'
 import { Slider } from '@/components/ui/slider'
-
-import * as pdfjsLib from 'pdfjs-dist'
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 import { Textarea } from '@/components/ui/textarea'
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@5.6.205/build/pdf.worker.min.mjs`
+import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
 
 // ── Types ────────────────────────────────────────────────────────────
 interface SignatureElement {
@@ -74,15 +70,17 @@ function uid(): string {
 export function PdfSign() {
   // File state
   const [file, setFile] = useState<File | null>(null)
-  const [pdfDoc, setPdfDoc] = useState<pdfjsLib.PDFDocumentProxy | null>(null)
   const [numPages, setNumPages] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
-  const [rendering, setRendering] = useState(false)
-  const [scale] = useState(1.5)
+  const [loading, setLoading] = useState(false)
+  const [pdfJsReady, setPdfJsReady] = useState(false)
 
   // Canvas refs
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  // pdfjs references (loaded dynamically to avoid SSR issues)
+  const pdfDocRef = useRef<any>(null)
 
   // Elements
   const [elements, setElements] = useState<SignatureElement[]>([])
@@ -110,14 +108,34 @@ export function PdfSign() {
   const dragOffsetRef = useRef({ x: 0, y: 0 })
   const resizeStartRef = useRef({ x: 0, y: 0, w: 0, h: 0, elId: '' })
 
+  // ── Load pdfjs-dist dynamically (client-only) ─────────────────────
+  useEffect(() => {
+    let cancelled = false
+    async function loadPdfJs() {
+      try {
+        const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
+        if (cancelled) return
+        // Use the local worker copied to /public
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
+        setPdfJsReady(true)
+      } catch (err) {
+        console.error('Failed to load pdfjs-dist:', err)
+        toast.error('Erreur de chargement du lecteur PDF. Veuillez rafraîchir la page.')
+      }
+    }
+    loadPdfJs()
+    return () => { cancelled = true }
+  }, [])
+
   // ── Load PDF ────────────────────────────────────────────────────
   const loadPdf = useCallback(
     async (f: File) => {
       try {
-        setRendering(true)
+        setLoading(true)
+        const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
         const buffer = await f.arrayBuffer()
-        const doc = await pdfjsLib.getDocument({ data: buffer }).promise
-        setPdfDoc(doc)
+        const doc = await pdfjsLib.getDocument({ data: new Uint8Array(buffer) }).promise
+        pdfDocRef.current = doc
         setNumPages(doc.numPages)
         setCurrentPage(1)
         setElements([])
@@ -125,10 +143,10 @@ export function PdfSign() {
         setActiveTool('select')
         toast.success('PDF chargé avec succès')
       } catch (err) {
-        console.error(err)
-        toast.error('Impossible de charger le PDF')
+        console.error('PDF load error:', err)
+        toast.error('Impossible de charger le PDF. Vérifiez que le fichier est valide.')
       } finally {
-        setRendering(false)
+        setLoading(false)
       }
     },
     []
@@ -136,10 +154,12 @@ export function PdfSign() {
 
   // ── Render Page ─────────────────────────────────────────────────
   const renderPage = useCallback(async () => {
+    const pdfDoc = pdfDocRef.current
     if (!pdfDoc || !canvasRef.current) return
     try {
-      setRendering(true)
+      setLoading(true)
       const page = await pdfDoc.getPage(currentPage)
+      const scale = 1.5
       const viewport = page.getViewport({ scale })
 
       const canvas = canvasRef.current
@@ -149,15 +169,17 @@ export function PdfSign() {
 
       await page.render({ canvasContext: ctx, viewport }).promise
     } catch (err) {
-      console.error(err)
+      console.error('Render error:', err)
       toast.error('Erreur lors du rendu de la page')
     } finally {
-      setRendering(false)
+      setLoading(false)
     }
-  }, [pdfDoc, currentPage, scale])
+  }, [currentPage])
 
   useEffect(() => {
-    renderPage()
+    if (pdfDocRef.current) {
+      renderPage()
+    }
   }, [renderPage])
 
   // ── File handlers ───────────────────────────────────────────────
@@ -177,7 +199,7 @@ export function PdfSign() {
 
   const handleRemoveFile = useCallback(() => {
     setFile(null)
-    setPdfDoc(null)
+    pdfDocRef.current = null
     setNumPages(0)
     setCurrentPage(1)
     setElements([])
@@ -351,10 +373,6 @@ export function PdfSign() {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const imgFile = e.target.files?.[0]
       if (!imgFile) return
-      if (!imgFile.type.includes('image/png')) {
-        toast.error('Veuillez sélectionner une image PNG transparente')
-        return
-      }
       const reader = new FileReader()
       reader.onload = () => {
         const dataUrl = reader.result as string
@@ -561,9 +579,9 @@ export function PdfSign() {
       toast.info('Génération du PDF en cours...')
 
       const pdfBytes = await file.arrayBuffer()
-      const pdfDoc = await PDFDocument.load(pdfBytes)
-      const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
-      const pages = pdfDoc.getPages()
+      const pdfDocLib = await PDFDocument.load(pdfBytes)
+      const font = await pdfDocLib.embedFont(StandardFonts.Helvetica)
+      const pages = pdfDocLib.getPages()
 
       // Group elements by page
       const elementsByPage = new Map<number, SignatureElement[]>()
@@ -587,24 +605,20 @@ export function PdfSign() {
           const pdfH = (el.height / 100) * ph
 
           if (el.type === 'text') {
-            const fontSize = el.fontSize || 14
-            // Calculate scale: in the overlay, fontSize is in screen pixels.
-            // We need to estimate a pdf font size that matches the element height.
-            // Use the element height as reference for the font size in PDF points.
             const pdfFontSize = (el.height / 100) * ph * 0.7
             page.drawText(el.content, {
               x: pdfX,
-              y: pdfY - pdfFontSize, // baseline adjustment
+              y: pdfY - pdfFontSize,
               size: Math.max(6, pdfFontSize),
               font,
               color: rgb(0, 0, 0),
             })
           } else if (el.type === 'draw' || el.type === 'image') {
             try {
-              // Convert data URL to Uint8Array
               const base64Data = el.content.split(',')[1]
+              if (!base64Data) continue
               const imageBytes = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0))
-              const image = await pdfDoc.embedPng(imageBytes)
+              const image = await pdfDocLib.embedPng(imageBytes)
               page.drawImage(image, {
                 x: pdfX,
                 y: pdfY - pdfH,
@@ -613,20 +627,20 @@ export function PdfSign() {
               })
             } catch (imgErr) {
               console.error('Failed to embed image:', imgErr)
-              toast.error(`Erreur d'intégration d'une image sur la page ${pageNum}`)
+              toast.error(`Erreur d'intégration d'image page ${pageNum}`)
             }
           }
         }
       }
 
-      const modifiedBytes = await pdfDoc.save()
+      const modifiedBytes = await pdfDocLib.save()
       const blob = new Blob([modifiedBytes], { type: 'application/pdf' })
       const fileName = file.name.replace(/\.pdf$/i, '') + '-signe.pdf'
       downloadBlob(blob, fileName)
-      toast.success('PDF signé téléchargé avec succès !')
+      toast.success('PDF signé téléchargé !')
     } catch (err) {
-      console.error(err)
-      toast.error('Erreur lors de la génération du PDF')
+      console.error('Export error:', err)
+      toast.error('Erreur lors de la génération du PDF signé')
     }
   }, [file, elements])
 
@@ -638,9 +652,23 @@ export function PdfSign() {
     { mode: 'image', icon: <ImagePlus className="h-4 w-4" />, label: 'Image' },
   ]
 
-  // ── Render ──────────────────────────────────────────────────────
-  // Upload state
-  if (!file || !pdfDoc) {
+  // ── Loading state while pdfjs loads ────────────────────────────
+  if (!pdfJsReady) {
+    return (
+      <Card className="w-full">
+        <CardContent className="flex flex-col items-center justify-center py-16 gap-4">
+          <div className="relative">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary/30 border-t-primary" />
+            <div className="absolute inset-0 animate-ping rounded-full bg-primary/10" />
+          </div>
+          <p className="text-sm text-muted-foreground">Chargement du lecteur PDF...</p>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  // ── Upload state ──────────────────────────────────────────────
+  if (!file || !pdfDocRef.current) {
     return (
       <Card className="w-full">
         <CardHeader>
@@ -760,7 +788,7 @@ export function PdfSign() {
             style={{ maxWidth: 800 }}
             onClick={handleOverlayClick}
           >
-            {rendering && (
+            {loading && (
               <div className="absolute inset-0 z-30 flex items-center justify-center bg-background/60 backdrop-blur-sm">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
@@ -798,18 +826,10 @@ export function PdfSign() {
                     </span>
                   </div>
                 )}
-                {el.type === 'draw' && (
+                {(el.type === 'draw' || el.type === 'image') && (
                   <img
                     src={el.content}
-                    alt="Dessin"
-                    className="w-full h-full object-contain pointer-events-none"
-                    draggable={false}
-                  />
-                )}
-                {el.type === 'image' && (
-                  <img
-                    src={el.content}
-                    alt="Signature"
+                    alt={el.type === 'draw' ? 'Dessin' : 'Signature'}
                     className="w-full h-full object-contain pointer-events-none"
                     draggable={false}
                   />
@@ -818,7 +838,6 @@ export function PdfSign() {
                 {/* Selected controls */}
                 {selectedId === el.id && (
                   <>
-                    {/* Delete button */}
                     <button
                       className="absolute -top-2 -right-2 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-destructive text-destructive-foreground shadow-sm hover:scale-110 transition-transform"
                       onClick={(e) => {
@@ -829,7 +848,6 @@ export function PdfSign() {
                       <Trash2 className="h-3 w-3" />
                     </button>
 
-                    {/* Resize handle */}
                     <div
                       className="absolute bottom-0 right-0 z-10 h-3 w-3 cursor-se-resize bg-primary rounded-tl-sm"
                       onMouseDown={(e) => handleResizeMouseDown(e, el.id)}
@@ -967,7 +985,7 @@ export function PdfSign() {
       <input
         ref={imageInputRef}
         type="file"
-        accept="image/png"
+        accept="image/png,image/jpeg,image/webp"
         className="hidden"
         onChange={handleImageChange}
       />

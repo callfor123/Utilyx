@@ -9,7 +9,6 @@ import {
   Download,
   Settings2,
 } from 'lucide-react'
-import * as pdfjsLib from 'pdfjs-dist'
 import JSZip from 'jszip'
 import { toast } from 'sonner'
 import { cn, formatFileSize, downloadBlob, downloadDataUrl } from '@/lib/utils'
@@ -32,8 +31,15 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-// Use the CDN worker for pdf.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs`
+// Use local worker copied to /public
+let pdfjsLib: any = null
+async function getPdfjs() {
+  if (!pdfjsLib) {
+    pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
+  }
+  return pdfjsLib
+}
 
 export function PdfConvert() {
   const [file, setFile] = useState<File | null>(null)
@@ -62,7 +68,8 @@ export function PdfConvert() {
 
     try {
       const arrayBuffer = await pdf.arrayBuffer()
-      const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise
+      const pdfjs = await getPdfjs()
+      const pdfDoc = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise
       pdfRef.current = pdfDoc
       const count = pdfDoc.numPages
       setPageCount(count)
@@ -97,7 +104,8 @@ export function PdfConvert() {
 
     try {
       const arrayBuffer = await file.arrayBuffer()
-      const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise
+      const pdfjs = await getPdfjs()
+      const pdfDoc = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise
       const count = pdfDoc.numPages
 
       if (count === 1) {
