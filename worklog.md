@@ -12,6 +12,9 @@ Work Log:
 - Launched 3 parallel subagents to build 12 tool components
 - Built main page with module navigation, hero section, and quick access grid
 - Fixed lint warnings (0 errors, 1 false-positive warning)
+- Fixed SSR error: pdfjs-dist uses DOMMatrix (browser-only). Applied `next/dynamic` with `ssr: false` for PdfConvert and PdfSign components
+- Added ToolLoader component for graceful loading state
+- Verified server returns HTTP 200 consistently
 
 Stage Summary:
 - 12 tools fully built across 3 modules

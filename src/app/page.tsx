@@ -1,10 +1,9 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
 import { PdfCompress } from '@/components/tools/pdf/pdf-compress'
 import { PdfMerge } from '@/components/tools/pdf/pdf-merge'
-import { PdfConvert } from '@/components/tools/pdf/pdf-convert'
-import { PdfSign } from '@/components/tools/pdf/pdf-sign'
 import { ImgConvert } from '@/components/tools/image/img-convert'
 import { ImgCompress } from '@/components/tools/image/img-compress'
 import { ImgResize } from '@/components/tools/image/img-resize'
@@ -13,6 +12,25 @@ import { JsonCsv } from '@/components/tools/dev-seo/json-csv'
 import { RegexTester } from '@/components/tools/dev-seo/regex-tester'
 import { MetaTags } from '@/components/tools/dev-seo/meta-tags'
 import { SitemapRobots } from '@/components/tools/dev-seo/sitemap-robots'
+
+// pdfjs-dist uses DOMMatrix which is not available during SSR
+const PdfConvert = dynamic(
+  () => import('@/components/tools/pdf/pdf-convert').then(m => ({ default: m.PdfConvert })),
+  { ssr: false, loading: () => <ToolLoader label="Conversion PDF" /> }
+)
+const PdfSign = dynamic(
+  () => import('@/components/tools/pdf/pdf-sign').then(m => ({ default: m.PdfSign })),
+  { ssr: false, loading: () => <ToolLoader label="Signature PDF" /> }
+)
+
+function ToolLoader({ label }: { label: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 gap-3 text-muted-foreground">
+      <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      <p className="text-sm">Chargement de {label}...</p>
+    </div>
+  )
+}
 
 import {
   ArrowLeft,
