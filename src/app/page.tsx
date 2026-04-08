@@ -43,6 +43,26 @@ import { AgeCalculator } from '@/components/tools/calculators/age-calculator'
 import { PercentageCalculator } from '@/components/tools/calculators/percentage-calculator'
 import { UnitConverter } from '@/components/tools/calculators/unit-converter'
 
+// New tools — PDF
+const PdfUnlock = dynamic(
+  () => import('@/components/tools/pdf/pdf-unlock').then(m => ({ default: m.PdfUnlock })),
+  { ssr: false, loading: () => <ToolLoader label="Déverrouiller PDF" /> }
+)
+const PdfProtect = dynamic(
+  () => import('@/components/tools/pdf/pdf-protect').then(m => ({ default: m.PdfProtect })),
+  { ssr: false, loading: () => <ToolLoader label="Protéger PDF" /> }
+)
+
+// HEIC converter uses heic2any (browser-only)
+const HeicToJpgDynamic = dynamic(
+  () => import('@/components/tools/image/heic-to-jpg').then(m => ({ default: m.HeicToJpg })),
+  { ssr: false, loading: () => <ToolLoader label="HEIC vers JPG" /> }
+)
+const FaviconGeneratorDynamic = dynamic(
+  () => import('@/components/tools/image/favicon-generator').then(m => ({ default: m.FaviconGenerator })),
+  { ssr: false, loading: () => <ToolLoader label="Générateur de Favicon" /> }
+)
+
 // pdfjs-dist uses DOMMatrix — SSR incompatible
 const PdfConvert = dynamic(
   () => import('@/components/tools/pdf/pdf-convert').then(m => ({ default: m.PdfConvert })),
@@ -93,6 +113,9 @@ import {
   ArrowDownUp,
   Diff,
   Lock,
+  Smartphone,
+  Unlock,
+  ShieldCheck,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -132,10 +155,14 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'pdf-merge': PdfMerge,
   'pdf-convert': PdfConvert,
   'pdf-sign': PdfSign,
+  'pdf-unlock': PdfUnlock,
+  'pdf-protect': PdfProtect,
   'img-convert': ImgConvert,
   'img-compress': ImgCompress,
   'img-resize': ImgResize,
   'img-bgremove': ImgBgRemove,
+  'heic-to-jpg': HeicToJpgDynamic,
+  'favicon-generator': FaviconGeneratorDynamic,
   'json-csv': JsonCsv,
   'regex-tester': RegexTester,
   'meta-tags': MetaTags,
@@ -165,7 +192,7 @@ const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> =
   // New icons
   Type, Wand2, Calculator, Hash, QrCode, KeyRound, Palette,
   Heart, Calendar, Percent, ArrowRightLeft, Link, Paintbrush,
-  FileCode, ArrowDownUp, Diff, Lock,
+  FileCode, ArrowDownUp, Diff, Lock, Smartphone, Unlock, ShieldCheck,
 }
 
 // Image icon mapped separately (reserved keyword)
@@ -549,7 +576,7 @@ function HomePage() {
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-card">
             <Sparkles className="h-3.5 w-3.5 text-primary" />
-            <span>28+ Outils Premium</span>
+            <span>32+ Outils Premium</span>
           </div>
         </motion.div>
       </motion.section>

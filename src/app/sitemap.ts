@@ -9,11 +9,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/#pdf-merge`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/#pdf-convert`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/#pdf-sign`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE_URL}/#pdf-unlock`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE_URL}/#pdf-protect`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     // Images
     { url: `${BASE_URL}/#img-convert`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/#img-compress`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/#img-resize`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/#img-bgremove`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE_URL}/#heic-to-jpg`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
+    { url: `${BASE_URL}/#favicon-generator`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     // Dev & SEO
     { url: `${BASE_URL}/#json-csv`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: `${BASE_URL}/#regex-tester`, lastModified: new Date(), changeFrequency: 'monthly' as const, priority: 0.8 },

@@ -30,6 +30,10 @@ export type ToolId =
   | 'age-calculator'
   | 'percentage-calculator'
   | 'unit-converter'
+  | 'heic-to-jpg'
+  | 'favicon-generator'
+  | 'pdf-unlock'
+  | 'pdf-protect'
 
 export type ModuleId = 'pdf' | 'image' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
@@ -66,6 +70,8 @@ export const modules: ModuleDef[] = [
       { id: 'pdf-merge', label: 'Fusion PDF', icon: 'Merge', description: 'Fusionner plusieurs PDF en un seul' },
       { id: 'pdf-convert', label: 'PDF vers Images', icon: 'Image', description: 'Convertir vos PDF en JPG ou PNG' },
       { id: 'pdf-sign', label: 'Signature PDF', icon: 'PenTool', description: 'Signer et annoter vos documents' },
+      { id: 'pdf-unlock', label: 'Déverrouiller PDF', icon: 'Unlock', description: 'Retirer le mot de passe d\'un PDF' },
+      { id: 'pdf-protect', label: 'Protéger PDF', icon: 'ShieldCheck', description: 'Ajouter un mot de passe à votre PDF' },
     ],
   },
   {
@@ -78,6 +84,8 @@ export const modules: ModuleDef[] = [
       { id: 'img-compress', label: 'Compression Image', icon: 'FileDown', description: 'Optimiser le poids de vos images' },
       { id: 'img-resize', label: 'Redimensionnement', icon: 'Maximize2', description: 'Redimensionner vos images facilement' },
       { id: 'img-bgremove', label: 'Détourage', icon: 'Scissors', description: 'Supprimer l\'arrière-plan des images' },
+      { id: 'heic-to-jpg', label: 'HEIC vers JPG', icon: 'Smartphone', description: 'Convertir photos iPhone HEIC en JPG ou PNG' },
+      { id: 'favicon-generator', label: 'Générateur de Favicon', icon: 'Globe', description: 'Générer favicon et icônes pour votre site' },
     ],
   },
   {

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Utilyx",
   },
   description:
-    "28+ outils gratuits en ligne : compression PDF, optimisation d'images, outils SEO, compteur de mots, QR code, mot de passe, calculateurs. Traitement 100% local, sans inscription.",
+    "32+ outils gratuits en ligne : compression PDF, optimisation d'images, outils SEO, compteur de mots, QR code, mot de passe, calculateurs. Traitement 100% local, sans inscription.",
   keywords: [
     "outils en ligne",
     "compression PDF",
@@ -59,6 +59,20 @@ export const metadata: Metadata = {
     "calculateur pourcentage",
     "unit converter",
     "convertisseur unités",
+    "HEIC to JPG converter",
+    "convertir HEIC en JPG",
+    "iPhone photo converter",
+    "favicon generator",
+    "générateur favicon",
+    "favicon generator online",
+    "PDF unlock",
+    "PDF remove password",
+    "déverrouiller PDF",
+    "PDF password remover",
+    "PDF protect",
+    "PDF add password",
+    "protéger PDF",
+    "PDF password",
     "outil gratuit",
     "outil en ligne gratuit",
     "no signup tools",
@@ -85,9 +99,9 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://utilyx.io",
     siteName: "Utilyx",
-    title: "Utilyx — 28+ Outils Gratuits en Ligne",
+    title: "Utilyx — 32+ Outils Gratuits en Ligne",
     description:
-      "PDF, images, SEO, texte, générateurs et calculateurs. 28+ outils gratuits, sans inscription, 100% côté client.",
+      "PDF, images, SEO, texte, générateurs et calculateurs. 32+ outils gratuits, sans inscription, 100% côté client.",
     images: [
       {
         url: "/og-image.png",
@@ -99,9 +113,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Utilyx — 28+ Outils Gratuits en Ligne",
+    title: "Utilyx — 32+ Outils Gratuits en Ligne",
     description:
-      "PDF, images, SEO, texte, générateurs et calculateurs. Traitement 100% local.",
+      "PDF, images, SEO, texte, générateurs et calculateurs. 32+ outils gratuits, traitement 100% local.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -163,6 +177,10 @@ const jsonLd = {
     "Calculateur d'âge exact",
     "Calculateur de pourcentages",
     "Convertisseur d'unités",
+    "Convertisseur HEIC vers JPG/PNG",
+    "Générateur de favicons multi-formats",
+    "Déverrouillage de PDF protégés",
+    "Protection et métadonnées PDF",
   ],
 };
 
