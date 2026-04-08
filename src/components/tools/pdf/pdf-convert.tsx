@@ -31,14 +31,27 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-// Use local worker copied to /public — disable worker for reliability
+// Load pdfjs with Blob URL worker for reliability
 let pdfjsLib: any = null
+let pdfjsReady = false
 async function getPdfjs() {
   if (!pdfjsLib) {
     pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
-    // Disable external worker — use main thread (fake worker)
-    // This avoids CSP and standalone serving issues
-    pdfjsLib.GlobalWorkerOptions.workerSrc = ''
+    if (!pdfjsReady) {
+      pdfjsReady = true
+      try {
+        const resp = await fetch('/pdf.worker.min.mjs')
+        if (resp.ok) {
+          const workerText = await resp.text()
+          const blob = new Blob([workerText], { type: 'text/javascript' })
+          pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob)
+        } else {
+          pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
+        }
+      } catch {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = ''
+      }
+    }
   }
   return pdfjsLib
 }
