@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { AdSenseScript } from "@/components/adsense/adsense-provider";
+import { Analytics } from "@vercel/analytics/react";
 
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
@@ -223,6 +224,11 @@ export default async function LocaleLayout({ children, params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7035626578237932"
+        crossOrigin="anonymous"
+      ></script>
       <div
         lang={locale}
         dir={dir}
@@ -243,6 +249,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           </NextIntlClientProvider>
         </ThemeProvider>
         <Toaster />
+        <Analytics />
       </div>
     </>
   );
