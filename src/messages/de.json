@@ -18,7 +18,7 @@
     "close": "Schlie\u00dfen",
     "darkMode": "Dunkler Modus",
     "lightMode": "Heller Modus",
-    "toolCount": "32+ Premium-Werkzeuge",
+    "toolCount": "39+ Premium-Werkzeuge",
     "private": "100% Privat",
     "fastOffline": "Schnell & Offline",
     "localData": "100% lokale Daten",
@@ -34,7 +34,8 @@
     "dev-seo": { "label": "Dev & SEO", "description": "Werkzeuge f\u00fcr Entwickler und SEO" },
     "text-tools": { "label": "Text-Werkzeuge", "description": "Wortz\u00e4hler, Gro\u00df-/Kleinschreibung und Text-Utilities" },
     "generators": { "label": "Generatoren", "description": "QR-Codes, Passw\u00f6rter, Hashes und Farben" },
-    "calculators": { "label": "Taschenrechner", "description": "BMI, Alter, Prozente und Umrechnungen" }
+    "calculators": { "label": "Taschenrechner", "description": "BMI, Alter, Prozente und Umrechnungen" },
+    "video": { "label": "Video", "description": "Videos schneiden, komprimieren, konvertieren und bearbeiten" }
   },
   "Tools": {
     "pdf-compress": { "label": "PDF komprimieren", "description": "PDF-Dateigr\u00f6\u00dfe reduzieren" },
@@ -49,6 +50,8 @@
     "img-bgremove": { "label": "Hintergrund entfernen", "description": "Bildhintergr\u00fcnde entfernen" },
     "heic-to-jpg": { "label": "HEIC zu JPG", "description": "iPhone HEIC-Fotos in JPG konvertieren" },
     "favicon-generator": { "label": "Favicon-Generator", "description": "Favicons f\u00fcr Ihre Website generieren" },
+    "youtube-thumbnail": { "label": "YouTube-Thumbnail", "description": "YouTube-Video-Thumbnails herunterladen" },
+    "uuid-generator": { "label": "UUID-Generator", "description": "Einzigartige UUIDs und GUIDs generieren" },
     "json-csv": { "label": "JSON / CSV", "description": "JSON und CSV konvertieren und formatieren" },
     "regex-tester": { "label": "Regex-Tester", "description": "Regul\u00e4re Ausdr\u00fccke testen" },
     "meta-tags": { "label": "Meta Tags", "description": "Meta-Tags generieren und vorschauen" },
@@ -69,7 +72,14 @@
     "bmi-calculator": { "label": "BMI-Rechner", "description": "Ihren Body-Mass-Index berechnen" },
     "age-calculator": { "label": "Altersrechner", "description": "Ihr genaues Alter in Tagen berechnen" },
     "percentage-calculator": { "label": "Prozentrechner", "description": "Alle Prozentberechnungen" },
-    "unit-converter": { "label": "Einheitenumrechner", "description": "L\u00e4nge, Gewicht, Temperatur, Volumen umrechnen" }
+    "unit-converter": { "label": "Einheitenumrechner", "description": "Länge, Gewicht, Temperatur, Volumen umrechnen" },
+    "video-trim": { "label": "Video schneiden", "description": "Videoteile schneiden und extrahieren" },
+    "video-compress": { "label": "Video komprimieren", "description": "Videodateigröße reduzieren" },
+    "video-convert": { "label": "Video konvertieren", "description": "Zwischen MP4, WebM, AVI, MKV, GIF konvertieren" },
+    "video-add-audio": { "label": "Audio hinzufügen", "description": "Musik oder Voiceover zu Video hinzufügen" },
+    "video-extract-audio": { "label": "Audio extrahieren", "description": "Audiospur als MP3, WAV, AAC extrahieren" },
+    "video-to-gif": { "label": "Video zu GIF", "description": "Animierte GIFs aus Video erstellen" },
+    "video-remove-audio": { "label": "Audio entfernen", "description": "Audiospur aus Video entfernen" }
   },
   "Footer": {
     "tagline": "100% kostenlose und private Multi-Werkzeug-Suite."

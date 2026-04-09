@@ -18,7 +18,7 @@
     "close": "Cerrar",
     "darkMode": "Modo oscuro",
     "lightMode": "Modo claro",
-    "toolCount": "32+ Herramientas Premium",
+    "toolCount": "39+ Herramientas Premium",
     "private": "100% Privado",
     "fastOffline": "R\u00e1pido y Offline",
     "localData": "Datos 100% locales",
@@ -34,7 +34,8 @@
     "dev-seo": { "label": "Dev y SEO", "description": "Herramientas para desarrolladores y SEO" },
     "text-tools": { "label": "Herramientas de Texto", "description": "Contador de palabras, conversor y utilidades de texto" },
     "generators": { "label": "Generadores", "description": "QR codes, contrase\u00f1as, hashes y colores" },
-    "calculators": { "label": "Calculadoras", "description": "IMC, edad, porcentajes y conversiones" }
+    "calculators": { "label": "Calculadoras", "description": "IMC, edad, porcentajes y conversiones" },
+    "video": { "label": "Vídeo", "description": "Cortar, comprimir, convertir y editar vídeos" }
   },
   "Tools": {
     "pdf-compress": { "label": "Comprimir PDF", "description": "Reducir el tama\u00f1o de archivos PDF" },
@@ -49,6 +50,8 @@
     "img-bgremove": { "label": "Eliminar Fondo", "description": "Eliminar fondos de im\u00e1genes" },
     "heic-to-jpg": { "label": "HEIC a JPG", "description": "Convertir fotos iPhone HEIC a JPG" },
     "favicon-generator": { "label": "Generador Favicon", "description": "Generar favicons para tu sitio web" },
+    "youtube-thumbnail": { "label": "Miniatura YouTube", "description": "Descargar miniaturas de videos de YouTube" },
+    "uuid-generator": { "label": "Generador UUID", "description": "Generar identificadores UUID y GUID \u00fanicos" },
     "json-csv": { "label": "JSON / CSV", "description": "Convertir y formatear JSON y CSV" },
     "regex-tester": { "label": "Probador Regex", "description": "Probar expresiones regulares" },
     "meta-tags": { "label": "Meta Tags", "description": "Generar y previsualizar meta tags" },
@@ -69,7 +72,14 @@
     "bmi-calculator": { "label": "Calculadora IMC", "description": "Calcular tu \u00edndice de masa corporal" },
     "age-calculator": { "label": "Calculadora Edad", "description": "Calcular tu edad exacta en d\u00edas" },
     "percentage-calculator": { "label": "Calculadora Porcentajes", "description": "Todos los c\u00e1lculos de porcentajes" },
-    "unit-converter": { "label": "Convertidor Unidades", "description": "Convertir longitud, peso, temperatura, volumen" }
+    "unit-converter": { "label": "Convertidor Unidades", "description": "Convertir longitud, peso, temperatura, volumen" },
+    "video-trim": { "label": "Cortar Vídeo", "description": "Cortar y extraer partes de un vídeo" },
+    "video-compress": { "label": "Comprimir Vídeo", "description": "Reducir el tamaño de vídeos" },
+    "video-convert": { "label": "Convertir Vídeo", "description": "Convertir entre MP4, WebM, AVI, MKV, GIF" },
+    "video-add-audio": { "label": "Añadir Audio", "description": "Añadir música o voz a un vídeo" },
+    "video-extract-audio": { "label": "Extraer Audio", "description": "Extraer pista de audio a MP3, WAV, AAC" },
+    "video-to-gif": { "label": "Vídeo a GIF", "description": "Crear GIFs animados desde vídeo" },
+    "video-remove-audio": { "label": "Eliminar Audio", "description": "Eliminar la pista de audio de un vídeo" }
   },
   "Footer": {
     "tagline": "Suite multi-herramientas 100% gratuita y privada."

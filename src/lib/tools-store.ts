@@ -34,8 +34,17 @@ export type ToolId =
   | 'favicon-generator'
   | 'pdf-unlock'
   | 'pdf-protect'
+  | 'video-trim'
+  | 'video-add-audio'
+  | 'video-convert'
+  | 'video-compress'
+  | 'video-extract-audio'
+  | 'video-to-gif'
+  | 'video-remove-audio'
+  | 'youtube-thumbnail'
+  | 'uuid-generator'
 
-export type ModuleId = 'pdf' | 'image' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
+export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
 interface ToolsState {
   activeModule: ModuleId
@@ -78,14 +87,30 @@ export const modules: ModuleDef[] = [
     id: 'image',
     label: 'Images',
     icon: 'Image',
-    description: 'Conversion, compression et optimisation d\'images',
+    description: 'Conversion, compression et extraction d\'images',
     tools: [
       { id: 'img-convert', label: 'Convertisseur Universel', icon: 'RefreshCw', description: 'Convertir en WebP, AVIF, JPG, PNG' },
       { id: 'img-compress', label: 'Compression Image', icon: 'FileDown', description: 'Optimiser le poids de vos images' },
       { id: 'img-resize', label: 'Redimensionnement', icon: 'Maximize2', description: 'Redimensionner vos images facilement' },
       { id: 'img-bgremove', label: 'Détourage', icon: 'Scissors', description: 'Supprimer l\'arrière-plan des images' },
       { id: 'heic-to-jpg', label: 'HEIC vers JPG', icon: 'Smartphone', description: 'Convertir photos iPhone HEIC en JPG ou PNG' },
-      { id: 'favicon-generator', label: 'Générateur de Favicon', icon: 'Globe', description: 'Générer favicon et icônes pour votre site' },
+      { id: 'favicon-generator', label: 'Générateur d\'icônes', icon: 'Globe', description: 'Générer favicon et icônes pour votre site' },
+      { id: 'youtube-thumbnail', label: 'Miniatures YouTube', icon: 'Youtube', description: 'Télécharger les miniatures HD de vidéos YouTube' },
+    ],
+  },
+  {
+    id: 'video',
+    label: 'Vidéo',
+    icon: 'Video',
+    description: 'Découper, compresser, convertir et éditer des vidéos',
+    tools: [
+      { id: 'video-trim', label: 'Découper Vidéo', icon: 'Scissors', description: 'Couper et extraire des portions de vidéo' },
+      { id: 'video-compress', label: 'Compresser Vidéo', icon: 'FileDown', description: 'Réduire la taille de vos vidéos' },
+      { id: 'video-convert', label: 'Convertir Vidéo', icon: 'RefreshCw', description: 'Convertir entre MP4, WebM, AVI, MKV, GIF' },
+      { id: 'video-add-audio', label: 'Ajouter Audio', icon: 'Volume2', description: 'Ajouter musique ou voix-off à une vidéo' },
+      { id: 'video-extract-audio', label: 'Extraire Audio', icon: 'Music', description: 'Extraire la piste audio en MP3, WAV, AAC' },
+      { id: 'video-to-gif', label: 'Vidéo vers GIF', icon: 'Film', description: 'Créer des GIF animés depuis une vidéo' },
+      { id: 'video-remove-audio', label: 'Supprimer Audio', icon: 'VolumeX', description: 'Retirer la piste audio d\'une vidéo' },
     ],
   },
   {
@@ -125,6 +150,7 @@ export const modules: ModuleDef[] = [
     tools: [
       { id: 'qr-code-generator', label: 'QR Code Generator', icon: 'QrCode', description: 'Générer des QR codes pour URLs et texte' },
       { id: 'password-generator', label: 'Password Generator', icon: 'KeyRound', description: 'Générer des mots de passe sécurisés' },
+      { id: 'uuid-generator', label: 'Générateur d\'UUID', icon: 'Fingerprint', description: 'Générer instantanément des UUID (v4)' },
       { id: 'hash-generator', label: 'Hash Generator', icon: 'Hash', description: 'Générer MD5, SHA-1, SHA-256, SHA-512' },
       { id: 'color-picker', label: 'Color Picker', icon: 'Palette', description: 'Picker de couleur avec HEX, RGB, HSL' },
     ],

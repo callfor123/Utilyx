@@ -21,6 +21,15 @@ const toolCategories: Record<string, { slug: string; priority: number }[]> = {
     { slug: 'heic-vers-jpg', priority: 0.93 },
     { slug: 'generateur-favicon', priority: 0.87 },
   ],
+  video: [
+    { slug: 'decouper-video', priority: 0.95 },
+    { slug: 'compresser-video', priority: 0.95 },
+    { slug: 'convertir-video', priority: 0.93 },
+    { slug: 'ajouter-audio-video', priority: 0.90 },
+    { slug: 'extraire-audio-video', priority: 0.92 },
+    { slug: 'video-en-gif', priority: 0.91 },
+    { slug: 'supprimer-audio-video', priority: 0.88 },
+  ],
   'dev-seo': [
     { slug: 'json-csv', priority: 0.82 },
     { slug: 'testeur-regex', priority: 0.78 },

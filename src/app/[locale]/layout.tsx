@@ -5,10 +5,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { ADSENSE_CLIENT } from "@/components/adsense/adsense-provider";
 import { AdSenseScript } from "@/components/adsense/adsense-provider";
+
+const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
-import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,85 +29,73 @@ const localeMetadata: Record<string, { title: string; description: string }> = {
   fr: {
     title: "Utilyx — Suite Multi-Outils 100% Gratuite & Privée",
     description:
-      "32+ outils gratuits en ligne : PDF, images, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.",
+      "39+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.",
   },
   en: {
     title: "Utilyx — Free Online Multi-Tool Suite",
     description:
-      "32+ free online tools: PDF, images, SEO, text, generators and calculators. 100% client-side processing, no signup required.",
+      "39+ free online tools: PDF, images, video, SEO, text, generators and calculators. 100% client-side processing, no signup required.",
   },
   es: {
     title: "Utilyx — Suite de Herramientas Online Gratuitas",
     description:
-      "32+ herramientas online gratis: PDF, imágenes, SEO, texto, generadores y calculadoras. Procesamiento 100% local, sin registro.",
+      "39+ herramientas online gratis: PDF, imágenes, vídeo, SEO, texto, generadores y calculadoras. Procesamiento 100% local, sin registro.",
   },
   de: {
     title: "Utilyx — Kostenlose Online-Werkzeugsammlung",
     description:
-      "32+ kostenlose Online-Tools: PDF, Bilder, SEO, Text, Generatoren und Rechner. 100% clientseitige Verarbeitung, keine Anmeldung.",
+      "39+ kostenlose Online-Tools: PDF, Bilder, Video, SEO, Text, Generatoren und Rechner. 100% clientseitige Verarbeitung, keine Anmeldung.",
   },
   ar: {
     title: "Utilyx — مجموعة أدوات مجانية متعددة الوظائف",
     description:
-      "32+ أداة مجانية عبر الإنترنت: PDF، صور، SEO، نصوص، مولدات وحاسبات. معالجة 100% محلية، بدون تسجيل.",
+      "39+ أداة مجانية عبر الإنترنت: PDF، صور، فيديو، SEO، نصوص، مولدات وحاسبات. معالجة 100% محلية، بدون تسجيل.",
   },
   pt: {
     title: "Utilyx — Suite de Ferramentas Online Gratuitas",
     description:
-      "32+ ferramentas online gratuitas: PDF, imagens, SEO, texto, geradores e calculadoras. Processamento 100% local, sem cadastro.",
+      "39+ ferramentas online gratuitas: PDF, imagens, vídeo, SEO, texto, geradores e calculadoras. Processamento 100% local, sem cadastro.",
   },
 };
 
 const localeKeywords: Record<string, string[]> = {
   fr: [
-    "outils en ligne gratuits",
-    "compression PDF",
-    "convertisseur HEIC JPG",
-    "générateur QR code",
-    "compteur de mots",
-    "outil gratuit en ligne",
-    "Utilyx",
+    "Utilyx", "outils en ligne gratuits", "suite d'outils gratuite", "compression PDF", "convertir PDF",
+    "convertisseur HEIC JPG", "éditer image en ligne", "redimensionner image",
+    "découper vidéo en ligne", "compresser vidéo gratuit", "convertir vidéo MP4", "extraire audio vidéo", "vidéo en GIF",
+    "générateur QR code", "générateur de mots de passe", "compteur de mots", "différence de texte",
+    "convertisseur d'unités", "calculatrice d'âge", "calculatrice IMC",
+    "outils web sans inscription", "traitement local sécurisé", "confidentialité garantie"
   ],
   en: [
-    "free online tools",
-    "PDF compressor",
-    "HEIC to JPG converter",
-    "QR code generator",
-    "word counter",
-    "free tool online",
-    "Utilyx",
+    "Utilyx", "free online tools", "free tool suite", "PDF compressor", "convert PDF online",
+    "HEIC to JPG converter", "edit image online", "resize image",
+    "trim video online free", "compress video online", "convert video to MP4", "extract audio from video", "video to GIF converter",
+    "QR code generator", "password generator", "word counter", "text diff checker",
+    "unit converter", "age calculator", "BMI calculator",
+    "web tools no signup", "secure local processing", "privacy guaranteed"
   ],
   es: [
-    "herramientas online gratis",
-    "compresor PDF",
-    "convertidor HEIC JPG",
-    "generador QR código",
-    "contador de palabras",
-    "Utilyx",
+    "Utilyx", "herramientas online gratis", "suite de herramientas gratis", "compresor PDF", "convertir PDF",
+    "convertidor HEIC JPG", "editar imagen online", "recortar video online",
+    "comprimir video gratis", "generador QR código", "contador de palabras", "convertidor de unidades",
+    "herramientas web sin registro", "procesamiento local seguro"
   ],
   de: [
-    "kostenlose Online-Tools",
-    "PDF Kompressor",
-    "HEIC zu JPG Konverter",
-    "QR Code Generator",
-    "Wortezähler",
-    "Utilyx",
+    "Utilyx", "kostenlose Online-Tools", "PDF Kompressor", "HEIC zu JPG Konverter",
+    "Video online schneiden", "Video komprimieren", "Audio aus Video extrahieren",
+    "QR Code Generator", "Wortezähler", "Einheitenumrechner", "Online-Tools ohne Anmeldung", "lokale Verarbeitung DSGVO"
   ],
   ar: [
-    "أدوات مجانية عبر الإنترنت",
-    "ضغط PDF",
-    "تحويل HEIC إلى JPG",
-    "مولد QR كود",
-    "عداد الكلمات",
-    "Utilyx",
+    "Utilyx", "أدوات مجانية عبر الإنترنت", "ضغط PDF", "تحويل PDF", "تحويل HEIC إلى JPG",
+    "تعديل الصور", "قص الفيديو", "ضغط الفيديو المجاني", "تحويل الفيديو",
+    "مولد QR كود", "عداد الكلمات", "بدون تسجيل", "معالجة محلية آمنة"
   ],
   pt: [
-    "ferramentas online gratuitas",
-    "compressor PDF",
-    "conversor HEIC JPG",
-    "gerador QR code",
-    "contador de palavras",
-    "Utilyx",
+    "Utilyx", "ferramentas online gratuitas", "compressor PDF", "conversor HEIC JPG",
+    "cortar vídeo online", "comprimir vídeo", "converter vídeo",
+    "gerador QR code", "contador de palavras", "conversor de unidades",
+    "ferramentas web sem cadastro", "processamento local seguro"
   ],
 };
 
@@ -172,13 +160,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `${BASE_URL}/${locale}`,
-      languages: Object.fromEntries(
-        routing.locales.map((l) => [l, `${BASE_URL}/${l}`])
-      ),
+      languages: {
+        'x-default': `${BASE_URL}/fr`,
+        ...Object.fromEntries(routing.locales.map((l) => [l, `${BASE_URL}/${l}`])),
+      },
     },
     icons: {
       icon: "/favicon.ico",
       apple: "/logo.png",
+    },
+    verification: {
+      google: 'vUtilyx-verify',
+    },
+    other: {
+      'google-adsense-account': ADSENSE_CLIENT,
     },
   };
 }
@@ -197,55 +192,40 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = (await import(`../../messages/${locale}.json`)).default;
 
   const dir = locale === "ar" ? "rtl" : "ltr";
-  const lang = locale;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Utilyx",
+    url: `https://utilyx.app/${locale}`,
+    description: localeMetadata[locale]?.description || localeMetadata.fr.description,
+    inLanguage: locale,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any (Web Browser)",
+    featureList: [
+      "Convertisseurs et compresseurs PDF",
+      "Outils de manipulation vidéo (découpage, conversion, compression)",
+      "Modificateurs d'images (redimensionnement, filtres)",
+      "Générateurs (Mots de passe, QR Codes)",
+      "Traitement local (Offline First)"
+    ],
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      ratingCount: "3480",
+    },
+  }
 
   return (
-    <html lang={lang} dir={dir} suppressHydrationWarning>
-      <head>
-        {/* Google AdSense Verification */}
-        <meta name="google-adsense-account" content={ADSENSE_CLIENT} />
-
-        {/* Google Search Console Verification */}
-        <meta name="google-site-verification" content="vUtilyx-verify" />
-
-        <link
-          rel="alternate"
-          hrefLang="x-default"
-          href="https://utilyx.app/fr"
-        />
-        {routing.locales.map((l) => (
-          <link
-            key={l}
-            rel="alternate"
-            hrefLang={l}
-            href={`https://utilyx.app/${l}`}
-          />
-        ))}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "Utilyx",
-              url: `https://utilyx.app/${locale}`,
-              description:
-                localeMetadata[locale]?.description ||
-                localeMetadata.fr.description,
-              inLanguage: locale,
-              applicationCategory: "UtilitiesApplication",
-              operatingSystem: "Any (Web Browser)",
-              offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.9",
-                ratingCount: "3480",
-              },
-            }),
-          }}
-        />
-      </head>
-      <body
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div
+        lang={locale}
+        dir={dir}
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground font-sans`}
       >
         <ThemeProvider
@@ -263,7 +243,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           </NextIntlClientProvider>
         </ThemeProvider>
         <Toaster />
-      </body>
-    </html>
+      </div>
+    </>
   );
 }

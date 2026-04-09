@@ -12,6 +12,8 @@ import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom } from '@/components/
 
 /* ── SEO: Dynamic title + URL + meta description per tool ─────────────── */
 const toolSeoData: Record<string, { title: string; desc: string; slug: string }> = {
+  'youtube-thumbnail': { title: 'Téléchargeur de Miniatures YouTube (HD) Gratuit', desc: 'Téléchargez les miniatures HD de vos vidéos Youtube gratuitement en un instant.', slug: 'telecharger-miniature-youtube' },
+  'uuid-generator': { title: 'Générateur de UUID et GUID', desc: 'Créez des UUID/GUID en masse en une seconde dans votre navigateur sans aucune installation.', slug: 'generateur-uuid-guid' },
   'pdf-compress':      { title: 'Compression PDF en Ligne Gratuit', desc: 'Réduisez la taille de vos PDF jusqu\'à 80%. Rapide, gratuit, sans inscription.', slug: 'compresser-pdf' },
   'pdf-merge':         { title: 'Fusionner PDF en Ligne Gratuit', desc: 'Fusionnez plusieurs PDF en un seul document. Simple et gratuit.', slug: 'fusionner-pdf' },
   'pdf-convert':       { title: 'PDF vers Images en Ligne', desc: 'Convertissez vos PDF en images JPG ou PNG haute qualité.', slug: 'pdf-en-images' },
@@ -45,6 +47,13 @@ const toolSeoData: Record<string, { title: string; desc: string; slug: string }>
   'age-calculator':    { title: 'Calculateur d\'Âge Exact', desc: 'Calculez votre âge exact en années, mois, jours et heures.', slug: 'calculateur-age' },
   'percentage-calculator': { title: 'Calculateur de Pourcentages', desc: 'Tous les calculs de pourcentages en un seul endroit.', slug: 'calculateur-pourcentage' },
   'unit-converter':    { title: 'Convertisseur d\'Unités en Ligne', desc: 'Convertissez longueur, poids, température et volume.', slug: 'convertisseur-unites' },
+  'video-trim':        { title: 'Découper Vidéo en Ligne Gratuit', desc: 'Coupez et découpez vos vidéos directement dans le navigateur. Gratuit, sans inscription, 100% privé.', slug: 'decouper-video' },
+  'video-compress':    { title: 'Compresser Vidéo en Ligne Gratuit', desc: 'Réduisez la taille de vos vidéos MP4, WebM, AVI sans perte de qualité visible. 100% en ligne.', slug: 'compresser-video' },
+  'video-convert':     { title: 'Convertisseur Vidéo en Ligne Gratuit', desc: 'Convertissez vos vidéos entre MP4, WebM, AVI, MKV, MOV et GIF gratuitement.', slug: 'convertir-video' },
+  'video-add-audio':   { title: 'Ajouter Audio à Vidéo en Ligne', desc: 'Ajoutez de la musique, une voix-off ou un son à vos vidéos gratuitement dans le navigateur.', slug: 'ajouter-audio-video' },
+  'video-extract-audio': { title: 'Extraire Audio de Vidéo en Ligne', desc: 'Extrayez la piste audio de vos vidéos en MP3, WAV, AAC, OGG ou FLAC gratuitement.', slug: 'extraire-audio-video' },
+  'video-to-gif':      { title: 'Convertir Vidéo en GIF en Ligne Gratuit', desc: 'Créez des GIF animés à partir de vos vidéos avec contrôle total. Gratuit et privé.', slug: 'video-en-gif' },
+  'video-remove-audio': { title: 'Supprimer Audio de Vidéo en Ligne', desc: 'Retirez la piste audio de vos vidéos pour obtenir une vidéo muette. 100% gratuit.', slug: 'supprimer-audio-video' },
 }
 
 function updateJsonLd(data: object) {
@@ -70,7 +79,7 @@ function useSEOUpdater() {
       // Reset meta description
       const metaDesc = document.querySelector('meta[name="description"]')
       if (metaDesc) {
-        metaDesc.setAttribute('content', '32+ outils gratuits en ligne : PDF, images, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.')
+        metaDesc.setAttribute('content', '39+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.')
       }
       // Reset JSON-LD
       updateJsonLd({
@@ -78,7 +87,7 @@ function useSEOUpdater() {
         "@type": "WebSite",
         name: "Utilyx",
         url: `https://utilyx.app/${locale}`,
-        description: "Suite multi-outils gratuite et privée. 32+ outils en ligne.",
+        description: "Suite multi-outils gratuite et privée. 39+ outils en ligne.",
         potentialAction: {
           "@type": "SearchAction",
           target: `https://utilyx.app/${locale}?q={search_term_string}`,
@@ -170,6 +179,8 @@ import { AgeCalculator } from '@/components/tools/calculators/age-calculator'
 import { PercentageCalculator } from '@/components/tools/calculators/percentage-calculator'
 import { UnitConverter } from '@/components/tools/calculators/unit-converter'
 
+// Video tools (dynamic imports for heavy FFmpeg)
+
 // Dynamic imports
 const PdfUnlock = dynamic(
   () => import('@/components/tools/pdf/pdf-unlock').then(m => ({ default: m.PdfUnlock })),
@@ -194,6 +205,34 @@ const PdfConvert = dynamic(
 const PdfSign = dynamic(
   () => import('@/components/tools/pdf/pdf-sign').then(m => ({ default: m.PdfSign })),
   { ssr: false, loading: () => <ToolLoader label="PDF Sign" /> }
+)
+const VideoTrimDynamic = dynamic(
+  () => import('@/components/tools/video/video-trim').then(m => ({ default: m.VideoTrim })),
+  { ssr: false, loading: () => <ToolLoader label="Video Trim" /> }
+)
+const VideoAddAudioDynamic = dynamic(
+  () => import('@/components/tools/video/video-add-audio').then(m => ({ default: m.VideoAddAudio })),
+  { ssr: false, loading: () => <ToolLoader label="Video Add Audio" /> }
+)
+const VideoConvertDynamic = dynamic(
+  () => import('@/components/tools/video/video-convert').then(m => ({ default: m.VideoConvert })),
+  { ssr: false, loading: () => <ToolLoader label="Video Convert" /> }
+)
+const VideoCompressDynamic = dynamic(
+  () => import('@/components/tools/video/video-compress').then(m => ({ default: m.VideoCompress })),
+  { ssr: false, loading: () => <ToolLoader label="Video Compress" /> }
+)
+const VideoExtractAudioDynamic = dynamic(
+  () => import('@/components/tools/video/video-extract-audio').then(m => ({ default: m.VideoExtractAudio })),
+  { ssr: false, loading: () => <ToolLoader label="Video Extract Audio" /> }
+)
+const VideoToGifDynamic = dynamic(
+  () => import('@/components/tools/video/video-to-gif').then(m => ({ default: m.VideoToGif })),
+  { ssr: false, loading: () => <ToolLoader label="Video to GIF" /> }
+)
+const VideoRemoveAudioDynamic = dynamic(
+  () => import('@/components/tools/video/video-remove-audio').then(m => ({ default: m.VideoRemoveAudio })),
+  { ssr: false, loading: () => <ToolLoader label="Video Remove Audio" /> }
 )
 
 import {
@@ -239,6 +278,13 @@ import {
   Unlock,
   ShieldCheck,
   X,
+  Video,
+  Volume2,
+  Music,
+  Film,
+  VolumeX,
+  Youtube as YoutubeIcon,
+  Fingerprint,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -321,6 +367,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'img-bgremove': ImgBgRemove,
   'heic-to-jpg': HeicToJpgDynamic,
   'favicon-generator': FaviconGeneratorDynamic,
+  'youtube-thumbnail': dynamic(() => import('@/components/tools/image/youtube-thumbnail').then(m => m.YoutubeThumbnailDownloader)),
   'json-csv': JsonCsv,
   'regex-tester': RegexTester,
   'meta-tags': MetaTags,
@@ -336,20 +383,29 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'text-diff-checker': TextDiffChecker,
   'qr-code-generator': QrCodeGenerator,
   'password-generator': PasswordGenerator,
+  'uuid-generator': dynamic(() => import('@/components/tools/generators/uuid-generator').then(m => m.UuidGenerator)),
   'hash-generator': HashGenerator,
   'color-picker': ColorPicker,
   'bmi-calculator': BmiCalculator,
   'age-calculator': AgeCalculator,
   'percentage-calculator': PercentageCalculator,
   'unit-converter': UnitConverter,
+  'video-trim': VideoTrimDynamic,
+  'video-add-audio': VideoAddAudioDynamic,
+  'video-convert': VideoConvertDynamic,
+  'video-compress': VideoCompressDynamic,
+  'video-extract-audio': VideoExtractAudioDynamic,
+  'video-to-gif': VideoToGifDynamic,
+  'video-remove-audio': VideoRemoveAudioDynamic,
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FileDown, Merge, PenTool, RefreshCw, Maximize2, Scissors,
-  Braces, Terminal, Globe, FileText, Code,
+  Braces, Terminal, Globe, FileText, Code, Youtube: YoutubeIcon, Fingerprint,
   Type, Wand2, Calculator, Hash, QrCode, KeyRound, Palette,
   Heart, Calendar, Percent, ArrowRightLeft, Link, Paintbrush,
   FileCode, ArrowDownUp, Diff, Lock, Smartphone, Unlock, ShieldCheck,
+  Volume2, Music, Film, VolumeX, Video,
 }
 
 toolIconMap['Image'] = ImageIcon
@@ -389,6 +445,7 @@ const fadeUp = {
 const moduleGradients: Record<string, string> = {
   pdf: 'from-red-500/20 via-orange-500/10 to-amber-500/20',
   image: 'from-emerald-500/20 via-teal-500/10 to-cyan-500/20',
+  video: 'from-pink-500/20 via-rose-500/10 to-fuchsia-500/20',
   'dev-seo': 'from-violet-500/20 via-purple-500/10 to-fuchsia-500/20',
   'text-tools': 'from-blue-500/20 via-sky-500/10 to-cyan-500/20',
   generators: 'from-rose-500/20 via-pink-500/10 to-fuchsia-500/20',
@@ -398,6 +455,7 @@ const moduleGradients: Record<string, string> = {
 const moduleIconColors: Record<string, string> = {
   pdf: 'text-red-500 bg-red-50 dark:bg-red-950/30',
   image: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/30',
+  video: 'text-pink-500 bg-pink-50 dark:bg-pink-950/30',
   'dev-seo': 'text-violet-500 bg-violet-50 dark:bg-violet-950/30',
   'text-tools': 'text-blue-500 bg-blue-50 dark:bg-blue-950/30',
   generators: 'text-rose-500 bg-rose-50 dark:bg-rose-950/30',
@@ -407,6 +465,7 @@ const moduleIconColors: Record<string, string> = {
 const moduleIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   pdf: FileText,
   image: ImageIcon,
+  video: Video,
   'dev-seo': Code,
   'text-tools': Type,
   generators: Wand2,

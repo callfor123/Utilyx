@@ -18,7 +18,7 @@
     "close": "Fermer",
     "darkMode": "Mode sombre",
     "lightMode": "Mode clair",
-    "toolCount": "32+ Outils Premium",
+    "toolCount": "39+ Outils Premium",
     "private": "100% Priv\u00e9",
     "fastOffline": "Rapide & Offline",
     "localData": "Donn\u00e9es 100% locales",
@@ -34,7 +34,8 @@
     "dev-seo": { "label": "Dev & SEO", "description": "Outils pour d\u00e9veloppeurs et SEO" },
     "text-tools": { "label": "Texte", "description": "Compteur de mots, convertisseur et outils texte" },
     "generators": { "label": "G\u00e9n\u00e9rateurs", "description": "QR code, mots de passe, hash et couleurs" },
-    "calculators": { "label": "Calculateurs", "description": "BMI, \u00e2ge, pourcentages et conversions" }
+    "calculators": { "label": "Calculateurs", "description": "BMI, âge, pourcentages et conversions" },
+    "video": { "label": "Vidéo", "description": "Découper, compresser, convertir et éditer des vidéos" }
   },
   "Tools": {
     "pdf-compress": { "label": "Compression PDF", "description": "R\u00e9duire la taille de vos fichiers PDF" },
@@ -49,6 +50,8 @@
     "img-bgremove": { "label": "D\u00e9tourage", "description": "Supprimer l'arri\u00e8re-plan des images" },
     "heic-to-jpg": { "label": "HEIC vers JPG", "description": "Convertir photos iPhone HEIC en JPG" },
     "favicon-generator": { "label": "G\u00e9n\u00e9rateur Favicon", "description": "G\u00e9n\u00e9rer favicon et ic\u00f4nes pour votre site" },
+    "youtube-thumbnail": { "label": "Miniature YouTube", "description": "T\u00e9l\u00e9charger la miniature d'une vid\u00e9o YouTube" },
+    "uuid-generator": { "label": "G\u00e9n\u00e9rateur UUID", "description": "G\u00e9n\u00e9rer des identifiants UUID et GUID uniques" },
     "json-csv": { "label": "JSON / CSV", "description": "Convertir et formater JSON et CSV" },
     "regex-tester": { "label": "Testeur Regex", "description": "Tester vos expressions r\u00e9guli\u00e8res" },
     "meta-tags": { "label": "Meta Tags", "description": "G\u00e9n\u00e9rer et pr\u00e9visualiser les meta tags" },
@@ -69,7 +72,14 @@
     "bmi-calculator": { "label": "BMI Calculator", "description": "Calculer votre indice de masse corporelle" },
     "age-calculator": { "label": "Age Calculator", "description": "Calculer votre \u00e2ge exact en jours" },
     "percentage-calculator": { "label": "Calcul Pourcentages", "description": "Tous les calculs de pourcentages" },
-    "unit-converter": { "label": "Convertisseur d'Unit\u00e9s", "description": "Convertir longueur, poids, temp\u00e9rature, volume" }
+    "unit-converter": { "label": "Convertisseur d'Unités", "description": "Convertir longueur, poids, température, volume" },
+    "video-trim": { "label": "Découper Vidéo", "description": "Couper et extraire des portions de vidéo" },
+    "video-compress": { "label": "Compresser Vidéo", "description": "Réduire la taille de vos vidéos" },
+    "video-convert": { "label": "Convertir Vidéo", "description": "Convertir entre MP4, WebM, AVI, MKV, GIF" },
+    "video-add-audio": { "label": "Ajouter Audio", "description": "Ajouter musique ou voix-off à une vidéo" },
+    "video-extract-audio": { "label": "Extraire Audio", "description": "Extraire la piste audio en MP3, WAV, AAC" },
+    "video-to-gif": { "label": "Vidéo vers GIF", "description": "Créer des GIF animés depuis une vidéo" },
+    "video-remove-audio": { "label": "Supprimer Audio", "description": "Retirer la piste audio d'une vidéo" }
   },
   "Footer": {
     "tagline": "Suite multi-outils 100% gratuite et priv\u00e9e."

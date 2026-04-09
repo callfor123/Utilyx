@@ -18,7 +18,7 @@
     "close": "Close",
     "darkMode": "Dark mode",
     "lightMode": "Light mode",
-    "toolCount": "32+ Premium Tools",
+    "toolCount": "39+ Premium Tools",
     "private": "100% Private",
     "fastOffline": "Fast & Offline",
     "localData": "100% Local Data",
@@ -34,7 +34,8 @@
     "dev-seo": { "label": "Dev & SEO", "description": "Developer and SEO tools" },
     "text-tools": { "label": "Text Tools", "description": "Word counter, case converter and text utilities" },
     "generators": { "label": "Generators", "description": "QR codes, passwords, hashes and colors" },
-    "calculators": { "label": "Calculators", "description": "BMI, age, percentages and conversions" }
+    "calculators": { "label": "Calculators", "description": "BMI, age, percentages and conversions" },
+    "video": { "label": "Video", "description": "Trim, compress, convert and edit videos" }
   },
   "Tools": {
     "pdf-compress": { "label": "Compress PDF", "description": "Reduce PDF file size" },
@@ -49,6 +50,8 @@
     "img-bgremove": { "label": "Remove Background", "description": "Remove image backgrounds" },
     "heic-to-jpg": { "label": "HEIC to JPG", "description": "Convert iPhone HEIC photos to JPG" },
     "favicon-generator": { "label": "Favicon Generator", "description": "Generate favicons for your website" },
+    "youtube-thumbnail": { "label": "YouTube Thumbnail", "description": "Download YouTube video thumbnails" },
+    "uuid-generator": { "label": "UUID Generator", "description": "Generate unique UUIDs and GUIDs" },
     "json-csv": { "label": "JSON / CSV", "description": "Convert and format JSON and CSV" },
     "regex-tester": { "label": "Regex Tester", "description": "Test your regular expressions" },
     "meta-tags": { "label": "Meta Tags", "description": "Generate and preview meta tags" },
@@ -69,7 +72,14 @@
     "bmi-calculator": { "label": "BMI Calculator", "description": "Calculate your body mass index" },
     "age-calculator": { "label": "Age Calculator", "description": "Calculate your exact age in days" },
     "percentage-calculator": { "label": "Percentage Calculator", "description": "All percentage calculations" },
-    "unit-converter": { "label": "Unit Converter", "description": "Convert length, weight, temperature, volume" }
+    "unit-converter": { "label": "Unit Converter", "description": "Convert length, weight, temperature, volume" },
+    "video-trim": { "label": "Trim Video", "description": "Cut and extract video segments" },
+    "video-compress": { "label": "Compress Video", "description": "Reduce video file size" },
+    "video-convert": { "label": "Convert Video", "description": "Convert between MP4, WebM, AVI, MKV, GIF" },
+    "video-add-audio": { "label": "Add Audio", "description": "Add music or voiceover to a video" },
+    "video-extract-audio": { "label": "Extract Audio", "description": "Extract audio track to MP3, WAV, AAC" },
+    "video-to-gif": { "label": "Video to GIF", "description": "Create animated GIFs from video" },
+    "video-remove-audio": { "label": "Remove Audio", "description": "Remove audio track from a video" }
   },
   "Footer": {
     "tagline": "100% free and private multi-tool suite."
