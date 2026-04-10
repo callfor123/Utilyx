@@ -18,7 +18,7 @@
     "close": "إغلاق",
     "darkMode": "الوضع الداكن",
     "lightMode": "الوضع الفاتح",
-    "toolCount": "39+ أداة متقدمة",
+    "toolCount": "47+ أداة متقدمة",
     "private": "خاص 100%",
     "fastOffline": "سريع ومفصل",
     "localData": "بيانات 100% محلية",
@@ -226,6 +226,26 @@
     "video-remove-audio": {
       "label": "حذف الصوت",
       "description": "إزالة المسار الصوتي من الفيديو"
+    },
+    "whatsapp-link": {
+      "label": "رابط واتساب",
+      "description": "إنشاء رابط واتساب مباشر بدون جهة اتصال"
+    },
+    "name-splitter": {
+      "label": "فاصل الأسماء",
+      "description": "فصل الأسماء والألقاب من قائمة إكسل"
+    },
+    "url-cleaner": {
+      "label": "منظف الروابط",
+      "description": "إزالة تتبع UTM من الروابط"
+    },
+    "concrete-calculator": {
+      "label": "حاسبة الخرسانة",
+      "description": "حساب حجم الإسمنت والرمل والماء"
+    },
+    "mileage-calculator": {
+      "label": "حاسبة المسافات",
+      "description": "حساب تعويضات المسافات المقطوعة"
     }
   },
   "Footer": {

@@ -18,7 +18,7 @@
     "close": "Fechar",
     "darkMode": "Modo escuro",
     "lightMode": "Modo claro",
-    "toolCount": "39+ Ferramentas Premium",
+    "toolCount": "47+ Ferramentas Premium",
     "private": "100% Privado",
     "fastOffline": "R\u00e1pido & Offline",
     "localData": "Dados 100% locais",
@@ -79,7 +79,12 @@
     "video-add-audio": { "label": "Adicionar Áudio", "description": "Adicionar música ou narração a um vídeo" },
     "video-extract-audio": { "label": "Extrair Áudio", "description": "Extrair faixa de áudio para MP3, WAV, AAC" },
     "video-to-gif": { "label": "Vídeo para GIF", "description": "Criar GIFs animados a partir de vídeo" },
-    "video-remove-audio": { "label": "Remover Áudio", "description": "Remover faixa de áudio do vídeo" }
+    "video-remove-audio": { "label": "Remover Áudio", "description": "Remover faixa de áudio do vídeo" },
+    "whatsapp-link": { "label": "Link WhatsApp", "description": "Gerar link direto do WhatsApp sem contato" },
+    "name-splitter": { "label": "Separador de Nomes", "description": "Separar nomes e sobrenomes de uma lista Excel" },
+    "url-cleaner": { "label": "Limpador de URL", "description": "Remover parâmetros UTM e rastreamento de um link" },
+    "concrete-calculator": { "label": "Calculadora de Concreto", "description": "Calcular volume de cimento, areia e água" },
+    "mileage-calculator": { "label": "Reembolso de Quilometragem", "description": "Calcular custos e reembolso de quilometragem" }
   },
   "Footer": {
     "tagline": "Suite multi-ferramentas 100% gratuita e privada."

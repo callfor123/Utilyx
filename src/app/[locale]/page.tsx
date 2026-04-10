@@ -54,6 +54,11 @@ const toolSeoData: Record<string, { title: string; desc: string; slug: string }>
   'video-extract-audio': { title: 'Extraire Audio de Vidéo en Ligne', desc: 'Extrayez la piste audio de vos vidéos en MP3, WAV, AAC, OGG ou FLAC gratuitement.', slug: 'extraire-audio-video' },
   'video-to-gif':      { title: 'Convertir Vidéo en GIF en Ligne Gratuit', desc: 'Créez des GIF animés à partir de vos vidéos avec contrôle total. Gratuit et privé.', slug: 'video-en-gif' },
   'video-remove-audio': { title: 'Supprimer Audio de Vidéo en Ligne', desc: 'Retirez la piste audio de vos vidéos pour obtenir une vidéo muette. 100% gratuit.', slug: 'supprimer-audio-video' },
+  'whatsapp-link':     { title: 'Générateur de Lien WhatsApp Direct Sans Contact', desc: 'Créez un lien wa.me WhatsApp direct rapidement pour envoyer un message sans ajouter au carnet d\'adresses.', slug: 'generateur-lien-whatsapp' },
+  'name-splitter':     { title: 'Séparer Nom et Prénom en Ligne (Liste Excel) Gratuit', desc: 'Séparez automatiquement une liste de noms complets en deux colonnes Prénom et Nom pour vos fichiers Excel & CRM.', slug: 'separateur-nom-prenom' },
+  'url-cleaner':       { title: 'Nettoyeur d\'URL en Ligne: Enlever Tracker et UTM', desc: 'Supprimez instantanément les paramètres de suivi (fbclid, gclid, utm_) de vos URLs pour des liens propres et courts.', slug: 'nettoyeur-url-tracking' },
+  'concrete-calculator': { title: 'Calculateur Dosage Béton et Mortier (Sacs, Eau, Volume)', desc: 'Calculez le dosage exact en sacs de ciment de 35kg, sable, gravier et eau pour vos dalles ou fondations en m3.', slug: 'calculateur-dosage-beton' },
+  'mileage-calculator':  { title: 'Calculateur de Frais Kilométriques en Ligne Gratuit', desc: 'Calculez automatiquement vos frais et indemnités kilométriques professionnels dans n\'importe quelle devise (EUR, USD, GBP, MAD, DZD…).', slug: 'calculateur-frais-kilometriques' },
 }
 
 function updateJsonLd(data: object) {
@@ -79,7 +84,7 @@ function useSEOUpdater() {
       // Reset meta description
       const metaDesc = document.querySelector('meta[name="description"]')
       if (metaDesc) {
-        metaDesc.setAttribute('content', '39+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.')
+        metaDesc.setAttribute('content', '47+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.')
       }
       // Reset JSON-LD
       updateJsonLd({
@@ -87,7 +92,7 @@ function useSEOUpdater() {
         "@type": "WebSite",
         name: "Utilyx",
         url: `https://utilyx.app/${locale}`,
-        description: "Suite multi-outils gratuite et privée. 39+ outils en ligne.",
+        description: "Suite multi-outils gratuite et privée. 47+ outils en ligne.",
         potentialAction: {
           "@type": "SearchAction",
           target: `https://utilyx.app/${locale}?q={search_term_string}`,
@@ -234,6 +239,26 @@ const VideoRemoveAudioDynamic = dynamic(
   () => import('@/components/tools/video/video-remove-audio').then(m => ({ default: m.VideoRemoveAudio })),
   { ssr: false, loading: () => <ToolLoader label="Video Remove Audio" /> }
 )
+const WhatsAppLinkDynamic = dynamic(
+  () => import('@/components/tools/generators/whatsapp-link'),
+  { ssr: false, loading: () => <ToolLoader label="WhatsApp Link" /> }
+)
+const NameSplitterDynamic = dynamic(
+  () => import('@/components/tools/text-tools/name-splitter'),
+  { ssr: false, loading: () => <ToolLoader label="Name Splitter" /> }
+)
+const UrlCleanerDynamic = dynamic(
+  () => import('@/components/tools/text-tools/url-cleaner'),
+  { ssr: false, loading: () => <ToolLoader label="URL Cleaner" /> }
+)
+const ConcreteCalculatorDynamic = dynamic(
+  () => import('@/components/tools/calculators/concrete-calculator'),
+  { ssr: false, loading: () => <ToolLoader label="Concrete Calculator" /> }
+)
+const MileageCalculatorDynamic = dynamic(
+  () => import('@/components/tools/calculators/mileage-calculator'),
+  { ssr: false, loading: () => <ToolLoader label="Mileage Calculator" /> }
+)
 
 import {
   ArrowLeft,
@@ -285,6 +310,11 @@ import {
   VolumeX,
   Youtube as YoutubeIcon,
   Fingerprint,
+  HardHat,
+  Car,
+  MessageCircle,
+  Link2Off,
+  SplitSquareHorizontal,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -397,6 +427,11 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'video-extract-audio': VideoExtractAudioDynamic,
   'video-to-gif': VideoToGifDynamic,
   'video-remove-audio': VideoRemoveAudioDynamic,
+  'whatsapp-link': WhatsAppLinkDynamic,
+  'name-splitter': NameSplitterDynamic,
+  'url-cleaner': UrlCleanerDynamic,
+  'concrete-calculator': ConcreteCalculatorDynamic,
+  'mileage-calculator': MileageCalculatorDynamic,
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -406,6 +441,7 @@ const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> =
   Heart, Calendar, Percent, ArrowRightLeft, Link, Paintbrush,
   FileCode, ArrowDownUp, Diff, Lock, Smartphone, Unlock, ShieldCheck,
   Volume2, Music, Film, VolumeX, Video,
+  HardHat, Car, MessageCircle, Link2Off, SplitSquareHorizontal,
 }
 
 toolIconMap['Image'] = ImageIcon

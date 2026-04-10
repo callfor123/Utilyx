@@ -18,7 +18,7 @@
     "close": "Cerrar",
     "darkMode": "Modo oscuro",
     "lightMode": "Modo claro",
-    "toolCount": "39+ Herramientas Premium",
+    "toolCount": "47+ Herramientas Premium",
     "private": "100% Privado",
     "fastOffline": "R\u00e1pido y Offline",
     "localData": "Datos 100% locales",
@@ -79,7 +79,12 @@
     "video-add-audio": { "label": "Añadir Audio", "description": "Añadir música o voz a un vídeo" },
     "video-extract-audio": { "label": "Extraer Audio", "description": "Extraer pista de audio a MP3, WAV, AAC" },
     "video-to-gif": { "label": "Vídeo a GIF", "description": "Crear GIFs animados desde vídeo" },
-    "video-remove-audio": { "label": "Eliminar Audio", "description": "Eliminar la pista de audio de un vídeo" }
+    "video-remove-audio": { "label": "Eliminar Audio", "description": "Eliminar la pista de audio de un vídeo" },
+    "whatsapp-link": { "label": "Enlace WhatsApp", "description": "Generar enlace directo a WhatsApp sin guardar contacto" },
+    "name-splitter": { "label": "Separador de Nombres", "description": "Separar nombres y apellidos desde una lista Excel" },
+    "url-cleaner": { "label": "Limpiador de URL", "description": "Eliminar parámetros UTM y de seguimiento de una URL" },
+    "concrete-calculator": { "label": "Calculadora de Hormigón", "description": "Calcular volumen de cemento, arena gravilla y agua" },
+    "mileage-calculator": { "label": "Kilometraje", "description": "Calcular gastos y asignaciones por kilometraje" }
   },
   "Footer": {
     "tagline": "Suite multi-herramientas 100% gratuita y privada."

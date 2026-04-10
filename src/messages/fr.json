@@ -18,7 +18,7 @@
     "close": "Fermer",
     "darkMode": "Mode sombre",
     "lightMode": "Mode clair",
-    "toolCount": "39+ Outils Premium",
+    "toolCount": "47+ Outils Premium",
     "private": "100% Priv\u00e9",
     "fastOffline": "Rapide & Offline",
     "localData": "Donn\u00e9es 100% locales",
@@ -79,7 +79,12 @@
     "video-add-audio": { "label": "Ajouter Audio", "description": "Ajouter musique ou voix-off à une vidéo" },
     "video-extract-audio": { "label": "Extraire Audio", "description": "Extraire la piste audio en MP3, WAV, AAC" },
     "video-to-gif": { "label": "Vidéo vers GIF", "description": "Créer des GIF animés depuis une vidéo" },
-    "video-remove-audio": { "label": "Supprimer Audio", "description": "Retirer la piste audio d'une vidéo" }
+    "video-remove-audio": { "label": "Supprimer Audio", "description": "Retirer la piste audio d'une vidéo" },
+    "whatsapp-link": { "label": "Lien WhatsApp", "description": "Générer un lien direct vers WhatsApp sans contact" },
+    "name-splitter": { "label": "Séparateur Prénom/Nom", "description": "Séparer noms et prénoms depuis une liste Excel" },
+    "url-cleaner": { "label": "Nettoyeur d'URL", "description": "Supprimer les UTM et trackings d'un lien" },
+    "concrete-calculator": { "label": "Dosage Béton", "description": "Calculer les volumes de ciment, sable et eau" },
+    "mileage-calculator": { "label": "Frais Kilométriques", "description": "Calcul des indemnités kilométriques URSSAF" }
   },
   "Footer": {
     "tagline": "Suite multi-outils 100% gratuite et priv\u00e9e."

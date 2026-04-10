@@ -20,6 +20,7 @@ const toolCategories: Record<string, { slug: string; priority: number }[]> = {
     { slug: 'supprimer-arriere-plan', priority: 0.88 },
     { slug: 'heic-vers-jpg', priority: 0.93 },
     { slug: 'generateur-favicon', priority: 0.87 },
+    { slug: 'telecharger-miniature-youtube', priority: 0.91 },
   ],
   video: [
     { slug: 'decouper-video', priority: 0.95 },
@@ -39,6 +40,7 @@ const toolCategories: Record<string, { slug: string; priority: number }[]> = {
     { slug: 'url-encode-decode', priority: 0.80 },
     { slug: 'css-gradient', priority: 0.76 },
     { slug: 'markdown-preview', priority: 0.74 },
+    { slug: 'nettoyeur-url-tracking', priority: 0.86 },
   ],
   'text-tools': [
     { slug: 'compteur-mots', priority: 0.90 },
@@ -46,18 +48,23 @@ const toolCategories: Record<string, { slug: string; priority: number }[]> = {
     { slug: 'lorem-ipsum', priority: 0.80 },
     { slug: 'base64', priority: 0.78 },
     { slug: 'comparateur-texte', priority: 0.75 },
+    { slug: 'separateur-nom-prenom', priority: 0.84 },
   ],
   generators: [
     { slug: 'generateur-qr-code', priority: 0.92 },
     { slug: 'generateur-mot-de-passe', priority: 0.88 },
     { slug: 'generateur-hash', priority: 0.80 },
     { slug: 'color-picker', priority: 0.83 },
+    { slug: 'generateur-lien-whatsapp', priority: 0.90 },
+    { slug: 'generateur-uuid-guid', priority: 0.86 },
   ],
   calculators: [
     { slug: 'calculateur-imc', priority: 0.85 },
     { slug: 'calculateur-age', priority: 0.82 },
     { slug: 'calculateur-pourcentage', priority: 0.80 },
     { slug: 'convertisseur-unites', priority: 0.83 },
+    { slug: 'calculateur-dosage-beton', priority: 0.85 },
+    { slug: 'calculateur-frais-kilometriques', priority: 0.88 },
   ],
 }
 

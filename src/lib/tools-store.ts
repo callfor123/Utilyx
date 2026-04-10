@@ -43,6 +43,11 @@ export type ToolId =
   | 'video-remove-audio'
   | 'youtube-thumbnail'
   | 'uuid-generator'
+  | 'whatsapp-link'
+  | 'name-splitter'
+  | 'url-cleaner'
+  | 'concrete-calculator'
+  | 'mileage-calculator'
 
 export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
@@ -127,6 +132,7 @@ export const modules: ModuleDef[] = [
       { id: 'url-encode-decode', label: 'URL Encode/Decode', icon: 'Link', description: 'Encoder et décoder des URLs' },
       { id: 'css-gradient-generator', label: 'CSS Gradient', icon: 'Paintbrush', description: 'Créer des dégradés CSS visuellement' },
       { id: 'markdown-preview', label: 'Markdown Preview', icon: 'FileCode', description: 'Éditeur Markdown avec aperçu en direct' },
+      { id: 'url-cleaner', label: 'Nettoyeur d\'URL', icon: 'Link2Off', description: 'Supprimer les paramètres de tracking d\'un lien' },
     ],
   },
   {
@@ -140,6 +146,7 @@ export const modules: ModuleDef[] = [
       { id: 'lorem-ipsum-generator', label: 'Lorem Ipsum', icon: 'FileText', description: 'Générer du texte placeholder' },
       { id: 'base64-encode-decode', label: 'Base64 Encode/Decode', icon: 'Lock', description: 'Encoder et décoder en Base64' },
       { id: 'text-diff-checker', label: 'Comparateur de Texte', icon: 'Diff', description: 'Comparer deux textes et voir les différences' },
+      { id: 'name-splitter', label: 'Séparateur Prénom/Nom', icon: 'SplitSquareHorizontal', description: 'Séparer noms et prénoms depuis une liste' },
     ],
   },
   {
@@ -153,6 +160,7 @@ export const modules: ModuleDef[] = [
       { id: 'uuid-generator', label: 'Générateur d\'UUID', icon: 'Fingerprint', description: 'Générer instantanément des UUID (v4)' },
       { id: 'hash-generator', label: 'Hash Generator', icon: 'Hash', description: 'Générer MD5, SHA-1, SHA-256, SHA-512' },
       { id: 'color-picker', label: 'Color Picker', icon: 'Palette', description: 'Picker de couleur avec HEX, RGB, HSL' },
+      { id: 'whatsapp-link', label: 'Lien WhatsApp', icon: 'MessageCircle', description: 'Générer un lien direct vers WhatsApp' },
     ],
   },
   {
@@ -165,6 +173,8 @@ export const modules: ModuleDef[] = [
       { id: 'age-calculator', label: 'Age Calculator', icon: 'Calendar', description: 'Calculer votre âge exact en jours' },
       { id: 'percentage-calculator', label: 'Percentage Calculator', icon: 'Percent', description: 'Tous les calculs de pourcentages' },
       { id: 'unit-converter', label: 'Unit Converter', icon: 'ArrowRightLeft', description: 'Convertir longueur, poids, température, volume' },
+      { id: 'concrete-calculator', label: 'Dosage Béton', icon: 'HardHat', description: 'Calculer les volumes de ciment, sable et gravier' },
+      { id: 'mileage-calculator', label: 'Frais Kilométriques', icon: 'Car', description: 'Calcul des indemnités kilométriques URSSAF' },
     ],
   },
 ]

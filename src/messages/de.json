@@ -18,7 +18,7 @@
     "close": "Schlie\u00dfen",
     "darkMode": "Dunkler Modus",
     "lightMode": "Heller Modus",
-    "toolCount": "39+ Premium-Werkzeuge",
+    "toolCount": "47+ Premium-Werkzeuge",
     "private": "100% Privat",
     "fastOffline": "Schnell & Offline",
     "localData": "100% lokale Daten",
@@ -79,7 +79,12 @@
     "video-add-audio": { "label": "Audio hinzufügen", "description": "Musik oder Voiceover zu Video hinzufügen" },
     "video-extract-audio": { "label": "Audio extrahieren", "description": "Audiospur als MP3, WAV, AAC extrahieren" },
     "video-to-gif": { "label": "Video zu GIF", "description": "Animierte GIFs aus Video erstellen" },
-    "video-remove-audio": { "label": "Audio entfernen", "description": "Audiospur aus Video entfernen" }
+    "video-remove-audio": { "label": "Audio entfernen", "description": "Audiospur aus Video entfernen" },
+    "whatsapp-link": { "label": "WhatsApp-Link", "description": "Direkten WhatsApp-Link ohne Kontakt generieren" },
+    "name-splitter": { "label": "Namen-Trenner", "description": "Vor- und Nachnamen aus einer Excel-Liste trennen" },
+    "url-cleaner": { "label": "URL-Bereinigung", "description": "UTM und Tracking-Parameter aus einer URL entfernen" },
+    "concrete-calculator": { "label": "Betonrechner", "description": "Zement, Sand und Kies berechnen" },
+    "mileage-calculator": { "label": "Kilometerpauschale", "description": "Berechnen Sie Ausgaben und Kilometerpauschale" }
   },
   "Footer": {
     "tagline": "100% kostenlose und private Multi-Werkzeug-Suite."

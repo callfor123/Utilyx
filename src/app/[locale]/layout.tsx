@@ -30,32 +30,32 @@ const localeMetadata: Record<string, { title: string; description: string }> = {
   fr: {
     title: "Utilyx — Suite Multi-Outils 100% Gratuite & Privée",
     description:
-      "39+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.",
+      "47+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.",
   },
   en: {
     title: "Utilyx — Free Online Multi-Tool Suite",
     description:
-      "39+ free online tools: PDF, images, video, SEO, text, generators and calculators. 100% client-side processing, no signup required.",
+      "47+ free online tools: PDF, images, video, SEO, text, generators and calculators. 100% client-side processing, no signup required.",
   },
   es: {
     title: "Utilyx — Suite de Herramientas Online Gratuitas",
     description:
-      "39+ herramientas online gratis: PDF, imágenes, vídeo, SEO, texto, generadores y calculadoras. Procesamiento 100% local, sin registro.",
+      "47+ herramientas online gratis: PDF, imágenes, vídeo, SEO, texto, generadores y calculadoras. Procesamiento 100% local, sin registro.",
   },
   de: {
     title: "Utilyx — Kostenlose Online-Werkzeugsammlung",
     description:
-      "39+ kostenlose Online-Tools: PDF, Bilder, Video, SEO, Text, Generatoren und Rechner. 100% clientseitige Verarbeitung, keine Anmeldung.",
+      "47+ kostenlose Online-Tools: PDF, Bilder, Video, SEO, Text, Generatoren und Rechner. 100% clientseitige Verarbeitung, keine Anmeldung.",
   },
   ar: {
     title: "Utilyx — مجموعة أدوات مجانية متعددة الوظائف",
     description:
-      "39+ أداة مجانية عبر الإنترنت: PDF، صور، فيديو، SEO، نصوص، مولدات وحاسبات. معالجة 100% محلية، بدون تسجيل.",
+      "47+ أداة مجانية عبر الإنترنت: PDF، صور، فيديو، SEO، نصوص، مولدات وحاسبات. معالجة 100% محلية، بدون تسجيل.",
   },
   pt: {
     title: "Utilyx — Suite de Ferramentas Online Gratuitas",
     description:
-      "39+ ferramentas online gratuitas: PDF, imagens, vídeo, SEO, texto, geradores e calculadoras. Processamento 100% local, sem cadastro.",
+      "47+ ferramentas online gratuitas: PDF, imagens, vídeo, SEO, texto, geradores e calculadoras. Processamento 100% local, sem cadastro.",
   },
 };
 
@@ -66,7 +66,9 @@ const localeKeywords: Record<string, string[]> = {
     "découper vidéo en ligne", "compresser vidéo gratuit", "convertir vidéo MP4", "extraire audio vidéo", "vidéo en GIF",
     "générateur QR code", "générateur de mots de passe", "compteur de mots", "différence de texte",
     "convertisseur d'unités", "calculatrice d'âge", "calculatrice IMC",
-    "outils web sans inscription", "traitement local sécurisé", "confidentialité garantie"
+    "outils web sans inscription", "traitement local sécurisé", "confidentialité garantie",
+    "générateur lien WhatsApp direct", "séparer nom prénom Excel", "nettoyeur URL tracking UTM",
+    "calculateur dosage béton sac 35kg", "calculateur frais kilométriques", "miniature YouTube HD"
   ],
   en: [
     "Utilyx", "free online tools", "free tool suite", "PDF compressor", "convert PDF online",
@@ -74,29 +76,39 @@ const localeKeywords: Record<string, string[]> = {
     "trim video online free", "compress video online", "convert video to MP4", "extract audio from video", "video to GIF converter",
     "QR code generator", "password generator", "word counter", "text diff checker",
     "unit converter", "age calculator", "BMI calculator",
-    "web tools no signup", "secure local processing", "privacy guaranteed"
+    "web tools no signup", "secure local processing", "privacy guaranteed",
+    "WhatsApp link generator", "split first last name Excel", "URL tracking cleaner UTM remover",
+    "concrete calculator bags cement", "mileage reimbursement calculator", "YouTube thumbnail downloader"
   ],
   es: [
     "Utilyx", "herramientas online gratis", "suite de herramientas gratis", "compresor PDF", "convertir PDF",
     "convertidor HEIC JPG", "editar imagen online", "recortar video online",
     "comprimir video gratis", "generador QR código", "contador de palabras", "convertidor de unidades",
-    "herramientas web sin registro", "procesamiento local seguro"
+    "herramientas web sin registro", "procesamiento local seguro",
+    "generador enlace WhatsApp", "separar nombres y apellidos", "limpiador URL UTM",
+    "calculadora hormigón cemento", "calculadora kilometraje", "miniatura YouTube"
   ],
   de: [
     "Utilyx", "kostenlose Online-Tools", "PDF Kompressor", "HEIC zu JPG Konverter",
     "Video online schneiden", "Video komprimieren", "Audio aus Video extrahieren",
-    "QR Code Generator", "Wortezähler", "Einheitenumrechner", "Online-Tools ohne Anmeldung", "lokale Verarbeitung DSGVO"
+    "QR Code Generator", "Wortezähler", "Einheitenumrechner", "Online-Tools ohne Anmeldung", "lokale Verarbeitung DSGVO",
+    "WhatsApp-Link Generator", "Namen trennen Excel", "URL Tracking entfernen",
+    "Betonrechner Zement", "Kilometerpauschale Rechner", "YouTube Thumbnail herunterladen"
   ],
   ar: [
     "Utilyx", "أدوات مجانية عبر الإنترنت", "ضغط PDF", "تحويل PDF", "تحويل HEIC إلى JPG",
     "تعديل الصور", "قص الفيديو", "ضغط الفيديو المجاني", "تحويل الفيديو",
-    "مولد QR كود", "عداد الكلمات", "بدون تسجيل", "معالجة محلية آمنة"
+    "مولد QR كود", "عداد الكلمات", "بدون تسجيل", "معالجة محلية آمنة",
+    "رابط واتساب مباشر", "فاصل الأسماء", "منظف الروابط UTM",
+    "حاسبة الخرسانة", "حاسبة المسافات", "صورة يوتيوب المصغرة"
   ],
   pt: [
     "Utilyx", "ferramentas online gratuitas", "compressor PDF", "conversor HEIC JPG",
     "cortar vídeo online", "comprimir vídeo", "converter vídeo",
     "gerador QR code", "contador de palavras", "conversor de unidades",
-    "ferramentas web sem cadastro", "processamento local seguro"
+    "ferramentas web sem cadastro", "processamento local seguro",
+    "gerador link WhatsApp", "separador nomes Excel", "limpador URL UTM",
+    "calculadora concreto cimento", "calculadora quilometragem", "miniatura YouTube"
   ],
 };
 
@@ -207,7 +219,9 @@ export default async function LocaleLayout({ children, params }: Props) {
       "Convertisseurs et compresseurs PDF",
       "Outils de manipulation vidéo (découpage, conversion, compression)",
       "Modificateurs d'images (redimensionnement, filtres)",
-      "Générateurs (Mots de passe, QR Codes)",
+      "Générateurs (Mots de passe, QR Codes, Lien WhatsApp, UUID)",
+      "Calculateurs (Dosage béton, Frais kilométriques, IMC, Âge)",
+      "Outils texte (Séparateur nom/prénom, Nettoyeur URL tracking)",
       "Traitement local (Offline First)"
     ],
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },

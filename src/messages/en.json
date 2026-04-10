@@ -18,7 +18,7 @@
     "close": "Close",
     "darkMode": "Dark mode",
     "lightMode": "Light mode",
-    "toolCount": "39+ Premium Tools",
+    "toolCount": "47+ Premium Tools",
     "private": "100% Private",
     "fastOffline": "Fast & Offline",
     "localData": "100% Local Data",
@@ -79,7 +79,12 @@
     "video-add-audio": { "label": "Add Audio", "description": "Add music or voiceover to a video" },
     "video-extract-audio": { "label": "Extract Audio", "description": "Extract audio track to MP3, WAV, AAC" },
     "video-to-gif": { "label": "Video to GIF", "description": "Create animated GIFs from video" },
-    "video-remove-audio": { "label": "Remove Audio", "description": "Remove audio track from a video" }
+    "video-remove-audio": { "label": "Remove Audio", "description": "Remove audio track from a video" },
+    "whatsapp-link": { "label": "WhatsApp Link", "description": "Generate a direct WhatsApp link without saving contact" },
+    "name-splitter": { "label": "Name Splitter", "description": "Split first and last names from a list" },
+    "url-cleaner": { "label": "URL Cleaner", "description": "Remove UTM tracking parameters from a URL" },
+    "concrete-calculator": { "label": "Concrete Calculator", "description": "Calculate cement, sand and gravel volumes" },
+    "mileage-calculator": { "label": "Mileage Calculator", "description": "Calculate IRS/URSSAF mileage allowance" }
   },
   "Footer": {
     "tagline": "100% free and private multi-tool suite."
