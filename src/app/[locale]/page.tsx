@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useMemo, useEffect, useCallback } from 'react'
+import React, { useState, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
@@ -10,143 +10,7 @@ import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-
 import { routing, type Locale } from '@/i18n/routing'
 import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom } from '@/components/adsense'
 
-/* ── SEO: Dynamic title + URL + meta description per tool ─────────────── */
-const toolSeoData: Record<string, { title: string; desc: string; slug: string }> = {
-  'youtube-thumbnail': { title: 'Téléchargeur de Miniatures YouTube (HD) Gratuit', desc: 'Téléchargez les miniatures HD de vos vidéos Youtube gratuitement en un instant.', slug: 'telecharger-miniature-youtube' },
-  'uuid-generator': { title: 'Générateur de UUID et GUID', desc: 'Créez des UUID/GUID en masse en une seconde dans votre navigateur sans aucune installation.', slug: 'generateur-uuid-guid' },
-  'pdf-compress':      { title: 'Compression PDF en Ligne Gratuit', desc: 'Réduisez la taille de vos PDF jusqu\'à 80%. Rapide, gratuit, sans inscription.', slug: 'compresser-pdf' },
-  'pdf-merge':         { title: 'Fusionner PDF en Ligne Gratuit', desc: 'Fusionnez plusieurs PDF en un seul document. Simple et gratuit.', slug: 'fusionner-pdf' },
-  'pdf-convert':       { title: 'PDF vers Images en Ligne', desc: 'Convertissez vos PDF en images JPG ou PNG haute qualité.', slug: 'pdf-en-images' },
-  'pdf-sign':          { title: 'Signer PDF en Ligne Gratuit', desc: 'Signez et annotez vos documents PDF directement dans le navigateur.', slug: 'signer-pdf' },
-  'pdf-unlock':        { title: 'Déverrouiller PDF en Ligne Gratuit', desc: 'Retirez le mot de passe de vos PDF facilement et gratuitement.', slug: 'deverrouiller-pdf' },
-  'pdf-protect':       { title: 'Protéger PDF avec Mot de Passe', desc: 'Ajoutez un mot de passe à votre PDF pour le sécuriser.', slug: 'proteger-pdf' },
-  'img-convert':       { title: 'Convertisseur d\'Images en Ligne', desc: 'Convertissez vos images en WebP, AVIF, JPG, PNG gratuitement.', slug: 'convertir-image' },
-  'img-compress':      { title: 'Compression d\'Images en Ligne Gratuit', desc: 'Optimisez le poids de vos images sans perdre en qualité.', slug: 'compresser-image' },
-  'img-resize':        { title: 'Redimensionner Images en Ligne', desc: 'Redimensionnez vos images aux dimensions souhaitées facilement.', slug: 'redimensionner-image' },
-  'img-bgremove':      { title: 'Supprimer Arrière-Plan Image', desc: 'Retirez l\'arrière-plan de vos images automatiquement et gratuitement.', slug: 'supprimer-arriere-plan' },
-  'heic-to-jpg':       { title: 'HEIC vers JPG en Ligne Gratuit', desc: 'Convertissez vos photos iPhone HEIC en JPG ou PNG en un clic.', slug: 'heic-vers-jpg' },
-  'favicon-generator': { title: 'Générateur de Favicon en Ligne', desc: 'Créez des favicônes et icônes pour votre site web en quelques secondes.', slug: 'generateur-favicon' },
-  'json-csv':          { title: 'JSON vers CSV en Ligne', desc: 'Convertissez et formatez vos fichiers JSON et CSV facilement.', slug: 'json-csv' },
-  'regex-tester':      { title: 'Testeur d\'Expressions Régulières', desc: 'Testez et débuggez vos regex en temps réel avec coloration syntaxique.', slug: 'testeur-regex' },
-  'meta-tags':         { title: 'Générateur de Meta Tags SEO', desc: 'Créez et prévisualisez vos balises meta pour le référencement.', slug: 'meta-tags' },
-  'sitemap-robots':    { title: 'Générateur Sitemap & Robots.txt', desc: 'Générez votre sitemap XML et fichier robots.txt pour Google.', slug: 'sitemap-robots' },
-  'json-formatter':    { title: 'JSON Formatter en Ligne', desc: 'Formatez, validez et minifiez vos données JSON facilement.', slug: 'formateur-json' },
-  'url-encode-decode': { title: 'URL Encode / Decode en Ligne', desc: 'Encodez et décodez vos URLs et paramètres rapidement.', slug: 'url-encode-decode' },
-  'css-gradient-generator': { title: 'Générateur CSS Gradient', desc: 'Créez des dégradés CSS visuellement et copiez le code.', slug: 'css-gradient' },
-  'markdown-preview':  { title: 'Éditeur Markdown en Ligne', desc: 'Écrivez en Markdown avec aperçu en direct. Gratuit et rapide.', slug: 'markdown-preview' },
-  'word-counter':      { title: 'Compteur de Mots en Ligne Gratuit', desc: 'Comptez mots, caractères, phrases et analysez la densité des mots-clés.', slug: 'compteur-mots' },
-  'case-converter':    { title: 'Convertisseur de Casse en Ligne', desc: 'Convertissez en majuscules, minuscules, camelCase, snake_case...', slug: 'convertisseur-casse' },
-  'lorem-ipsum-generator': { title: 'Générateur Lorem Ipsum', desc: 'Générez du texte placeholder pour vos maquettes et designs.', slug: 'lorem-ipsum' },
-  'base64-encode-decode': { title: 'Base64 Encode / Decode en Ligne', desc: 'Encodez et décodez des fichiers et textes en Base64.', slug: 'base64' },
-  'text-diff-checker': { title: 'Comparateur de Texte en Ligne', desc: 'Comparez deux textes et identifiez les différences ligne par ligne.', slug: 'comparateur-texte' },
-  'qr-code-generator': { title: 'Générateur de QR Code en Ligne Gratuit', desc: 'Créez des QR codes personnalisés pour vos URLs et textes.', slug: 'generateur-qr-code' },
-  'password-generator': { title: 'Générateur de Mots de Passe Sécurisés', desc: 'Générez des mots de passe forts et aléatoires instantanément.', slug: 'generateur-mot-de-passe' },
-  'hash-generator':    { title: 'Générateur de Hash MD5 SHA en Ligne', desc: 'Générez des hash MD5, SHA-1, SHA-256 et SHA-512.', slug: 'generateur-hash' },
-  'color-picker':      { title: 'Color Picker en Ligne Gratuit', desc: 'Convertissez vos couleurs entre HEX, RGB, HSL et plus.', slug: 'color-picker' },
-  'bmi-calculator':    { title: 'Calculateur IMC (BMI) en Ligne', desc: 'Calculez votre Indice de Masse Corporelle rapidement.', slug: 'calculateur-imc' },
-  'age-calculator':    { title: 'Calculateur d\'Âge Exact', desc: 'Calculez votre âge exact en années, mois, jours et heures.', slug: 'calculateur-age' },
-  'percentage-calculator': { title: 'Calculateur de Pourcentages', desc: 'Tous les calculs de pourcentages en un seul endroit.', slug: 'calculateur-pourcentage' },
-  'unit-converter':    { title: 'Convertisseur d\'Unités en Ligne', desc: 'Convertissez longueur, poids, température et volume.', slug: 'convertisseur-unites' },
-  'video-trim':        { title: 'Découper Vidéo en Ligne Gratuit', desc: 'Coupez et découpez vos vidéos directement dans le navigateur. Gratuit, sans inscription, 100% privé.', slug: 'decouper-video' },
-  'video-compress':    { title: 'Compresser Vidéo en Ligne Gratuit', desc: 'Réduisez la taille de vos vidéos MP4, WebM, AVI sans perte de qualité visible. 100% en ligne.', slug: 'compresser-video' },
-  'video-convert':     { title: 'Convertisseur Vidéo en Ligne Gratuit', desc: 'Convertissez vos vidéos entre MP4, WebM, AVI, MKV, MOV et GIF gratuitement.', slug: 'convertir-video' },
-  'video-add-audio':   { title: 'Ajouter Audio à Vidéo en Ligne', desc: 'Ajoutez de la musique, une voix-off ou un son à vos vidéos gratuitement dans le navigateur.', slug: 'ajouter-audio-video' },
-  'video-extract-audio': { title: 'Extraire Audio de Vidéo en Ligne', desc: 'Extrayez la piste audio de vos vidéos en MP3, WAV, AAC, OGG ou FLAC gratuitement.', slug: 'extraire-audio-video' },
-  'video-to-gif':      { title: 'Convertir Vidéo en GIF en Ligne Gratuit', desc: 'Créez des GIF animés à partir de vos vidéos avec contrôle total. Gratuit et privé.', slug: 'video-en-gif' },
-  'video-remove-audio': { title: 'Supprimer Audio de Vidéo en Ligne', desc: 'Retirez la piste audio de vos vidéos pour obtenir une vidéo muette. 100% gratuit.', slug: 'supprimer-audio-video' },
-  'whatsapp-link':     { title: 'Générateur de Lien WhatsApp Direct Sans Contact', desc: 'Créez un lien wa.me WhatsApp direct rapidement pour envoyer un message sans ajouter au carnet d\'adresses.', slug: 'generateur-lien-whatsapp' },
-  'name-splitter':     { title: 'Séparer Nom et Prénom en Ligne (Liste Excel) Gratuit', desc: 'Séparez automatiquement une liste de noms complets en deux colonnes Prénom et Nom pour vos fichiers Excel & CRM.', slug: 'separateur-nom-prenom' },
-  'url-cleaner':       { title: 'Nettoyeur d\'URL en Ligne: Enlever Tracker et UTM', desc: 'Supprimez instantanément les paramètres de suivi (fbclid, gclid, utm_) de vos URLs pour des liens propres et courts.', slug: 'nettoyeur-url-tracking' },
-  'concrete-calculator': { title: 'Calculateur Dosage Béton et Mortier (Sacs, Eau, Volume)', desc: 'Calculez le dosage exact en sacs de ciment de 35kg, sable, gravier et eau pour vos dalles ou fondations en m3.', slug: 'calculateur-dosage-beton' },
-  'mileage-calculator':  { title: 'Calculateur de Frais Kilométriques en Ligne Gratuit', desc: 'Calculez automatiquement vos frais et indemnités kilométriques professionnels dans n\'importe quelle devise (EUR, USD, GBP, MAD, DZD…).', slug: 'calculateur-frais-kilometriques' },
-}
 
-function updateJsonLd(data: object) {
-  let scriptEl = document.getElementById('dynamic-json-ld')
-  if (!scriptEl) {
-    scriptEl = document.createElement('script')
-    scriptEl.id = 'dynamic-json-ld'
-    scriptEl.type = 'application/ld+json'
-    document.head.appendChild(scriptEl)
-  }
-  scriptEl.textContent = JSON.stringify(data)
-}
-
-function useSEOUpdater() {
-  const { activeModule, activeTool } = useToolsStore()
-  const pathname = usePathname()
-  const locale = pathname.split('/')[1] || 'fr'
-
-  useEffect(() => {
-    if (activeModule === 'home') {
-      document.title = 'Utilyx — Suite Multi-Outils 100% Gratuite & Privée'
-      window.history.replaceState(null, '', `/${locale}`)
-      // Reset meta description
-      const metaDesc = document.querySelector('meta[name="description"]')
-      if (metaDesc) {
-        metaDesc.setAttribute('content', '47+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local, sans inscription.')
-      }
-      // Reset JSON-LD
-      updateJsonLd({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: "Utilyx",
-        url: `https://utilyx.app/${locale}`,
-        description: "Suite multi-outils gratuite et privée. 47+ outils en ligne.",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `https://utilyx.app/${locale}?q={search_term_string}`,
-          "query-input": "required name=search_term_string"
-        }
-      })
-      return
-    }
-
-    // Update URL when module changes (no specific tool selected)
-    if (activeTool) {
-      const seo = toolSeoData[activeTool]
-      if (seo) {
-        const url = `/${locale}/${activeModule}/${seo.slug}`
-        window.history.replaceState(null, '', url)
-        document.title = `${seo.title} | Utilyx`
-
-        // Update meta description for SEO
-        const metaDesc = document.querySelector('meta[name="description"]')
-        if (metaDesc) {
-          metaDesc.setAttribute('content', seo.desc)
-        }
-
-        // Update canonical URL
-        const canonical = document.querySelector('link[rel="canonical"]')
-        if (canonical) {
-          canonical.setAttribute('href', `https://utilyx.app${url}`)
-        }
-
-        // Update JSON-LD structured data for this specific tool
-        updateJsonLd({
-          "@context": "https://schema.org",
-          "@type": "WebApplication",
-          name: seo.title,
-          url: `https://utilyx.app${url}`,
-          description: seo.desc,
-          applicationCategory: "UtilitiesApplication",
-          operatingSystem: "Any (Web Browser)",
-          offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-          inLanguage: locale,
-          isPartOf: {
-            "@type": "WebSite",
-            name: "Utilyx",
-            url: "https://utilyx.app"
-          }
-        })
-      }
-    } else if (activeModule !== 'home') {
-      window.history.replaceState(null, '', `/${locale}/${activeModule}`)
-      const modLabel = modules.find(m => m.id === activeModule)?.label || ''
-      document.title = `${modLabel} | Utilyx`
-    }
-  }, [activeModule, activeTool, locale])
-}
 // Existing tools
 import { PdfCompress } from '@/components/tools/pdf/pdf-compress'
 import { PdfMerge } from '@/components/tools/pdf/pdf-merge'
@@ -988,8 +852,7 @@ export default function Home() {
   const tFooter = useTranslations('Footer')
   const translatedModules = useTranslatedModules()
 
-  // SEO: Update title, meta description, and URL dynamically
-  useSEOUpdater()
+
 
   return (
     <div className="min-h-screen flex flex-col bg-background relative">

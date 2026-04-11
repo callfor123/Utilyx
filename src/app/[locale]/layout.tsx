@@ -225,11 +225,6 @@ export default async function LocaleLayout({ children, params }: Props) {
       "Traitement local (Offline First)"
     ],
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      ratingCount: "3480",
-    },
   }
 
   return (
