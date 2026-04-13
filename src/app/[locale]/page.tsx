@@ -2,12 +2,14 @@
 
 import React, { useState, useMemo } from 'react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { useRouter, usePathname } from 'next/navigation'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
 import { routing, type Locale } from '@/i18n/routing'
+import { toolIdToPath } from '@/lib/seo-registry'
 import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom } from '@/components/adsense'
 
 
@@ -157,7 +159,7 @@ import {
   Calendar,
   Percent,
   ArrowRightLeft,
-  Link,
+  Link as LinkIcon,
   Paintbrush,
   FileCode,
   ArrowDownUp,
@@ -302,7 +304,7 @@ const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> =
   FileDown, Merge, PenTool, RefreshCw, Maximize2, Scissors,
   Braces, Terminal, Globe, FileText, Code, Youtube: YoutubeIcon, Fingerprint,
   Type, Wand2, Calculator, Hash, QrCode, KeyRound, Palette,
-  Heart, Calendar, Percent, ArrowRightLeft, Link, Paintbrush,
+  Heart, Calendar, Percent, ArrowRightLeft, Link: LinkIcon, Paintbrush,
   FileCode, ArrowDownUp, Diff, Lock, Smartphone, Unlock, ShieldCheck,
   Volume2, Music, Film, VolumeX, Video,
   HardHat, Car, MessageCircle, Link2Off, SplitSquareHorizontal,
@@ -492,15 +494,16 @@ function ToolQuickAccess({
   moduleId: ModuleId
   moduleLabel: string
 }) {
-  const { setActiveModule } = useToolsStore()
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] || 'fr'
+  const path = toolIdToPath[tool.id]
+  const href = path ? `/${locale}/${path.category}/${path.slug}` : `/${locale}`
+
   return (
     <motion.div variants={itemVariants}>
-      <button
+      <Link
+        href={href}
         className="group flex flex-col items-center gap-3 p-4 rounded-xl glass-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg w-full text-center card-hover-lift"
-        onClick={() => {
-          setActiveModule(moduleId)
-          useToolsStore.getState().setActiveTool(tool.id)
-        }}
       >
         <div className="rounded-xl bg-muted/60 p-2.5 transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary/10">
           <ToolIconDisplay iconName={tool.icon} className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -509,7 +512,7 @@ function ToolQuickAccess({
           <p className="text-xs font-medium leading-tight">{tool.label}</p>
           <p className="text-[10px] text-muted-foreground mt-0.5">{moduleLabel}</p>
         </div>
-      </button>
+      </Link>
     </motion.div>
   )
 }
@@ -820,25 +823,27 @@ function HomePage() {
 /* ── Footer Column ──────────────────────────────────────────────────── */
 function FooterColumn({ moduleId, title }: { moduleId: ModuleId; title: string }) {
   const translatedModules = useTranslatedModules()
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] || 'fr'
   const mod = translatedModules.find(m => m.id === moduleId)
   if (!mod) return null
   return (
     <div>
       <h3 className="text-sm font-semibold mb-3">{title}</h3>
       <ul className="space-y-2">
-        {mod.tools.map(tool => (
-          <li key={tool.id}>
-            <button
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => {
-                useToolsStore.getState().setActiveModule(moduleId)
-                useToolsStore.getState().setActiveTool(tool.id)
-              }}
-            >
-              {tool.label}
-            </button>
-          </li>
-        ))}
+        {mod.tools.map(tool => {
+          const path = toolIdToPath[tool.id]
+          return (
+            <li key={tool.id}>
+              <Link
+                href={path ? `/${locale}/${path.category}/${path.slug}` : `/${locale}`}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {tool.label}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
@@ -925,7 +930,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border/50 mt-auto">
         <div className="container mx-auto px-4 py-8 sm:py-10">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-8 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 mb-8">
             <div className="col-span-2 sm:col-span-3 lg:col-span-1">
               <div className="flex items-center gap-2 font-bold text-lg mb-3">
                 <div className="rounded-lg bg-primary/10 p-1.5">
@@ -940,6 +945,7 @@ export default function Home() {
 
             <FooterColumn moduleId="pdf" title={tMod('pdf.label')} />
             <FooterColumn moduleId="image" title={tMod('image.label')} />
+            <FooterColumn moduleId="video" title={tMod('video.label')} />
             <FooterColumn moduleId="dev-seo" title={tMod('dev-seo.label')} />
             <FooterColumn moduleId="text-tools" title={tMod('text-tools.label')} />
             <FooterColumn moduleId="generators" title={tMod('generators.label')} />

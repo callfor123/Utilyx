@@ -591,3 +591,8 @@ export function getSlugsByCategory(category: string): string[] {
 
 /** All valid categories */
 export const validCategories = ['pdf', 'image', 'video', 'dev-seo', 'text-tools', 'generators', 'calculators']
+
+/** Reverse lookup: toolId → { category, slug } for building URLs */
+export const toolIdToPath: Record<string, { category: string; slug: string }> = Object.fromEntries(
+  Object.values(seoRegistry).map((t) => [t.toolId, { category: t.category, slug: t.slug }])
+)
