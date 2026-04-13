@@ -233,11 +233,6 @@ export default async function LocaleLayout({ children, params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7035626578237932"
-        crossOrigin="anonymous"
-      ></script>
       <div
         lang={locale}
         dir={dir}

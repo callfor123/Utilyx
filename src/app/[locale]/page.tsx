@@ -856,6 +856,8 @@ export default function Home() {
   const tMod = useTranslations('Modules')
   const tFooter = useTranslations('Footer')
   const translatedModules = useTranslatedModules()
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] || 'fr'
 
 
 
@@ -956,6 +958,11 @@ export default function Home() {
             <p className="text-xs text-muted-foreground">
               {t('copyright', { year: new Date().getFullYear() })}
             </p>
+            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+              <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">{tFooter('privacy')}</Link>
+              <Link href={`/${locale}/about`} className="hover:text-foreground transition-colors">{tFooter('about')}</Link>
+              <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">{tFooter('terms')}</Link>
+            </div>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-1.5">
                 <Shield className="h-3 w-3 text-emerald-500" />

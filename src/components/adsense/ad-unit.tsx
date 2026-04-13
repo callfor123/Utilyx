@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, memo } from 'react'
-import { ADSENSE_CLIENT, AD_SLOT_MAIN } from './adsense-provider'
+import { ADSENSE_CLIENT, AD_SLOTS } from './adsense-provider'
 
 export type AdFormat = 'auto' | 'rectangle' | 'horizontal' | 'vertical' | 'fluid'
 export type AdLayout = '-1' | '-1a' | '-1b' | '-1c' | '-1d' | '-1e' | '-1f'
@@ -13,16 +13,10 @@ interface AdUnitProps {
   style?: React.CSSProperties
   className?: string
   responsive?: boolean
-  /** Unique identifier for this ad unit */
-  dataAdSlot?: string
 }
 
-/**
- * Reusable Google AdSense ad unit component.
- * Uses IntersectionObserver for lazy loading and proper cleanup.
- */
 export const AdUnit = memo(function AdUnit({
-  adSlot = AD_SLOT_MAIN,
+  adSlot = AD_SLOTS.BANNER,
   adFormat = 'auto',
   adLayout,
   style,
@@ -52,7 +46,6 @@ export const AdUnit = memo(function AdUnit({
       }
     }, 200)
 
-    // Clear interval after 10 seconds to avoid memory leak if ads never load
     const timeout = setTimeout(() => clearInterval(interval), 10000)
 
     return () => {
@@ -81,16 +74,11 @@ export const AdUnit = memo(function AdUnit({
   )
 })
 
-/* ── Pre-configured Ad Components ─────────────────────────────────── */
-
-/**
- * Horizontal leaderboard banner (728x90 desktop, responsive mobile)
- * Best for: below header, above footer, between sections
- */
 export function AdBanner({ className = '' }: { className?: string }) {
   return (
     <div className={`w-full min-h-[90px] flex items-center justify-center ${className}`}>
       <AdUnit
+        adSlot={AD_SLOTS.BANNER}
         adFormat="horizontal"
         className="w-full max-w-4xl mx-auto"
         style={{ minHeight: '90px' }}
@@ -99,14 +87,11 @@ export function AdBanner({ className = '' }: { className?: string }) {
   )
 }
 
-/**
- * Medium rectangle (300x250)
- * Best for: sidebar, between content sections
- */
 export function AdRectangle({ className = '' }: { className?: string }) {
   return (
     <div className={`w-full min-h-[250px] flex items-center justify-center ${className}`}>
       <AdUnit
+        adSlot={AD_SLOTS.RECTANGLE}
         adFormat="rectangle"
         className="w-full max-w-[300px]"
         style={{ minHeight: '250px' }}
@@ -115,14 +100,11 @@ export function AdRectangle({ className = '' }: { className?: string }) {
   )
 }
 
-/**
- * In-feed ad (native style, blends with content)
- * Best for: between tool cards, in grids
- */
 export function AdInFeed({ className = '' }: { className?: string }) {
   return (
     <div className={`w-full ${className}`}>
       <AdUnit
+        adSlot={AD_SLOTS.IN_FEED}
         adFormat="fluid"
         adLayout="-1e"
         className="w-full"
@@ -132,14 +114,25 @@ export function AdInFeed({ className = '' }: { className?: string }) {
   )
 }
 
-/**
- * Vertical skyscraper (160x600 or responsive)
- * Best for: sidebar
- */
+export function AdInArticle({ className = '' }: { className?: string }) {
+  return (
+    <div className={`w-full ${className}`}>
+      <AdUnit
+        adSlot={AD_SLOTS.IN_ARTICLE}
+        adFormat="fluid"
+        adLayout="in-article"
+        className="w-full"
+        style={{ minHeight: '250px' }}
+      />
+    </div>
+  )
+}
+
 export function AdSidebar({ className = '' }: { className?: string }) {
   return (
     <div className={`w-full min-h-[600px] flex items-start justify-center ${className}`}>
       <AdUnit
+        adSlot={AD_SLOTS.SIDEBAR}
         adFormat="vertical"
         className="w-full max-w-[160px]"
         style={{ minHeight: '600px' }}
@@ -148,15 +141,12 @@ export function AdSidebar({ className = '' }: { className?: string }) {
   )
 }
 
-/**
- * Anchor/sticky ad for mobile (320x50 fixed at bottom)
- * Best for: mobile users, high visibility
- */
 export function AdStickyBottom({ className = '' }: { className?: string }) {
   return (
     <div className={`fixed bottom-0 left-0 right-0 z-40 sm:hidden ${className}`}>
       <div className="bg-background/95 backdrop-blur-sm border-t border-border/50 py-1 px-2">
         <AdUnit
+          adSlot={AD_SLOTS.STICKY_MOBILE}
           adFormat="auto"
           className="w-full max-w-[320px] mx-auto"
           style={{ minHeight: '50px' }}
@@ -176,14 +166,11 @@ export function AdStickyBottom({ className = '' }: { className?: string }) {
   )
 }
 
-/**
- * Large leaderboard (970x90)
- * Best for: top of page, major content breaks
- */
 export function AdLeaderboard({ className = '' }: { className?: string }) {
   return (
     <div className={`w-full min-h-[90px] flex items-center justify-center ${className}`}>
       <AdUnit
+        adSlot={AD_SLOTS.LEADERBOARD}
         adFormat="horizontal"
         adLayout="-1a"
         className="w-full max-w-5xl mx-auto"
@@ -193,10 +180,6 @@ export function AdLeaderboard({ className = '' }: { className?: string }) {
   )
 }
 
-/**
- * Multi-size flexible ad that adapts to container
- * Best for: between content blocks, responsive layouts
- */
 export function AdFlexible({ className = '' }: { className?: string }) {
   return (
     <div className={`w-full min-h-[100px] ${className}`}>
