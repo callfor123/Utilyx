@@ -611,7 +611,7 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     ],
     howTo: ['Configurez les durées de travail et de pause', 'Cliquez sur Démarrer', 'Le timer bascule automatiquement entre travail et pause'],
     relatedSlugs: ['chronometre', 'calculateur-age', 'calculateur-pourcentage'],
-  },,
+  },
   'calculateur-tva': {
     toolId: 'vat-calculator', category: 'calculators', slug: 'calculateur-tva',
     title: 'Calculateur de TVA en Ligne Gratuit — HT, TTC, Taux de TVA',

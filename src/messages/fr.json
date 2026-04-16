@@ -268,7 +268,9 @@
     "tagline": "Suite multi-outils 100% gratuite et privée.",
     "privacy": "Confidentialité",
     "about": "À Propos",
-    "terms": "CGU"
+    "terms": "CGU",
+    "contact": "Contact",
+    "legal": "Mentions légales"
   },
   "Privacy": {
     "title": "Politique de Confidentialité",
@@ -345,5 +347,37 @@
     "lawContent": "Les présentes conditions sont régies par le droit français. Tout litige sera soumis à la compétence des tribunaux français.",
     "contactTitle": "10. Contact",
     "contactContent": "Pour toute question : legal@utilyx.app"
+  },
+  "Contact": {
+    "title": "Contact",
+    "subtitle": "Une question, une suggestion ou un problème ? N’hésitez pas à nous écrire.",
+    "backHome": "Retour à l’accueil",
+    "nameLabel": "Nom",
+    "namePlaceholder": "Votre nom",
+    "emailLabel": "Email",
+    "emailPlaceholder": "votre@email.com",
+    "subjectLabel": "Sujet",
+    "subjectPlaceholder": "De quoi souhaitez-vous parler ?",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Décrivez votre demande en détail...",
+    "submit": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "successMessage": "Merci ! Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.",
+    "errorMessage": "Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.",
+    "altContact": "Vous pouvez également nous écrire directement à contact@utilyx.app"
+  },
+  "Legal": {
+    "title": "Mentions Légales",
+    "subtitle": "Informations légales du site Utilyx.",
+    "backHome": "Retour à l’accueil",
+    "editorTitle": "Éditeur du site",
+    "editorContent": "Utilyx\nSite internet : https://utilyx.app\nStatut : Service en ligne gratuit",
+    "hostTitle": "Hébergeur",
+    "hostContent": "Vercel Inc.\n440 N Barranca Ave #4133\nCovina, CA 91723\nÉtats-Unis\nSite : https://vercel.com",
+    "directorTitle": "Directeur de la publication",
+    "directorContent": "Le directeur de la publication du site Utilyx est le responsable légal de l’éditeur.",
+    "contactTitle": "Contact",
+    "contactContent": "Pour toute question relative au site, vous pouvez nous contacter à : contact@utilyx.app",
+    "contactCta": "Nous contacter"
   }
 }

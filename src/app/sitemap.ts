@@ -45,6 +45,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     })
+
+    entries.push({
+      url: `${BASE_URL}/${locale}/contact`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    })
+
+    entries.push({
+      url: `${BASE_URL}/${locale}/mentions-legales`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.2,
+    })
   }
 
   return entries

@@ -268,7 +268,9 @@
     "tagline": "100% kostenlose und private Multi-Werkzeug-Suite.",
     "privacy": "Datenschutz",
     "about": "Über uns",
-    "terms": "AGB"
+    "terms": "AGB",
+    "contact": "Kontakt",
+    "legal": "Impressum"
   },
   "Privacy": {
     "title": "Datenschutzerklärung",
@@ -345,5 +347,37 @@
     "lawContent": "Diese Bedingungen unterliegen französischem Recht. Streitigkeiten unterliegen der Zuständigkeit französischer Gerichte.",
     "contactTitle": "10. Kontakt",
     "contactContent": "Bei Fragen: legal@utilyx.app"
+  },
+  "Contact": {
+    "title": "Kontakt",
+    "subtitle": "Eine Frage, ein Vorschlag oder ein Problem? Zögern Sie nicht, uns zu schreiben.",
+    "backHome": "Zurück zur Startseite",
+    "nameLabel": "Name",
+    "namePlaceholder": "Ihr Name",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "ihre@email.com",
+    "subjectLabel": "Betreff",
+    "subjectPlaceholder": "Worüber möchten Sie sprechen?",
+    "messageLabel": "Nachricht",
+    "messagePlaceholder": "Beschreiben Sie Ihr Anliegen im Detail...",
+    "submit": "Nachricht senden",
+    "sending": "Wird gesendet...",
+    "successMessage": "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Wir werden uns so schnell wie möglich bei Ihnen melden.",
+    "errorMessage": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt per E-Mail.",
+    "altContact": "Sie können uns auch direkt unter contact@utilyx.app schreiben"
+  },
+  "Legal": {
+    "title": "Impressum",
+    "subtitle": "Rechtliche Informationen zur Utilyx-Website.",
+    "backHome": "Zurück zur Startseite",
+    "editorTitle": "Herausgeber",
+    "editorContent": "Utilyx\nWebsite: https://utilyx.app\nStatus: Kostenloser Online-Service",
+    "hostTitle": "Hosting",
+    "hostContent": "Vercel Inc.\n440 N Barranca Ave #4133\nCovina, CA 91723\nUSA\nWebsite: https://vercel.com",
+    "directorTitle": "Verantwortlich für den Inhalt",
+    "directorContent": "Der Verantwortliche für den Inhalt der Utilyx-Website ist der gesetzliche Vertreter des Herausgebers.",
+    "contactTitle": "Kontakt",
+    "contactContent": "Bei Fragen zur Website können Sie uns kontaktieren unter: contact@utilyx.app",
+    "contactCta": "Kontaktieren Sie uns"
   }
 }

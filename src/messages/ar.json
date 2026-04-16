@@ -268,7 +268,9 @@
     "tagline": "مجموعة أدوات مجانية وخاصة 100%.",
     "privacy": "الخصوصية",
     "about": "من نحن",
-    "terms": "الشروط"
+    "terms": "الشروط",
+    "contact": "اتصل بنا",
+    "legal": "إشعار قانوني"
   },
   "Privacy": {
     "title": "سياسة الخصوصية",
@@ -345,5 +347,37 @@
     "lawContent": "تخضع هذه الشروط للقانون الفرنسي. أي نزاع يخضع لاختصاص المحاكم الفرنسية.",
     "contactTitle": "10. الاتصال",
     "contactContent": "لأي أسئلة: legal@utilyx.app"
+  },
+  "Contact": {
+    "title": "اتصل بنا",
+    "subtitle": "سؤال، اقتراح أو مشكلة؟ لا تتردد في الكتابة إلينا.",
+    "backHome": "العودة إلى الرئيسية",
+    "nameLabel": "الاسم",
+    "namePlaceholder": "اسمك",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "your@email.com",
+    "subjectLabel": "الموضوع",
+    "subjectPlaceholder": "عما تريد التحدث؟",
+    "messageLabel": "الرسالة",
+    "messagePlaceholder": "صف طلبك بالتفصيل...",
+    "submit": "إرسال الرسالة",
+    "sending": "جاري الإرسال...",
+    "successMessage": "شكراً لك! تم إرسال رسالتك بنجاح. سنرد عليك في أقرب وقت ممكن.",
+    "errorMessage": "حدث خطأ. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة عبر البريد الإلكتروني.",
+    "altContact": "يمكنك أيضاً الكتابة إلينا مباشرة على contact@utilyx.app"
+  },
+  "Legal": {
+    "title": "إشعار قانوني",
+    "subtitle": "المعلومات القانونية لموقع Utilyx.",
+    "backHome": "العودة إلى الرئيسية",
+    "editorTitle": "الناشر",
+    "editorContent": "Utilyx\nالموقع: https://utilyx.app\nالحالة: خدمة مجانية عبر الإنترنت",
+    "hostTitle": "الاستضافة",
+    "hostContent": "Vercel Inc.\n440 N Barranca Ave #4133\nCovina, CA 91723\nالولايات المتحدة\nالموقع: https://vercel.com",
+    "directorTitle": "مدير النشر",
+    "directorContent": "مدير نشر موقع Utilyx هو الممثل القانوني للناشر.",
+    "contactTitle": "الاتصال",
+    "contactContent": "لأي سؤال يتعلق بالموقع، يمكنك الاتصال بنا على: contact@utilyx.app",
+    "contactCta": "اتصل بنا"
   }
 }

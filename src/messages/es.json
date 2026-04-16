@@ -268,7 +268,9 @@
     "tagline": "Suite multi-herramientas 100% gratuita y privada.",
     "privacy": "Privacidad",
     "about": "Acerca de",
-    "terms": "Términos"
+    "terms": "Términos",
+    "contact": "Contacto",
+    "legal": "Aviso Legal"
   },
   "Privacy": {
     "title": "Política de Privacidad",
@@ -345,5 +347,37 @@
     "lawContent": "Estos términos se rigen por la ley francesa. Cualquier disputa estará sujeta a la jurisdicción de los tribunales franceses.",
     "contactTitle": "10. Contacto",
     "contactContent": "Para cualquier pregunta: legal@utilyx.app"
+  },
+  "Contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tiene una pregunta, sugerencia o problema? No dude en escribirnos.",
+    "backHome": "Volver al inicio",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Su nombre",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "su@email.com",
+    "subjectLabel": "Asunto",
+    "subjectPlaceholder": "¿De qué desea hablar?",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Describa su solicitud en detalle...",
+    "submit": "Enviar mensaje",
+    "sending": "Enviando...",
+    "successMessage": "¡Gracias! Su mensaje se ha enviado correctamente. Le responderemos lo antes posible.",
+    "errorMessage": "Se produjo un error. Inténtelo de nuevo o contáctenos directamente por correo electrónico.",
+    "altContact": "También puede escribirnos directamente a contact@utilyx.app"
+  },
+  "Legal": {
+    "title": "Aviso Legal",
+    "subtitle": "Información legal del sitio web Utilyx.",
+    "backHome": "Volver al inicio",
+    "editorTitle": "Editor del sitio",
+    "editorContent": "Utilyx\nSitio web: https://utilyx.app\nEstado: Servicio en línea gratuito",
+    "hostTitle": "Alojamiento",
+    "hostContent": "Vercel Inc.\n440 N Barranca Ave #4133\nCovina, CA 91723\nEstados Unidos\nSitio web: https://vercel.com",
+    "directorTitle": "Director de la publicación",
+    "directorContent": "El director de la publicación del sitio Utilyx es el representante legal del editor.",
+    "contactTitle": "Contacto",
+    "contactContent": "Para cualquier pregunta sobre el sitio, puede contactarnos en: contact@utilyx.app",
+    "contactCta": "Contáctenos"
   }
 }

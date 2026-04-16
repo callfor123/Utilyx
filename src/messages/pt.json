@@ -268,7 +268,9 @@
     "tagline": "Suite multi-ferramentas 100% gratuita e privada.",
     "privacy": "Privacidade",
     "about": "Sobre",
-    "terms": "Termos"
+    "terms": "Termos",
+    "contact": "Contato",
+    "legal": "Aviso Legal"
   },
   "Privacy": {
     "title": "Política de Privacidade",
@@ -345,5 +347,37 @@
     "lawContent": "Estes termos são regidos pela lei francesa. Qualquer litígio será submetido à jurisdição dos tribunais franceses.",
     "contactTitle": "10. Contacto",
     "contactContent": "Para qualquer questão: legal@utilyx.app"
+  },
+  "Contact": {
+    "title": "Contato",
+    "subtitle": "Uma pergunta, sugestão ou problema? Não hesite em nos escrever.",
+    "backHome": "Voltar ao início",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Seu nome",
+    "emailLabel": "Email",
+    "emailPlaceholder": "seu@email.com",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Sobre o que deseja falar?",
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Descreva sua solicitação em detalhes...",
+    "submit": "Enviar mensagem",
+    "sending": "Enviando...",
+    "successMessage": "Obrigado! Sua mensagem foi enviada com sucesso. Responderemos o mais breve possível.",
+    "errorMessage": "Ocorreu um erro. Tente novamente ou entre em contato diretamente por email.",
+    "altContact": "Você também pode nos escrever diretamente em contact@utilyx.app"
+  },
+  "Legal": {
+    "title": "Aviso Legal",
+    "subtitle": "Informações legais do site Utilyx.",
+    "backHome": "Voltar ao início",
+    "editorTitle": "Editor do site",
+    "editorContent": "Utilyx\nSite: https://utilyx.app\nStatus: Serviço online gratuito",
+    "hostTitle": "Hospedagem",
+    "hostContent": "Vercel Inc.\n440 N Barranca Ave #4133\nCovina, CA 91723\nEstados Unidos\nSite: https://vercel.com",
+    "directorTitle": "Diretor de publicação",
+    "directorContent": "O diretor de publicação do site Utilyx é o representante legal do editor.",
+    "contactTitle": "Contato",
+    "contactContent": "Para qualquer pergunta sobre o site, entre em contato em: contact@utilyx.app",
+    "contactCta": "Entre em contato"
   }
 }

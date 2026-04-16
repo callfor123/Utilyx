@@ -983,6 +983,8 @@ export default function Home() {
               <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">{tFooter('privacy')}</Link>
               <Link href={`/${locale}/about`} className="hover:text-foreground transition-colors">{tFooter('about')}</Link>
               <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">{tFooter('terms')}</Link>
+              <Link href={`/${locale}/contact`} className="hover:text-foreground transition-colors">{tFooter('contact')}</Link>
+              <Link href={`/${locale}/mentions-legales`} className="hover:text-foreground transition-colors">{tFooter('legal')}</Link>
             </div>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <div className="flex items-center gap-1.5">
