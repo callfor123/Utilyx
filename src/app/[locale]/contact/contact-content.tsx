@@ -20,7 +20,7 @@ export default function ContactContent() {
     const data = new FormData(form)
 
     try {
-      const res = await fetch('/api/feedback', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -28,7 +28,6 @@ export default function ContactContent() {
           email: data.get('email'),
           subject: data.get('subject'),
           message: data.get('message'),
-          type: 'contact',
         }),
       })
       if (res.ok) {
