@@ -228,16 +228,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <div
-        lang={locale}
-        dir={dir}
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground font-sans`}
-      >
+    <html lang={locale} dir={dir} suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased bg-background text-foreground font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme={locale === "ar" ? "dark" : "light"}
@@ -254,7 +250,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         </ThemeProvider>
         <Toaster />
         <Analytics />
-      </div>
-    </>
+      </body>
+    </html>
   );
 }
