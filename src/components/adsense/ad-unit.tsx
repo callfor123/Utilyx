@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, memo } from 'react'
-import { ADSENSE_CLIENT, AD_SLOTS } from './adsense-provider'
+import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE } from './adsense-provider'
 
 export type AdFormat = 'auto' | 'rectangle' | 'horizontal' | 'vertical' | 'fluid'
 export type AdLayout = '-1' | '-1a' | '-1b' | '-1c' | '-1d' | '-1e' | '-1f'
@@ -187,6 +187,37 @@ export function AdFlexible({ className = '' }: { className?: string }) {
         adFormat="auto"
         className="w-full"
         style={{ minHeight: '100px' }}
+      />
+    </div>
+  )
+}
+
+// ── Page-specific ad units ──────────────────────────────────────────────
+// Use these for homepage tool grid (every ~8 tools) and tool pages
+
+/** Ad for homepage tool grid — every 8 tools */
+export function AdHomeGrid({ className = '' }: { className?: string }) {
+  return (
+    <div className={`w-full ${className}`}>
+      <AdUnit
+        adSlot={AD_SLOT_HOME_GRID}
+        adFormat="horizontal"
+        className="w-full"
+        style={{ minHeight: '90px' }}
+      />
+    </div>
+  )
+}
+
+/** Ad for individual tool pages */
+export function AdToolPage({ className = '' }: { className?: string }) {
+  return (
+    <div className={`w-full ${className}`}>
+      <AdUnit
+        adSlot={AD_SLOT_TOOL_PAGE}
+        adFormat="horizontal"
+        className="w-full max-w-4xl mx-auto"
+        style={{ minHeight: '90px' }}
       />
     </div>
   )

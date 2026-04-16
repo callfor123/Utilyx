@@ -246,6 +246,18 @@
     "mileage-calculator": {
       "label": "حاسبة المسافات",
       "description": "حساب تعويضات المسافات المقطوعة"
+    },
+    "color-converter": {
+      "label": "محول الألوان",
+      "description": "التحويل بين HEX و RGB و HSL و CMYK"
+    },
+    "stopwatch": {
+      "label": "ساعة إيقاف",
+      "description": "التوقيت مع تسجيل اللفات"
+    },
+    "pomodoro-timer": {
+      "label": "مؤقت بومودورو",
+      "description": "تقنية بومودورو للإنتاجية"
     }
   },
   "Footer": {

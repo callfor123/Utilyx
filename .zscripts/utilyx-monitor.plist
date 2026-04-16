@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>app.utilyx.monitor</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/user/Documents/Utilyx/.zscripts/monitor.sh</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>300</integer> <!-- toutes les 5 minutes -->
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/utilyx-monitor.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/utilyx-monitor-error.log</string>
+</dict>
+</plist>

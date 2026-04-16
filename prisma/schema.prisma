@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,20 +7,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model ToolUsage {
   id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
+  toolId    String   // matches ToolId from tools-store
+  category  String   // module: pdf, image, video, dev-seo, text-tools, generators, calculators
+  action    String   // e.g. "compress", "merge", "convert"
+  success   Boolean  @default(true)
+  fileSize  Int?     // input file size in bytes (if applicable)
+  duration  Int?     // processing time in ms (if applicable)
+  userAgent String?
+  ip        String?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  @@index([toolId, createdAt])
+  @@index([category, createdAt])
+  @@index([createdAt])
 }
 
-model Post {
+model Feedback {
   id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
-  authorId  String
+  toolId    String?  // optional: feedback can be general or tool-specific
+  rating    Int      // 1-5
+  comment   String?
+  email     String?  // optional user email for follow-up
+  userAgent String?
+  ip        String?
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  @@index([toolId])
+  @@index([createdAt])
+  @@index([rating])
+}
+
+model HealthCheck {
+  id        String   @id @default(cuid())
+  service   String   // e.g. "api", "database", "storage"
+  status    String   // "healthy", "degraded", "down"
+  latency   Int?     // response time in ms
+  message   String?  // optional details
+  createdAt DateTime @default(now())
+
+  @@index([service, createdAt])
 }

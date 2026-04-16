@@ -2,169 +2,343 @@
   "Common": {
     "brand": "Utilyx",
     "home": "Accueil",
-    "searchPlaceholder": "Rechercher un outil\u2026",
-    "noResults": "Aucun outil trouv\u00e9 pour \u00ab {query} \u00bb",
-    "toolsFound": "{count} outil(s) trouv\u00e9(s)",
-    "categories": "Cat\u00e9gories",
-    "categoriesDesc": "Choisissez une cat\u00e9gorie pour explorer ses outils",
+    "searchPlaceholder": "Rechercher un outil…",
+    "noResults": "Aucun outil trouvé pour « {query} »",
+    "toolsFound": "{count} outil(s) trouvé(s)",
+    "categories": "Catégories",
+    "categoriesDesc": "Choisissez une catégorie pour explorer ses outils",
     "allTools": "Tous les outils",
-    "allToolsDesc": "Acc\u00e8s rapide \u00e0 tous les outils disponibles",
-    "selectTool": "S\u00e9lectionnez un outil ci-dessus pour commencer",
-    "comingSoon": "Cet outil sera bient\u00f4t disponible.",
-    "loading": "Chargement de {label}\u2026",
+    "allToolsDesc": "Accès rapide à tous les outils disponibles",
+    "selectTool": "Sélectionnez un outil ci-dessus pour commencer",
+    "comingSoon": "Cet outil sera bientôt disponible.",
+    "loading": "Chargement de {label}…",
     "clear": "Effacer",
     "copy": "Copier",
-    "download": "T\u00e9l\u00e9charger",
+    "download": "Télécharger",
     "close": "Fermer",
     "darkMode": "Mode sombre",
     "lightMode": "Mode clair",
     "toolCount": "47+ Outils Premium",
-    "private": "100% Priv\u00e9",
+    "private": "100% Privé",
     "fastOffline": "Rapide & Offline",
-    "localData": "Donn\u00e9es 100% locales",
-    "noSignup": "Z\u00e9ro inscription requise",
-    "copyright": "\u00a9 {year} Utilyx. Tous droits r\u00e9serv\u00e9s.",
-    "description": "Suite multi-outils {free} et {private}. PDF, images, SEO, texte, g\u00e9n\u00e9rateurs et calculateurs \u2014 tout directement dans votre navigateur.",
+    "localData": "Données 100% locales",
+    "noSignup": "Zéro inscription requise",
+    "copyright": "© {year} Utilyx. Tous droits réservés.",
+    "description": "Suite multi-outils {free} et {private}. PDF, images, SEO, texte, générateurs et calculateurs — tout directement dans votre navigateur.",
     "freeLabel": "100% gratuite",
-    "privateLabel": "priv\u00e9e"
+    "privateLabel": "privée"
   },
   "Modules": {
-    "pdf": { "label": "PDF & Documents", "description": "Compression, fusion, conversion et protection de PDF" },
-    "image": { "label": "Images", "description": "Conversion, compression et optimisation d'images" },
-    "dev-seo": { "label": "Dev & SEO", "description": "Outils pour d\u00e9veloppeurs et SEO" },
-    "text-tools": { "label": "Texte", "description": "Compteur de mots, convertisseur et outils texte" },
-    "generators": { "label": "G\u00e9n\u00e9rateurs", "description": "QR code, mots de passe, hash et couleurs" },
-    "calculators": { "label": "Calculateurs", "description": "BMI, âge, pourcentages et conversions" },
-    "video": { "label": "Vidéo", "description": "Découper, compresser, convertir et éditer des vidéos" }
+    "pdf": {
+      "label": "PDF & Documents",
+      "description": "Compression, fusion, conversion et protection de PDF"
+    },
+    "image": {
+      "label": "Images",
+      "description": "Conversion, compression et optimisation d'images"
+    },
+    "dev-seo": {
+      "label": "Dev & SEO",
+      "description": "Outils pour développeurs et SEO"
+    },
+    "text-tools": {
+      "label": "Texte",
+      "description": "Compteur de mots, convertisseur et outils texte"
+    },
+    "generators": {
+      "label": "Générateurs",
+      "description": "QR code, mots de passe, hash et couleurs"
+    },
+    "calculators": {
+      "label": "Calculateurs",
+      "description": "BMI, âge, pourcentages et conversions"
+    },
+    "video": {
+      "label": "Vidéo",
+      "description": "Découper, compresser, convertir et éditer des vidéos"
+    }
   },
   "Tools": {
-    "pdf-compress": { "label": "Compression PDF", "description": "R\u00e9duire la taille de vos fichiers PDF" },
-    "pdf-merge": { "label": "Fusion PDF", "description": "Fusionner plusieurs PDF en un seul" },
-    "pdf-convert": { "label": "PDF vers Images", "description": "Convertir vos PDF en JPG ou PNG" },
-    "pdf-sign": { "label": "Signature PDF", "description": "Signer et annoter vos documents" },
-    "pdf-unlock": { "label": "D\u00e9verrouiller PDF", "description": "Retirer le mot de passe d'un PDF" },
-    "pdf-protect": { "label": "Prot\u00e9ger PDF", "description": "Ajouter un mot de passe \u00e0 votre PDF" },
-    "img-convert": { "label": "Convertisseur Universel", "description": "Convertir en WebP, AVIF, JPG, PNG" },
-    "img-compress": { "label": "Compression Image", "description": "Optimiser le poids de vos images" },
-    "img-resize": { "label": "Redimensionnement", "description": "Redimensionner vos images facilement" },
-    "img-bgremove": { "label": "D\u00e9tourage", "description": "Supprimer l'arri\u00e8re-plan des images" },
-    "heic-to-jpg": { "label": "HEIC vers JPG", "description": "Convertir photos iPhone HEIC en JPG" },
-    "favicon-generator": { "label": "G\u00e9n\u00e9rateur Favicon", "description": "G\u00e9n\u00e9rer favicon et ic\u00f4nes pour votre site" },
-    "youtube-thumbnail": { "label": "Miniature YouTube", "description": "T\u00e9l\u00e9charger la miniature d'une vid\u00e9o YouTube" },
-    "uuid-generator": { "label": "G\u00e9n\u00e9rateur UUID", "description": "G\u00e9n\u00e9rer des identifiants UUID et GUID uniques" },
-    "json-csv": { "label": "JSON / CSV", "description": "Convertir et formater JSON et CSV" },
-    "regex-tester": { "label": "Testeur Regex", "description": "Tester vos expressions r\u00e9guli\u00e8res" },
-    "meta-tags": { "label": "Meta Tags", "description": "G\u00e9n\u00e9rer et pr\u00e9visualiser les meta tags" },
-    "sitemap-robots": { "label": "Sitemap / Robots.txt", "description": "G\u00e9n\u00e9rer sitemap XML et robots.txt" },
-    "json-formatter": { "label": "JSON Formatter", "description": "Formater, valider et minifier du JSON" },
-    "url-encode-decode": { "label": "URL Encode/Decode", "description": "Encoder et d\u00e9coder des URLs" },
-    "css-gradient-generator": { "label": "CSS Gradient", "description": "Cr\u00e9er des d\u00e9grad\u00e9s CSS visuellement" },
-    "markdown-preview": { "label": "Markdown Preview", "description": "\u00c9diteur Markdown avec aper\u00e7u en direct" },
-    "word-counter": { "label": "Compteur de Mots", "description": "Compter mots, caract\u00e8res et phrases" },
-    "case-converter": { "label": "Convertisseur de Casse", "description": "Convertir majuscules, minuscules, camelCase" },
-    "lorem-ipsum-generator": { "label": "Lorem Ipsum", "description": "G\u00e9n\u00e9rer du texte placeholder" },
-    "base64-encode-decode": { "label": "Base64 Encode/Decode", "description": "Encoder et d\u00e9coder en Base64" },
-    "text-diff-checker": { "label": "Comparateur de Texte", "description": "Comparer deux textes et voir les diff\u00e9rences" },
-    "qr-code-generator": { "label": "QR Code Generator", "description": "G\u00e9n\u00e9rer des QR codes pour URLs et texte" },
-    "password-generator": { "label": "Password Generator", "description": "G\u00e9n\u00e9rer des mots de passe s\u00e9curis\u00e9s" },
-    "hash-generator": { "label": "Hash Generator", "description": "G\u00e9n\u00e9rer MD5, SHA-1, SHA-256, SHA-512" },
-    "color-picker": { "label": "Color Picker", "description": "Picker de couleur avec HEX, RGB, HSL" },
-    "bmi-calculator": { "label": "BMI Calculator", "description": "Calculer votre indice de masse corporelle" },
-    "age-calculator": { "label": "Age Calculator", "description": "Calculer votre \u00e2ge exact en jours" },
-    "percentage-calculator": { "label": "Calcul Pourcentages", "description": "Tous les calculs de pourcentages" },
-    "unit-converter": { "label": "Convertisseur d'Unités", "description": "Convertir longueur, poids, température, volume" },
-    "video-trim": { "label": "Découper Vidéo", "description": "Couper et extraire des portions de vidéo" },
-    "video-compress": { "label": "Compresser Vidéo", "description": "Réduire la taille de vos vidéos" },
-    "video-convert": { "label": "Convertir Vidéo", "description": "Convertir entre MP4, WebM, AVI, MKV, GIF" },
-    "video-add-audio": { "label": "Ajouter Audio", "description": "Ajouter musique ou voix-off à une vidéo" },
-    "video-extract-audio": { "label": "Extraire Audio", "description": "Extraire la piste audio en MP3, WAV, AAC" },
-    "video-to-gif": { "label": "Vidéo vers GIF", "description": "Créer des GIF animés depuis une vidéo" },
-    "video-remove-audio": { "label": "Supprimer Audio", "description": "Retirer la piste audio d'une vidéo" },
-    "whatsapp-link": { "label": "Lien WhatsApp", "description": "Générer un lien direct vers WhatsApp sans contact" },
-    "name-splitter": { "label": "Séparateur Prénom/Nom", "description": "Séparer noms et prénoms depuis une liste Excel" },
-    "url-cleaner": { "label": "Nettoyeur d'URL", "description": "Supprimer les UTM et trackings d'un lien" },
-    "concrete-calculator": { "label": "Dosage Béton", "description": "Calculer les volumes de ciment, sable et eau" },
-    "mileage-calculator": { "label": "Frais Kilométriques", "description": "Calcul des indemnités kilométriques URSSAF" }
+    "pdf-compress": {
+      "label": "Compression PDF",
+      "description": "Réduire la taille de vos fichiers PDF"
+    },
+    "pdf-merge": {
+      "label": "Fusion PDF",
+      "description": "Fusionner plusieurs PDF en un seul"
+    },
+    "pdf-convert": {
+      "label": "PDF vers Images",
+      "description": "Convertir vos PDF en JPG ou PNG"
+    },
+    "pdf-sign": {
+      "label": "Signature PDF",
+      "description": "Signer et annoter vos documents"
+    },
+    "pdf-unlock": {
+      "label": "Déverrouiller PDF",
+      "description": "Retirer le mot de passe d'un PDF"
+    },
+    "pdf-protect": {
+      "label": "Protéger PDF",
+      "description": "Ajouter un mot de passe à votre PDF"
+    },
+    "img-convert": {
+      "label": "Convertisseur Universel",
+      "description": "Convertir en WebP, AVIF, JPG, PNG"
+    },
+    "img-compress": {
+      "label": "Compression Image",
+      "description": "Optimiser le poids de vos images"
+    },
+    "img-resize": {
+      "label": "Redimensionnement",
+      "description": "Redimensionner vos images facilement"
+    },
+    "img-bgremove": {
+      "label": "Détourage",
+      "description": "Supprimer l'arrière-plan des images"
+    },
+    "heic-to-jpg": {
+      "label": "HEIC vers JPG",
+      "description": "Convertir photos iPhone HEIC en JPG"
+    },
+    "favicon-generator": {
+      "label": "Générateur Favicon",
+      "description": "Générer favicon et icônes pour votre site"
+    },
+    "youtube-thumbnail": {
+      "label": "Miniature YouTube",
+      "description": "Télécharger la miniature d'une vidéo YouTube"
+    },
+    "uuid-generator": {
+      "label": "Générateur UUID",
+      "description": "Générer des identifiants UUID et GUID uniques"
+    },
+    "json-csv": {
+      "label": "JSON / CSV",
+      "description": "Convertir et formater JSON et CSV"
+    },
+    "regex-tester": {
+      "label": "Testeur Regex",
+      "description": "Tester vos expressions régulières"
+    },
+    "meta-tags": {
+      "label": "Meta Tags",
+      "description": "Générer et prévisualiser les meta tags"
+    },
+    "sitemap-robots": {
+      "label": "Sitemap / Robots.txt",
+      "description": "Générer sitemap XML et robots.txt"
+    },
+    "json-formatter": {
+      "label": "JSON Formatter",
+      "description": "Formater, valider et minifier du JSON"
+    },
+    "url-encode-decode": {
+      "label": "URL Encode/Decode",
+      "description": "Encoder et décoder des URLs"
+    },
+    "css-gradient-generator": {
+      "label": "CSS Gradient",
+      "description": "Créer des dégradés CSS visuellement"
+    },
+    "markdown-preview": {
+      "label": "Markdown Preview",
+      "description": "Éditeur Markdown avec aperçu en direct"
+    },
+    "word-counter": {
+      "label": "Compteur de Mots",
+      "description": "Compter mots, caractères et phrases"
+    },
+    "case-converter": {
+      "label": "Convertisseur de Casse",
+      "description": "Convertir majuscules, minuscules, camelCase"
+    },
+    "lorem-ipsum-generator": {
+      "label": "Lorem Ipsum",
+      "description": "Générer du texte placeholder"
+    },
+    "base64-encode-decode": {
+      "label": "Base64 Encode/Decode",
+      "description": "Encoder et décoder en Base64"
+    },
+    "text-diff-checker": {
+      "label": "Comparateur de Texte",
+      "description": "Comparer deux textes et voir les différences"
+    },
+    "qr-code-generator": {
+      "label": "QR Code Generator",
+      "description": "Générer des QR codes pour URLs et texte"
+    },
+    "password-generator": {
+      "label": "Password Generator",
+      "description": "Générer des mots de passe sécurisés"
+    },
+    "hash-generator": {
+      "label": "Hash Generator",
+      "description": "Générer MD5, SHA-1, SHA-256, SHA-512"
+    },
+    "color-picker": {
+      "label": "Color Picker",
+      "description": "Picker de couleur avec HEX, RGB, HSL"
+    },
+    "bmi-calculator": {
+      "label": "BMI Calculator",
+      "description": "Calculer votre indice de masse corporelle"
+    },
+    "age-calculator": {
+      "label": "Age Calculator",
+      "description": "Calculer votre âge exact en jours"
+    },
+    "percentage-calculator": {
+      "label": "Calcul Pourcentages",
+      "description": "Tous les calculs de pourcentages"
+    },
+    "unit-converter": {
+      "label": "Convertisseur d'Unités",
+      "description": "Convertir longueur, poids, température, volume"
+    },
+    "video-trim": {
+      "label": "Découper Vidéo",
+      "description": "Couper et extraire des portions de vidéo"
+    },
+    "video-compress": {
+      "label": "Compresser Vidéo",
+      "description": "Réduire la taille de vos vidéos"
+    },
+    "video-convert": {
+      "label": "Convertir Vidéo",
+      "description": "Convertir entre MP4, WebM, AVI, MKV, GIF"
+    },
+    "video-add-audio": {
+      "label": "Ajouter Audio",
+      "description": "Ajouter musique ou voix-off à une vidéo"
+    },
+    "video-extract-audio": {
+      "label": "Extraire Audio",
+      "description": "Extraire la piste audio en MP3, WAV, AAC"
+    },
+    "video-to-gif": {
+      "label": "Vidéo vers GIF",
+      "description": "Créer des GIF animés depuis une vidéo"
+    },
+    "video-remove-audio": {
+      "label": "Supprimer Audio",
+      "description": "Retirer la piste audio d'une vidéo"
+    },
+    "whatsapp-link": {
+      "label": "Lien WhatsApp",
+      "description": "Générer un lien direct vers WhatsApp sans contact"
+    },
+    "name-splitter": {
+      "label": "Séparateur Prénom/Nom",
+      "description": "Séparer noms et prénoms depuis une liste Excel"
+    },
+    "url-cleaner": {
+      "label": "Nettoyeur d'URL",
+      "description": "Supprimer les UTM et trackings d'un lien"
+    },
+    "concrete-calculator": {
+      "label": "Dosage Béton",
+      "description": "Calculer les volumes de ciment, sable et eau"
+    },
+    "mileage-calculator": {
+      "label": "Frais Kilométriques",
+      "description": "Calcul des indemnités kilométriques URSSAF"
+    },
+    "color-converter": {
+      "label": "Convertisseur Couleurs",
+      "description": "Convertir entre HEX, RGB, HSL et CMYK"
+    },
+    "stopwatch": {
+      "label": "Chronomètre",
+      "description": "Chronométrer avec temps intermédiaires"
+    },
+    "pomodoro-timer": {
+      "label": "Timer Pomodoro",
+      "description": "Technique Pomodoro pour la productivité"
+    }
   },
   "Footer": {
-    "tagline": "Suite multi-outils 100% gratuite et priv\u00e9e.",
-    "privacy": "Confidentialit\u00e9",
-    "about": "\u00c0 Propos",
+    "tagline": "Suite multi-outils 100% gratuite et privée.",
+    "privacy": "Confidentialité",
+    "about": "À Propos",
     "terms": "CGU"
   },
   "Privacy": {
-    "title": "Politique de Confidentialit\u00e9",
-    "subtitle": "Derni\u00e8re mise \u00e0 jour : avril 2026",
+    "title": "Politique de Confidentialité",
+    "subtitle": "Dernière mise à jour : avril 2026",
     "navLabel": "Sommaire",
     "introTitle": "Introduction",
-    "introContent": "Bienvenue sur Utilyx. Nous prenons votre vie priv\u00e9e au s\u00e9rieux. Cette politique explique comment nous collectons, utilisons et prot\u00e9geons vos informations lorsque vous utilisez notre site utilyx.app.",
+    "introContent": "Bienvenue sur Utilyx. Nous prenons votre vie privée au sérieux. Cette politique explique comment nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre site utilyx.app.",
     "localTitle": "Traitement 100% local",
-    "localContent": "Tous les outils Utilyx fonctionnent enti\u00e8rement dans votre navigateur. Vos fichiers (PDF, images, vid\u00e9os, textes) ne sont jamais envoy\u00e9s \u00e0 nos serveurs. Ils restent sur votre appareil et sont trait\u00e9s localement. Nous n\u2019avons aucun acc\u00e8s \u00e0 vos donn\u00e9es.",
+    "localContent": "Tous les outils Utilyx fonctionnent entièrement dans votre navigateur. Vos fichiers (PDF, images, vidéos, textes) ne sont jamais envoyés à nos serveurs. Ils restent sur votre appareil et sont traités localement. Nous n’avons aucun accès à vos données.",
     "adsenseTitle": "Google AdSense",
-    "adsenseContent": "Nous utilisons Google AdSense pour afficher des publicit\u00e9s. AdSense peut utiliser des cookies pour servir des annonces bas\u00e9es sur vos visites pr\u00e9c\u00e9dentes. Vous pouvez d\u00e9sactiver la publicit\u00e9 personnalis\u00e9e via les param\u00e8tres Google Ads (https://www.google.com/settings/ads). Conform\u00e9ment au RGPD, vous avez le droit de vous opposer au traitement de vos donn\u00e9es personnelles \u00e0 des fins de publicit\u00e9 cibl\u00e9e.",
+    "adsenseContent": "Nous utilisons Google AdSense pour afficher des publicités. AdSense peut utiliser des cookies pour servir des annonces basées sur vos visites précédentes. Vous pouvez désactiver la publicité personnalisée via les paramètres Google Ads (https://www.google.com/settings/ads). Conformément au RGPD, vous avez le droit de vous opposer au traitement de vos données personnelles à des fins de publicité ciblée.",
     "analyticsTitle": "Google Analytics",
-    "analyticsContent": "Nous utilisons Google Analytics pour comprendre comment les visiteurs utilisent notre site. Les donn\u00e9es collect\u00e9es sont anonymis\u00e9es (IP masqu\u00e9es). Nous suivons : pages visit\u00e9es, dur\u00e9e de visite, navigateur et appareil. Vous pouvez installer le plugin de d\u00e9sactivation Google Analytics (https://tools.google.com/dlpage/gaoptout).",
+    "analyticsContent": "Nous utilisons Google Analytics pour comprendre comment les visiteurs utilisent notre site. Les données collectées sont anonymisées (IP masquées). Nous suivons : pages visitées, durée de visite, navigateur et appareil. Vous pouvez installer le plugin de désactivation Google Analytics (https://tools.google.com/dlpage/gaoptout).",
     "cookiesTitle": "Cookies",
-    "cookiesContent": "Notre site utilise des cookies techniques n\u00e9cessaires au fonctionnement (pr\u00e9f\u00e9rence de theme, consentement aux publicit\u00e9s). Les cookies publicitaires sont d\u00e9pos\u00e9s par Google AdSense et sont soumis \u00e0 la politique de confidentialit\u00e9 de Google. Vous pouvez g\u00e9rer vos pr\u00e9f\u00e9rences de cookies dans les param\u00e8tres de votre navigateur.",
+    "cookiesContent": "Notre site utilise des cookies techniques nécessaires au fonctionnement (préférence de theme, consentement aux publicités). Les cookies publicitaires sont déposés par Google AdSense et sont soumis à la politique de confidentialité de Google. Vous pouvez gérer vos préférences de cookies dans les paramètres de votre navigateur.",
     "thirdTitle": "Services tiers",
-    "thirdContent": "Nous utilisons les services suivants :\n- Google AdSense : publicit\u00e9 (https://policies.google.com/privacy)\n- Google Analytics : analyse d\u2019audience (https://policies.google.com/privacy)\n- Vercel : h\u00e9bergement et CDN (https://vercel.com/legal/privacy-policy)\nCes services peuvent collecter des donn\u00e9es conform\u00e9ment \u00e0 leurs propres politiques de confidentialit\u00e9.",
+    "thirdContent": "Nous utilisons les services suivants :\n- Google AdSense : publicité (https://policies.google.com/privacy)\n- Google Analytics : analyse d’audience (https://policies.google.com/privacy)\n- Vercel : hébergement et CDN (https://vercel.com/legal/privacy-policy)\nCes services peuvent collecter des données conformément à leurs propres politiques de confidentialité.",
     "childrenTitle": "Protection des mineurs",
-    "childrenContent": "Utilyx ne s\u2019adresse pas sp\u00e9cifiquement aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de donn\u00e9es personnelles aupr\u00e8s des mineurs. Conform\u00e9ment au COPPA, si vous pensez qu\u2019un enfant nous a fourni des informations personnelles, contactez-nous.",
+    "childrenContent": "Utilyx ne s’adresse pas spécifiquement aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de données personnelles auprès des mineurs. Conformément au COPPA, si vous pensez qu’un enfant nous a fourni des informations personnelles, contactez-nous.",
     "changesTitle": "Modifications",
-    "changesContent": "Nous nous r\u00e9servons le droit de modifier cette politique \u00e0 tout moment. Les modifications seront publi\u00e9es sur cette page avec la date de mise \u00e0 jour. L\u2019utilisation continue du site apr\u00e8s modification constitue une acceptation des changements.",
+    "changesContent": "Nous nous réservons le droit de modifier cette politique à tout moment. Les modifications seront publiées sur cette page avec la date de mise à jour. L’utilisation continue du site après modification constitue une acceptation des changements.",
     "contactTitle": "Contact",
-    "contactContent": "Pour toute question concernant cette politique de confidentialit\u00e9, contactez-nous \u00e0 : privacy@utilyx.app"
+    "contactContent": "Pour toute question concernant cette politique de confidentialité, contactez-nous à : privacy@utilyx.app"
   },
   "About": {
-    "title": "\u00c0 Propos d\u2019Utilyx",
-    "subtitle": "47+ outils gratuits, 100% priv\u00e9s, sans inscription.",
-    "backHome": "Retour \u00e0 l\u2019accueil",
+    "title": "À Propos d’Utilyx",
+    "subtitle": "47+ outils gratuits, 100% privés, sans inscription.",
+    "backHome": "Retour à l’accueil",
     "missionTitle": "Notre Mission",
-    "missionContent": "Utilyx a \u00e9t\u00e9 cr\u00e9\u00e9 avec une conviction simple : les outils en ligne doivent \u00eatre gratuits, rapides et respectueux de votre vie priv\u00e9e. Pas d\u2019inscription, pas de collecte de donn\u00e9es, pas de limites artificielles.",
+    "missionContent": "Utilyx a été créé avec une conviction simple : les outils en ligne doivent être gratuits, rapides et respectueux de votre vie privée. Pas d’inscription, pas de collecte de données, pas de limites artificielles.",
     "whyTitle": "Pourquoi Utilyx ?",
-    "feature1Title": "100% Priv\u00e9",
+    "feature1Title": "100% Privé",
     "feature1Desc": "Vos fichiers ne quittent jamais votre appareil. Tout le traitement se fait localement dans votre navigateur.",
     "feature2Title": "Rapide & Offline",
-    "feature2Desc": "Pas de t\u00e9l\u00e9chargement serveur. Les outils fonctionnent directement dans votre navigateur, m\u00eame avec une connexion lente.",
+    "feature2Desc": "Pas de téléchargement serveur. Les outils fonctionnent directement dans votre navigateur, même avec une connexion lente.",
     "feature3Title": "6 Langues",
-    "feature3Desc": "Disponible en fran\u00e7ais, anglais, espagnol, allemand, arabe et portugais.",
-    "feature4Title": "Z\u00e9ro Inscription",
-    "feature4Desc": "Aucun compte requis. Utilisez les outils instantan\u00e9ment, sans barri\u00e8re.",
+    "feature3Desc": "Disponible en français, anglais, espagnol, allemand, arabe et portugais.",
+    "feature4Title": "Zéro Inscription",
+    "feature4Desc": "Aucun compte requis. Utilisez les outils instantanément, sans barrière.",
     "toolsTitle": "Nos Outils",
-    "toolsContent": "Utilyx propose 47+ outils r\u00e9partis en 7 cat\u00e9gories :",
+    "toolsContent": "Utilyx propose 47+ outils répartis en 7 catégories :",
     "catPdf": "PDF & Documents",
     "catImage": "Images",
-    "catVideo": "Vid\u00e9o",
+    "catVideo": "Vidéo",
     "catDevSeo": "Dev & SEO",
     "catText": "Texte",
-    "catGenerators": "G\u00e9n\u00e9rateurs",
+    "catGenerators": "Générateurs",
     "catCalculators": "Calculateurs",
-    "privacyTitle": "Engagement Confidentialit\u00e9",
-    "privacyContent": "Contrairement \u00e0 d\u2019autres plateformes qui t\u00e9l\u00e9chargent vos fichiers sur leurs serveurs, Utilyx traite tout localement. Vos documents, images et vid\u00e9os restent sur votre appareil. C\u2019est notre promesse fondamentale.",
+    "privacyTitle": "Engagement Confidentialité",
+    "privacyContent": "Contrairement à d’autres plateformes qui téléchargent vos fichiers sur leurs serveurs, Utilyx traite tout localement. Vos documents, images et vidéos restent sur votre appareil. C’est notre promesse fondamentale.",
     "cta": "Essayer les outils gratuitement"
   },
   "Terms": {
-    "title": "Conditions G\u00e9n\u00e9rales d\u2019Utilisation",
-    "subtitle": "Derni\u00e8re mise \u00e0 jour : avril 2026",
-    "backHome": "Retour \u00e0 l\u2019accueil",
+    "title": "Conditions Générales d’Utilisation",
+    "subtitle": "Dernière mise à jour : avril 2026",
+    "backHome": "Retour à l’accueil",
     "acceptanceTitle": "1. Acceptation des conditions",
-    "acceptanceContent": "En acc\u00e9dant et en utilisant le site utilyx.app, vous acceptez les pr\u00e9sentes conditions g\u00e9n\u00e9rales d\u2019utilisation. Si vous n\u2019acceptez pas ces conditions, veuillez ne pas utiliser le site.",
+    "acceptanceContent": "En accédant et en utilisant le site utilyx.app, vous acceptez les présentes conditions générales d’utilisation. Si vous n’acceptez pas ces conditions, veuillez ne pas utiliser le site.",
     "descriptionTitle": "2. Description du service",
-    "descriptionContent": "Utilyx est une suite d\u2019outils en ligne gratuits permettant de manipuler des fichiers PDF, images, vid\u00e9os, textes et d\u2019utiliser divers g\u00e9n\u00e9rateurs et calculateurs. Tous les traitements sont effectu\u00e9s localement dans votre navigateur.",
-    "useTitle": "3. Conditions d\u2019utilisation",
-    "useContent": "Vous vous engagez \u00e0 :\n- Utiliser le site conform\u00e9ment aux lois applicables\n- Ne pas utiliser les outils \u00e0 des fins ill\u00e9gales ou frauduleuses\n- Ne pas tenter de perturber le fonctionnement du site\n- Ne pas utiliser de robots ou scripts automatis\u00e9s sans autorisation",
-    "intellectualTitle": "4. Propri\u00e9t\u00e9 intellectuelle",
-    "intellectualContent": "Le contenu du site (design, logos, textes, code) est la propri\u00e9t\u00e9 d\u2019Utilyx. Vous ne pouvez pas reproduire, distribuer ou modifier le contenu sans autorisation pr\u00e9alable.",
-    "liabilityTitle": "5. Limitation de responsabilit\u00e9",
-    "liabilityContent": "Utilyx est fourni \u00ab en l\u2019\u00e9tat \u00bb sans garantie d\u2019aucune sorte. Nous ne garantissons pas la disponibilit\u00e9 ininterrompue du service ni l\u2019absence d\u2019erreurs. Nous ne sommes pas responsables des dommages directs ou indirects r\u00e9sultant de l\u2019utilisation du site.",
-    "dataTitle": "6. Donn\u00e9es personnelles",
-    "dataContent": "Le traitement des donn\u00e9es personnelles est d\u00e9crit dans notre Politique de Confidentialit\u00e9. Conform\u00e9ment au RGPD, vous disposez d\u2019un droit d\u2019acc\u00e8s, de rectification et de suppression de vos donn\u00e9es.",
-    "adsTitle": "7. Publicit\u00e9",
-    "adsContent": "Le site affiche des publicit\u00e9s via Google AdSense. Les annonceurs peuvent utiliser des cookies pour personnaliser les annonces. Vous pouvez g\u00e9rer vos pr\u00e9f\u00e9rences publicitaires via les param\u00e8tres Google. Nous ne sommes pas responsables du contenu des publicit\u00e9s affich\u00e9es.",
+    "descriptionContent": "Utilyx est une suite d’outils en ligne gratuits permettant de manipuler des fichiers PDF, images, vidéos, textes et d’utiliser divers générateurs et calculateurs. Tous les traitements sont effectués localement dans votre navigateur.",
+    "useTitle": "3. Conditions d’utilisation",
+    "useContent": "Vous vous engagez à :\n- Utiliser le site conformément aux lois applicables\n- Ne pas utiliser les outils à des fins illégales ou frauduleuses\n- Ne pas tenter de perturber le fonctionnement du site\n- Ne pas utiliser de robots ou scripts automatisés sans autorisation",
+    "intellectualTitle": "4. Propriété intellectuelle",
+    "intellectualContent": "Le contenu du site (design, logos, textes, code) est la propriété d’Utilyx. Vous ne pouvez pas reproduire, distribuer ou modifier le contenu sans autorisation préalable.",
+    "liabilityTitle": "5. Limitation de responsabilité",
+    "liabilityContent": "Utilyx est fourni « en l’état » sans garantie d’aucune sorte. Nous ne garantissons pas la disponibilité ininterrompue du service ni l’absence d’erreurs. Nous ne sommes pas responsables des dommages directs ou indirects résultant de l’utilisation du site.",
+    "dataTitle": "6. Données personnelles",
+    "dataContent": "Le traitement des données personnelles est décrit dans notre Politique de Confidentialité. Conformément au RGPD, vous disposez d’un droit d’accès, de rectification et de suppression de vos données.",
+    "adsTitle": "7. Publicité",
+    "adsContent": "Le site affiche des publicités via Google AdSense. Les annonceurs peuvent utiliser des cookies pour personnaliser les annonces. Vous pouvez gérer vos préférences publicitaires via les paramètres Google. Nous ne sommes pas responsables du contenu des publicités affichées.",
     "modificationsTitle": "8. Modifications",
-    "modificationsContent": "Nous nous r\u00e9servons le droit de modifier ces conditions \u00e0 tout moment. Les modifications prennent effet d\u00e8s leur publication sur le site.",
+    "modificationsContent": "Nous nous réservons le droit de modifier ces conditions à tout moment. Les modifications prennent effet dès leur publication sur le site.",
     "lawTitle": "9. Loi applicable",
-    "lawContent": "Les pr\u00e9sentes conditions sont r\u00e9gies par le droit fran\u00e7ais. Tout litige sera soumis \u00e0 la comp\u00e9tence des tribunaux fran\u00e7ais.",
+    "lawContent": "Les présentes conditions sont régies par le droit français. Tout litige sera soumis à la compétence des tribunaux français.",
     "contactTitle": "10. Contact",
     "contactContent": "Pour toute question : legal@utilyx.app"
   }

@@ -2,16 +2,16 @@
   "Common": {
     "brand": "Utilyx",
     "home": "Inicio",
-    "searchPlaceholder": "Buscar una herramienta\u2026",
+    "searchPlaceholder": "Buscar una herramienta…",
     "noResults": "Ninguna herramienta encontrada para \"{query}\"",
     "toolsFound": "{count} herramienta(s) encontrada(s)",
-    "categories": "Categor\u00edas",
-    "categoriesDesc": "Elige una categor\u00eda para explorar sus herramientas",
+    "categories": "Categorías",
+    "categoriesDesc": "Elige una categoría para explorar sus herramientas",
     "allTools": "Todas las Herramientas",
-    "allToolsDesc": "Acceso r\u00e1pido a todas las herramientas disponibles",
+    "allToolsDesc": "Acceso rápido a todas las herramientas disponibles",
     "selectTool": "Selecciona una herramienta arriba para comenzar",
-    "comingSoon": "Esta herramienta estar\u00e1 disponible pronto.",
-    "loading": "Cargando {label}\u2026",
+    "comingSoon": "Esta herramienta estará disponible pronto.",
+    "loading": "Cargando {label}…",
     "clear": "Limpiar",
     "copy": "Copiar",
     "download": "Descargar",
@@ -20,71 +20,245 @@
     "lightMode": "Modo claro",
     "toolCount": "47+ Herramientas Premium",
     "private": "100% Privado",
-    "fastOffline": "R\u00e1pido y Offline",
+    "fastOffline": "Rápido y Offline",
     "localData": "Datos 100% locales",
     "noSignup": "Sin registro requerido",
-    "copyright": "\u00a9 {year} Utilyx. Todos los derechos reservados.",
-    "description": "Suite multi-herramientas {free} y {private}. PDF, im\u00e1genes, SEO, texto, generadores y calculadoras \u2014 todo directamente en tu navegador.",
+    "copyright": "© {year} Utilyx. Todos los derechos reservados.",
+    "description": "Suite multi-herramientas {free} y {private}. PDF, imágenes, SEO, texto, generadores y calculadoras — todo directamente en tu navegador.",
     "freeLabel": "100% gratuita",
     "privateLabel": "privada"
   },
   "Modules": {
-    "pdf": { "label": "PDF y Documentos", "description": "Comprimir, fusionar, convertir y proteger PDFs" },
-    "image": { "label": "Im\u00e1genes", "description": "Convertir, comprimir y optimizar im\u00e1genes" },
-    "dev-seo": { "label": "Dev y SEO", "description": "Herramientas para desarrolladores y SEO" },
-    "text-tools": { "label": "Herramientas de Texto", "description": "Contador de palabras, conversor y utilidades de texto" },
-    "generators": { "label": "Generadores", "description": "QR codes, contrase\u00f1as, hashes y colores" },
-    "calculators": { "label": "Calculadoras", "description": "IMC, edad, porcentajes y conversiones" },
-    "video": { "label": "Vídeo", "description": "Cortar, comprimir, convertir y editar vídeos" }
+    "pdf": {
+      "label": "PDF y Documentos",
+      "description": "Comprimir, fusionar, convertir y proteger PDFs"
+    },
+    "image": {
+      "label": "Imágenes",
+      "description": "Convertir, comprimir y optimizar imágenes"
+    },
+    "dev-seo": {
+      "label": "Dev y SEO",
+      "description": "Herramientas para desarrolladores y SEO"
+    },
+    "text-tools": {
+      "label": "Herramientas de Texto",
+      "description": "Contador de palabras, conversor y utilidades de texto"
+    },
+    "generators": {
+      "label": "Generadores",
+      "description": "QR codes, contraseñas, hashes y colores"
+    },
+    "calculators": {
+      "label": "Calculadoras",
+      "description": "IMC, edad, porcentajes y conversiones"
+    },
+    "video": {
+      "label": "Vídeo",
+      "description": "Cortar, comprimir, convertir y editar vídeos"
+    }
   },
   "Tools": {
-    "pdf-compress": { "label": "Comprimir PDF", "description": "Reducir el tama\u00f1o de archivos PDF" },
-    "pdf-merge": { "label": "Fusionar PDF", "description": "Combinar m\u00faltiples PDFs en uno" },
-    "pdf-convert": { "label": "PDF a Im\u00e1genes", "description": "Convertir PDFs a JPG o PNG" },
-    "pdf-sign": { "label": "Firmar PDF", "description": "Firmar y anotar documentos" },
-    "pdf-unlock": { "label": "Desbloquear PDF", "description": "Eliminar contrase\u00f1a de PDF" },
-    "pdf-protect": { "label": "Proteger PDF", "description": "Agregar contrase\u00f1a a tu PDF" },
-    "img-convert": { "label": "Convertidor Universal", "description": "Convertir a WebP, AVIF, JPG, PNG" },
-    "img-compress": { "label": "Comprimir Imagen", "description": "Optimizar el peso de im\u00e1genes" },
-    "img-resize": { "label": "Redimensionar Imagen", "description": "Redimensionar im\u00e1genes f\u00e1cilmente" },
-    "img-bgremove": { "label": "Eliminar Fondo", "description": "Eliminar fondos de im\u00e1genes" },
-    "heic-to-jpg": { "label": "HEIC a JPG", "description": "Convertir fotos iPhone HEIC a JPG" },
-    "favicon-generator": { "label": "Generador Favicon", "description": "Generar favicons para tu sitio web" },
-    "youtube-thumbnail": { "label": "Miniatura YouTube", "description": "Descargar miniaturas de videos de YouTube" },
-    "uuid-generator": { "label": "Generador UUID", "description": "Generar identificadores UUID y GUID \u00fanicos" },
-    "json-csv": { "label": "JSON / CSV", "description": "Convertir y formatear JSON y CSV" },
-    "regex-tester": { "label": "Probador Regex", "description": "Probar expresiones regulares" },
-    "meta-tags": { "label": "Meta Tags", "description": "Generar y previsualizar meta tags" },
-    "sitemap-robots": { "label": "Sitemap / Robots.txt", "description": "Generar sitemap XML y robots.txt" },
-    "json-formatter": { "label": "JSON Formatter", "description": "Formatear, validar y minificar JSON" },
-    "url-encode-decode": { "label": "URL Encode/Decode", "description": "Codificar y decodificar URLs" },
-    "css-gradient-generator": { "label": "CSS Gradient", "description": "Crear degradados CSS visualmente" },
-    "markdown-preview": { "label": "Markdown Preview", "description": "Editor Markdown con vista previa" },
-    "word-counter": { "label": "Contador de Palabras", "description": "Contar palabras, caracteres y oraciones" },
-    "case-converter": { "label": "Convertidor de Caso", "description": "Convertir may\u00fasculas, min\u00fasculas, camelCase" },
-    "lorem-ipsum-generator": { "label": "Lorem Ipsum", "description": "Generar texto de relleno" },
-    "base64-encode-decode": { "label": "Base64 Encode/Decode", "description": "Codificar y decodificar Base64" },
-    "text-diff-checker": { "label": "Comparador de Texto", "description": "Comparar dos textos y ver diferencias" },
-    "qr-code-generator": { "label": "Generador QR Code", "description": "Generar QR codes para URLs y texto" },
-    "password-generator": { "label": "Generador Contrase\u00f1as", "description": "Generar contrase\u00f1as seguras" },
-    "hash-generator": { "label": "Generador Hash", "description": "Generar MD5, SHA-1, SHA-256, SHA-512" },
-    "color-picker": { "label": "Selector de Color", "description": "Selector de color con HEX, RGB, HSL" },
-    "bmi-calculator": { "label": "Calculadora IMC", "description": "Calcular tu \u00edndice de masa corporal" },
-    "age-calculator": { "label": "Calculadora Edad", "description": "Calcular tu edad exacta en d\u00edas" },
-    "percentage-calculator": { "label": "Calculadora Porcentajes", "description": "Todos los c\u00e1lculos de porcentajes" },
-    "unit-converter": { "label": "Convertidor Unidades", "description": "Convertir longitud, peso, temperatura, volumen" },
-    "video-trim": { "label": "Cortar Vídeo", "description": "Cortar y extraer partes de un vídeo" },
-    "video-compress": { "label": "Comprimir Vídeo", "description": "Reducir el tamaño de vídeos" },
-    "video-convert": { "label": "Convertir Vídeo", "description": "Convertir entre MP4, WebM, AVI, MKV, GIF" },
-    "video-add-audio": { "label": "Añadir Audio", "description": "Añadir música o voz a un vídeo" },
-    "video-extract-audio": { "label": "Extraer Audio", "description": "Extraer pista de audio a MP3, WAV, AAC" },
-    "video-to-gif": { "label": "Vídeo a GIF", "description": "Crear GIFs animados desde vídeo" },
-    "video-remove-audio": { "label": "Eliminar Audio", "description": "Eliminar la pista de audio de un vídeo" },
-    "whatsapp-link": { "label": "Enlace WhatsApp", "description": "Generar enlace directo a WhatsApp sin guardar contacto" },
-    "name-splitter": { "label": "Separador de Nombres", "description": "Separar nombres y apellidos desde una lista Excel" },
-    "url-cleaner": { "label": "Limpiador de URL", "description": "Eliminar parámetros UTM y de seguimiento de una URL" },
-    "concrete-calculator": { "label": "Calculadora de Hormigón", "description": "Calcular volumen de cemento, arena gravilla y agua" },
-    "mileage-calculator": { "label": "Kilometraje", "description": "Calcular gastos y asignaciones por kilometraje" }
+    "pdf-compress": {
+      "label": "Comprimir PDF",
+      "description": "Reducir el tamaño de archivos PDF"
+    },
+    "pdf-merge": {
+      "label": "Fusionar PDF",
+      "description": "Combinar múltiples PDFs en uno"
+    },
+    "pdf-convert": {
+      "label": "PDF a Imágenes",
+      "description": "Convertir PDFs a JPG o PNG"
+    },
+    "pdf-sign": {
+      "label": "Firmar PDF",
+      "description": "Firmar y anotar documentos"
+    },
+    "pdf-unlock": {
+      "label": "Desbloquear PDF",
+      "description": "Eliminar contraseña de PDF"
+    },
+    "pdf-protect": {
+      "label": "Proteger PDF",
+      "description": "Agregar contraseña a tu PDF"
+    },
+    "img-convert": {
+      "label": "Convertidor Universal",
+      "description": "Convertir a WebP, AVIF, JPG, PNG"
+    },
+    "img-compress": {
+      "label": "Comprimir Imagen",
+      "description": "Optimizar el peso de imágenes"
+    },
+    "img-resize": {
+      "label": "Redimensionar Imagen",
+      "description": "Redimensionar imágenes fácilmente"
+    },
+    "img-bgremove": {
+      "label": "Eliminar Fondo",
+      "description": "Eliminar fondos de imágenes"
+    },
+    "heic-to-jpg": {
+      "label": "HEIC a JPG",
+      "description": "Convertir fotos iPhone HEIC a JPG"
+    },
+    "favicon-generator": {
+      "label": "Generador Favicon",
+      "description": "Generar favicons para tu sitio web"
+    },
+    "youtube-thumbnail": {
+      "label": "Miniatura YouTube",
+      "description": "Descargar miniaturas de videos de YouTube"
+    },
+    "uuid-generator": {
+      "label": "Generador UUID",
+      "description": "Generar identificadores UUID y GUID únicos"
+    },
+    "json-csv": {
+      "label": "JSON / CSV",
+      "description": "Convertir y formatear JSON y CSV"
+    },
+    "regex-tester": {
+      "label": "Probador Regex",
+      "description": "Probar expresiones regulares"
+    },
+    "meta-tags": {
+      "label": "Meta Tags",
+      "description": "Generar y previsualizar meta tags"
+    },
+    "sitemap-robots": {
+      "label": "Sitemap / Robots.txt",
+      "description": "Generar sitemap XML y robots.txt"
+    },
+    "json-formatter": {
+      "label": "JSON Formatter",
+      "description": "Formatear, validar y minificar JSON"
+    },
+    "url-encode-decode": {
+      "label": "URL Encode/Decode",
+      "description": "Codificar y decodificar URLs"
+    },
+    "css-gradient-generator": {
+      "label": "CSS Gradient",
+      "description": "Crear degradados CSS visualmente"
+    },
+    "markdown-preview": {
+      "label": "Markdown Preview",
+      "description": "Editor Markdown con vista previa"
+    },
+    "word-counter": {
+      "label": "Contador de Palabras",
+      "description": "Contar palabras, caracteres y oraciones"
+    },
+    "case-converter": {
+      "label": "Convertidor de Caso",
+      "description": "Convertir mayúsculas, minúsculas, camelCase"
+    },
+    "lorem-ipsum-generator": {
+      "label": "Lorem Ipsum",
+      "description": "Generar texto de relleno"
+    },
+    "base64-encode-decode": {
+      "label": "Base64 Encode/Decode",
+      "description": "Codificar y decodificar Base64"
+    },
+    "text-diff-checker": {
+      "label": "Comparador de Texto",
+      "description": "Comparar dos textos y ver diferencias"
+    },
+    "qr-code-generator": {
+      "label": "Generador QR Code",
+      "description": "Generar QR codes para URLs y texto"
+    },
+    "password-generator": {
+      "label": "Generador Contraseñas",
+      "description": "Generar contraseñas seguras"
+    },
+    "hash-generator": {
+      "label": "Generador Hash",
+      "description": "Generar MD5, SHA-1, SHA-256, SHA-512"
+    },
+    "color-picker": {
+      "label": "Selector de Color",
+      "description": "Selector de color con HEX, RGB, HSL"
+    },
+    "bmi-calculator": {
+      "label": "Calculadora IMC",
+      "description": "Calcular tu índice de masa corporal"
+    },
+    "age-calculator": {
+      "label": "Calculadora Edad",
+      "description": "Calcular tu edad exacta en días"
+    },
+    "percentage-calculator": {
+      "label": "Calculadora Porcentajes",
+      "description": "Todos los cálculos de porcentajes"
+    },
+    "unit-converter": {
+      "label": "Convertidor Unidades",
+      "description": "Convertir longitud, peso, temperatura, volumen"
+    },
+    "video-trim": {
+      "label": "Cortar Vídeo",
+      "description": "Cortar y extraer partes de un vídeo"
+    },
+    "video-compress": {
+      "label": "Comprimir Vídeo",
+      "description": "Reducir el tamaño de vídeos"
+    },
+    "video-convert": {
+      "label": "Convertir Vídeo",
+      "description": "Convertir entre MP4, WebM, AVI, MKV, GIF"
+    },
+    "video-add-audio": {
+      "label": "Añadir Audio",
+      "description": "Añadir música o voz a un vídeo"
+    },
+    "video-extract-audio": {
+      "label": "Extraer Audio",
+      "description": "Extraer pista de audio a MP3, WAV, AAC"
+    },
+    "video-to-gif": {
+      "label": "Vídeo a GIF",
+      "description": "Crear GIFs animados desde vídeo"
+    },
+    "video-remove-audio": {
+      "label": "Eliminar Audio",
+      "description": "Eliminar la pista de audio de un vídeo"
+    },
+    "whatsapp-link": {
+      "label": "Enlace WhatsApp",
+      "description": "Generar enlace directo a WhatsApp sin guardar contacto"
+    },
+    "name-splitter": {
+      "label": "Separador de Nombres",
+      "description": "Separar nombres y apellidos desde una lista Excel"
+    },
+    "url-cleaner": {
+      "label": "Limpiador de URL",
+      "description": "Eliminar parámetros UTM y de seguimiento de una URL"
+    },
+    "concrete-calculator": {
+      "label": "Calculadora de Hormigón",
+      "description": "Calcular volumen de cemento, arena gravilla y agua"
+    },
+    "mileage-calculator": {
+      "label": "Kilometraje",
+      "description": "Calcular gastos y asignaciones por kilometraje"
+    },
+    "color-converter": {
+      "label": "Conversor de Colores",
+      "description": "Convertir entre HEX, RGB, HSL y CMYK"
+    },
+    "stopwatch": {
+      "label": "Cronómetro",
+      "description": "Cronometrar con tiempos intermedios"
+    },
+    "pomodoro-timer": {
+      "label": "Temporizador Pomodoro",
+      "description": "Técnica Pomodoro para productividad"
+    }
   },
   "Footer": {
     "tagline": "Suite multi-herramientas 100% gratuita y privada.",

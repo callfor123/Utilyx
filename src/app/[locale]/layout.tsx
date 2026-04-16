@@ -3,23 +3,13 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { AdSenseScript } from "@/components/adsense/adsense-provider";
 import { Analytics } from "@vercel/analytics/react";
+import { SetLocaleAttrs } from "@/components/i18n/set-locale-attrs";
 
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -228,29 +218,28 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased bg-background text-foreground font-sans">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme={locale === "ar" ? "dark" : "light"}
-          enableSystem
-          disableTransitionOnChange
-        >
-          {/* Google Analytics */}
-          <GoogleAnalytics />
-          {/* AdSense script (client-side only to prevent hydration mismatch) */}
-          <AdSenseScript />
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-        </ThemeProvider>
-        <Toaster />
-        <Analytics />
-      </body>
-    </html>
+    <>
+      <SetLocaleAttrs locale={locale} dir={dir} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme={locale === "ar" ? "dark" : "light"}
+        enableSystem
+        disableTransitionOnChange
+      >
+        {/* Google Analytics */}
+        <GoogleAnalytics />
+        {/* AdSense script (client-side only to prevent hydration mismatch) */}
+        <AdSenseScript />
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </ThemeProvider>
+      <Toaster />
+      <Analytics />
+    </>
   );
 }

@@ -37,6 +37,7 @@ import { QrCodeGenerator } from '@/components/tools/generators/qr-code-generator
 import { PasswordGenerator } from '@/components/tools/generators/password-generator'
 import { HashGenerator } from '@/components/tools/generators/hash-generator'
 import { ColorPicker } from '@/components/tools/generators/color-picker'
+import { RandomNumberGenerator } from '@/components/tools/generators/random-number-generator'
 
 // Dev & SEO
 import { JsonFormatter } from '@/components/tools/dev-seo/json-formatter'
@@ -48,6 +49,7 @@ import { MarkdownPreview } from '@/components/tools/dev-seo/markdown-preview'
 import { BmiCalculator } from '@/components/tools/calculators/bmi-calculator'
 import { AgeCalculator } from '@/components/tools/calculators/age-calculator'
 import { PercentageCalculator } from '@/components/tools/calculators/percentage-calculator'
+import { TipCalculator } from '@/components/tools/calculators/tip-calculator'
 import { UnitConverter } from '@/components/tools/calculators/unit-converter'
 
 // Video tools (dynamic imports for heavy FFmpeg)
@@ -124,6 +126,18 @@ const ConcreteCalculatorDynamic = dynamic(
 const MileageCalculatorDynamic = dynamic(
   () => import('@/components/tools/calculators/mileage-calculator'),
   { ssr: false, loading: () => <ToolLoader label="Mileage Calculator" /> }
+)
+const ColorConverterDynamic = dynamic(
+  () => import('@/components/tools/generators/color-converter'),
+  { ssr: false, loading: () => <ToolLoader label="Color Converter" /> }
+)
+const StopwatchDynamic = dynamic(
+  () => import('@/components/tools/calculators/stopwatch'),
+  { ssr: false, loading: () => <ToolLoader label="Stopwatch" /> }
+)
+const PomodoroTimerDynamic = dynamic(
+  () => import('@/components/tools/calculators/pomodoro-timer'),
+  { ssr: false, loading: () => <ToolLoader label="Pomodoro Timer" /> }
 )
 
 import {
@@ -298,6 +312,11 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'url-cleaner': UrlCleanerDynamic,
   'concrete-calculator': ConcreteCalculatorDynamic,
   'mileage-calculator': MileageCalculatorDynamic,
+  'color-converter': ColorConverterDynamic,
+  'stopwatch': StopwatchDynamic,
+  'pomodoro-timer': PomodoroTimerDynamic,
+  'tip-calculator': TipCalculator,
+  'random-number-generator': RandomNumberGenerator,
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
