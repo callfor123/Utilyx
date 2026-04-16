@@ -48,6 +48,9 @@ export type ToolId =
   | 'url-cleaner'
   | 'concrete-calculator'
   | 'mileage-calculator'
+  | 'color-converter'
+  | 'stopwatch'
+  | 'pomodoro-timer'
 
 export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
@@ -161,6 +164,7 @@ export const modules: ModuleDef[] = [
       { id: 'hash-generator', label: 'Hash Generator', icon: 'Hash', description: 'Générer MD5, SHA-1, SHA-256, SHA-512' },
       { id: 'color-picker', label: 'Color Picker', icon: 'Palette', description: 'Picker de couleur avec HEX, RGB, HSL' },
       { id: 'whatsapp-link', label: 'Lien WhatsApp', icon: 'MessageCircle', description: 'Générer un lien direct vers WhatsApp' },
+      { id: 'color-converter', label: 'Convertisseur Couleurs', icon: 'Pipette', description: 'Convertir entre HEX, RGB, HSL et CMYK' },
     ],
   },
   {
@@ -175,6 +179,8 @@ export const modules: ModuleDef[] = [
       { id: 'unit-converter', label: 'Unit Converter', icon: 'ArrowRightLeft', description: 'Convertir longueur, poids, température, volume' },
       { id: 'concrete-calculator', label: 'Dosage Béton', icon: 'HardHat', description: 'Calculer les volumes de ciment, sable et gravier' },
       { id: 'mileage-calculator', label: 'Frais Kilométriques', icon: 'Car', description: 'Calcul des indemnités kilométriques URSSAF' },
+      { id: 'stopwatch', label: 'Chronomètre', icon: 'Timer', description: 'Chronométrer avec temps intermédiaires' },
+      { id: 'pomodoro-timer', label: 'Timer Pomodoro', icon: 'Clock', description: 'Technique Pomodoro pour la productivité' },
     ],
   },
 ]

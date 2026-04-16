@@ -572,6 +572,46 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     howTo: ['Entrez la distance parcourue', 'Saisissez votre taux de remboursement par km/mile', 'Choisissez la devise et lisez le résultat'],
     relatedSlugs: ['calculateur-dosage-beton', 'calculateur-pourcentage', 'convertisseur-unites'],
   },
+  'convertisseur-couleurs': {
+    toolId: 'color-converter', category: 'generators', slug: 'convertisseur-couleurs',
+    title: 'Convertisseur de Couleurs en Ligne — HEX, RGB, HSL, CMYK',
+    desc: 'Convertissez instantanément entre les formats de couleur HEX, RGB, HSL et CMYK. Gratuit, sans inscription, 100% dans votre navigateur.',
+    h1: 'Convertisseur de couleurs HEX, RGB, HSL, CMYK',
+    intro: "Saisissez une couleur dans n'importe quel format (HEX, RGB, HSL) et obtenez instantanément toutes les conversions. Utilisez le sélecteur de couleur visuel, les champs numériques ou les présélections pour trouver la couleur parfaite pour vos projets web et design.",
+    faq: [
+      { q: 'Comment convertir un HEX en RGB ?', a: "Entrez votre code HEX (ex: #3b82f6) dans le champ prévu — la valeur RGB s'affiche instantanément." },
+      { q: "Qu'est-ce que le format CMYK ?", a: "CMYK (Cyan, Magenta, Jaune, Noir) est utilisé en imprimerie. Notre outil convertit automatiquement votre couleur en CMYK." },
+      { q: 'Puis-je copier les valeurs ?', a: "Oui, chaque format dispose d'un bouton Copier pour récupérer la valeur." },
+    ],
+    howTo: ['Choisissez une couleur avec le sélecteur ou entrez un code HEX', "Visualisez les conversions RGB, HSL et CMYK", 'Copiez le format souhaité en un clic'],
+    relatedSlugs: ['color-picker', 'css-gradient', 'convertisseur-unites'],
+  },
+  'chronometre': {
+    toolId: 'stopwatch', category: 'calculators', slug: 'chronometre',
+    title: 'Chronomètre en Ligne Gratuit — Chronométrage de Précision',
+    desc: 'Chronomètre en ligne gratuit avec fonctionnalité de tours intermédiaires. Précision au centième de seconde.',
+    h1: 'Chronomètre en ligne avec tours intermédiaires',
+    intro: "Un chronomètre de précision directement dans votre navigateur. Enregistrez des tours intermédiaires, mesurez au centième de seconde et suivez vos performances.",
+    faq: [
+      { q: 'Quelle est la précision du chronomètre ?', a: 'Le chronomètre est précis au centième de seconde (10 ms).' },
+      { q: "Puis-je enregistrer des tours intermédiaires ?", a: "Oui, le bouton Tour enregistre le temps écoulé depuis le dernier tour." },
+    ],
+    howTo: ['Cliquez sur Démarrer pour lancer le chronomètre', 'Cliquez sur Tour pour enregistrer un temps intermédiaire', 'Cliquez sur Pause pour arrêter ou Réinitialiser'],
+    relatedSlugs: ['timer-pomodoro', 'calculateur-age', 'convertisseur-unites'],
+  },
+  'timer-pomodoro': {
+    toolId: 'pomodoro-timer', category: 'calculators', slug: 'timer-pomodoro',
+    title: 'Timer Pomodoro en Ligne Gratuit — Technique Pomodoro',
+    desc: 'Timer Pomodoro gratuit avec sessions de travail personnalisables, pauses courtes et longues. Améliorez votre productivité.',
+    h1: 'Timer Pomodoro — Technique de productivité',
+    intro: "La technique Pomodoro alterne des périodes de travail concentré avec des pauses. Notre timer vous guide avec une interface visuelle et des paramètres personnalisables.",
+    faq: [
+      { q: "Qu'est-ce que la technique Pomodoro ?", a: "Travaillez 25 minutes, prenez une pause de 5 minutes. Après 4 sessions, prenez une pause longue de 15-30 minutes." },
+      { q: 'Puis-je modifier les durées ?', a: 'Oui, vous pouvez personnaliser la durée du travail, des pauses et le nombre de Pomodoros.' },
+    ],
+    howTo: ['Configurez les durées de travail et de pause', 'Cliquez sur Démarrer', 'Le timer bascule automatiquement entre travail et pause'],
+    relatedSlugs: ['chronometre', 'calculateur-age', 'calculateur-pourcentage'],
+  },
 }
 
 /**
