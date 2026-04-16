@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
 import { seoRegistry, getToolBySlug, validCategories } from '@/lib/seo-registry'
 import { ToolRenderer } from '@/components/tool-renderer'
+import { AdInArticle, ToolPageAdSections as AdToolPage } from '@/components/adsense'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
 
 const BASE_URL = 'https://utilyx.app'
@@ -21,6 +22,34 @@ const categoryLabels: Record<string, string> = {
   'text-tools': 'Outils Texte',
   generators: 'Générateurs',
   calculators: 'Calculateurs',
+}
+
+/* ── Content labels per locale ──────────────────────────────────────── */
+const howToLabels: Record<string, string> = {
+  fr: 'Comment utiliser cet outil ?',
+  en: 'How to use this tool?',
+  es: '¿Cómo usar esta herramienta?',
+  de: 'So verwenden Sie dieses Tool',
+  ar: 'كيفية استخدام هذه الأداة',
+  pt: 'Como usar esta ferramenta?',
+}
+
+const faqLabels: Record<string, string> = {
+  fr: 'Questions fréquentes',
+  en: 'Frequently Asked Questions',
+  es: 'Preguntas frecuentes',
+  de: 'Häufig gestellte Fragen',
+  ar: 'الأسئلة الشائعة',
+  pt: 'Perguntas frequentes',
+}
+
+const relatedLabels: Record<string, string> = {
+  fr: 'Outils similaires',
+  en: 'Similar tools',
+  es: 'Herramientas similares',
+  de: 'Ähnliche Werkzeuge',
+  ar: 'أدوات مشابهة',
+  pt: 'Ferramentas semelhantes',
 }
 
 /* ── Static Params: pre-generate all tool pages for all locales ──────── */
@@ -94,6 +123,9 @@ export default async function ToolPage({ params }: Props) {
   if (!tool || tool.category !== category) notFound()
 
   const pageUrl = `${BASE_URL}/${locale}/${category}/${slug}`
+  const howToLabel = howToLabels[locale] || howToLabels.fr
+  const faqLabel = faqLabels[locale] || faqLabels.fr
+  const relatedLabel = relatedLabels[locale] || relatedLabels.fr
 
   /* ── JSON-LD: WebApplication ── */
   const webAppLd = {
@@ -193,20 +225,23 @@ export default async function ToolPage({ params }: Props) {
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">{tool.h1}</h1>
             <p className="text-muted-foreground leading-relaxed max-w-3xl">{tool.intro}</p>
             <div className="flex items-center gap-3 mt-4 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-emerald-500" /> 100% privé</span>
-              <span className="flex items-center gap-1"><Zap className="h-3.5 w-3.5 text-amber-500" /> Gratuit, sans inscription</span>
+              <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-emerald-500" /> 100% {locale === 'en' ? 'private' : locale === 'es' ? 'privado' : locale === 'de' ? 'privat' : locale === 'ar' ? 'خاص' : locale === 'pt' ? 'privado' : 'privé'}</span>
+              <span className="flex items-center gap-1"><Zap className="h-3.5 w-3.5 text-amber-500" /> {locale === 'en' ? 'Free, no signup' : locale === 'es' ? 'Gratis, sin registro' : locale === 'de' ? 'Kostenlos, ohne Anmeldung' : locale === 'ar' ? 'مجاني، بدون تسجيل' : locale === 'pt' ? 'Grátis, sem cadastro' : 'Gratuit, sans inscription'}</span>
             </div>
           </header>
 
           {/* ── Tool (client-rendered) ── */}
-          <section className="mb-12">
+          <section className="mb-8">
             <ToolRenderer toolId={tool.toolId} />
           </section>
 
+          {/* ── Ad: Tool page banner ── */}
+          <AdToolPage className="mb-8" />
+
           {/* ── How To (server-rendered SEO content) ── */}
           {tool.howTo.length > 0 && (
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Comment utiliser cet outil ?</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">{howToLabel}</h2>
               <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
                 {tool.howTo.map((step, i) => (
                   <li key={i} className="leading-relaxed">{step}</li>
@@ -215,10 +250,15 @@ export default async function ToolPage({ params }: Props) {
             </section>
           )}
 
+          {/* ── Ad: In-article ── */}
+          {tool.howTo.length > 0 && tool.faq.length > 0 && (
+            <AdInArticle className="mb-8" />
+          )}
+
           {/* ── FAQ (server-rendered SEO content) ── */}
           {tool.faq.length > 0 && (
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-6">Questions fréquentes</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-6">{faqLabel}</h2>
               <div className="space-y-4">
                 {tool.faq.map((item, i) => (
                   <details key={i} className="group border border-border/50 rounded-xl p-4 open:bg-muted/30 transition-colors" open={i === 0}>
@@ -235,8 +275,8 @@ export default async function ToolPage({ params }: Props) {
 
           {/* ── Related Tools (internal links for SEO) ── */}
           {relatedTools.length > 0 && (
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4">Outils similaires</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">{relatedLabel}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {relatedTools.map((rt) => (
                   <Link

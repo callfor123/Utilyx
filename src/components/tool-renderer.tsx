@@ -50,6 +50,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'uuid-generator': dynamic(() => import('@/components/tools/generators/uuid-generator').then(m => m.UuidGenerator), { ssr: false, loading: () => <ToolLoader label="UUID Generator" /> }),
   'hash-generator': dynamic(() => import('@/components/tools/generators/hash-generator').then(m => m.HashGenerator), { ssr: false, loading: () => <ToolLoader label="Hash Generator" /> }),
   'color-picker': dynamic(() => import('@/components/tools/generators/color-picker').then(m => m.ColorPicker), { ssr: false, loading: () => <ToolLoader label="Color Picker" /> }),
+  'color-converter': dynamic(() => import('@/components/tools/generators/color-converter').then(m => m.ColorConverter), { ssr: false, loading: () => <ToolLoader label="Color Converter" /> }),
   'bmi-calculator': dynamic(() => import('@/components/tools/calculators/bmi-calculator').then(m => m.BmiCalculator), { ssr: false, loading: () => <ToolLoader label="BMI Calculator" /> }),
   'age-calculator': dynamic(() => import('@/components/tools/calculators/age-calculator').then(m => m.AgeCalculator), { ssr: false, loading: () => <ToolLoader label="Age Calculator" /> }),
   'percentage-calculator': dynamic(() => import('@/components/tools/calculators/percentage-calculator').then(m => m.PercentageCalculator), { ssr: false, loading: () => <ToolLoader label="Percentage Calculator" /> }),
@@ -66,6 +67,8 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'url-cleaner': dynamic(() => import('@/components/tools/text-tools/url-cleaner'), { ssr: false, loading: () => <ToolLoader label="URL Cleaner" /> }),
   'concrete-calculator': dynamic(() => import('@/components/tools/calculators/concrete-calculator'), { ssr: false, loading: () => <ToolLoader label="Concrete Calculator" /> }),
   'mileage-calculator': dynamic(() => import('@/components/tools/calculators/mileage-calculator'), { ssr: false, loading: () => <ToolLoader label="Mileage Calculator" /> }),
+  'stopwatch': dynamic(() => import('@/components/tools/calculators/stopwatch').then(m => m.Stopwatch), { ssr: false, loading: () => <ToolLoader label="Stopwatch" /> }),
+  'pomodoro-timer': dynamic(() => import('@/components/tools/calculators/pomodoro-timer').then(m => m.PomodoroTimer), { ssr: false, loading: () => <ToolLoader label="Pomodoro Timer" /> }),
 }
 
 export function ToolRenderer({ toolId }: { toolId: ToolId }) {
