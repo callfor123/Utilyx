@@ -258,6 +258,10 @@
     "pomodoro-timer": {
       "label": "مؤقت بومودورو",
       "description": "تقنية بومودورو للإنتاجية"
+    },
+    "vat-calculator": {
+      "label": "حاسبة الضريبة",
+      "description": "حساب المبلغ الصافي والإجمالي والضريبة"
     }
   },
   "Footer": {

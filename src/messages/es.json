@@ -258,6 +258,10 @@
     "pomodoro-timer": {
       "label": "Temporizador Pomodoro",
       "description": "Técnica Pomodoro para productividad"
+    },
+    "vat-calculator": {
+      "label": "Calculadora de IVA",
+      "description": "Calcular el importe neto, bruto e IVA"
     }
   },
   "Footer": {

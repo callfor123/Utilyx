@@ -258,6 +258,10 @@
     "pomodoro-timer": {
       "label": "Pomodoro-Timer",
       "description": "Pomodoro-Technik für Produktivität"
+    },
+    "vat-calculator": {
+      "label": "MwSt-Rechner",
+      "description": "Netto-, Brutto- und MwSt-Betrag berechnen"
     }
   },
   "Footer": {

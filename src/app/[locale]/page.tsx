@@ -38,6 +38,7 @@ import { PasswordGenerator } from '@/components/tools/generators/password-genera
 import { HashGenerator } from '@/components/tools/generators/hash-generator'
 import { ColorPicker } from '@/components/tools/generators/color-picker'
 import { RandomNumberGenerator } from '@/components/tools/generators/random-number-generator'
+import { VatCalculator } from '@/components/tools/calculators/vat-calculator'
 
 // Dev & SEO
 import { JsonFormatter } from '@/components/tools/dev-seo/json-formatter'
@@ -317,6 +318,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'pomodoro-timer': PomodoroTimerDynamic,
   'tip-calculator': TipCalculator,
   'random-number-generator': RandomNumberGenerator,
+  'vat-calculator': VatCalculator,
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {

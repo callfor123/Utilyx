@@ -69,6 +69,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'mileage-calculator': dynamic(() => import('@/components/tools/calculators/mileage-calculator'), { ssr: false, loading: () => <ToolLoader label="Mileage Calculator" /> }),
   'stopwatch': dynamic(() => import('@/components/tools/calculators/stopwatch').then(m => m.Stopwatch), { ssr: false, loading: () => <ToolLoader label="Stopwatch" /> }),
   'pomodoro-timer': dynamic(() => import('@/components/tools/calculators/pomodoro-timer').then(m => m.PomodoroTimer), { ssr: false, loading: () => <ToolLoader label="Pomodoro Timer" /> }),
+  'vat-calculator': dynamic(() => import('@/components/tools/calculators/vat-calculator').then(m => m.VatCalculator), { ssr: false, loading: () => <ToolLoader label="VAT Calculator" /> }),
 }
 
 export function ToolRenderer({ toolId }: { toolId: ToolId }) {

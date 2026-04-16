@@ -258,6 +258,10 @@
     "pomodoro-timer": {
       "label": "Timer Pomodoro",
       "description": "Technique Pomodoro pour la productivité"
+    },
+    "vat-calculator": {
+      "label": "Calculateur TVA",
+      "description": "Calculer le montant HT, TTC et la TVA"
     }
   },
   "Footer": {

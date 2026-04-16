@@ -611,6 +611,21 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     ],
     howTo: ['Configurez les durées de travail et de pause', 'Cliquez sur Démarrer', 'Le timer bascule automatiquement entre travail et pause'],
     relatedSlugs: ['chronometre', 'calculateur-age', 'calculateur-pourcentage'],
+  },,
+  'calculateur-tva': {
+    toolId: 'vat-calculator', category: 'calculators', slug: 'calculateur-tva',
+    title: 'Calculateur de TVA en Ligne Gratuit — HT, TTC, Taux de TVA',
+    desc: 'Calculez instantanément le montant HT, TTC et la TVA à partir de n\'importe quel taux. Gratuit, sans inscription, 100% dans votre navigateur.',
+    h1: 'Calculateur de TVA : montant HT, TTC et taux',
+    intro: 'Calculez facilement le montant hors taxes (HT), toutes taxes comprises (TTC) et le montant de la TVA. Sélectionnez un taux de TVA prédéfini (France 20%, 10%, 5,5%, 2,1%, Belgique, Suisse, Allemagne, Espagne, Royaume-Uni) ou entrez un taux personnalisé. Entrez un montant TTC pour retrouver le HT, ou un montant HT pour obtenir le TTC.',
+    faq: [
+      { q: 'Comment calculer la TVA à partir du TTC ?', a: 'Pour retrouver le HT à partir du TTC : HT = TTC / (1 + taux/100). Par exemple, pour 120 € TTC avec une TVA à 20% : HT = 120 / 1,20 = 100 € et TVA = 20 €.' },
+      { q: 'Comment calculer la TVA à partir du HT ?', a: 'TVA = HT × (taux/100) et TTC = HT + TVA. Par exemple, pour 100 € HT avec une TVA à 20% : TVA = 20 € et TTC = 120 €.' },
+      { q: 'Quels sont les taux de TVA en France ?', a: 'France : 20% (taux normal), 10% (taux intermédiaire), 5,5% (taux réduit), 2,1% (taux particulier).' },
+      { q: 'L\'outil fonctionne-t-il pour d\'autres pays ?', a: 'Oui, des taux prédéfinis sont disponibles pour la Belgique, la Suisse, l\'Allemagne, l\'Espagne et le Royaume-Uni. Vous pouvez aussi saisir n\'importe quel taux personnalisé.' },
+    ],
+    howTo: ['Choisissez le sens du calcul (TTC → HT ou HT → TTC)', 'Entrez le montant et sélectionnez le taux de TVA', 'Les résultats HT, TVA et TTC s\'affichent instantanément'],
+    relatedSlugs: ['calculateur-pourcentage', 'convertisseur-unites', 'calculateur-frais-kilometriques'],
   },
 }
 

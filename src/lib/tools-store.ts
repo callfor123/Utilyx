@@ -53,6 +53,7 @@ export type ToolId =
   | 'pomodoro-timer'
   | 'tip-calculator'
   | 'random-number-generator'
+  | 'vat-calculator'
 
 export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
@@ -185,6 +186,7 @@ export const modules: ModuleDef[] = [
       { id: 'stopwatch', label: 'Chronomètre', icon: 'Timer', description: 'Chronométrer avec temps intermédiaires' },
       { id: 'tip-calculator', label: 'Tip Calculator', icon: 'Percent', description: 'Calculateur de pourboire et répartition' },
       { id: 'pomodoro-timer', label: 'Timer Pomodoro', icon: 'Clock', description: 'Technique Pomodoro pour la productivité' },
+      { id: 'vat-calculator', label: 'Calculateur TVA', icon: 'Receipt', description: 'Calculer le montant HT, TTC et la TVA' },
     ],
   },
 ]
