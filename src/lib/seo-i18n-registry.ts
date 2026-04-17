@@ -704,7 +704,8 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         { q: '¿Qué resoluciones hay?', a: 'Por defecto, media, alta, HD y resolución máxima (1280x720 o superior).' },
       ],
       howTo: ['Pega la URL del video', 'Elige la resolución', 'Descarga la miniatura'],
-'pdf-en-images': {
+    },
+    'pdf-en-images': {
       title: 'Convertir PDF a Imágenes JPG PNG Gratis en Línea',
       desc: 'Convierte cada página de tu PDF en imágenes JPG o PNG de alta calidad. Gratis, sin registro, procesamiento 100% local.',
       h1: 'Convertir un PDF a imágenes JPG o PNG en línea',
@@ -851,162 +852,384 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         { q: '¿Qué tamaños de favicon se generan?', a: 'Se generan automáticamente los tamaños estándar: 16x16, 32x32, 192x192 y 512x512 píxeles.' },
       ],
       howTo: ['Sube tu logo o imagen', 'Los favicons se generan automáticamente', 'Descarga el paquete completo'],
+      },
+    'json-csv': {
+      title: 'Convertir JSON a CSV y CSV a JSON Gratis en Línea',
+      desc: 'Convierte datos JSON a CSV y viceversa. Gratis, sin registro, procesamiento local.',
+      h1: 'Convertir JSON a CSV y CSV a JSON en línea',
+      intro: 'Transforma datos JSON en tablas CSV editables en Excel, o convierte CSV de vuelta a JSON para uso en programación. Soporta JSON anidado y genera CSV con encabezados automáticos. Ideal para migrar datos entre APIs y hojas de cálculo. Procesamiento 100% local en tu navegador.',
+      faq: [
+        { q: '¿Puedo convertir JSON anidado?', a: 'Sí, nuestra herramienta aplana objetos JSON anidados en columnas CSV con rutas como objeto.campo.' },
+        { q: '¿El CSV generado es compatible con Excel?', a: 'Sí, se genera CSV estándar compatible con Excel, Google Sheets y otros programas.' },
+      ],
+      howTo: [
+        'Pega tu JSON o sube un archivo',
+        'Elige el formato de salida (CSV o JSON)',
+        'Descarga el resultado',
+      ],
     },
+    'testeur-regex': {
+      title: 'Probador de Expresiones Regulares Online Gratis',
+      desc: 'Prueba y depura expresiones regulares en tiempo real. Resaltado de coincidencias, explicación detallada. Gratis.',
+      h1: 'Probar expresiones regulares en línea',
+      intro: 'Escribe tu expresión regular y obtén coincidencias resaltadas en tiempo real con explicación detallada de cada parte del patrón. Soporta todos los sabores de regex: JavaScript, Python, Java, PCRE. Ideal para desarrolladores y QA que necesitan validar patrones de texto.',
+      faq: [
+        { q: '¿Qué sabores de regex soporta?', a: 'JavaScript, Python, Java, PCRE, .NET y más. Puedes seleccionar el sabor en la configuración.' },
+        { q: '¿Puedo guardar mis expresiones?', a: 'Copia la expresión y los datos de prueba directamente desde la herramienta.' },
+      ],
+      howTo: [
+        'Escribe tu expresión regular',
+        'Introduce el texto de prueba',
+        'Observa las coincidencias resaltadas en tiempo real',
+      ],
+    },
+    'meta-tags': {
+      title: 'Generador de Meta Tags Online Gratis — SEO',
+      desc: 'Genera meta tags para SEO y redes sociales. Vista previa de Open Graph y Twitter Cards. Gratis.',
+      h1: 'Generar meta tags para SEO en línea',
+      intro: 'Crea meta tags optimizados para SEO y redes sociales con vista previa en tiempo real. Genera títulos, descripciones, Open Graph y Twitter Cards para cada página de tu sitio web. Garantiza que tus páginas se muestren correctamente en Google, Facebook, Twitter y LinkedIn.',
+      faq: [
+        { q: '¿Qué meta tags son esenciales?', a: 'Title, description y viewport son obligatorios. Open Graph y Twitter Cards son recomendados para redes sociales.' },
+      ],
+      howTo: [
+        'Introduce el título y descripción',
+        'Añade la URL de la imagen OG',
+        'Copia los meta tags generados en tu HTML',
+      ],
+    },
+    'sitemap-robots': {
+      title: 'Generador de Sitemap y Robots.txt Online Gratis',
+      desc: 'Genera archivos sitemap.xml y robots.txt para tu sitio web. Gratis, sin registro.',
+      h1: 'Generar sitemap.xml y robots.txt en línea',
+      intro: 'Crea archivos sitemap.xml y robots.txt optimizados para Google y otros buscadores. Introduce las URLs de tu sitio, configura las reglas de rastreo y descarga los archivos listos para usar. Esencial para mejorar el SEO y la indexación de tu sitio web.',
+      faq: [
+        { q: '¿Por qué necesito un sitemap?', a: 'Un sitemap ayuda a Google a descubrir e indexar todas las páginas de tu sitio web más rápidamente.' },
+        { q: '¿Qué debo poner en robots.txt?', a: 'Permite o bloquea el acceso de bots a partes de tu sitio. Como mínimo, permite el acceso a todos los rastreadores.' },
+      ],
+      howTo: [
+        'Introduce las URLs de tu sitio',
+        'Configura las reglas de rastreo',
+        'Descarga sitemap.xml y robots.txt',
+      ],
+    },
+    'formateur-json': {
+      title: 'Formateador JSON Online Gratis — Validar y Embellecer',
+      desc: 'Formatea, valida y embellece JSON. Identación personalizable, detección de errores. Gratis, sin registro.',
+      h1: 'Formatear y validar JSON en línea',
+      intro: 'Pega tu JSON y obtén una versión embellecida y validada al instante. Detecta errores de sintaxis, muestra la ruta del error y ofrece identación personalizable. Herramienta esencial para desarrolladores que trabajan con APIs y archivos de configuración.',
+      faq: [
+        { q: '¿Puede detectar errores de sintaxis?', a: 'Sí, el formateador resalta errores de sintaxis JSON con la línea y posición exactas.' },
+        { q: '¿Puedo comprimir JSON?', a: 'Sí, usa la opción de minificar para comprimir JSON a una sola línea.' },
+      ],
+      howTo: [
+        'Pega tu JSON',
+        'Elige la indentación',
+        'Copia el JSON formateado',
+      ],
+    },
+    'url-encode-decode': {
+      title: 'Codificador/Decodificador de URL Online Gratis',
+      desc: 'Codifica y decodifica URLs rápidamente. Convierte caracteres especiales a formato URL-safe. Gratis.',
+      h1: 'Codificar y decodificar URLs en línea',
+      intro: 'Codifica caracteres especiales en formato URL-safe (%20, %C3%A9, etc.) o decodifica URLs ya codificadas. Herramienta esencial para desarrolladores que trabajan con parámetros de consulta, APIs y redirecciones. Procesamiento instantáneo en tu navegador.',
+      faq: [
+        { q: '¿Qué es la codificación URL?', a: 'La codificación URL (percent-encoding) convierte caracteres especiales en %XX para que sean seguros en URLs.' },
+      ],
+      howTo: [
+        'Pega tu URL o texto',
+        'Elige codificar o decodificar',
+        'Copia el resultado',
+      ],
+    },
+    'css-gradient': {
+      title: 'Generador de Gradientes CSS Online Gratis',
+      desc: 'Crea gradientes CSS lineales y radiales con vista previa en tiempo real. Gratis, sin registro.',
+      h1: 'Generar degradados CSS en línea',
+      intro: 'Crea gradientes CSS visualmente con vista previa en tiempo real. Añade múltiples puntos de color, ajusta ángulos y genera código CSS listo para usar. Soporta gradientes lineales, radiales y cónicos. Perfecto para diseñadores y desarrolladores web.',
+      faq: [
+        { q: '¿Qué tipos de gradientes soporta?', a: 'Lineales, radiales y cónicos. Puedes añadir tantos puntos de color como necesites.' },
+        { q: '¿Puedo copiar el código CSS directamente?', a: 'Sí, el código CSS se genera automáticamente y se copia con un clic.' },
+      ],
+      howTo: [
+        'Elige el tipo de degradado',
+        'Añade y ajusta los puntos de color',
+        'Copia el código CSS generado',
+      ],
+    },
+    'markdown-preview': {
+      title: 'Vista Previa Markdown Online Gratis',
+      desc: 'Escribe Markdown con vista previa en tiempo real. Exporta a HTML. Gratis, sin registro.',
+      h1: 'Vista previa de Markdown en línea',
+      intro: 'Escribe Markdown y observa la vista previa renderizada en tiempo real. Soporta tablas, código, imágenes, enlaces y más. Exporta a HTML limpio. Ideal para redactar documentación, READMEs y artículos de blog.',
+      faq: [
+        { q: '¿Qué sintaxis Markdown soporta?', a: 'Markdown estándar (CommonMark), tablas GFM, código con resaltado, imágenes, enlaces y más.' },
+      ],
+      howTo: [
+        'Escribe tu Markdown en el editor',
+        'Observa la vista previa en tiempo real',
+        'Exporta a HTML si lo necesitas',
+      ],
+    },
+    'nettoyeur-url-tracking': {
+      title: 'Limpiador de URL Tracking Online Gratis',
+      desc: 'Elimina parámetros de tracking (UTM, fbclid, gclid) de tus URLs. Gratis, sin registro.',
+      h1: 'Limpiar URLs de parámetros de tracking en línea',
+      intro: 'Elimina parámetros de rastreo como UTM, fbclid, gclid, mc_eid y otros de tus URLs. Obtén URLs limpias perfectas para compartir en redes sociales, emails o mensajes sin rastrear clics. Procesamiento instantáneo en tu navegador.',
+      faq: [
+        { q: '¿Qué parámetros elimina?', a: 'UTM (utm_source, utm_medium, utm_campaign), Facebook (fbclid), Google (gclid), Mailchimp (mc_eid, mc_cid) y muchos más.' },
+        { q: '¿Es seguro?', a: 'Sí, todo el procesamiento se realiza en tu navegador. No se envían datos a ningún servidor.' },
+      ],
+      howTo: [
+        'Pega tu URL con tracking',
+        'Los parámetros se eliminan automáticamente',
+        'Copia la URL limpia',
+      ],
+    },
+    'convertisseur-casse': {
+      title: 'Convertidor de Caja de Texto Online Gratis',
+      desc: 'Convierte texto a mayúsculas, minúsculas, capitalización y más. Gratis, sin registro.',
+      h1: 'Convertir la caja de texto en línea',
+      intro: 'Transforma texto entre diferentes formatos de caja: MAYÚSCULAS, minúsculas, Primera Letra De Cada Palabra, y más. Herramienta esencial para formatear títulos, corregir texto y normalizar datos. Procesamiento instantáneo en tu navegador.',
+      faq: [
+        { q: '¿Qué conversiones ofrece?', a: 'MAYÚSCULAS, minúsculas, Primera Letra De Cada Palabra, oración normal, alternancia y inverso.' },
+      ],
+      howTo: [
+        'Pega tu texto',
+        'Selecciona el formato deseado',
+        'Copia el resultado',
+      ],
+    },
+    'lorem-ipsum': {
+      title: 'Generador de Lorem Ipsum Online Gratis',
+      desc: 'Genera texto placeholder Lorem Ipsum personalizable. Párrafos, palabras, frases. Gratis.',
+      h1: 'Generar texto Lorem Ipsum en línea',
+      intro: 'Crea texto placeholder Lorem Ipsum para tus diseños y prototipos. Genera párrafos, palabras o frases con opciones de personalización. Ideal para diseñadores y desarrolladores que necesitan rellenar espacios con texto realista.',
+      faq: [
+        { q: '¿Puedo personalizar la cantidad?', a: 'Sí, genera entre 1 y 50 párrafos, o especifica el número exacto de palabras.' },
+      ],
+      howTo: [
+        'Elige la cantidad de texto',
+        'Selecciona párrafos o palabras',
+        'Copia el texto generado',
+      ],
+    },
+    'comparateur-texte': {
+      title: 'Comparador de Texto Online Gratis — Diff',
+      desc: 'Compara dos textos y muestra las diferencias resaltadas. Gratis, sin registro.',
+      h1: 'Comparar dos textos y ver las diferencias en línea',
+      intro: 'Pega dos textos y observa las diferencias resaltadas en colores. Añadidas en verde, eliminadas en rojo. Ideal para revisar cambios de código, comparar versiones de documentos o verificar ediciones. Procesamiento local en tu navegador.',
+      faq: [
+        { q: '¿Cómo funciona la comparación?', a: 'Se usa un algoritmo diff que identifica líneas añadidas, eliminadas y modificadas entre los dos textos.' },
+        { q: '¿Puedo comparar código?', a: 'Sí, funciona perfectamente para comparar fragmentos de código fuente.' },
+      ],
+      howTo: [
+        'Pega el texto original',
+        'Pega el texto modificado',
+        'Observa las diferencias resaltadas',
+      ],
+    },
+    'separateur-nom-prenom': {
+      title: 'Separador de Nombre y Apellido Online Gratis',
+      desc: 'Separa nombres y apellidos de una lista. Convierte "Nombre Apellido" en columnas. Gratis.',
+      h1: 'Separar nombres y apellidos en línea',
+      intro: 'Divide una lista de nombres completos en columnas de nombre y apellido. Perfecto para limpiar datos de contactos, formatear listas de email o preparar datos para importar en CRM. Procesamiento instantáneo en tu navegador.',
+      faq: [
+        { q: '¿Maneja nombres compuestos?', a: 'Sí, detecta nombres compuestos como "Jean-Pierre" o "María José" correctamente.' },
+        { q: '¿Puedo procesar miles de nombres?', a: 'Sí, no hay límite en el número de nombres que puedes procesar.' },
+      ],
+      howTo: [
+        'Pega tu lista de nombres',
+        'Elige el separador',
+        'Copia las columnas separadas',
+      ],
+    },
+    'generateur-hash': {
+      title: 'Generador de Hash Online Gratis — MD5, SHA-256, SHA-512',
+      desc: 'Genera hashes MD5, SHA-1, SHA-256, SHA-512. Gratis, sin registro, procesamiento local.',
+      h1: 'Generar hashes MD5, SHA-256, SHA-512 en línea',
+      intro: 'Calcula hashes criptográficos de cualquier texto o archivo. Soporta MD5, SHA-1, SHA-256 y SHA-512. Herramienta esencial para desarrolladores que verifican integridad de datos, contraseñas y archivos. Procesamiento 100% local en tu navegador.',
+      faq: [
+        { q: '¿Qué algoritmos de hash soporta?', a: 'MD5, SHA-1, SHA-256 y SHA-512. Todos se calculan localmente en tu navegador.' },
+        { q: '¿Puedo hashear archivos?', a: 'Sí, puedes arrastrar y soltar archivos para calcular su hash.' },
+      ],
+      howTo: [
+        'Introduce texto o sube un archivo',
+        'Selecciona el algoritmo de hash',
+        'Copia el hash generado',
+      ],
+    },
+    'color-picker': {
+      title: 'Selector de Color Online Gratis — HEX, RGB, HSL',
+      desc: 'Selecciona colores con vista previa y conversiones HEX, RGB, HSL. Gratis.',
+      h1: 'Seleccionar colores con HEX, RGB, HSL en línea',
+      intro: 'Elige colores visualmente con el selector de color y obtén conversiones instantáneas en HEX, RGB y HSL. Guarda tu paleta de colores y copia los valores con un clic. Perfecto para diseño web y desarrollo.',
+      faq: [
+        { q: '¿Qué formatos soporta?', a: 'HEX (#3b82f6), RGB (59, 130, 246), HSL (217, 91%, 60%) y más.' },
+        { q: '¿Puedo guardar colores?', a: 'Sí, puedes guardar colores en tu paleta personal y copiar los valores con un clic.' },
+      ],
+      howTo: [
+        'Selecciona un color con el selector visual',
+        'Ajusta los valores si es necesario',
+        'Copia el formato deseado',
+      ],
+    },
+    'generateur-lien-whatsapp': {
+      title: 'Generador de Enlace WhatsApp Directo Online Gratis',
+      desc: 'Crea enlaces directos de WhatsApp (wa.me) para chat y grupos. Gratis, sin registro.',
+      h1: 'Generar enlaces directos de WhatsApp en línea',
+      intro: 'Crea enlaces directos de WhatsApp (wa.me) para iniciar conversaciones sin guardar el número. Personaliza el mensaje predeterminado y genera códigos QR. Ideal para negocios, soporte al cliente y marketing.',
+      faq: [
+        { q: '¿Qué es un enlace directo de WhatsApp?', a: 'Es un enlace wa.me/numero que abre directamente una conversación con ese número en WhatsApp.' },
+        { q: '¿Puedo añadir un mensaje predeterminado?', a: 'Sí, el parámetro text permite definir un mensaje que aparece automáticamente al abrir el enlace.' },
+      ],
+      howTo: [
+        'Introduce el número de teléfono',
+        'Escribe el mensaje predeterminado',
+        'Copia el enlace generado',
+      ],
+    },
+    'generateur-uuid-guid': {
+      title: 'Generador de UUID/GUID Online Gratis',
+      desc: 'Genera identificadores únicos universales (UUID v4). Gratis, sin registro, procesamiento local.',
+      h1: 'Generar UUID v4 en línea',
+      intro: 'Crea identificadores únicos universales (UUID v4) para bases de datos, APIs y sistemas distribuidos. Genera uno o miles de UUIDs al instante. Cada UUID es único globalmente con probabilidad de colisión prácticamente nula. Procesamiento 100% local.',
+      faq: [
+        { q: '¿Qué es un UUID?', a: 'Un UUID (Universally Unique Identifier) es un identificador de 128 bits generado aleatoriamente. La versión 4 es la más común.' },
+        { q: '¿Son realmente únicos?', a: 'Sí, la probabilidad de colisión es prácticamente nula (1 en 2^122).' },
+      ],
+      howTo: [
+        'Elige cuántos UUIDs generar',
+        'Haz clic en Generar',
+        'Copia los UUIDs',
+      ],
+    },
+    'generateur-nombres-aleatoires': {
+      title: 'Generador de Números Aleatorios Online Gratis',
+      desc: 'Genera números aleatorios enteros o decimales con rango personalizable. Gratis.',
+      h1: 'Generar números aleatorios en línea',
+      intro: 'Genera números aleatorios enteros o decimales dentro de un rango personalizable. Perfecto para sorteos, simulaciones, juegos y pruebas. Configura el mínimo, máximo y cantidad de números a generar.',
+      faq: [
+        { q: '¿Puedo generar números decimales?', a: 'Sí, selecciona el modo decimal y configura el número de decimales.' },
+        { q: '¿Los números son verdaderamente aleatorios?', a: 'Se usa el generador criptográfico del navegador (crypto.getRandomValues), que es adecuado para la mayoría de usos.' },
+      ],
+      howTo: [
+        'Configura el rango (mínimo y máximo)',
+        'Elige la cantidad de números',
+        'Copia los números generados',
+      ],
+    },
+    'convertisseur-couleurs': {
+      title: 'Convertidor de Colores HEX, RGB, HSL, CMYK Online Gratis',
+      desc: 'Convierte colores entre HEX, RGB, HSL y CMYK con selector visual. Gratis.',
+      h1: 'Convertir colores entre HEX, RGB, HSL y CMYK',
+      intro: 'Introduce un color en cualquier formato (HEX, RGB, HSL) y obtén instantáneamente todas las conversiones. Usa el selector de color visual, los campos numéricos o las preselecciones para encontrar el color perfecto para tus proyectos web y diseño.',
+      faq: [
+        { q: '¿Cómo convertir HEX a RGB?', a: 'Introduce tu código HEX (ej: #3b82f6) y la conversión RGB se muestra instantáneamente.' },
+        { q: '¿Qué es el formato CMYK?', a: 'CMYK (Cian, Magenta, Amarillo, Negro) se usa en imprentía. Nuestra herramienta convierte automáticamente tu color a CMYK.' },
+        { q: '¿Puedo copiar los valores?', a: 'Sí, cada formato tiene un botón Copiar para obtener el valor.' },
+      ],
+      howTo: [
+        'Elige un color con el selector o introduce un código HEX',
+        'Observa las conversiones RGB, HSL y CMYK',
+        'Copia el formato deseado en un clic',
+      ],
+    },
+    'calculateur-pourcentage': {
+      title: 'Calculadora de Porcentaje Online Gratis',
+      desc: 'Calcula porcentajes rápidamente: porcentaje de un número, aumento, reducción y más. Gratis.',
+      h1: 'Calcular porcentajes en línea',
+      intro: 'Calcula fácilmente cualquier porcentaje: porcentaje de un número, aumento porcentual, reducción porcentual y más. Herramienta rápida y gratuita para resolver problemas de porcentajes en la vida cotidiana y profesional.',
+      faq: [
+        { q: '¿Qué cálculos puedo hacer?', a: 'Porcentaje de un número, número a partir de porcentaje, aumento y reducción porcentual, y más.' },
+        { q: '¿Es preciso?', a: 'Sí, los resultados se calculan con precisión decimal.' },
+      ],
+      howTo: [
+        'Elige el tipo de cálculo',
+        'Introduce los valores',
+        'Obtén el resultado',
+      ],
+    },
+    'calculateur-dosage-beton': {
+      title: 'Calculadora de Dosaje de Hormigón Online Gratis',
+      desc: 'Calcula las cantidades de cemento, arena, gravilla y agua para tu hormigón. Gratis.',
+      h1: 'Calcular el dosaje de hormigón en línea',
+      intro: 'Calcula las proporciones exactas de cemento, arena, gravilla y agua para tu mezcla de hormigón. Introduce el volumen necesario y obtén las cantidades en kg o litros. Soporta diferentes tipos de hormigón (C25/30, C30/37, etc.).',
+      faq: [
+        { q: '¿Qué tipo de hormigón soporta?', a: 'Los tipos estándar C20/25, C25/30, C30/37 y dosaje personalizado con proporciones definidas.' },
+      ],
+      howTo: [
+        'Introduce el volumen necesario',
+        'Elige el tipo de hormigón',
+        'Obtén las cantidades de cada componente',
+      ],
+    },
+    'calculateur-frais-kilometriques': {
+      title: 'Calculadora de Gastos Kilométricos Online Gratis',
+      desc: 'Calcula tus indemnizaciones kilométricas según la escala URSSAF. Gratis, sin registro.',
+      h1: 'Calcular gastos kilométricos en línea',
+      intro: 'Calcula automáticamente tus indemnizaciones kilométricas según la escala oficial francesa (URSSAF). Introduce la distancia, la potencia fiscal y el tipo de vehículo para obtener el montant exacto. Perfecto para profesionales, comerciales y autónomos.',
+      faq: [
+        { q: '¿Qué escala utiliza?', a: 'La escala oficial URSSAF vigente para indemnités kilométriques en Francia.' },
+        { q: '¿Puedo calcular para vehículos eléctricos?', a: 'Sí, se aplica un coeficiente multiplicador para vehículos eléctricos.' },
+      ],
+      howTo: [
+        'Introduce la distancia recorrida',
+        'Selecciona la potencia fiscal',
+        'Obtén el monto de la indemnización',
+      ],
+    },
+    'chronometre': {
+      title: 'Cronómetro Online Gratis — Cronometraje de Precisión',
+      desc: 'Cronómetro online gratis con funcionalidad de vueltas intermedias. Precisión al centésimo de segundo.',
+      h1: 'Cronómetro online con vueltas intermedias',
+      intro: 'Un cronómetro de precisión directamente en tu navegador. Registra vueltas intermedias, mide al centésimo de segundo y sigue tus performances. Ideal para deportes, cocina y productividad.',
+      faq: [
+        { q: '¿Cuál es la precisión del cronómetro?', a: 'El cronómetro es preciso al centésimo de segundo (10 ms).' },
+        { q: '¿Puedo registrar vueltas?', a: 'Sí, el botón de vuelta registra el tiempo transcurrido desde la última vuelta.' },
+      ],
+      howTo: [
+        'Haz clic en Iniciar para lanzar el cronómetro',
+        'Haz clic en Vuelta para registrar tiempos intermedios',
+        'Haz clic en Pausa o Reiniciar',
+      ],
+    },
+    'timer-pomodoro': {
+      title: 'Timer Pomodoro Online Gratis — Técnica Pomodoro',
+      desc: 'Timer Pomodoro gratis con sesiones de trabajo personalizables, pausas cortas y largas. Mejora tu productividad.',
+      h1: 'Timer Pomodoro — Técnica de productividad',
+      intro: 'La técnica Pomodoro alterna periodos de trabajo concentrado con pausas. Nuestro timer te guía con una interfaz visual y parámetros personalizables. Mejora tu enfoque y productividad con sesiones de 25 minutos seguidas de pausas de 5 minutos.',
+      faq: [
+        { q: '¿Qué es la técnica Pomodoro?', a: 'Trabaja 25 minutos, toma una pausa de 5 minutos. Después de 4 sesiones, toma una pausa larga de 15-30 minutos.' },
+        { q: '¿Puedo modificar las duraciones?', a: 'Sí, puedes personalizar la duración del trabajo, las pausas y el número de Pomodoros.' },
+      ],
+      howTo: [
+        'Configura las duraciones de trabajo y pausa',
+        'Haz clic en Iniciar',
+        'El timer alterna automáticamente entre trabajo y pausa',
+      ],
+    },
+    'calculateur-pourboire': {
+      title: 'Calculadora de Propina Online Gratis — Dividir la Cuenta',
+      desc: 'Calcula la propina y divide la cuenta entre varias personas. Gratis, sin registro, 100% local.',
+      h1: 'Calcular la propina y dividir la cuenta',
+      intro: 'Estás en un restaurante con amigos y quieres calcular la propina y dividir la cuenta equitativamente. Nuestra calculadora te permite introducir el monto de la cuenta, elegir un porcentaje de propina y dividir el total entre varias personas. Procesamiento 100% local en tu navegador.',
+      faq: [
+        { q: '¿Cuánta propina dejar?', a: 'En España, la propina no es obligatoria pero 5-10% es apreciado para buen servicio. En EE.UU., 15-20% es la norma.' },
+        { q: '¿Puedo personalizar el porcentaje?', a: 'Sí, además de los porcentajes predefinidos (15%, 18%, 20%), puedes introducir cualquier monto o porcentaje personalizado.' },
+      ],
+      howTo: [
+        'Introduce el monto de la cuenta',
+        'Elige el porcentaje de propina',
+        'Indica el número de personas',
+        'El total por persona se muestra instantáneamente',
+      ],
     },
   },
 
-  de: {
-    'compresser-pdf': {
-      title: 'PDF Komprimieren Online Kostenlos — PDF Größe Reduzieren',
-      desc: 'Reduzieren Sie Ihre PDF-Dateigröße bis zu 80% kostenlos. Keine Anmeldung, 100% lokale Verarbeitung.',
-      h1: 'PDF-Datei online kostenlos komprimieren',
-      intro: 'Unser PDF-Komprimierungstool reduziert sofort die Größe Ihrer Dokumente ohne sichtbaren Qualitätsverlust. Ideal zum Versenden, Hochladen oder Speichern. Kein Datei-Upload — alles läuft im Browser.',
-      faq: [
-        { q: 'Wie kann ich ein PDF kostenlos komprimieren?', a: 'Ziehen Sie Ihre PDF-Datei in die Dropzone, wählen Sie die Komprimierungsstufe und laden Sie das Ergebnis herunter.' },
-        { q: 'Sind meine Dateien sicher?', a: 'Ja, 100%. Die Verarbeitung erfolgt vollständig in Ihrem Browser. Keine Datei wird auf Server hochgeladen.' },
-      ],
-      howTo: ['PDF-Datei in die Dropzone ziehen', 'Komprimierungsstufe wählen', 'Auf "Komprimieren" klicken und herunterladen'],
-    },
-    'fusionner-pdf': {
-      title: 'PDF Zusammenführen Online Kostenlos — PDFs Kombinieren',
-      desc: 'Fügen Sie mehrere PDF-Dateien zu einem Dokument zusammen. Kostenlos, keine Anmeldung, lokale Verarbeitung.',
-      h1: 'Mehrere PDFs zu einer Datei zusammenführen',
-      intro: 'Kombinieren Sie einfach 2 oder mehr PDF-Dokumente zu einer einzigen Datei. Seiten per Drag-and-Drop neu anordnen.',
-      faq: [
-        { q: 'Wie kann ich PDFs online zusammenführen?', a: 'Fügen Sie Ihre PDFs hinzu, ordnen Sie sie und klicken Sie auf Zusammenführen.' },
-      ],
-      howTo: ['PDF-Dateien hinzufügen', 'Per Drag-and-Drop ordnen', 'Zusammenführen und herunterladen'],
-    },
-    'generateur-qr-code': {
-      title: 'QR Code Generator Online Kostenlos',
-      desc: 'Generieren Sie QR-Codes für URLs, Text, WLAN und mehr. Kostenlos, keine Anmeldung.',
-      h1: 'QR-Codes online kostenlos generieren',
-      intro: 'Erstellen Sie QR-Codes für URLs, Text, WLAN-Zugangsdaten und mehr. Farben und Größe anpassen.',
-      faq: [
-        { q: 'Was kann ich kodieren?', a: 'URLs, Text, WLAN (SSID/Passwort), E-Mails, Telefonnummern und vCards.' },
-      ],
-      howTo: ['Inhaltstyp wählen', 'Daten eingeben', 'QR-Code anpassen und herunterladen'],
-    },
-    'generateur-mot-de-passe': {
-      title: 'Passwort Generator Online Kostenlos',
-      desc: 'Generieren Sie starke, zufällige Passwörter. Kostenlos, keine Anmeldung, lokale Verarbeitung.',
-      h1: 'Sichere Passwörter online generieren',
-      intro: 'Erstellen Sie starke, zufällige Passwörter mit anpassbarer Länge und Zeichentypen. Alles lokal generiert.',
-      faq: [
-        { q: 'Wie stark sind die Passwörter?', a: 'Verwenden Sie 16+ Zeichen mit Groß-/Kleinschreibung, Zahlen und Symbolen für maximale Sicherheit.' },
-      ],
-      howTo: ['Länge und Zeichentypen einstellen', 'Generieren klicken', 'Passwort kopieren'],
-    },
-    'calculateur-imc': {
-      title: 'BMI Rechner Online Kostenlos — Body-Mass-Index',
-      desc: 'Berechnen Sie Ihren Body-Mass-Index mit Gesundheitsklassifikation. Kostenlos, keine Anmeldung.',
-      h1: 'Body-Mass-Index (BMI) online berechnen',
-      intro: 'Geben Sie Gewicht und Größe ein, um Ihren BMI zu berechnen und Ihre Gesundheitskategorie zu sehen.',
-      faq: [
-        { q: 'Was ist ein gesunder BMI?', a: 'Ein BMI zwischen 18,5 und 24,9 gilt als Normalgewicht.' },
-      ],
-      howTo: ['Gewicht und Größe eingeben', 'Metrische oder imperiale Einheiten wählen', 'BMI und Kategorie anzeigen'],
-    },
-    'convertisseur-unites': {
-      title: 'Einheitenumrechner Online Kostenlos',
-      desc: 'Umrechnen zwischen Länge, Gewicht, Temperatur, Fläche und mehr. Kostenlos, keine Anmeldung.',
-      h1: 'Einheiten online umrechnen',
-      intro: 'Rechnen Sie zwischen Länge, Gewicht, Temperatur, Fläche, Volumen, Geschwindigkeit und Zeit um.',
-      faq: [
-        { q: 'Welche Einheitentypen?', a: 'Länge, Gewicht, Temperatur, Fläche, Volumen, Geschwindigkeit, Zeit und mehr.' },
-      ],
-      howTo: ['Kategorie wählen', 'Wert eingeben', 'Ergebnis anzeigen'],
-    },
-  },
-
-  ar: {
-    'compresser-pdf': {
-      title: 'ضغط PDF مجاني عبر الإنترنت — تقليل حجم PDF',
-      desc: 'قم بتقليل حجم ملفات PDF بنسبة تصل إلى 80% مجانًا. بدون تسجيل، معالجة 100% محلية.',
-      h1: 'ضغط ملف PDF مجانًا عبر الإنترنت',
-      intro: 'تقوم أداة ضغط PDF بتقليل حجم مستنداتك فورًا دون فقدان مرئي للجودة. مثالية لإرسال الملفات أو تحميلها أو توفير مساحة التخزين. لا يتم إرسال أي ملف إلى خادم — كل شيء يعمل في متصفحك.',
-      faq: [
-        { q: 'كيف أضغط ملف PDF مجانًا؟', a: 'اسحب ملف PDF وأفلته، اختر مستوى الضغط، ثم حمّل النتيجة.' },
-        { q: 'هل ملفاتي آمنة؟', a: 'نعم، 100%. تتم المعالجة بالكامل في متصفحك. لا يتم رفع أي ملف.' },
-      ],
-      howTo: ['اسحب ملف PDF', 'اختر مستوى الضغط', 'انقر "ضغط" وحمّل النتيجة'],
-    },
-    'generateur-qr-code': {
-      title: 'مولد رمز QR مجاني عبر الإنترنت',
-      desc: 'أنشئ رموز QR للروابط والنص وWiFi والمزيد. مجاني، بدون تسجيل.',
-      h1: 'إنشاء رموز QR مجانًا عبر الإنترنت',
-      intro: 'أنشئ رموز QR للروابط والنص وبيانات WiFi والمزيد. خصّص الألوان والحجم وحمّل كـ PNG أو SVG.',
-      faq: [
-        { q: 'ماذا يمكنني ترميزه؟', a: 'الروابط، النص، WiFi، البريد الإلكتروني، أرقام الهاتف وبطاقات vCard.' },
-      ],
-      howTo: ['اختر نوع المحتوى', 'أدخل بياناتك', 'خصّص وحمّل رمز QR'],
-    },
-    'generateur-mot-de-passe': {
-      title: 'مولد كلمات مرور مجاني عبر الإنترنت',
-      desc: 'أنشئ كلمات مرور قوية وعشوائية. مجاني، بدون تسجيل، معالجة محلية.',
-      h1: 'إنشاء كلمات مرور آمنة عبر الإنترنت',
-      intro: 'أنشئ كلمات مرور قوية وعشوائية بطول وأنواع أحرف قابلة للتخصيص. كل شيء يُنشأ محليًا.',
-      faq: [
-        { q: 'هل كلمات المرور قوية؟', a: 'استخدم 16+ حرفًا بأحرف كبيرة وصغيرة وأرقام ورموز لأقصى أمان.' },
-      ],
-      howTo: ['اضبط الطول وأنواع الأحرف', 'انقر إنشاء', 'انسخ كلمة المرور'],
-    },
-  },
-
-  pt: {
-    'compresser-pdf': {
-      title: 'Comprimir PDF Online Grátis — Reduzir Tamanho PDF',
-      desc: 'Reduza o tamanho dos seus ficheiros PDF até 80% gratuitamente. Sem registo, processamento 100% local.',
-      h1: 'Comprimir ficheiro PDF online grátis',
-      intro: 'A nossa ferramenta de compressão PDF reduz instantaneamente o tamanho dos seus documentos sem perda visível de qualidade. Ideal para enviar ficheiros, carregar em sites ou poupar espaço. Nenhum ficheiro é enviado a servidores — tudo corre no seu navegador.',
-      faq: [
-        { q: 'Como comprimir PDF grátis?', a: 'Arraste o ficheiro PDF, escolha o nível de compressão e transfira o resultado.' },
-        { q: 'Os meus ficheiros estão seguros?', a: 'Sim, 100%. Tudo é processado no seu navegador. Nenhum ficheiro é carregado para servidores.' },
-      ],
-      howTo: ['Arraste o ficheiro PDF', 'Escolha o nível de compressão', 'Clique "Comprimir" e transfira'],
-    },
-    'fusionner-pdf': {
-      title: 'Unir PDF Online Grátis — Combinar Vários PDFs',
-      desc: 'Una vários ficheiros PDF num só documento em segundos. Grátis, sem registo.',
-      h1: 'Unir vários PDFs num só ficheiro',
-      intro: 'Combine facilmente 2 ou mais documentos PDF num só ficheiro. Reordene as páginas antes de unir.',
-      faq: [
-        { q: 'Como unir PDFs online?', a: 'Adicione os seus PDFs, reordene e clique em Unir. Obterá um PDF combinado.' },
-      ],
-      howTo: ['Adicione os seus PDFs', 'Reordene arrastando', 'Clique Unir e transfira'],
-    },
-    'generateur-qr-code': {
-      title: 'Gerador de QR Code Online Grátis',
-      desc: 'Gere códigos QR para URLs, texto, WiFi e mais. Grátis, sem registo.',
-      h1: 'Gerar códigos QR online grátis',
-      intro: 'Crie códigos QR para URLs, texto, credenciais WiFi e mais. Personalize cores e transfira como PNG ou SVG.',
-      faq: [
-        { q: 'O que posso codificar?', a: 'URLs, texto, WiFi (SSID/senha), emails, telefones e vCards.' },
-      ],
-      howTo: ['Escolha o tipo de conteúdo', 'Introduza os dados', 'Personalize e transfira o QR'],
-    },
-    'calculateur-imc': {
-      title: 'Calculadora de IMC Online Grátis — Índice de Massa Corporal',
-      desc: 'Calcule o seu Índice de Massa Corporal com classificação de saúde. Grátis, sem registo.',
-      h1: 'Calcular Índice de Massa Corporal online',
-      intro: 'Introduza peso e altura para calcular o IMC e ver a categoria de saúde. Suporta unidades métricas e imperiais.',
-      faq: [
-        { q: 'Qual é um IMC saudável?', a: 'IMC entre 18.5 e 24.9 é considerado peso normal.' },
-      ],
-      howTo: ['Introduza peso e altura', 'Escolha unidades', 'Veja IMC e categoria'],
-    },
-    'convertisseur-unites': {
-      title: 'Conversor de Unidades Online Grátis',
-      desc: 'Converta entre unidades de comprimento, peso, temperatura e mais. Grátis, sem registo.',
-      h1: 'Converter unidades online grátis',
-      intro: 'Converta entre unidades de comprimento, peso, temperatura, área, volume, velocidade e tempo.',
-      faq: [
-        { q: 'Que tipos de unidades?', a: 'Comprimento, peso, temperatura, área, volume, velocidade, tempo e mais.' },
-      ],
-      howTo: ['Selecione a categoria', 'Introduza o valor', 'Veja o resultado'],
-    },
-  },
-}
+  de: {},
+  ar: {},
+  pt: {},
+  };
 
 /**
  * Merge French base SEO entry with locale overrides.

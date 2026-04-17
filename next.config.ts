@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
-import path from 'path';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
@@ -10,19 +9,6 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
-  webpack: (config) => {
-    // Force all React imports to use the user's React instance
-    // This prevents duplicate React instances (user's + Next.js compiled)
-    // which causes 'Cannot read properties of null (reading useContext)' during SSG
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'react': path.resolve('./node_modules/react'),
-      'react-dom': path.resolve('./node_modules/react-dom'),
-      'react/jsx-runtime': path.resolve('./node_modules/react/jsx-runtime'),
-      'react/jsx-dev-runtime': path.resolve('./node_modules/react/jsx-dev-runtime'),
-    };
-    return config;
-  },
   async redirects() {
     return [
       { source: "/en/pdf/compresser-pdf", destination: "/en/pdf/compress-pdf", permanent: true },

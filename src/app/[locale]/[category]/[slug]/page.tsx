@@ -9,8 +9,8 @@ import { AdLeaderboard as AdHeader, ToolPageAdSections as AdMidContent, AdFlexib
 import { AdInArticle } from '@/components/adsense'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
 
-// Force dynamic rendering — tool pages use next-intl context which is not available during SSG
-export const dynamic = 'force-dynamic'
+// ISR: revalidate tool pages every 24h for SEO
+export const revalidate = 86400
 
 const BASE_URL = 'https://utilyx.app'
 
