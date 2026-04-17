@@ -5,12 +5,12 @@ import { routing } from '@/i18n/routing'
 import { seoRegistry, getToolBySlug, validCategories, getSlugForLocale, resolveSlugToBase } from '@/lib/seo-registry'
 import { getLocalizedSeo } from '@/lib/seo-i18n-registry'
 import { ToolRenderer } from '@/components/tool-renderer'
-import { AdHeader, AdMidContent, AdFooter } from '@/components/ads/AdBanner'
-import { AdInArticle } from '@/components/adsense/ad-unit'
+import { AdLeaderboard as AdHeader, ToolPageAdSections as AdMidContent, AdFlexible as AdFooter } from '@/components/adsense'
+import { AdInArticle } from '@/components/adsense'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
 
-// Force dynamic rendering — tool pages use next-intl context which is not available during SSG
-export const dynamic = 'force-dynamic'
+// ISR: revalidate tool pages every 24h for SEO
+export const revalidate = 86400
 
 const BASE_URL = 'https://utilyx.app'
 
@@ -56,16 +56,6 @@ const relatedLabels: Record<string, string> = {
   pt: 'Ferramentas semelhantes',
 }
 
-/* ── Static Params: pre-generate all tool pages for all locales ──────── */
-export function generateStaticParams() {
-  const params: { locale: string; category: string; slug: string }[] = []
-  for (const locale of routing.locales) {
-    for (const entry of Object.values(seoRegistry)) {
-      params.push({ locale, category: entry.category, slug: getSlugForLocale(entry.slug, locale) })
-    }
-  }
-  return params
-}
 
 /* ── Metadata: server-rendered <head> for Googlebot ──────────────────── */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

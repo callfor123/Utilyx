@@ -2,13 +2,14 @@
 
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
-import { Mail } from 'lucide-react'
+import { Mail, CheckCircle2, AlertCircle, Send } from 'lucide-react'
 import { useState, useRef } from 'react'
 
 export default function ContactContent() {
   const locale = useLocale()
   const t = useTranslations('Contact')
   const formRef = useRef<HTMLFormElement>(null)
+  const dir = locale === 'ar' ? 'rtl' : 'ltr'
 
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
@@ -41,27 +42,31 @@ export default function ContactContent() {
     }
   }
 
+  const inputClasses = 'w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors'
+
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-2xl mx-auto px-4 py-12 sm:py-16">
+    <div className="min-h-screen bg-background" dir={dir}>
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <Link
           href={`/${locale}`}
-          className="text-sm text-muted-foreground hover:text-foreground mb-8 inline-block"
+          className="text-sm text-muted-foreground hover:text-foreground mb-6 sm:mb-8 inline-block transition-colors"
         >
           ← {t('backHome')}
         </Link>
 
-        <h1 className="text-3xl sm:text-4xl font-bold mb-4">{t('title')}</h1>
-        <p className="text-lg text-muted-foreground mb-10">{t('subtitle')}</p>
+        <h1 className="text-3xl sm:text-4xl font-bold mb-3">{t('title')}</h1>
+        <p className="text-base sm:text-lg text-muted-foreground mb-8 sm:mb-10">{t('subtitle')}</p>
 
         {status === 'sent' && (
-          <div className="mb-6 p-4 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg">
-            {t('successMessage')}
+          <div className="mb-6 p-4 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-start gap-3">
+            <CheckCircle2 className="h-5 w-5 mt-0.5 shrink-0" />
+            <span>{t('successMessage')}</span>
           </div>
         )}
         {status === 'error' && (
-          <div className="mb-6 p-4 bg-destructive/10 text-destructive rounded-lg">
-            {t('errorMessage')}
+          <div className="mb-6 p-4 bg-destructive/10 text-destructive rounded-lg flex items-start gap-3">
+            <AlertCircle className="h-5 w-5 mt-0.5 shrink-0" />
+            <span>{t('errorMessage')}</span>
           </div>
         )}
 
@@ -75,7 +80,8 @@ export default function ContactContent() {
               name="name"
               type="text"
               required
-              className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+              autoComplete="name"
+              className={inputClasses}
               placeholder={t('namePlaceholder')}
             />
           </div>
@@ -89,7 +95,8 @@ export default function ContactContent() {
               name="email"
               type="email"
               required
-              className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+              autoComplete="email"
+              className={inputClasses}
               placeholder={t('emailPlaceholder')}
             />
           </div>
@@ -103,7 +110,7 @@ export default function ContactContent() {
               name="subject"
               type="text"
               required
-              className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+              className={inputClasses}
               placeholder={t('subjectPlaceholder')}
             />
           </div>
@@ -117,7 +124,7 @@ export default function ContactContent() {
               name="message"
               required
               rows={5}
-              className="w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-y"
+              className={`${inputClasses} resize-y`}
               placeholder={t('messagePlaceholder')}
             />
           </div>
@@ -125,10 +132,19 @@ export default function ContactContent() {
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50 w-full sm:w-auto"
           >
-            <Mail className="h-4 w-4" />
-            {status === 'sending' ? t('sending') : t('submit')}
+            {status === 'sending' ? (
+              <>
+                <span className="h-4 w-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                {t('sending')}
+              </>
+            ) : (
+              <>
+                <Send className="h-4 w-4" />
+                {t('submit')}
+              </>
+            )}
           </button>
         </form>
 

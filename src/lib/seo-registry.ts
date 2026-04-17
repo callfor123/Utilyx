@@ -804,3 +804,97 @@ export const validCategories = ['pdf', 'image', 'video', 'dev-seo', 'text-tools'
 export const toolIdToPath: Record<string, { category: string; slug: string }> = Object.fromEntries(
   Object.values(seoRegistry).map((t) => [t.toolId, { category: t.category, slug: t.slug }])
 )
+
+/** Locale-specific slug mappings: base slug → locale slug */
+const localeSlugMap: Record<string, Record<string, string>> = {
+  'compress-pdf': { en: 'compress-pdf', es: 'comprimir-pdf', de: 'pdf-komprimieren', ar: 'ضغط-pdf', pt: 'comprimir-pdf' },
+  'merge-pdf': { en: 'merge-pdf', es: 'fusionar-pdf', de: 'pdf-zusammenfuegen', ar: 'دمج-pdf', pt: 'juntar-pdf' },
+  'pdf-to-images': { en: 'pdf-to-images', es: 'pdf-a-imagenes', de: 'pdf-zu-bildern', ar: 'pdf-الى-صور', pt: 'pdf-para-imagens' },
+  'sign-pdf': { en: 'sign-pdf', es: 'firmar-pdf', de: 'pdf-signieren', ar: 'توقيع-pdf', pt: 'assinar-pdf' },
+  'unlock-pdf': { en: 'unlock-pdf', es: 'desbloquear-pdf', de: 'pdf-entsperren', ar: 'فتح-pdf', pt: 'desbloquear-pdf' },
+  'protect-pdf': { en: 'protect-pdf', es: 'proteger-pdf', de: 'pdf-schuetzen', ar: 'حماية-pdf', pt: 'proteger-pdf' },
+  'convert-image': { en: 'convert-image', es: 'convertir-imagen', de: 'bild-konvertieren', ar: 'تحويل-صورة', pt: 'converter-imagem' },
+  'compress-image': { en: 'compress-image', es: 'comprimir-imagen', de: 'bild-komprimieren', ar: 'ضغط-صورة', pt: 'comprimir-imagem' },
+  'resize-image': { en: 'resize-image', es: 'redimensionar-imagen', de: 'bild-groesse-aendern', ar: 'تغيير-حجم-صورة', pt: 'redimensionar-imagem' },
+  'remove-background': { en: 'remove-background', es: 'eliminar-fondo', de: 'hintergrund-entfernen', ar: 'ازالة-الخلفية', pt: 'remover-fundo' },
+  'heic-to-jpg': { en: 'heic-to-jpg', es: 'heic-a-jpg', de: 'heic-zu-jpg', ar: 'heic-الى-jpg', pt: 'heic-para-jpg' },
+  'favicon-generator': { en: 'favicon-generator', es: 'generador-favicon', de: 'favicon-generator', ar: 'مولد-فاڤيكون', pt: 'gerador-favicon' },
+  'youtube-thumbnail': { en: 'youtube-thumbnail', es: 'miniatura-youtube', de: 'youtube-vorschaubild', ar: 'صورة-يوتيوب', pt: 'miniatura-youtube' },
+  'trim-video': { en: 'trim-video', es: 'recortar-video', de: 'video-schneiden', ar: 'قص-الفيديو', pt: 'cortar-video' },
+  'compress-video': { en: 'compress-video', es: 'comprimir-video', de: 'video-komprimieren', ar: 'ضغط-الفيديو', pt: 'comprimir-video' },
+  'convert-video': { en: 'convert-video', es: 'convertir-video', de: 'video-konvertieren', ar: 'تحويل-فيديو', pt: 'converter-video' },
+  'add-audio-to-video': { en: 'add-audio-to-video', es: 'anadir-audio-video', de: 'audio-zu-video', ar: 'اضافة-صوت-للفيديو', pt: 'adicionar-audio-video' },
+  'extract-audio-from-video': { en: 'extract-audio-from-video', es: 'extraer-audio-video', de: 'audio-aus-video', ar: 'استخراج-صوت-من-فيديو', pt: 'extrair-audio-video' },
+  'video-to-gif': { en: 'video-to-gif', es: 'video-a-gif', de: 'video-zu-gif', ar: 'فيديو-الى-جيف', pt: 'video-para-gif' },
+  'remove-audio-from-video': { en: 'remove-audio-from-video', es: 'eliminar-audio-video', de: 'audio-aus-video-entfernen', ar: 'ازالة-صوت-من-فيديو', pt: 'remover-audio-video' },
+  'json-formatter': { en: 'json-formatter', es: 'formateador-json', de: 'json-formatierer', ar: 'منسق-جسون', pt: 'formatador-json' },
+  'regex-tester': { en: 'regex-tester', es: 'probador-regex', de: 'regex-tester', ar: 'اختبار-ريجكس', pt: 'testador-regex' },
+  'url-cleaner': { en: 'url-cleaner', es: 'limpiador-url', de: 'url-bereiniger', ar: 'منظف-الروابط', pt: 'limpador-url' },
+  'word-counter': { en: 'word-counter', es: 'contador-palabras', de: 'wortzaehler', ar: 'عداد-الكلمات', pt: 'contador-palavras' },
+  'case-converter': { en: 'case-converter', es: 'conversor-mayusculas', de: 'gross-klein-konverter', ar: 'محول-الحالة', pt: 'conversor-maiusculas' },
+  'base64-encode-decode': { en: 'base64-encode-decode', es: 'base64-codificar-decodificar', de: 'base64-kodieren-dekodieren', ar: 'base64-ترميز-فك', pt: 'base64-codificar-decodificar' },
+  'text-diff-checker': { en: 'text-diff-checker', es: 'comparador-texto', de: 'text-diff-pruefer', ar: 'فحص-الفروق', pt: 'comparador-texto' },
+  'name-splitter': { en: 'name-splitter', es: 'separador-nombres', de: 'namen-trennen', ar: 'فاصل-الاسماء', pt: 'separador-nomes' },
+  'qr-code-generator': { en: 'qr-code-generator', es: 'generador-qr', de: 'qr-code-generator', ar: 'مولد-كيو-ار', pt: 'gerador-qr' },
+  'password-generator': { en: 'password-generator', es: 'generador-contrasena', de: 'passwort-generator', ar: 'مولد-كلمات-المرور', pt: 'gerador-senha' },
+  'hash-generator': { en: 'hash-generator', es: 'generador-hash', de: 'hash-generator', ar: 'مولد-هاش', pt: 'gerador-hash' },
+  'whatsapp-link': { en: 'whatsapp-link', es: 'enlace-whatsapp', de: 'whatsapp-link', ar: 'رابط-واتساب', pt: 'link-whatsapp' },
+  'uuid-generator': { en: 'uuid-generator', es: 'generador-uuid', de: 'uuid-generator', ar: 'مولد-uuid', pt: 'gerador-uuid' },
+  'bmi-calculator': { en: 'bmi-calculator', es: 'calculadora-imc', de: 'bmi-rechner', ar: 'حاسبة-معدل-الكتلة', pt: 'calculadora-imc' },
+  'age-calculator': { en: 'age-calculator', es: 'calculadora-edad', de: 'altersrechner', ar: 'حاسبة-العمر', pt: 'calculadora-idade' },
+  'percentage-calculator': { en: 'percentage-calculator', es: 'calculadora-porcentaje', de: 'prozentrechner', ar: 'حاسبة-النسبة', pt: 'calculadora-porcentagem' },
+  'unit-converter': { en: 'unit-converter', es: 'conversor-unidades', de: 'einheitenumrechner', ar: 'محول-الوحدات', pt: 'conversor-unidades' },
+  'concrete-calculator': { en: 'concrete-calculator', es: 'calculadora-hormigon', de: 'betonrechner', ar: 'حاسبة-الخرسانة', pt: 'calculadora-concreto' },
+  'mileage-calculator': { en: 'mileage-calculator', es: 'calculadora-kilometraje', de: 'kilometerpauschale-rechner', ar: 'حاسبة-المسافات', pt: 'calculadora-quilometragem' },
+  'color-converter': { en: 'color-converter', es: 'conversor-colores', de: 'farbkonverter', ar: 'محول-الالوان', pt: 'conversor-cores' },
+  'stopwatch': { en: 'stopwatch', es: 'cronometro', de: 'stoppuhr', ar: 'ساعة-ايقاف', pt: 'cronometro' },
+  'pomodoro-timer': { en: 'pomodoro-timer', es: 'temporizador-pomodoro', de: 'pomodoro-timer', ar: 'مؤقت-بومودورو', pt: 'temporizador-pomodoro' },
+  'vat-calculator': { en: 'vat-calculator', es: 'calculadora-iva', de: 'mehrwertsteuer-rechner', ar: 'حاسبة-الضريبة', pt: 'calculadora-iva' },
+  'time-converter': { en: 'time-converter', es: 'conversor-tiempo', de: 'zeitrechner', ar: 'محول-الوقت', pt: 'conversor-tempo' },
+  'tip-calculator': { en: 'tip-calculator', es: 'calculadora-porcentaje', de: 'trinkgeldrechner', ar: 'حاسبة-البقشيش', pt: 'calculadora-gorjeta' },
+  'img-compress': { en: 'compress-image', es: 'comprimir-imagen', de: 'bild-komprimieren', ar: 'ضغط-صورة', pt: 'comprimir-imagem' },
+  'img-convert': { en: 'convert-image', es: 'convertir-imagen', de: 'bild-konvertieren', ar: 'تحويل-صورة', pt: 'converter-imagem' },
+  'img-resize': { en: 'resize-image', es: 'redimensionar-imagen', de: 'bild-groesse', ar: 'تغيير-حجم-صورة', pt: 'redimensionar-imagem' },
+  'img-bgremove': { en: 'remove-background', es: 'eliminar-fondo', de: 'hintergrund-entfernen', ar: 'ازالة-خلفية', pt: 'remover-fundo' },
+  'pdf-compress': { en: 'compress-pdf', es: 'comprimir-pdf', de: 'pdf-komprimieren', ar: 'ضغط-pdf', pt: 'comprimir-pdf' },
+  'pdf-merge': { en: 'merge-pdf', es: 'fusionar-pdf', de: 'pdf-zusammenfuegen', ar: 'دمج-pdf', pt: 'juntar-pdf' },
+  'pdf-convert': { en: 'pdf-to-images', es: 'pdf-a-imagenes', de: 'pdf-zu-bildern', ar: 'pdf-الى-صور', pt: 'pdf-para-imagens' },
+  'pdf-sign': { en: 'sign-pdf', es: 'firmar-pdf', de: 'pdf-signieren', ar: 'توقيع-pdf', pt: 'assinar-pdf' },
+  'pdf-unlock': { en: 'unlock-pdf', es: 'desbloquear-pdf', de: 'pdf-entsperren', ar: 'فتح-pdf', pt: 'desbloquear-pdf' },
+  'pdf-protect': { en: 'protect-pdf', es: 'proteger-pdf', de: 'pdf-schuetzen', ar: 'حماية-pdf', pt: 'proteger-pdf' },
+  'json-csv': { en: 'json-csv', es: 'json-csv', de: 'json-csv', ar: 'json-csv', pt: 'json-csv' },
+  'url-encode-decode': { en: 'url-encode-decode', es: 'url-codificar-decodificar', de: 'url-kodieren-dekodieren', ar: 'url-ترميز-فك', pt: 'url-codificar-decodificar' },
+  'qr-code': { en: 'qr-code-generator', es: 'generador-qr', de: 'qr-code-generator', ar: 'مولد-كيو-ار', pt: 'gerador-qr' },
+  'password-gen': { en: 'password-generator', es: 'generador-contrasena', de: 'passwort-generator', ar: 'مولد-كلمات-المرور', pt: 'gerador-senha' },
+}
+/** Get locale-specific slug for a base slug */
+export function getSlugForLocale(baseSlug: string, locale: string): string {
+  if (locale === 'fr') return baseSlug
+  const localeSlugs = localeSlugMap[baseSlug]
+  if (localeSlugs && localeSlugs[locale]) return localeSlugs[locale]
+  return baseSlug
+}
+
+/** Reverse lookup: locale-specific slug → base slug */
+const reverseSlugMap: Record<string, string> = {}
+for (const [baseSlug, localeMap] of Object.entries(localeSlugMap)) {
+  reverseSlugMap[baseSlug] = baseSlug
+  for (const [locale, localeSlug] of Object.entries(localeMap)) {
+    if (localeSlug !== baseSlug) {
+      reverseSlugMap[localeSlug] = baseSlug
+    }
+  }
+}
+
+/** Resolve any slug (locale-specific or base) to its base form */
+export function resolveSlugToBase(slug: string): string {
+  return reverseSlugMap[slug] || slug
+}
+
+/** Get the URL path for a tool in a specific locale (using toolId) */
+export function getPathForLocale(toolId: string, locale: string): string {
+  const entry = toolIdToPath[toolId]
+  if (!entry) return `/${locale}/${toolId}`
+  const slug = getSlugForLocale(entry.slug, locale)
+  return `/${locale}/${entry.category}/${slug}`
+}

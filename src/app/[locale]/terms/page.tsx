@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
 import TermsContent from './terms-content'
 
+export const revalidate = 86400
 const BASE_URL = 'https://utilyx.app'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

@@ -11,6 +11,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 })
 
+// Prevent prerendering errors with global-error.tsx in Next.js 16
+export const dynamic = 'force-dynamic'
 
 export default function RootLayout({
   children,
