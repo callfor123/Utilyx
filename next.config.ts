@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
+import path from 'path';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+
+const nextReactDir = path.dirname(require.resolve('next/dist/compiled/react/package.json'));
+const nextReactDomDir = path.dirname(require.resolve('next/dist/compiled/react-dom/package.json'));
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -9,12 +13,19 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
+  turbopack: {
+    resolveAlias: {
+      'react': nextReactDir,
+      'react-dom': nextReactDomDir,
+      'react/jsx-runtime': path.join(nextReactDir, 'jsx-runtime.js'),
+      'react/jsx-dev-runtime': path.join(nextReactDir, 'jsx-dev-runtime.js'),
+    },
+  },
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
-          // Security headers
           {
             key: 'X-Frame-Options',
             value: 'DENY',
@@ -35,12 +46,10 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
           },
-          // HSTS - only in production with HTTPS
           process.env.NODE_ENV === 'production' && {
             key: 'Strict-Transport-Security',
             value: 'max-age=63072000; includeSubDomains; preload',
           },
-          // CSP
           {
             key: 'Content-Security-Policy',
             value: "default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://pagead2.googlesyndication.com https://www.google.com https://www.gstatic.com https://img.youtube.com; font-src 'self' data:; connect-src 'self' https://pagead2.googlesyndication.com https://www.google-analytics.com https://api.remove.bg; frame-src 'self' https://googleads.g.doubleclick.net;",

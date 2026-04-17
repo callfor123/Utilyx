@@ -2,9 +2,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
-import { seoRegistry, getToolBySlug, validCategories } from '@/lib/seo-registry'
+import { seoRegistry, getToolBySlug, validCategories, getSlugForLocale, resolveSlugToBase } from '@/lib/seo-registry'
 import { ToolRenderer } from '@/components/tool-renderer'
-import { AdInArticle, AdHeader, AdMidContent, AdFooter } from '@/components/ads/ToolPageAds'
+import { AdHeader, AdMidContent, AdFooter } from '@/components/ads/AdBanner'
+import { AdInArticle } from '@/components/adsense/ad-unit'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
 
 // Skip static prerendering — pages use next-intl context which requires request-time rendering
@@ -16,15 +17,14 @@ type Props = {
   params: Promise<{ locale: string; category: string; slug: string }>
 }
 
-/* ── Category display labels ─────────────────────────────────────────── */
-const categoryLabels: Record<string, string> = {
-  pdf: 'Outils PDF',
-  image: 'Outils Image',
-  video: 'Outils Vidéo',
-  'dev-seo': 'Dev & SEO',
-  'text-tools': 'Outils Texte',
-  generators: 'Générateurs',
-  calculators: 'Calculateurs',
+/* ── Category labels per locale ─────────────────────────────────────── */
+const categoryLabels: Record<string, Record<string, string>> = {
+  fr: { pdf: 'Outils PDF', image: 'Outils Image', video: 'Outils Vidéo', 'dev-seo': 'Dev & SEO', 'text-tools': 'Outils Texte', generators: 'Générateurs', calculators: 'Calculateurs' },
+  en: { pdf: 'PDF Tools', image: 'Image Tools', video: 'Video Tools', 'dev-seo': 'Dev & SEO', 'text-tools': 'Text Tools', generators: 'Generators', calculators: 'Calculators' },
+  es: { pdf: 'Herramientas PDF', image: 'Herramientas de Imagen', video: 'Herramientas de Vídeo', 'dev-seo': 'Dev & SEO', 'text-tools': 'Herramientas de Texto', generators: 'Generadores', calculators: 'Calculadoras' },
+  de: { pdf: 'PDF-Werkzeuge', image: 'Bild-Werkzeuge', video: 'Video-Werkzeuge', 'dev-seo': 'Dev & SEO', 'text-tools': 'Text-Werkzeuge', generators: 'Generatoren', calculators: 'Rechner' },
+  ar: { pdf: 'أدوات PDF', image: 'أدوات الصور', video: 'أدوات الفيديو', 'dev-seo': 'Dev & SEO', 'text-tools': 'أدوات النص', generators: 'مولدات', calculators: 'حاسبات' },
+  pt: { pdf: 'Ferramentas PDF', image: 'Ferramentas de Imagem', video: 'Ferramentas de Vídeo', 'dev-seo': 'Dev & SEO', 'text-tools': 'Ferramentas de Texto', generators: 'Geradores', calculators: 'Calculadoras' },
 }
 
 /* ── Content labels per locale ──────────────────────────────────────── */
@@ -60,7 +60,7 @@ export function generateStaticParams() {
   const params: { locale: string; category: string; slug: string }[] = []
   for (const locale of routing.locales) {
     for (const entry of Object.values(seoRegistry)) {
-      params.push({ locale, category: entry.category, slug: entry.slug })
+      params.push({ locale, category: entry.category, slug: getSlugForLocale(entry.slug, locale) })
     }
   }
   return params
@@ -70,22 +70,24 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, category, slug } = await params
 
-  const tool = getToolBySlug(slug)
+  const baseSlug = resolveSlugToBase(slug)
+  const tool = getToolBySlug(baseSlug)
   if (!tool || tool.category !== category) return {}
 
-  const url = `${BASE_URL}/${locale}/${category}/${slug}`
+  const localeSlug = getSlugForLocale(tool.slug, locale)
+  const url = `${BASE_URL}/${locale}/${category}/${localeSlug}`
+
+  const hreflangLangs: Record<string, string> = {}
+  for (const l of routing.locales) {
+    hreflangLangs[l] = `${BASE_URL}/${l}/${category}/${getSlugForLocale(tool.slug, l)}`
+  }
 
   return {
     title: tool.title,
     description: tool.desc,
     alternates: {
       canonical: url,
-      languages: {
-        'x-default': `${BASE_URL}/fr/${category}/${slug}`,
-        ...Object.fromEntries(
-          routing.locales.map((l) => [l, `${BASE_URL}/${l}/${category}/${slug}`])
-        ),
-      },
+      languages: { 'x-default': `${BASE_URL}/fr/${category}/${tool.slug}`, ...hreflangLangs },
     },
     openGraph: {
       type: 'website',
@@ -122,10 +124,13 @@ export default async function ToolPage({ params }: Props) {
   if (!routing.locales.includes(locale as any)) notFound()
   if (!validCategories.includes(category)) notFound()
 
-  const tool = getToolBySlug(slug)
+  const baseSlug = resolveSlugToBase(slug)
+  const tool = getToolBySlug(baseSlug)
   if (!tool || tool.category !== category) notFound()
 
-  const pageUrl = `${BASE_URL}/${locale}/${category}/${slug}`
+  const localeSlug = getSlugForLocale(tool.slug, locale)
+  const pageUrl = `${BASE_URL}/${locale}/${category}/${localeSlug}`
+  const catLabel = (categoryLabels[locale] || categoryLabels.fr)[category] || category
   const howToLabel = howToLabels[locale] || howToLabels.fr
   const faqLabel = faqLabels[locale] || faqLabels.fr
   const relatedLabel = relatedLabels[locale] || relatedLabels.fr
@@ -217,7 +222,7 @@ export default async function ToolPage({ params }: Props) {
             <Link href={`/${locale}`} className="hover:text-foreground transition-colors">Utilyx</Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="text-muted-foreground">
-              {categoryLabels[category] || category}
+              {catLabel}
             </span>
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="text-foreground font-medium truncate max-w-[200px]">{tool.h1}</span>
@@ -284,10 +289,10 @@ export default async function ToolPage({ params }: Props) {
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">{relatedLabel}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {relatedTools.map((rt) => (
+                {relatedTools.map((rt: any) => (
                   <Link
                     key={rt.slug}
-                    href={`/${locale}/${rt.category}/${rt.slug}`}
+                    href={`/${locale}/${rt.category}/${getSlugForLocale(resolveSlugToBase(rt.slug), locale)}`}
                     className="block p-4 border border-border/50 rounded-xl hover:bg-muted/30 transition-colors group"
                   >
                     <h3 className="font-medium text-sm group-hover:text-primary transition-colors">{rt.h1}</h3>
@@ -306,11 +311,11 @@ export default async function ToolPage({ params }: Props) {
         <footer className="border-t border-border/50 mt-auto">
           <div className="container mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Utilyx — Tous droits réservés
+              © {new Date().getFullYear()} Utilyx — {locale === 'en' ? 'All rights reserved' : locale === 'es' ? 'Todos los derechos reservados' : locale === 'de' ? 'Alle Rechte vorbehalten' : locale === 'ar' ? 'جميع الحقوق محفوظة' : locale === 'pt' ? 'Todos os direitos reservados' : 'Tous droits réservés'}
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><Shield className="h-3 w-3 text-emerald-500" /> Données 100 % locales</span>
-              <span className="flex items-center gap-1"><Zap className="h-3 w-3 text-amber-500" /> Sans inscription</span>
+              <span className="flex items-center gap-1"><Shield className="h-3 w-3 text-emerald-500" /> {locale === 'en' ? '100% local data' : locale === 'es' ? 'Datos 100% locales' : locale === 'de' ? '100% lokale Daten' : locale === 'ar' ? 'بيانات محلية 100%' : locale === 'pt' ? 'Dados 100% locais' : 'Données 100 % locales'}</span>
+              <span className="flex items-center gap-1"><Zap className="h-3 w-3 text-amber-500" /> {locale === 'en' ? 'No signup required' : locale === 'es' ? 'Sin registro' : locale === 'de' ? 'Ohne Anmeldung' : locale === 'ar' ? 'بدون تسجيل' : locale === 'pt' ? 'Sem cadastro' : 'Sans inscription'}</span>
             </div>
           </div>
         </footer>

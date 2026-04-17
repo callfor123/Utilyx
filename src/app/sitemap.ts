@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { seoRegistry } from '@/lib/seo-registry'
+import { seoRegistry, getSlugForLocale } from '@/lib/seo-registry'
 import { routing } from '@/i18n/routing'
 
 const BASE_URL = 'https://utilyx.app'
@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const tool of Object.values(seoRegistry)) {
       entries.push({
-        url: `${BASE_URL}/${locale}/${tool.category}/${tool.slug}`,
+        url: `${BASE_URL}/${locale}/${tool.category}/${getSlugForLocale(tool.slug, locale)}`,
         lastModified: now,
         changeFrequency: 'monthly',
         priority: locale === 'fr' ? 0.9 : 0.7,

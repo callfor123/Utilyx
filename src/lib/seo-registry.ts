@@ -651,3 +651,39 @@ export const validCategories = ['pdf', 'image', 'video', 'dev-seo', 'text-tools'
 export const toolIdToPath: Record<string, { category: string; slug: string }> = Object.fromEntries(
   Object.values(seoRegistry).map((t) => [t.toolId, { category: t.category, slug: t.slug }])
 )
+
+/** Get the locale-specific path for a tool, handling slug translations */
+export function getPathForLocale(toolId: string, locale: string): { category: string; slug: string } | undefined {
+  const path = toolIdToPath[toolId]
+  if (!path) return undefined
+  if (locale === 'fr') return path
+  // For English, map French slugs to English slugs via slug-map
+  if (locale === 'en') {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const slugMap: Record<string, string> = require('./seo-registries/slug-map.json')
+    const enSlug = slugMap[path.slug] || path.slug
+    return { category: path.category, slug: enSlug }
+  }
+  // For other locales, use French slugs (same as fr for now)
+  return path
+}
+
+/** ── Locale-slug resolution (EN gets English slugs) ──────────────── */
+import slugMapData from './seo-registries/slug-map.json'
+const slugMap = slugMapData as Record<string, string>
+
+const reverseSlugMap: Record<string, string> = {}
+for (const [base, en] of Object.entries(slugMap)) {
+  reverseSlugMap[en] = base
+}
+
+/** Get the slug for a given locale from the base (FR) slug */
+export function getSlugForLocale(baseSlug: string, locale: string): string {
+  if (locale === 'en') return slugMap[baseSlug] || baseSlug
+  return baseSlug
+}
+
+/** Reverse: given a slug that might be EN, resolve to the base (FR) slug */
+export function resolveSlugToBase(slug: string): string {
+  return reverseSlugMap[slug] || slug
+}

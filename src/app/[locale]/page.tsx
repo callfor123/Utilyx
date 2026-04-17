@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl'
 import { useRouter, usePathname } from 'next/navigation'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
 import { routing, type Locale } from '@/i18n/routing'
-import { toolIdToPath } from '@/lib/seo-registry'
+import { toolIdToPath, getPathForLocale } from '@/lib/seo-registry'
 import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom } from '@/components/adsense'
 
 
@@ -517,7 +517,7 @@ function ToolQuickAccess({
 }) {
   const pathname = usePathname()
   const locale = pathname.split('/')[1] || 'fr'
-  const path = toolIdToPath[tool.id]
+  const path = getPathForLocale(tool.id, locale)
   const href = path ? `/${locale}/${path.category}/${path.slug}` : `/${locale}`
 
   return (
@@ -853,7 +853,7 @@ function FooterColumn({ moduleId, title }: { moduleId: ModuleId; title: string }
       <h3 className="text-sm font-semibold mb-3">{title}</h3>
       <ul className="space-y-2">
         {mod.tools.map(tool => {
-          const path = toolIdToPath[tool.id]
+          const path = getPathForLocale(tool.id, locale)
           return (
             <li key={tool.id}>
               <Link
