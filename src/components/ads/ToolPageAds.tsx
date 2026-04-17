@@ -15,12 +15,8 @@ const AdFooter = dynamic(
   { ssr: false }
 )
 const AdInArticle = dynamic(
-  () => import('@/components/adsense').then(m => ({ default: m.AdInArticle })),
-  { ssr: false }
-)
-const AdToolPage = dynamic(
-  () => import('@/components/adsense').then(m => ({ default: m.ToolPageAdSections })),
+  () => import('@/components/adsense/ad-unit').then(m => ({ default: m.AdInArticle })),
   { ssr: false }
 )
 
-export { AdHeader, AdMidContent, AdFooter, AdInArticle, AdToolPage }
+export { AdHeader, AdMidContent, AdFooter, AdInArticle }
