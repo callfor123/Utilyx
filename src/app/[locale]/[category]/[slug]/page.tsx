@@ -3,12 +3,13 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
 import { seoRegistry, getToolBySlug, validCategories, getSlugForLocale, resolveSlugToBase } from '@/lib/seo-registry'
+import { getLocalizedSeo } from '@/lib/seo-i18n-registry'
 import { ToolRenderer } from '@/components/tool-renderer'
 import { AdHeader, AdMidContent, AdFooter } from '@/components/ads/AdBanner'
 import { AdInArticle } from '@/components/adsense/ad-unit'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
 
-// Skip static prerendering — pages use next-intl context which requires request-time rendering
+// Force dynamic rendering — tool pages use next-intl context which is not available during SSG
 export const dynamic = 'force-dynamic'
 
 const BASE_URL = 'https://utilyx.app'
@@ -74,6 +75,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tool = getToolBySlug(baseSlug)
   if (!tool || tool.category !== category) return {}
 
+  const locTool = getLocalizedSeo(baseSlug, locale, tool)
+
   const localeSlug = getSlugForLocale(tool.slug, locale)
   const url = `${BASE_URL}/${locale}/${category}/${localeSlug}`
 
@@ -83,8 +86,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: tool.title,
-    description: tool.desc,
+    title: locTool.title,
+    description: locTool.desc,
     alternates: {
       canonical: url,
       languages: { 'x-default': `${BASE_URL}/fr/${category}/${tool.slug}`, ...hreflangLangs },
@@ -92,16 +95,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       type: 'website',
       url,
-      title: tool.title,
-      description: tool.desc,
+      title: locTool.title,
+      description: locTool.desc,
       siteName: 'Utilyx',
       locale: locale === 'ar' ? 'ar_SA' : locale === 'pt' ? 'pt_BR' : `${locale}_${locale.toUpperCase()}`,
       images: [{ url: `${BASE_URL}/og-image.png`, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: tool.title,
-      description: tool.desc,
+      title: locTool.title,
+      description: locTool.desc,
     },
     robots: {
       index: true,
@@ -128,6 +131,8 @@ export default async function ToolPage({ params }: Props) {
   const tool = getToolBySlug(baseSlug)
   if (!tool || tool.category !== category) notFound()
 
+  const locTool = getLocalizedSeo(baseSlug, locale, tool)
+
   const localeSlug = getSlugForLocale(tool.slug, locale)
   const pageUrl = `${BASE_URL}/${locale}/${category}/${localeSlug}`
   const catLabel = (categoryLabels[locale] || categoryLabels.fr)[category] || category
@@ -139,9 +144,9 @@ export default async function ToolPage({ params }: Props) {
   const webAppLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: tool.title,
+    name: locTool.title,
     url: pageUrl,
-    description: tool.desc,
+    description: locTool.desc,
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any (Web Browser)',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
@@ -150,11 +155,11 @@ export default async function ToolPage({ params }: Props) {
   }
 
   /* ── JSON-LD: FAQPage ── */
-  const faqLd = tool.faq.length > 0
+  const faqLd = locTool.faq.length > 0
     ? {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
-        mainEntity: tool.faq.map((f) => ({
+        mainEntity: locTool.faq.map((f) => ({
           '@type': 'Question',
           name: f.q,
           acceptedAnswer: { '@type': 'Answer', text: f.a },
@@ -163,13 +168,13 @@ export default async function ToolPage({ params }: Props) {
     : null
 
   /* ── JSON-LD: HowTo ── */
-  const howToLd = tool.howTo.length > 0
+  const howToLd = locTool.howTo.length > 0
     ? {
         '@context': 'https://schema.org',
         '@type': 'HowTo',
-        name: tool.h1,
-        description: tool.intro,
-        step: tool.howTo.map((text, i) => ({
+        name: locTool.h1,
+        description: locTool.intro,
+        step: locTool.howTo.map((text, i) => ({
           '@type': 'HowToStep',
           position: i + 1,
           name: text,
@@ -184,15 +189,20 @@ export default async function ToolPage({ params }: Props) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Utilyx', item: `${BASE_URL}/${locale}` },
-      { '@type': 'ListItem', position: 2, name: categoryLabels[category] || category, item: `${BASE_URL}/${locale}/${category}` },
-      { '@type': 'ListItem', position: 3, name: tool.h1 },
+      { '@type': 'ListItem', position: 2, name: catLabel, item: `${BASE_URL}/${locale}/${category}` },
+      { '@type': 'ListItem', position: 3, name: locTool.h1 },
     ],
   }
 
   /* ── Related tools ── */
   const relatedTools = tool.relatedSlugs
-    .map((s) => getToolBySlug(s))
-    .filter(Boolean) as NonNullable<ReturnType<typeof getToolBySlug>>[]
+    .map((s) => {
+      const rt = getToolBySlug(s)
+      if (!rt) return null
+      const locRt = getLocalizedSeo(s, locale, rt)
+      return { slug: s, category: rt.category, h1: locRt.h1, desc: locRt.desc }
+    })
+    .filter(Boolean) as { slug: string; category: string; h1: string; desc: string }[]
 
   return (
     <>
@@ -225,13 +235,13 @@ export default async function ToolPage({ params }: Props) {
               {catLabel}
             </span>
             <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-foreground font-medium truncate max-w-[200px]">{tool.h1}</span>
+            <span className="text-foreground font-medium truncate max-w-[200px]">{locTool.h1}</span>
           </nav>
 
           {/* H1 + intro (server-rendered, visible to Google) */}
           <header className="mb-8">
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">{tool.h1}</h1>
-            <p className="text-muted-foreground leading-relaxed max-w-3xl">{tool.intro}</p>
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">{locTool.h1}</h1>
+            <p className="text-muted-foreground leading-relaxed max-w-3xl">{locTool.intro}</p>
             <div className="flex items-center gap-3 mt-4 text-xs text-muted-foreground">
               <span className="flex items-center gap-1"><Shield className="h-3.5 w-3.5 text-emerald-500" /> 100% {locale === 'en' ? 'private' : locale === 'es' ? 'privado' : locale === 'de' ? 'privat' : locale === 'ar' ? 'خاص' : locale === 'pt' ? 'privado' : 'privé'}</span>
               <span className="flex items-center gap-1"><Zap className="h-3.5 w-3.5 text-amber-500" /> {locale === 'en' ? 'Free, no signup' : locale === 'es' ? 'Gratis, sin registro' : locale === 'de' ? 'Kostenlos, ohne Anmeldung' : locale === 'ar' ? 'مجاني، بدون تسجيل' : locale === 'pt' ? 'Grátis, sem cadastro' : 'Gratuit, sans inscription'}</span>
@@ -250,11 +260,11 @@ export default async function ToolPage({ params }: Props) {
           <AdMidContent className="my-8" />
 
           {/* ── How To (server-rendered SEO content) ── */}
-          {tool.howTo.length > 0 && (
+          {locTool.howTo.length > 0 && (
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">{howToLabel}</h2>
               <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
-                {tool.howTo.map((step, i) => (
+                {locTool.howTo.map((step, i) => (
                   <li key={i} className="leading-relaxed">{step}</li>
                 ))}
               </ol>
@@ -262,16 +272,16 @@ export default async function ToolPage({ params }: Props) {
           )}
 
           {/* ── Ad: In-article ── */}
-          {tool.howTo.length > 0 && tool.faq.length > 0 && (
+          {locTool.howTo.length > 0 && locTool.faq.length > 0 && (
             <AdInArticle className="mb-8" />
           )}
 
           {/* ── FAQ (server-rendered SEO content) ── */}
-          {tool.faq.length > 0 && (
+          {locTool.faq.length > 0 && (
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-6">{faqLabel}</h2>
               <div className="space-y-4">
-                {tool.faq.map((item, i) => (
+                {locTool.faq.map((item, i) => (
                   <details key={i} className="group border border-border/50 rounded-xl p-4 open:bg-muted/30 transition-colors" open={i === 0}>
                     <summary className="font-medium cursor-pointer list-none flex items-center justify-between">
                       <span>{item.q}</span>

@@ -5,6 +5,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
 import { AdSenseScript } from "@/components/adsense/adsense-provider";
+import { InvalidClickProtection } from "@/components/adsense/invalid-click-protection";
+import { AdBlockerDetector } from "@/components/adsense/ad-blocker-detector";
 import { Analytics } from "@vercel/analytics/react";
 import { CookieConsentBanner } from "@/components/adsense/cookie-consent";
 import { SetLocaleAttrs } from "@/components/i18n/set-locale-attrs";
@@ -241,6 +243,8 @@ export default async function LocaleLayout({ children, params }: Props) {
         <NextIntlClientProvider messages={messages}>
           {children}
           <CookieConsentBanner />
+          <InvalidClickProtection />
+          <AdBlockerDetector />
         </NextIntlClientProvider>
       <Toaster />
       </ThemeProvider>

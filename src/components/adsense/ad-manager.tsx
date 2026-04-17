@@ -1,8 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom } from './ad-unit'
-import { AdSenseScript } from './adsense-provider'
 import { AdBlockerDetector } from './ad-blocker-detector'
 import { InvalidClickProtection } from './invalid-click-protection'
 
@@ -36,7 +34,6 @@ export function AdSenseManager({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <AdSenseScript />
       <InvalidClickProtection />
       {children}
       {showSticky && <AdStickyBottom />}
