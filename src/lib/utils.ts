@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { clsx, type ClassValue } from 'clsx'
+import { trackDownload } from '@/lib/analytics'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
@@ -23,6 +24,8 @@ export function downloadBlob(blob: Blob, filename: string) {
   a.click()
   document.body.removeChild(a)
   URL.revokeObjectURL(url)
+  const ext = filename.split('.').pop()
+  trackDownload('unknown', ext)
 }
 
 export function downloadDataUrl(dataUrl: string, filename: string) {

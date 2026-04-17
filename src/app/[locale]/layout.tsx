@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
 import { AdSenseScript } from "@/components/adsense/adsense-provider";
 import { Analytics } from "@vercel/analytics/react";
+import { CookieConsentBanner } from "@/components/adsense/cookie-consent";
 import { SetLocaleAttrs } from "@/components/i18n/set-locale-attrs";
 
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
@@ -236,9 +237,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         <AdSenseScript />
         <NextIntlClientProvider messages={messages}>
           {children}
+          <CookieConsentBanner />
         </NextIntlClientProvider>
-      </ThemeProvider>
       <Toaster />
+      </ThemeProvider>
       <Analytics />
     </>
   );

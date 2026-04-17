@@ -4,8 +4,11 @@ import type { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
 import { seoRegistry, getToolBySlug, validCategories } from '@/lib/seo-registry'
 import { ToolRenderer } from '@/components/tool-renderer'
-import { AdInArticle, ToolPageAdSections as AdToolPage } from '@/components/adsense'
+import { AdInArticle, AdHeader, AdMidContent, AdFooter } from '@/components/ads/tool-page-ads-ssr'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
+
+// Skip static prerendering — pages use next-intl context which requires request-time rendering
+export const dynamic = 'force-dynamic'
 
 const BASE_URL = 'https://utilyx.app'
 
@@ -235,8 +238,11 @@ export default async function ToolPage({ params }: Props) {
             <ToolRenderer toolId={tool.toolId} />
           </section>
 
-          {/* ── Ad: Tool page banner ── */}
-          <AdToolPage className="mb-8" />
+          {/* ── Ad: Header leaderboard ── */}
+          <AdHeader className="mb-6 hidden sm:flex" />
+
+          {/* ── Ad: Mid-content (between tool and result) ── */}
+          <AdMidContent className="my-8" />
 
           {/* ── How To (server-rendered SEO content) ── */}
           {tool.howTo.length > 0 && (
@@ -292,6 +298,9 @@ export default async function ToolPage({ params }: Props) {
             </section>
           )}
         </main>
+
+        {/* ── Ad: Footer banner ── */}
+        <AdFooter className="my-6" />
 
         {/* ── Footer ── */}
         <footer className="border-t border-border/50 mt-auto">
