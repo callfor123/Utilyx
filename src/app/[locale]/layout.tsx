@@ -14,8 +14,8 @@ import { SetLocaleAttrs } from "@/components/i18n/set-locale-attrs";
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 
-// ISR: revalidate static pages every 24h for SEO performance
-export const revalidate = 86400
+// Force dynamic rendering — avoids prerendering useContext errors with next-intl + Next.js 16
+export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ locale: string }>;
