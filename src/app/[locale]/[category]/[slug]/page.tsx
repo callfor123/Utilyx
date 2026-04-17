@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { routing } from '@/i18n/routing'
 import { seoRegistry, getToolBySlug, validCategories } from '@/lib/seo-registry'
 import { ToolRenderer } from '@/components/tool-renderer'
-import { AdInArticle, AdHeader, AdMidContent, AdFooter } from '@/components/ads/tool-page-ads-ssr'
+import { AdInArticle, AdHeader, AdMidContent, AdFooter } from '@/components/ads/ToolPageAds'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
 
 // Skip static prerendering — pages use next-intl context which requires request-time rendering
