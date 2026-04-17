@@ -262,6 +262,14 @@
     "vat-calculator": {
       "label": "Calculadora de IVA",
       "description": "Calcular valor líquido, bruto e IVA"
+    },
+    "random-number-generator": {
+      "label": "Gerador de Números Aleatórios",
+      "description": "Gerar números aleatórios dentro de um intervalo definido"
+    },
+    "tip-calculator": {
+      "label": "Calculadora de Gorjetas",
+      "description": "Calcular gorjetas e dividir a conta"
     }
   },
   "Footer": {

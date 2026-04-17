@@ -262,6 +262,14 @@
     "vat-calculator": {
       "label": "Calculateur TVA",
       "description": "Calculer le montant HT, TTC et la TVA"
+    },
+    "random-number-generator": {
+      "label": "Générateur de Nombres Aléatoires",
+      "description": "Générer des nombres aléatoires dans une plage définie"
+    },
+    "tip-calculator": {
+      "label": "Calculateur de Pourboire",
+      "description": "Calculer le pourboire et répartir la note"
     }
   },
   "Footer": {

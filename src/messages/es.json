@@ -262,6 +262,14 @@
     "vat-calculator": {
       "label": "Calculadora de IVA",
       "description": "Calcular el importe neto, bruto e IVA"
+    },
+    "random-number-generator": {
+      "label": "Generador de Números Aleatorios",
+      "description": "Generar números aleatorios en un rango definido"
+    },
+    "tip-calculator": {
+      "label": "Calculadora de Propinas",
+      "description": "Calcular propinas y dividir la cuenta"
     }
   },
   "Footer": {

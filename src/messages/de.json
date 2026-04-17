@@ -262,6 +262,14 @@
     "vat-calculator": {
       "label": "MwSt-Rechner",
       "description": "Netto-, Brutto- und MwSt-Betrag berechnen"
+    },
+    "random-number-generator": {
+      "label": "Zufallszahlengenerator",
+      "description": "Zufallszahlen in einem definierten Bereich generieren"
+    },
+    "tip-calculator": {
+      "label": "Trinkgeldrechner",
+      "description": "Trinkgeld berechnen und Rechnung aufteilen"
     }
   },
   "Footer": {

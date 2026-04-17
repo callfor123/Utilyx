@@ -262,6 +262,14 @@
     "vat-calculator": {
       "label": "VAT Calculator",
       "description": "Calculate net, gross and VAT amounts"
+    },
+    "random-number-generator": {
+      "label": "Random Number Generator",
+      "description": "Generate random numbers within a defined range"
+    },
+    "tip-calculator": {
+      "label": "Tip Calculator",
+      "description": "Calculate tips and split the bill"
     }
   },
   "Footer": {

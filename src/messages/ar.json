@@ -262,6 +262,14 @@
     "vat-calculator": {
       "label": "حاسبة الضريبة",
       "description": "حساب المبلغ الصافي والإجمالي والضريبة"
+    },
+    "random-number-generator": {
+      "label": "مولد أرقام عشوائية",
+      "description": "توليد أرقام عشوائية ضمن نطاق محدد"
+    },
+    "tip-calculator": {
+      "label": "حاسبة الإكراميات",
+      "description": "حساب الإكراميات وتقسيم الفاتورة"
     }
   },
   "Footer": {
