@@ -15,6 +15,12 @@ import { SetLocaleAttrs } from "@/components/i18n/set-locale-attrs";
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 
+// Prevent static prerendering — the locale layout uses client-side context
+// providers (ThemeProvider, NextIntlClientProvider) that crash during SSG
+// because React context is null when Next.js 16 prerenders pages like
+// /_global-error through this layout tree.
+export const dynamic = 'force-dynamic'
+
 // ISR: revalidate every 24h for SEO + AdSense indexing
 export const revalidate = 86400
 
@@ -188,7 +194,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export const dynamic = 'force-dynamic'
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
 

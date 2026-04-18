@@ -10,11 +10,9 @@ const notFoundMessages: Record<string, { title: string; description: string; hom
   pt: { title: 'Página não encontrada', description: 'A página que procura não existe ou foi movida.', home: 'Voltar ao início' },
 }
 
-export default function NotFound({ params }: { params: Promise<{ locale: string }> }) {
-  // Fallback to French if locale cannot be determined
-  const locale = typeof window !== 'undefined'
-    ? window.location.pathname.split('/')[1] || 'fr'
-    : 'fr'
+export default async function NotFound({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale: rawLocale } = await params
+  const locale = routing.locales.includes(rawLocale as any) ? rawLocale : 'fr'
   const msgs = notFoundMessages[locale] || notFoundMessages.fr
 
   return (
