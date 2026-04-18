@@ -43,6 +43,12 @@ export function AdBlockerDetector() {
   const msg = messages[locale] || messages.fr
 
   useEffect(() => {
+    const dismissedSession = sessionStorage.getItem('utilyx-adblock-dismissed')
+    if (dismissedSession === 'true') {
+      setDismissed(true)
+      return
+    }
+
     const checkAdBlock = async () => {
       try {
         const response = await fetch(
@@ -72,12 +78,6 @@ export function AdBlockerDetector() {
       }
 
       document.body.removeChild(testAd)
-    }
-
-    const dismissedSession = sessionStorage.getItem('utilyx-adblock-dismissed')
-    if (dismissedSession === 'true') {
-      setDismissed(true)
-      return
     }
 
     const timer = setTimeout(checkAdBlock, 2000)

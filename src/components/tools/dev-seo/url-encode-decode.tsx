@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import { Link, Copy, RotateCcw } from 'lucide-react'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/lib/utils'
@@ -11,25 +11,18 @@ import { Textarea } from '@/components/ui/textarea'
 
 export function UrlEncodeDecode() {
   const [input, setInput] = useState('')
-  const [encoded, setEncoded] = useState('')
-  const [decoded, setDecoded] = useState('')
-  const [error, setError] = useState('')
 
-  useEffect(() => {
-    if (!input) { setEncoded(''); setDecoded(''); setError(''); return }
+  const { encoded, decoded, error } = useMemo(() => {
+    if (!input) return { encoded: '', decoded: '', error: '' }
     try {
-      setEncoded(encodeURIComponent(input))
+      const enc = encodeURIComponent(input)
       try {
-        setDecoded(decodeURIComponent(input))
-        setError('')
+        return { encoded: enc, decoded: decodeURIComponent(input), error: '' }
       } catch {
-        setDecoded('')
-        setError("L'entrée n'est pas une URL encodée valide")
+        return { encoded: enc, decoded: '', error: "L'entrée n'est pas une URL encodée valide" }
       }
     } catch {
-      setError('Erreur lors de l\'encodage')
-      setEncoded('')
-      setDecoded('')
+      return { encoded: '', decoded: '', error: "Erreur lors de l'encodage" }
     }
   }, [input])
 

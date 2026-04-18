@@ -42,21 +42,31 @@ export function QrCodeGenerator() {
     }
   }, [tab, url, text, wifiSsid, wifiPass, wifiEnc, email, phone])
 
+  const qrValue = getQrValue()
+
   useEffect(() => {
-    const val = getQrValue()
-    if (!val) { setQrDataUrl(''); return }
+    if (!qrValue) {
+      setQrDataUrl('')
+      return
+    }
     const canvas = canvasRef.current
     if (!canvas) return
-    QRCode.toCanvas(canvas, val, {
+    let cancelled = false
+    QRCode.toCanvas(canvas, qrValue, {
       width: 280,
       margin: 2,
       color: { dark: '#0f172a', light: '#ffffff' },
     }).then(() => {
-      setQrDataUrl(canvas.toDataURL('image/png'))
+      if (!cancelled) {
+        setQrDataUrl(canvas.toDataURL('image/png'))
+      }
     }).catch(() => {
-      toast.error('Erreur de génération du QR code')
+      if (!cancelled) {
+        toast.error('Erreur de génération du QR code')
+      }
     })
-  }, [getQrValue])
+    return () => { cancelled = true }
+  }, [qrValue])
 
   const handleDownload = () => {
     if (!qrDataUrl) return

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback, useMemo, useEffect } from 'react'
 import { KeyRound, Copy, RefreshCw, Shield, ShieldCheck, ShieldAlert, ShieldX } from 'lucide-react'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/lib/utils'
@@ -53,7 +53,7 @@ export function PasswordGenerator() {
     setPasswords(pws)
   }, [length, upper, lower, numbers, symbols])
 
-  useMemo(() => { generate() }, [generate])
+  useEffect(() => { generate() }, [generate])
 
   const strength = useMemo(() => getStrength(passwords[0] || ''), [passwords])
 

@@ -1,15 +1,11 @@
 "use client"
 
 // global-error.tsx must be a Client Component in App Router.
-// We still use a plain <a> link for a robust fallback UX.
+// It must render its own <html> and <body> because it replaces the root layout.
 
 export default function GlobalError() {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>500 — Internal Error</title>
-      </head>
       <body style={{
         margin: 0,
         display: 'flex',

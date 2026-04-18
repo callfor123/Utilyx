@@ -43,19 +43,13 @@ export function JsonFormatter() {
     }
   }
 
-  const treeView = (() => {
-    if (!output) return null
-    try {
-      const parsed = JSON.parse(output)
-      return (
-        <div className="font-mono text-sm space-y-1 max-h-[400px] overflow-y-auto scrollbar-thin">
-          {renderTree(parsed, 0)}
-        </div>
-      )
-    } catch {
-      return null
-    }
-  })()
+  const parsedTree = output ? (() => { try { return JSON.parse(output) } catch { return null } })() : null
+
+  const treeView = parsedTree ? (
+    <div className="font-mono text-sm space-y-1 max-h-[400px] overflow-y-auto scrollbar-thin">
+      {renderTree(parsedTree, 0)}
+    </div>
+  ) : null
 
   return (
     <div className="space-y-6">
