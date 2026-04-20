@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useCallback } from 'react'
 
-export function Stopwatch() {
+export default function Stopwatch() {
   const [time, setTime] = useState(0)
   const [running, setRunning] = useState(false)
   const [laps, setLaps] = useState<number[]>([])

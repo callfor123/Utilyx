@@ -16,7 +16,7 @@ const PHASE_DURATIONS: Record<Phase, number> = {
   longBreak: 15 * 60,
 }
 
-export function PomodoroTimer() {
+export default function PomodoroTimer() {
   const [phase, setPhase] = useState<Phase>('work')
   const [timeLeft, setTimeLeft] = useState(PHASE_DURATIONS.work)
   const [running, setRunning] = useState(false)
