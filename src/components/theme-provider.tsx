@@ -1,21 +1,15 @@
 'use client'
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
+
+// Dynamically import ThemeProvider to avoid SSR/prerendering issues.
+// next-themes uses React context that returns null during static
+// prerendering (e.g. /_global-error page), causing build failures.
+const NextThemesProvider = dynamic(
+  () => import('next-themes').then((mod) => mod.ThemeProvider),
+  { ssr: false }
+)
 
 export function ThemeProvider({ children, ...props }: React.ComponentProps<typeof NextThemesProvider>) {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // During SSR/prerendering, render children without the theme provider
-  // to avoid useContext null errors from next-themes in Next.js 16
-  // static generation (e.g. global-error page prerendering).
-  if (!mounted) {
-    return <>{children}</>
-  }
-
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }
