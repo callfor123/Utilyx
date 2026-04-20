@@ -4,8 +4,8 @@
 // It replaces the root layout entirely when a critical error occurs.
 // This page must NOT use any context providers (ThemeProvider, NextIntl, etc.)
 // because they are unavailable during prerendering of /_global-error.
-
-export const dynamic = 'force-dynamic'
+// Do NOT export `dynamic` here — Next.js 16 prerendering special pages with
+// force-dynamic causes it to render through the layout tree, crashing on useContext.
 
 export default function GlobalError({
   error,
