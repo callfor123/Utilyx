@@ -20,6 +20,7 @@ import { ImgConvert } from '@/components/tools/image/img-convert'
 import { ImgCompress } from '@/components/tools/image/img-compress'
 import { ImgResize } from '@/components/tools/image/img-resize'
 import { ImgBgRemove } from '@/components/tools/image/img-bgremove'
+import { ImageOcr } from '@/components/tools/image/img-ocr'
 import { JsonCsv } from '@/components/tools/dev-seo/json-csv'
 import { RegexTester } from '@/components/tools/dev-seo/regex-tester'
 import { MetaTags } from '@/components/tools/dev-seo/meta-tags'
@@ -276,6 +277,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'img-compress': ImgCompress,
   'img-resize': ImgResize,
   'img-bgremove': ImgBgRemove,
+  'img-ocr': ImageOcr,
   'heic-to-jpg': HeicToJpgDynamic,
   'favicon-generator': FaviconGeneratorDynamic,
   'youtube-thumbnail': dynamic(() => import('@/components/tools/image/youtube-thumbnail').then(m => m.YoutubeThumbnailDownloader)),

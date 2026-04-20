@@ -1245,6 +1245,27 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         'El total por persona se muestra instantáneamente',
       ],
     },
+    'ocr-image': {
+      title: 'Reconocimiento OCR de Texto Online Gratis — Extraer Texto de Imagen',
+      desc: 'Extrae texto de imágenes, documentos escaneados, capturas de pantalla con OCR. Gratis, sin registro, procesamiento 100% local.',
+      h1: 'Extraer texto de una imagen con OCR',
+      intro: 'Convierte tus imágenes que contienen texto en texto seleccionable y editable con nuestra herramienta avanzada de OCR (Reconocimiento Óptico de Caracteres). Extractor de texto OCR gratuito en línea que te permite convertir documentos escaneados, capturas de pantalla, fotos de libros o carteles en texto digital aprovechable. Nuestra tecnología OCR reconoce más de 100 idiomas y dialectos, incluyendo español, inglés, francés, alemán, chino, japonés y árabe. Esta herramienta es esencial para estudiantes que necesitan digitalizar apuntes manuscritos, profesionales que procesan documentos en papel, traductores que trabajan con imágenes, y desarrolladores que automatizan el procesamiento de documentos. El OCR extrae el texto con precisión preservando el formato, los saltos de línea y la estructura de los párrafos. Luego puedes copiar el texto, editarlo, traducirlo o integrarlo en un procesador de textos. Todo el procesamiento ocurre localmente en tu navegador: tus imágenes nunca se envían a un servidor remoto, asegurando la total confidencialidad de tus documentos sensibles. El servicio es gratuito y no requiere registro. El extractor OCR funciona sin instalación, sin límite diario ni marca de agua.',
+      faq: [
+        { q: '¿Es gratis y sin registro?', a: 'Sí, 100% gratis y sin registro. Puedes extraer texto de tantas imágenes como quieras, sin marca de agua ni límite diario.' },
+        { q: '¿Qué idiomas son compatibles?', a: 'Más de 100 idiomas son compatibles, incluyendo español, inglés, francés, alemán, italiano, portugués, chino, japonés, coreano, ruso, árabe y muchos otros. Selecciona el idioma apropiado para un reconocimiento óptimo.' },
+        { q: '¿Cómo preserva el OCR el formato?', a: 'La herramienta detecta bloques de texto, columnas, títulos y listas, y reproduce fielmente la estructura original con saltos de línea y alineación apropiada.' },
+        { q: '¿Puedo extraer texto de capturas de pantalla?', a: 'Sí, el OCR funciona perfectamente con capturas de pantalla de presentaciones, sitios web, aplicaciones o videos. Reconoce texto incluso en diferentes fuentes y tamaños.' },
+        { q: '¿La calidad de la imagen afecta la precisión?', a: 'Una imagen clara con buen contraste ofrece los mejores resultados. Las imágenes borrosas, pixeladas o de bajo contraste pueden reducir la precisión del OCR, pero el algoritmo está optimizado para funcionar con la mayoría de las calidades de imagen.' },
+        { q: '¿Puedo corregir errores de OCR?', a: 'Sí, el texto extraído es totalmente editable. Puedes corregir errores ocasionales de OCR, especialmente para caracteres ambiguos o palabras raras, antes de copiar o guardar el resultado.' }
+      ],
+      howTo: [
+        'Carga tu imagen que contiene texto arrastrándola o navegando por tus archivos',
+        'Selecciona el idioma del texto para un reconocimiento óptimo',
+        'El OCR analiza automáticamente la imagen y extrae el texto',
+        'Verifica y corrige el texto extraído si es necesario',
+        'Copia el texto a tu portapapeles o descárgalo'
+      ],
+    },
   },
 
   de: {},
