@@ -1,11 +1,17 @@
-"use client"
+'use client'
 
-// global-error.tsx must be a Client Component in App Router.
-// It must render its own <html> and <body> because it replaces the root layout
-// entirely — this avoids the useContext null crash from ThemeProvider during
-// static prerendering of /_global-error.
+// global-error.tsx must be a Client Component and render its own <html>/<body>.
+// It replaces the root layout entirely when a critical error occurs.
+// This page must NOT use any context providers (ThemeProvider, NextIntl, etc.)
+// because they are unavailable during prerendering of /_global-error.
 
-export default function GlobalError() {
+export const dynamic = 'force-dynamic'
+
+export default function GlobalError({
+  error,
+}: {
+  error: Error & { digest?: string }
+}) {
   return (
     <html lang="en">
       <body style={{

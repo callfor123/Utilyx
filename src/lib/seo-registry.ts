@@ -21,30 +21,47 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   'compresser-pdf': {
     toolId: 'pdf-compress', category: 'pdf', slug: 'compresser-pdf',
     title: 'Compresser PDF en Ligne Gratuit — Réduire Taille PDF',
-    desc: 'Réduisez la taille de vos fichiers PDF jusqu\'à 80% gratuitement. Aucune inscription, traitement 100% local dans votre navigateur.',
+    desc: 'Compressez vos PDF gratuitement en ligne. Réduisez la taille de vos fichiers jusqu\'à 80% sans perte de qualité. Traitement 100% local, aucune inscription.',
     h1: 'Compresser un fichier PDF en ligne gratuitement',
-    intro: 'Notre outil de compression PDF réduit instantanément la taille de vos documents sans perte de qualité visible. Idéal pour envoyer des fichiers par email, les télécharger sur un site web ou les stocker sans gaspiller d\'espace disque. Aucun fichier n\'est envoyé à un serveur externe : tout le traitement se déroule directement dans votre navigateur, garantissant une confidentialité totale de vos documents. La compression PDF fonctionne en optimisant les images intégrées, en supprimant les métadonnées inutiles et en réorganisant la structure du fichier pour un poids minimal. Vous pouvez choisir le niveau de compression selon vos besoins : compression légère pour une qualité maximale, ou compression forte pour un fichier le plus léger possible. Cet outil est entièrement gratuit et ne nécessite aucune inscription. Vous pouvez compresser autant de PDF que vous le souhaitez, sans limitation. Le traitement 100% local signifie que vos documents sensibles ne quittent jamais votre appareil, ce qui est particulièrement important pour les contrats, relevés bancaires et documents confidentiels. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Notre outil de compression PDF réduit instantanément la taille de vos documents sans perte de qualité visible. Compresseur PDF gratuit en ligne idéal pour réduire le poids de vos fichiers avant envoi par email, upload sur un site web ou stockage cloud. La compression PDF optimise les images intégrées, supprime les métadonnées inutiles et réorganise la structure du fichier pour un poids minimal. Vous pouvez choisir le niveau de compression selon vos besoins : compression légère pour une qualité maximale, ou compression forte pour un fichier le plus léger possible. Cet outil gratuit de réduction de taille PDF est particulièrement utile pour les professionnels qui envoient des contrats, factures et rapports par email, les étudiants qui soumettent des mémoires universitaires via des plateformes avec limite de taille, et les administrateurs qui optimisent l\'espace de stockage de leurs serveurs. Aucun fichier n\'est envoyé à un serveur externe : tout le traitement se déroule directement dans votre navigateur, garantissant une confidentialité totale de vos documents sensibles. Le compresseur PDF fonctionne sans inscription ni installation, sur ordinateur, tablette ou smartphone. Vous pouvez compresser autant de PDF que vous le souhaitez, sans limite quotidienne ni filigrane sur le résultat.',
     faq: [
-      { q: 'Comment compresser un PDF gratuitement ?', a: 'Glissez-déposez votre fichier PDF dans l\'outil ci-dessus, choisissez le niveau de compression souhaité, puis téléchargez le résultat. Tout est gratuit et sans inscription.' },
-      { q: 'Mes fichiers sont-ils en sécurité ?', a: 'Oui, 100%. Le traitement se fait entièrement dans votre navigateur web. Aucun fichier n\'est envoyé à nos serveurs ni stocké en ligne.' },
-      { q: 'Quelle est la taille maximale autorisée ?', a: 'Comme tout est traité en local, il n\'y a pas de limite stricte. La seule limitation est la mémoire de votre appareil.' }
+      { q: 'Comment compresser un PDF gratuitement ?', a: 'Glissez-déposez votre fichier PDF dans l\'outil ci-dessus, choisissez le niveau de compression souhaité, puis téléchargez le résultat. Tout est gratuit et sans inscription. La compression s\'effectue localement dans votre navigateur.' },
+      { q: 'Mes fichiers sont-ils en sécurité ?', a: 'Oui, 100%. Le traitement se fait entièrement dans votre navigateur web. Aucun fichier n\'est envoyé à nos serveurs ni stocké en ligne. Vos documents confidentiels restent sur votre appareil à tout moment.' },
+      { q: 'Quelle est la taille maximale autorisée ?', a: 'Comme tout est traité en local dans votre navigateur, il n\'y a pas de limite stricte imposée par nos serveurs. La seule limitation est la mémoire disponible sur votre appareil. Les PDF de plusieurs dizaines de Mo sont traités sans problème.' },
+      { q: 'Quelle réduction de taille puis-je espérer ?', a: 'La réduction dépend du contenu du PDF. Les documents riches en images peuvent être réduits de 50 à 80%. Les PDF principalement textuels offrent une réduction de 20 à 40%. Le mode compression forte maximise la réduction.' },
+      { q: 'La qualité du PDF est-elle préservée après compression ?', a: 'En mode compression légère ou équilibrée, la perte de qualité est imperceptible à l\'œil nu. Le texte reste net et les images conservent leur clarté. Le mode compression forte réduit davantage la taille mais peut légèrement affecter les images haute résolution.' },
+      { q: 'Puis-je compresser plusieurs PDF à la fois ?', a: 'Oui, vous pouvez compresser autant de fichiers PDF que vous le souhaitez, l\'un après l\'autre, sans aucune limite quotidienne ni inscription requise. Chaque fichier est traité individuellement.' }
     ],
-    howTo: ['Glissez votre fichier PDF dans la zone de dépôt', 'Choisissez le niveau de compression', 'Cliquez sur "Compresser" et téléchargez le résultat'],
+    howTo: [
+      'Glissez votre fichier PDF dans la zone de dépôt ou cliquez pour parcourir vos fichiers',
+      'Choisissez le niveau de compression : légère, équilibrée ou forte',
+      'Prévisualisez le résultat et vérifiez la réduction de taille obtenue',
+      'Cliquez sur "Compresser" pour lancer le traitement dans votre navigateur',
+      'Téléchargez le PDF compressé sur votre appareil'
+    ],
     relatedSlugs: ['fusionner-pdf', 'proteger-pdf', 'deverrouiller-pdf'],
   },
   'fusionner-pdf': {
     toolId: 'pdf-merge', category: 'pdf', slug: 'fusionner-pdf',
     title: 'Fusionner PDF en Ligne Gratuit — Combiner Plusieurs PDF',
-    desc: 'Fusionnez plusieurs fichiers PDF en un seul document en quelques secondes. Gratuit, sans inscription, traitement local.',
+    desc: 'Fusionnez plusieurs PDF en un seul fichier gratuitement. Combinez vos documents en quelques secondes sans inscription, traitement 100% local.',
     h1: 'Fusionner plusieurs PDF en un seul fichier',
-    intro: 'Combinez facilement 2 ou plusieurs documents PDF en un seul fichier unifié en quelques secondes. Notre outil vous permet de réorganiser l\'ordre des pages par simple glisser-déposer avant de fusionner, vous offrant un contrôle total sur le résultat final. Parfait pour assembler des factures, des rapports, des dossiers administratifs, des mémoires universitaires ou tout autre document multipage. La fusion de PDF est une opération courante pour les professionnels, les étudiants et les particuliers qui souhaitent regrouper plusieurs documents en un seul fichier facile à partager et à archiver. Imaginez pouvoir regrouper tous les chapitres d\'un mémoire, assembler les pages d\'un contrat signé, ou compiler plusieurs factures en un seul fichier PDF à envoyer à votre comptable. Aucune inscription n\'est requise et le service est entièrement gratuit. Le traitement s\'effectue 100% localement dans votre navigateur, ce qui signifie que vos documents ne sont jamais envoyés sur un serveur distant, garantissant ainsi une confidentialité totale de vos données. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Combinez facilement 2 ou plusieurs documents PDF en un seul fichier unifié en quelques secondes. Fusionneur PDF gratuit en ligne qui vous permet de réorganiser l\'ordre des pages par simple glisser-déposer avant de fusionner, vous offrant un contrôle total sur le résultat final. Parfait pour assembler des factures, des rapports, des dossiers administratifs, des mémoires universitaires ou tout autre document multipage. La fusion de PDF est une opération courante pour les professionnels, les étudiants et les particuliers qui souhaitent regrouper plusieurs documents en un seul fichier facile à partager et à archiver. Imaginez pouvoir regrouper tous les chapitres d\'un mémoire, assembler les pages d\'un contrat signé, ou compiler plusieurs factures en un seul fichier PDF à envoyer à votre comptable. Aucune inscription n\'est requise et le service est entièrement gratuit. Le traitement s\'effectue 100% localement dans votre navigateur, ce qui signifie que vos documents ne sont jamais envoyés sur un serveur distant, garantissant ainsi une confidentialité totale de vos données. Le fusionneur PDF fonctionne sans installation sur ordinateur, tablette ou smartphone, sans limite quotidienne ni filigrane.',
     faq: [
-      { q: 'Comment fusionner des PDF en ligne ?', a: 'Ajoutez vos fichiers PDF dans l\'outil, réorganisez-les dans l\'ordre souhaité, puis cliquez sur Fusionner. Vous obtiendrez un seul PDF combiné.' },
-      { q: 'Combien de fichiers puis-je fusionner ?', a: 'Il n\'y a pas de limite au nombre de fichiers. Vous pouvez en combiner autant que vous le souhaitez.' },
-      { q: 'Puis-je réorganiser les pages avant de fusionner ?', a: 'Oui, vous pouvez réorganiser l\'ordre des fichiers PDF avant la fusion par simple glisser-déposer.' },
-      { q: 'La qualité sera-t-elle préservée ?', a: 'Absolument. La fusion ne modifie pas le contenu des PDF. Chaque page conserve sa qualité et ses propriétés d\'origine.' }
+      { q: 'Comment fusionner des PDF en ligne ?', a: 'Ajoutez vos fichiers PDF dans l\'outil, réorganisez-les dans l\'ordre souhaité, puis cliquez sur Fusionner. Vous obtiendrez un seul PDF combiné. Le tout est gratuit et sans inscription.' },
+      { q: 'Combien de fichiers puis-je fusionner ?', a: 'Il n\'y a pas de limite au nombre de fichiers PDF que vous pouvez combiner. Fusionnez 2, 10 ou 50 documents en un seul fichier sans aucune restriction ni frais.' },
+      { q: 'Puis-je réorganiser les pages avant de fusionner ?', a: 'Oui, vous pouvez réorganiser l\'ordre des fichiers PDF avant la fusion par simple glisser-déposer. L\'aperçu vous permet de vérifier l\'ordre avant de générer le document final.' },
+      { q: 'La qualité sera-t-elle préservée ?', a: 'Absolument. La fusion ne modifie pas le contenu des PDF. Chaque page conserve sa qualité et ses propriétés d\'origine, y compris les images, les polices et les annotations.' },
+      { q: 'Mes documents sont-ils sécurisés ?', a: 'Oui, le traitement est 100% local dans votre navigateur. Vos PDF ne sont jamais envoyés à un serveur ni stockés en ligne. La confidentialité de vos documents est garantie à tout moment.' },
+      { q: 'Puis-je fusionner des PDF de tailles différentes ?', a: 'Oui, l\'outil accepte des PDF de toutes tailles et résolutions. Les pages de chaque document sont conservées telles quelles dans le fichier fusionné, sans redimensionnement ni compression.' }
     ],
-    howTo: ['Ajoutez vos fichiers PDF', 'Réorganisez l\'ordre par glisser-déposer', 'Cliquez sur Fusionner et téléchargez'],
+    howTo: [
+      'Ajoutez vos fichiers PDF en les glissant-déposant ou en parcourant vos dossiers',
+      'Réorganisez l\'ordre des fichiers par glisser-déposer selon vos besoins',
+      'Vérifiez l\'aperçu de la fusion avant de confirmer',
+      'Cliquez sur "Fusionner" pour combiner tous les PDF en un seul',
+      'Téléchargez le document PDF fusionné sur votre appareil'
+    ],
     relatedSlugs: ['compresser-pdf', 'pdf-en-images', 'signer-pdf'],
   },
   'pdf-en-images': {
@@ -64,16 +81,23 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   'signer-pdf': {
     toolId: 'pdf-sign', category: 'pdf', slug: 'signer-pdf',
     title: 'Signer PDF en Ligne Gratuit — Signature Électronique',
-    desc: 'Signez et annotez vos documents PDF directement dans le navigateur. Dessinez ou tapez votre signature. 100% gratuit.',
+    desc: 'Signez vos PDF en ligne gratuitement. Signature électronique dessinée ou tapée, sans inscription, traitement 100% local dans le navigateur.',
     h1: 'Signer un document PDF en ligne',
-    intro: 'Ajoutez votre signature manuscrite ou tapée à n\'importe quel document PDF sans imprimer ni scanner. Notre outil vous permet de dessiner votre signature directement à l\'écran, de la taper dans une police calligraphiée, ou de l\'importer depuis une image. Vous pouvez ensuite la positionner et la redimensionner précisément sur le document. Idéal pour les contrats de travail, les bons de commande, les formulaires administratifs, les accords de confidentialité et tout document nécessitant une signature. Cet outil élimine le cycle fastidieux d\'impression, signature et numérisation, vous faisant gagner un temps précieux. Le processus est 100% local : votre document reste sur votre appareil et n\'est jamais envoyé à un serveur. Le service est entièrement gratuit et sans inscription. Notez que notre outil crée une signature simple. Pour une valeur juridique renforcée conformément au règlement eIDAS, consultez un service de signature électronique certifié. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Ajoutez votre signature manuscrite ou tapée à n\'importe quel document PDF sans imprimer ni scanner. Signeur PDF gratuit en ligne qui vous permet de dessiner votre signature directement à l\'écran, de la taper dans une police calligraphiée, ou de l\'importer depuis une image. Vous pouvez ensuite la positionner et la redimensionner précisément sur le document. Idéal pour les contrats de travail, les bons de commande, les formulaires administratifs, les accords de confidentialité et tout document nécessitant une signature. Cet outil élimine le cycle fastidieux d\'impression, signature et numérisation, vous faisant gagner un temps précieux. Le processus est 100% local : votre document reste sur votre appareil et n\'est jamais envoyé à un serveur. Le service est entièrement gratuit et sans inscription. Notez que notre outil crée une signature simple. Pour une valeur juridique renforcée conformément au règlement eIDAS, consultez un service de signature électronique certifié. Le signeur PDF fonctionne sans installation sur ordinateur, tablette ou smartphone, sans limite quotidienne ni filigrane.',
     faq: [
-      { q: 'Ma signature est-elle juridiquement valide ?', a: 'Notre outil crée une signature simple. Pour une valeur juridique renforcée, consultez un service de signature électronique certifié eIDAS.' },
-      { q: 'Comment ajouter ma signature ?', a: 'Chargez votre PDF, dessinez ou tapez votre signature, positionnez-la sur le document, puis téléchargez le fichier signé.' },
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, l\'outil est 100% gratuit et sans inscription. Vos documents restent sur votre appareil et ne sont jamais envoyés à un serveur.' },
-      { q: 'Puis-je importer une image de signature ?', a: 'Oui, vous pouvez importer une image de votre signature préalablement numérisée et la positionner sur le document.' }
+      { q: 'Ma signature est-elle juridiquement valide ?', a: 'Notre outil crée une signature simple, idéale pour un usage courant. Pour une valeur juridique renforcée conforme au règlement eIDAS, consultez un service de signature électronique certifié avec horodatage et certificat.' },
+      { q: 'Comment ajouter ma signature ?', a: 'Chargez votre PDF, dessinez ou tapez votre signature à l\'écran, positionnez-la sur le document en la glissant, puis téléchargez le fichier signé. Tout se fait en quelques clics sans installation.' },
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, l\'outil est 100% gratuit et sans inscription. Vos documents restent sur votre appareil et ne sont jamais envoyés à un serveur. Aucune limite d\'utilisation quotidienne.' },
+      { q: 'Puis-je importer une image de signature ?', a: 'Oui, vous pouvez importer une image de votre signature préalablement numérisée et la positionner sur le document. L\'outil accepte les formats JPG, PNG et SVG.' },
+      { q: 'Puis-je redimensionner ma signature ?', a: 'Oui, après avoir placé votre signature sur le document, vous pouvez la redimensionner en tirant les coins pour l\'adapter parfaitement à l\'espace de signature prévu.' }
     ],
-    howTo: ['Chargez votre PDF', 'Dessinez ou tapez votre signature', 'Positionnez-la sur le document et téléchargez'],
+    howTo: [
+      'Chargez votre document PDF dans l\'outil',
+      'Choisissez le type de signature : dessiner, taper ou importer une image',
+      'Dessinez ou tapez votre signature dans la zone prévue',
+      'Positionnez la signature sur le document et redimensionnez-la si nécessaire',
+      'Téléchargez le PDF signé sur votre appareil'
+    ],
     relatedSlugs: ['compresser-pdf', 'proteger-pdf', 'fusionner-pdf'],
   },
   'deverrouiller-pdf': {
@@ -109,73 +133,111 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   'convertir-image': {
     toolId: 'img-convert', category: 'image', slug: 'convertir-image',
     title: 'Convertisseur d\'Images en Ligne Gratuit — WebP, AVIF, JPG, PNG',
-    desc: 'Convertissez vos images en WebP, AVIF, JPG, PNG et plus. Gratuit, sans inscription, traitement 100% local.',
+    desc: 'Convertisseur d\'images gratuit en ligne : WebP, AVIF, JPG, PNG et plus. Sans inscription, traitement 100% local dans le navigateur.',
     h1: 'Convertir des images en WebP, AVIF, JPG, PNG',
-    intro: 'Convertissez vos images entre tous les formats populaires : WebP, AVIF, JPG, PNG, GIF, BMP et TIFF. Le WebP et l\'AVIF sont les formats modernes qui offrent une compression nettement supérieure au JPG classique, réduisant le poids de vos images de 30 à 50% sans perte de qualité visible. Idéal pour accélérer le chargement de vos sites web et améliorer votre référencement SEO. Les développeurs web, graphistes et blogueurs utilisent quotidiennement la conversion d\'images pour optimiser les visuels de leurs projets. Vous pouvez convertir une ou plusieurs images en un clic, choisir la qualité de sortie et télécharger les résultats. Tout le traitement s\'effectue localement dans votre navigateur : vos images restent sur votre appareil et ne sont jamais envoyées à un serveur. Le service est entièrement gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Convertissez vos images entre tous les formats populaires : WebP, AVIF, JPG, PNG, GIF, BMP et TIFF. Le WebP et l\'AVIF sont les formats modernes qui offrent une compression nettement supérieure au JPG classique, réduisant le poids de vos images de 30 à 50% sans perte de qualité visible. Idéal pour accélérer le chargement de vos sites web et améliorer votre référencement SEO. Les développeurs web, graphistes et blogueurs utilisent quotidiennement la conversion d\'images pour optimiser les visuels de leurs projets. Vous pouvez convertir une ou plusieurs images en un clic, choisir la qualité de sortie et télécharger les résultats. Tout le traitement s\'effectue localement dans votre navigateur : vos images restent sur votre appareil et ne sont jamais envoyées à un serveur. Le service est entièrement gratuit et sans inscription. Le convertisseur d\'images fonctionne sans installation sur ordinateur, tablette ou smartphone, sans limite quotidienne ni filigrane.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Vous pouvez convertir autant d\'images que vous le souhaitez.' },
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Vous pouvez convertir autant d\'images que vous le souhaitez, sans filigrane ni limitation de qualité sur le résultat.' },
       { q: 'Pourquoi convertir en WebP ou AVIF ?', a: 'Le WebP et l\'AVIF offrent une compression bien supérieure au JPG, réduisant le poids des images de 30 à 50% sans perte visible. Cela accélère le chargement de vos pages web et améliore votre SEO.' },
-      { q: 'Mes images sont-elles sécurisées ?', a: 'Oui, tout le traitement se fait dans votre navigateur. Vos images ne sont jamais envoyées à un serveur ni stockées en ligne.' }
+      { q: 'Mes images sont-elles sécurisées ?', a: 'Oui, tout le traitement se fait dans votre navigateur. Vos images ne sont jamais envoyées à un serveur ni stockées en ligne. La confidentialité de vos fichiers est garantie.' },
+      { q: 'Quels formats sont supportés en entrée ?', a: 'JPG, PNG, WebP, GIF, BMP, TIFF, AVIF et SVG. Vous pouvez convertir n\'importe quel format d\'image courant vers n\'importe quel format de sortie disponible.' },
+      { q: 'Puis-je convertir plusieurs images à la fois ?', a: 'Oui, vous pouvez sélectionner plusieurs images simultanément pour une conversion par lot. Toutes les images seront converties dans le format de sortie choisi en une seule opération.' }
     ],
-    howTo: ['Chargez votre image', 'Choisissez le format de sortie', 'Ajustez la qualité si nécessaire', 'Téléchargez l\'image convertie'],
+    howTo: [
+      'Chargez votre image en la glissant-déposant ou en parcourant vos dossiers',
+      'Choisissez le format de sortie souhaité (WebP, AVIF, JPG, PNG, GIF)',
+      'Ajustez la qualité de sortie si nécessaire avec le curseur',
+      'Prévisualisez le résultat et vérifiez la taille du fichier',
+      'Téléchargez l\'image convertie sur votre appareil'
+    ],
     relatedSlugs: ['compresser-image', 'redimensionner-image', 'pdf-en-images'],
   },
   'compresser-image': {
     toolId: 'img-compress', category: 'image', slug: 'compresser-image',
     title: 'Compresser Image en Ligne Gratuit — Optimiser le Poids',
-    desc: 'Réduisez le poids de vos images JPG, PNG, WebP sans perte de qualité visible. Gratuit, sans inscription, 100% local.',
+    desc: 'Compressez vos images JPG, PNG, WebP gratuitement. Réduisez le poids sans perte de qualité visible. Sans inscription, 100% local.',
     h1: 'Compresser une image en ligne gratuitement',
-    intro: 'Réduisez instantanément le poids de vos images sans dégradation visible de la qualité. Notre outil de compression d\'images optimise vos fichiers JPG, PNG et WebP en ajustant le niveau de compression selon vos besoins. Une image compressée charge plus rapidement sur un site web, consomme moins de bande passante et améliore l\'expérience utilisateur et le référencement SEO. Les développeurs web, les blogueurs et les professionnels du marketing ont tout intérêt à compresser leurs images avant de les publier en ligne. Google recommande d\'ailleurs l\'optimisation des images comme critère de performance. Vous pouvez choisir entre une compression légère, équilibrée ou forte, et comparer le résultat avec l\'original avant de télécharger. Le traitement est entièrement local dans votre navigateur : vos images ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Réduisez instantanément le poids de vos images sans dégradation visible de la qualité. Compresseur d\'images gratuit en ligne qui optimise vos fichiers JPG, PNG et WebP en ajustant le niveau de compression selon vos besoins. Une image compressée charge plus rapidement sur un site web, consomme moins de bande passante et améliore l\'expérience utilisateur et le référencement SEO. Les développeurs web, les blogueurs et les professionnels du marketing ont tout intérêt à compresser leurs images avant de les publier en ligne. Google recommande d\'ailleurs l\'optimisation des images comme critère de performance. Vous pouvez choisir entre une compression légère, équilibrée ou forte, et comparer le résultat avec l\'original avant de télécharger. Le traitement est entièrement local dans votre navigateur : vos images ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Le compresseur d\'images fonctionne sans installation sur ordinateur, tablette ou smartphone, sans limite quotidienne ni filigrane.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, l\'outil est 100% gratuit et sans inscription. Vous pouvez compresser autant d\'images que vous le souhaitez.' },
-      { q: 'La qualité sera-t-elle préservée ?', a: 'Vous choisissez le niveau de compression. En mode léger ou équilibré, la perte de qualité est imperceptible. Vous pouvez prévisualiser le résultat avant de télécharger.' },
-      { q: 'Quels formats sont supportés ?', a: 'JPG, PNG, WebP, GIF, BMP et AVIF. La compression est optimisée pour chaque format.' },
-      { q: 'Comment ça marche techniquement ?', a: 'L\'outil ajuste les paramètres de compression (qualité JPEG, palette PNG, etc.) directement dans votre navigateur en utilisant les API Canvas et les codecs natifs.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, l\'outil est 100% gratuit et sans inscription. Vous pouvez compresser autant d\'images que vous le souhaitez, sans filigrane ni limite quotidienne.' },
+      { q: 'La qualité sera-t-elle préservée ?', a: 'Vous choisissez le niveau de compression. En mode léger ou équilibré, la perte de qualité est imperceptible. Vous pouvez prévisualiser le résultat avant de télécharger pour comparer avec l\'original.' },
+      { q: 'Quels formats sont supportés ?', a: 'JPG, PNG, WebP, GIF, BMP et AVIF. La compression est optimisée pour chaque format avec des algorithmes spécifiques adaptés au type d\'image.' },
+      { q: 'Comment ça marche techniquement ?', a: 'L\'outil ajuste les paramètres de compression (qualité JPEG, palette PNG, etc.) directement dans votre navigateur en utilisant les API Canvas et les codecs natifs de votre appareil.' },
+      { q: 'Quelle réduction de taille puis-je espérer ?', a: 'En compression légère, 20 à 40% de réduction. En compression équilibrée, 40 à 60%. En compression forte, 60 à 80%. Les résultats varient selon le contenu de l\'image.' }
     ],
-    howTo: ['Chargez votre image', 'Choisissez le niveau de compression', 'Prévisualisez le résultat', 'Téléchargez l\'image compressée'],
+    howTo: [
+      'Chargez votre image en la glissant-déposant ou en cliquant pour parcourir',
+      'Choisissez le niveau de compression : légère, équilibrée ou forte',
+      'Prévisualisez le résultat et comparez avec l\'original',
+      'Ajustez les paramètres si le résultat ne vous convient pas',
+      'Téléchargez l\'image compressée sur votre appareil'
+    ],
     relatedSlugs: ['convertir-image', 'redimensionner-image', 'supprimer-arriere-plan'],
   },
   'redimensionner-image': {
     toolId: 'img-resize', category: 'image', slug: 'redimensionner-image',
     title: 'Redimensionner Image en Ligne Gratuit — Changer Taille Image',
-    desc: 'Redimensionnez vos images JPG, PNG, WebP facilement. Par pourcentage ou dimensions exactes. Gratuit et 100% local.',
+    desc: 'Redimensionnez vos images JPG, PNG, WebP gratuitement. Par pourcentage ou dimensions exactes. Sans inscription, 100% local.',
     h1: 'Redimensionner une image en ligne',
-    intro: 'Modifiez les dimensions de vos images en quelques clics, que ce soit pour les adapter à un site web, un profil social, une impression ou un email. Notre outil vous permet de redimensionner par pourcentage, par largeur ou hauteur fixe, ou en spécifiant les dimensions exactes souhaitées. Vous pouvez choisir de conserver les proportions ou de forcer de nouvelles dimensions. Les développeurs web redimensionnent fréquemment leurs images pour les adapter aux résolutions d\'écran et aux grilles CSS, tandis que les photographes ajustent les dimensions pour l\'impression. Le traitement s\'effectue entièrement dans votre navigateur : vos images restent sur votre appareil et ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Vous pouvez redimensionner plusieurs images à la suite sans limitation. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Modifiez les dimensions de vos images en quelques clics, que ce soit pour les adapter à un site web, un profil social, une impression ou un email. Redimensionneur d\'images gratuit en ligne qui vous permet de redimensionner par pourcentage, par largeur ou hauteur fixe, ou en spécifiant les dimensions exactes souhaitées. Vous pouvez choisir de conserver les proportions ou de forcer de nouvelles dimensions. Les développeurs web redimensionnent fréquemment leurs images pour les adapter aux résolutions d\'écran et aux grilles CSS, tandis que les photographes ajustent les dimensions pour l\'impression. Le traitement s\'effectue entièrement dans votre navigateur : vos images restent sur votre appareil et ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Le redimensionneur fonctionne sans installation sur ordinateur, tablette ou smartphone, sans limite quotidienne.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Aucune limite sur le nombre d\'images à redimensionner.' },
-      { q: 'Puis-je conserver les proportions ?', a: 'Oui, par défaut l\'outil conserve les proportions. Décochez l\'option si vous souhaitez forcer des dimensions spécifiques.' },
-      { q: 'Quels formats sont supportés ?', a: 'JPG, PNG, WebP, GIF, BMP et la plupart des formats d\'image courants.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Aucune limite sur le nombre d\'images à redimensionner. Aucun filigrane n\'est ajouté sur le résultat.' },
+      { q: 'Puis-je conserver les proportions ?', a: 'Oui, par défaut l\'outil conserve les proportions (aspect ratio). Décochez l\'option si vous souhaitez forcer des dimensions spécifiques sans respecter le ratio d\'origine.' },
+      { q: 'Quels formats sont supportés ?', a: 'JPG, PNG, WebP, GIF, BMP et la plupart des formats d\'image courants. Le format de sortie est identique au format d\'entrée.' },
+      { q: 'Puis-je redimensionner par pourcentage ?', a: 'Oui, vous pouvez réduire ou agrandir votre image en saisissant un pourcentage (ex: 50% pour diviser les dimensions par deux, 200% pour les doubler).' },
+      { q: 'La qualité est-elle préservée après redimensionnement ?', a: 'Pour les réductions de taille, la qualité est excellente. Pour les agrandissements au-delà de 200%, une légère perte de netteté peut apparaître. L\'outil utilise un algorithme de rééchantillonnage bicubique de haute qualité.' }
     ],
-    howTo: ['Chargez votre image', 'Entrez les nouvelles dimensions ou le pourcentage', 'Choisissez de conserver ou non les proportions', 'Téléchargez l\'image redimensionnée'],
+    howTo: [
+      'Chargez votre image en la glissant-déposant ou en parcourant vos dossiers',
+      'Entrez les nouvelles dimensions en pixels ou le pourcentage souhaité',
+      'Choisissez de conserver ou non les proportions (aspect ratio)',
+      'Prévisualisez le résultat avant de confirmer',
+      'Téléchargez l\'image redimensionnée sur votre appareil'
+    ],
     relatedSlugs: ['compresser-image', 'convertir-image', 'supprimer-arriere-plan'],
   },
   'supprimer-arriere-plan': {
     toolId: 'img-bgremove', category: 'image', slug: 'supprimer-arriere-plan',
     title: 'Supprimer Arrière-Plan Image en Ligne Gratuit — Détourage Auto',
-    desc: 'Supprimez l\'arrière-plan de vos images automatiquement. Détourage IA gratuit, sans inscription, 100% local.',
+    desc: 'Supprimez l\'arrière-plan de vos images gratuitement. Détourage IA automatique, sans inscription, traitement 100% local.',
     h1: 'Supprimer l\'arrière-plan d\'une image',
-    intro: 'Éliminez automatiquement l\'arrière-plan de vos images en un clic grâce à notre technologie de détourage intelligent. Plus besoin de tracer manuellement des contours complexes dans Photoshop : notre algorithme détecte le sujet principal et supprime le fond avec précision. Cet outil est indispensable pour créer des visuels e-commerce, des portraits professionnels, des logos transparents ou des montages photo. Les vendeurs en ligne l\'utilisent pour présenter leurs produits sur un fond blanc uniforme, tandis que les designers s\'en servent pour isoler des éléments graphiques. Le résultat est téléchargeable en PNG avec transparence ou en JPG avec fond blanc. Tout le traitement s\'effectue localement dans votre navigateur grâce à l\'intelligence artificielle intégrée : vos images ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Éliminez automatiquement l\'arrière-plan de vos images en un clic grâce à notre technologie de détourage intelligent. Suppresseur d\'arrière-plan gratuit en ligne, plus besoin de tracer manuellement des contours complexes dans Photoshop : notre algorithme détecte le sujet principal et supprime le fond avec précision. Cet outil est indispensable pour créer des visuels e-commerce, des portraits professionnels, des logos transparents ou des montages photo. Les vendeurs en ligne l\'utilisent pour présenter leurs produits sur un fond blanc uniforme, tandis que les designers s\'en servent pour isoler des éléments graphiques. Le résultat est téléchargeable en PNG avec transparence ou en JPG avec fond blanc. Tout le traitement s\'effectue localement dans votre navigateur grâce à l\'intelligence artificielle intégrée : vos images ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Le suppresseur d\'arrière-plan fonctionne sans installation, sans limite quotidienne ni filigrane.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Vous pouvez supprimer l\'arrière-plan d\'autant d\'images que vous le souhaitez.' },
-      { q: 'Comment fonctionne le détourage automatique ?', a: 'Un algorithme d\'intelligence artificielle s\'exécutant dans votre navigateur détecte le sujet principal de l\'image et sépare l\'arrière-plan automatiquement.' },
-      { q: 'Dans quel format télécharger le résultat ?', a: 'Vous pouvez télécharger en PNG (avec transparence) pour les montages, ou en JPG (avec fond blanc) pour les visuels e-commerce.' },
-      { q: 'La qualité du détourage est-elle bonne ?', a: 'L\'algorithme offre d\'excellents résultats sur les portraits, produits et objets bien détachés du fond. Pour les images complexes, vous pouvez affiner le résultat manuellement.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Vous pouvez supprimer l\'arrière-plan d\'autant d\'images que vous le souhaitez, sans filigrane ni limite quotidienne.' },
+      { q: 'Comment fonctionne le détourage automatique ?', a: 'Un algorithme d\'intelligence artificielle s\'exécutant dans votre navigateur détecte le sujet principal de l\'image et sépare l\'arrière-plan automatiquement, sans envoi de données vers un serveur.' },
+      { q: 'Dans quel format télécharger le résultat ?', a: 'Vous pouvez télécharger en PNG (avec transparence) pour les montages et designs, ou en JPG (avec fond blanc) pour les visuels e-commerce et les photos produit.' },
+      { q: 'La qualité du détourage est-elle bonne ?', a: 'L\'algorithme offre d\'excellents résultats sur les portraits, produits et objets bien détachés du fond. Pour les images complexes, vous pouvez affiner le résultat manuellement avec l\'outil d\'édition intégré.' },
+      { q: 'Quels types d\'images fonctionnent le mieux ?', a: 'Les images avec un sujet clair sur un fond contrasté donnent les meilleurs résultats : photos produit sur fond uni, portraits, logos. Les fonds uniformes sont détectés plus facilement que les fonds complexes.' }
     ],
-    howTo: ['Chargez votre image', 'L\'algorithme détecte et supprime l\'arrière-plan automatiquement', 'Ajustez si nécessaire', 'Téléchargez en PNG ou JPG'],
+    howTo: [
+      'Chargez votre image en la glissant-déposant ou en parcourant vos dossiers',
+      'L\'algorithme IA détecte et supprime l\'arrière-plan automatiquement',
+      'Vérifiez le résultat et ajustez les zones si nécessaire',
+      'Choisissez le format de sortie : PNG avec transparence ou JPG avec fond blanc',
+      'Téléchargez l\'image sans arrière-plan sur votre appareil'
+    ],
     relatedSlugs: ['compresser-image', 'convertir-image', 'redimensionner-image'],
   },
   'heic-vers-jpg': {
     toolId: 'heic-to-jpg', category: 'image', slug: 'heic-vers-jpg',
     title: 'Convertir HEIC en JPG en Ligne Gratuit — Photos iPhone',
-    desc: 'Convertissez vos photos iPhone HEIC en JPG ou PNG. Gratuit, sans inscription, traitement 100% local.',
+    desc: 'Convertissez vos photos iPhone HEIC en JPG ou PNG. Gratuit, sans inscription, traitement 100% local dans le navigateur.',
     h1: 'Convertir des photos HEIC en JPG ou PNG',
-    intro: 'Transformez vos photos iPhone au format HEIC en fichiers JPG ou PNG universellement compatibles. Le format HEIC (High Efficiency Image Container) est utilisé par défaut sur les iPhones depuis iOS 11, mais de nombreux logiciels, sites web et appareils ne le prennent pas en charge. Notre convertisseur vous permet de retrouver une compatibilité totale en transformant vos photos HEIC en JPG (idéal pour le partage) ou en PNG (idéal pour la qualité maximale avec transparence). Vous pouvez convertir une ou plusieurs photos à la fois, ce qui est particulièrement utile après un transfert de photos depuis un iPhone vers un PC Windows ou un appareil Android. Le traitement s\'effectue entièrement dans votre navigateur : vos photos restent sur votre appareil et ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Transformez vos photos iPhone au format HEIC en fichiers JPG ou PNG universellement compatibles. Convertisseur HEIC gratuit en ligne pour le format HEIC (High Efficiency Image Container) utilisé par défaut sur les iPhones depuis iOS 11, que de nombreux logiciels, sites web et appareils ne prennent pas en charge. Notre convertisseur vous permet de retrouver une compatibilité totale en transformant vos photos HEIC en JPG (idéal pour le partage) ou en PNG (idéal pour la qualité maximale avec transparence). Vous pouvez convertir une ou plusieurs photos à la fois, ce qui est particulièrement utile après un transfert de photos depuis un iPhone vers un PC Windows ou un appareil Android. Le traitement s\'effectue entièrement dans votre navigateur : vos photos restent sur votre appareil et ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Le convertisseur HEIC fonctionne sans installation, sans limite quotidienne ni filigrane.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Convertissez autant de photos HEIC que vous le souhaitez.' },
-      { q: 'Pourquoi convertir HEIC en JPG ?', a: 'Le format HEIC n\'est pas universellement supporté. Le JPG est compatible avec tous les logiciels, sites web et appareils, ce qui facilite le partage et l\'édition.' },
-      { q: 'La qualité est-elle conservée ?', a: 'Oui, la conversion préserve la qualité d\'origine de votre photo. Vous pouvez choisir le niveau de qualité JPG selon vos besoins.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Convertissez autant de photos HEIC que vous le souhaitez, sans filigrane ni limite quotidienne sur le résultat.' },
+      { q: 'Pourquoi convertir HEIC en JPG ?', a: 'Le format HEIC n\'est pas universellement supporté. Le JPG est compatible avec tous les logiciels, sites web et appareils, ce qui facilite le partage sur les réseaux sociaux et l\'édition photo.' },
+      { q: 'La qualité est-elle conservée ?', a: 'Oui, la conversion préserve la qualité d\'origine de votre photo. Vous pouvez choisir le niveau de qualité JPG selon vos besoins, de 80% (partage web) à 100% (qualité maximale).' },
+      { q: 'Puis-je convertir plusieurs photos à la fois ?', a: 'Oui, vous pouvez sélectionner plusieurs photos HEIC simultanément pour une conversion par lot. Toutes les photos seront converties en une seule opération.' },
+      { q: 'Quelle est la différence entre JPG et PNG ?', a: 'Le JPG offre une bonne qualité avec un fichier léger, idéal pour le partage et le web. Le PNG offre une qualité maximale avec transparence possible, mais produit un fichier plus volumineux.' }
     ],
-    howTo: ['Chargez vos photos HEIC', 'Choisissez le format de sortie (JPG ou PNG)', 'Téléchargez les photos converties'],
+    howTo: [
+      'Chargez vos photos HEIC en les glissant-déposant ou en les sélectionnant',
+      'Choisissez le format de sortie : JPG pour la compatibilité ou PNG pour la qualité',
+      'Ajustez la qualité de sortie si nécessaire',
+      'Prévisualisez le résultat de la conversion',
+      'Téléchargez les photos converties individuellement ou en lot'
+    ],
     relatedSlugs: ['convertir-image', 'compresser-image', 'redimensionner-image'],
   },
   'generateur-favicon': {

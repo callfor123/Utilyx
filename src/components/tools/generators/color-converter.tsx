@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-export function ColorConverter() {
+export default function ColorConverter() {
   const [hex, setHex] = useState('#3b82f6')
   const [rgb, setRgb] = useState('59, 130, 246')
   const [hsl, setHsl] = useState('217, 91%, 60%')
