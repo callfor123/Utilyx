@@ -73,7 +73,8 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'En quel format seront mes images ?', a: 'Vous pouvez choisir entre JPG (léger, idéal pour le web) et PNG (qualité maximale, transparence possible).' },
       { q: 'La qualité est-elle bonne ?', a: 'Oui, les images sont générées en haute résolution directement dans votre navigateur, sans perte de qualité.' },
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, l\'outil est 100% gratuit et ne nécessite aucune inscription. Vous pouvez convertir autant de fichiers que vous le souhaitez.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, l\'outil est 100% gratuit et ne nécessite aucune inscription. Vous pouvez convertir autant de fichiers que vous le souhaitez.' },
+      { q: 'Puis-je extraire le texte des images générées ?', a: 'Oui, vous pouvez utiliser notre outil OCR "Extraire le texte d\'une image" pour convertir le contenu textuel de vos images en texte sélectionnable et modifiable.' }
     ],
     howTo: ['Chargez votre PDF', 'Choisissez le format de sortie (JPG ou PNG)', 'Téléchargez les images générées'],
     relatedSlugs: ['compresser-pdf', 'fusionner-pdf', 'convertir-image'],
@@ -218,6 +219,29 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     ],
     relatedSlugs: ['compresser-image', 'convertir-image', 'redimensionner-image'],
   },
+  'ocr-image': {
+    toolId: 'img-ocr', category: 'image', slug: 'ocr-image',
+    title: 'OCR Reconnaissance de Texte en Ligne Gratuit — Extraire Texte d\'Image',
+    desc: 'Extrayez le texte d\'images, documents scannés, captures d\'écran avec l\'OCR. Gratuit, sans inscription, traitement 100% local.',
+    h1: 'Extraire le texte d\'une image avec l\'OCR',
+    intro: 'Transformez vos images contenant du texte en texte sélectionnable et modifiable avec notre outil OCR (Reconnaissance Optique de Caractères) avancé. Extracteur de texte OCR gratuit en ligne qui vous permet de convertir des documents scannés, des captures d\'écran, des photos de livres ou de panneaux en texte digital exploitable. Notre technologie OCR reconnaît plus de 100 langues et dialectes, y compris le français, anglais, espagnol, allemand, chinois, japonais et arabe. Cet outil est indispensable pour les étudiants qui doivent numériser des cours manuscrits, les professionnels qui traitent des documents papier, les traducteurs qui travaillent avec des images, et les développeurs qui automatisent le traitement de documents. L\'OCR extrait précisément le texte en préservant la mise en forme, les retours à la ligne et la structure des paragraphes. Vous pouvez ensuite copier le texte, le modifier, le traduire ou l\'intégrer dans un traitement de texte. Tout le traitement s\'effectue localement dans votre navigateur : vos images ne sont jamais envoyées à un serveur distant, assurant une confidentialité totale de vos documents sensibles. Le service est gratuit et sans inscription. L\'extracteur OCR fonctionne sans installation, sans limite quotidienne ni filigrane.',
+    faq: [
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Vous pouvez extraire le texte d\'autant d\'images que vous le souhaitez, sans filigrane ni limite quotidienne.' },
+      { q: 'Quels langages sont supportés ?', a: 'Plus de 100 langues sont supportées, dont le français, anglais, espagnol, allemand, italien, portugais, chinois, japonais, coréen, russe, arabe et bien d\'autres. Sélectionnez la langue appropriée pour une reconnaissance optimale.' },
+      { q: 'Comment l\'OCR préserve-t-il la mise en forme ?', a: 'L\'outil détecte les blocs de texte, les colonnes, les titres et les listes, et reproduit fidèlement la structure d\'origine avec les retours à la ligne et l\'alignement appropriés.' },
+      { q: 'Puis-je extraire du texte de captures d\'écran ?', a: 'Oui, l\'OCR fonctionne parfaitement avec les captures d\'écran de présentations, de sites web, d\'applications ou de vidéos. Il reconnaît même le texte dans différentes polices et tailles.' },
+      { q: 'La qualité de l\'image affecte-t-elle la précision ?', a: 'Une image claire avec un bon contraste offre les meilleurs résultats. Les images floues, pixelisées ou avec peu de contraste peuvent réduire la précision de l\'OCR, mais l\'algorithme est optimisé pour fonctionner avec la plupart des qualités d\'image.' },
+      { q: 'Puis-je corriger les erreurs d\'OCR ?', a: 'Oui, le texte extrait est entièrement modifiable. Vous pouvez corriger les erreurs occasionnelles d\'OCR, notamment pour les caractères ambigus ou les mots rares, avant de copier ou sauvegarder le résultat.' }
+    ],
+    howTo: [
+      'Chargez votre image contenant du texte en la glissant-déposant ou en parcourant vos fichiers',
+      'Sélectionnez la langue du texte pour une reconnaissance optimale',
+      'L\'OCR analyse automatiquement l\'image et extrait le texte',
+      'Vérifiez et corrigez le texte extrait si nécessaire',
+      'Copiez le texte dans votre presse-papier ou téléchargez-le'
+    ],
+    relatedSlugs: ['convertir-image', 'compresser-image', 'supprimer-arriere-plan'],
+  },
   'heic-vers-jpg': {
     toolId: 'heic-to-jpg', category: 'image', slug: 'heic-vers-jpg',
     title: 'Convertir HEIC en JPG en Ligne Gratuit — Photos iPhone',
@@ -240,10 +264,32 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     ],
     relatedSlugs: ['convertir-image', 'compresser-image', 'redimensionner-image'],
   },
+  'ocr-image': {
+    toolId: 'img-ocr', category: 'image', slug: 'ocr-image',
+    title: 'OCR Image en Ligne Gratuit — Extraire Texte d\'Image',
+    desc: 'Extraire du texte depuis des images JPG, PNG, WebP. Reconnaissance optique de caractères gratuite, sans inscription, 100% locale.',
+    h1: 'Extraire du texte d\'une image avec OCR',
+    intro: 'Transformez instantanément vos images contenant du texte en texte sélectionnable et modifiable. Notre outil d\'OCR (Optical Character Recognition) vous permet d\'extraire du texte depuis des captures d\'écran, des scans de documents, des photos de livres ou tout autre image contenant du texte. L\'OCR est particulièrement utile pour numériser des documents papier, extraire du texte de PDF scannés, récupérer des informations de factures ou reçus, ou transcrire des pancartes et enseignes. L\'outil supporte de nombreuses langues dont le français, l\'anglais, l\'espagnol, l\'allemand, l\'italien et plus de 100 autres langues. Le traitement s\'effectue entièrement dans votre navigateur : vos images ne sont jamais envoyées à un serveur, garantissant une confidentialité totale de vos documents. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    faq: [
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Extrayez du texte d\'autant d\'images que vous le souhaitez, sans filigrane ni limite quotidienne.' },
+      { q: 'Quels types d\'images fonctionnent le mieux ?', a: 'Les images avec du texte clair, net et bien contrasté donnent les meilleurs résultats. Les scans de documents, captures d\'écran et photos de textes imprimés fonctionnent très bien. Les images floues, sombres ou avec peu de contraste peuvent donner des résultats moins précis.' },
+      { q: 'Quelles langues sont supportées ?', a: 'Plus de 100 langues sont supportées, dont le français, anglais, espagnol, allemand, italien, portugais, russe, chinois, japonais et bien d\'autres. Vous pouvez sélectionner la langue appropriée pour améliorer la précision.' },
+      { q: 'La confidentialité de mes documents est-elle garantie ?', a: 'Oui, absolument. Le traitement s\'effectue entièrement dans votre navigateur. Vos images ne quittent jamais votre appareil et ne sont jamais envoyées à un serveur distant.' },
+      { q: 'Puis-je corriger le texte extrait ?', a: 'Oui, le texte extrait est entièrement modifiable. Vous pouvez le copier-coller dans un traitement de texte pour le corriger et le formater selon vos besoins.' }
+    ],
+    howTo: [
+      'Chargez votre image en la glissant-déposant ou en parcourant vos fichiers',
+      'Sélectionnez la langue du texte dans l\'image si elle est connue',
+      'Cliquez sur "Extraire le texte" pour démarrer l\'OCR',
+      'Attendez que le traitement se termine (quelques secondes)',
+      'Corrigez le texte extrait si nécessaire et copiez-le'
+    ],
+    relatedSlugs: ['convertir-image', 'compresser-image', 'redimensionner-image'],
+  },
   'generateur-favicon': {
     toolId: 'favicon-generator', category: 'image', slug: 'generateur-favicon',
     title: 'Générateur de Favicon en Ligne Gratuit — Icônes Site Web',
-    desc: 'Générez des favicons et icônes de site web à partir de votre image. Gratuit, sans inscription, 100% local.',
+    desc: 'Générez favicons et icônes site web depuis votre image. Pack complet ICO, Apple, Android, PWA. Gratuit, sans inscription, 100% local.',
     h1: 'Générer un favicon pour votre site web',
     intro: 'Créez toutes les tailles de favicon et d\'icônes nécessaires pour votre site web à partir d\'une seule image source. Notre générateur produit automatiquement les fichiers favicon.ico, Apple Touch Icon, Android Chrome et les icônes PWA dans toutes les résolutions requises (16x16, 32x32, 48x48, 64x64, 180x180, 192x192, 512x512 pixels). Un favicon professionnel renforce l\'identité visuelle de votre site, améliore la reconnaissance dans les onglets du navigateur et les favoris, et constitue un critère de qualité pour le référencement SEO. Les développeurs web et les designers utilisent cet outil pour générer en un clic l\'ensemble complet d\'icônes nécessaire au support multi-plateforme. Le code HTML à insérer dans votre balise head est automatiquement généré. Le traitement est entièrement local dans votre navigateur : votre image ne quitte jamais votre appareil. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
     faq: [
@@ -880,6 +926,7 @@ const localeSlugMap: Record<string, Record<string, string>> = {
   'redimensionner-image': { ar: 'تغيير-حجم-صورة', de: 'bild-groesse', en: 'resize-image', es: 'redimensionar-imagen', pt: 'redimensionar-imagem' },
   'supprimer-arriere-plan': { ar: 'ازالة-خلفية', de: 'hintergrund-entfernen', en: 'remove-background', es: 'eliminar-fondo', pt: 'remover-fundo' },
   'heic-vers-jpg': { ar: 'heic-الى-jpg', de: 'heic-zu-jpg', en: 'heic-to-jpg', es: 'heic-a-jpg', pt: 'heic-para-jpg' },
+  'ocr-image': { ar: 'نص-الصورة', de: 'bild-ocr', en: 'image-ocr', es: 'ocr-imagen', pt: 'ocr-imagem' },
   'generateur-favicon': { ar: 'مولد-فاڤيكون', de: 'favicon-generator', en: 'favicon-generator', es: 'generador-favicon', pt: 'gerador-favicon' },
   'telecharger-miniature-youtube': { ar: 'صورة-يوتيوب', de: 'youtube-vorschaubild', en: 'youtube-thumbnail', es: 'miniatura-youtube', pt: 'miniatura-youtube' },
   'decouper-video': { ar: 'قص-الفيديو', de: 'video-schneiden', en: 'trim-video', es: 'recortar-video', pt: 'cortar-video' },

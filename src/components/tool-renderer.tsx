@@ -29,6 +29,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'img-compress': dynamic(() => import('@/components/tools/image/img-compress').then(m => m.ImgCompress), { ssr: false, loading: () => <ToolLoader label="Image Compress" /> }),
   'img-resize': dynamic(() => import('@/components/tools/image/img-resize').then(m => m.ImgResize), { ssr: false, loading: () => <ToolLoader label="Image Resize" /> }),
   'img-bgremove': dynamic(() => import('@/components/tools/image/img-bgremove').then(m => m.ImgBgRemove), { ssr: false, loading: () => <ToolLoader label="BG Remove" /> }),
+  'img-ocr': dynamic(() => import('@/components/tools/image/img-ocr').then(m => m.ImageOcr), { ssr: false, loading: () => <ToolLoader label="OCR Text" /> }),
   'heic-to-jpg': dynamic(() => import('@/components/tools/image/heic-to-jpg').then(m => m.HeicToJpg), { ssr: false, loading: () => <ToolLoader label="HEIC to JPG" /> }),
   'favicon-generator': dynamic(() => import('@/components/tools/image/favicon-generator').then(m => m.FaviconGenerator), { ssr: false, loading: () => <ToolLoader label="Favicon Generator" /> }),
   'youtube-thumbnail': dynamic(() => import('@/components/tools/image/youtube-thumbnail').then(m => m.YoutubeThumbnailDownloader), { ssr: false, loading: () => <ToolLoader label="YouTube Thumbnail" /> }),

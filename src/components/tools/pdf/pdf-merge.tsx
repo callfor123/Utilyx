@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import {
   FileText,
   GripVertical,
@@ -17,18 +17,6 @@ import { DropZone } from '@/components/layout/drop-zone'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import {
-  DndContext,
-  closestCenter,
-  PointerSensor,
-  useSensor,
-  useSensors,
-  type DragEndEvent,
-import {
-  arrayMove,
-  SortableContext,
-  useSortable,
-  verticalListSortingStrategy,
 
 interface PdfFileItem {
   file: File
@@ -38,42 +26,35 @@ interface PdfFileItem {
 
 function SortableItem({
   item,
+  index,
   onRemove,
+  onDragStart,
+  onDragOver,
+  onDrop,
+  isDragging,
 }: {
   item: PdfFileItem
-  onRemove: () => void
+  index: number
+  onRemove: (id: string) => void
+  onDragStart: (e: React.DragEvent<HTMLDivElement>, index: number) => void
+  onDragOver: (e: React.DragEvent<HTMLDivElement>) => void
+  onDrop: (e: React.DragEvent<HTMLDivElement>, index: number) => void
+  isDragging: boolean
 }) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: item.id })
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  }
-
   return (
     <div
-      ref={setNodeRef}
-      style={style}
+      draggable
+      onDragStart={(e) => onDragStart(e, index)}
+      onDragOver={onDragOver}
+      onDrop={(e) => onDrop(e, index)}
       className={cn(
         'flex items-center gap-3 rounded-lg border bg-muted/30 px-3 py-2.5 text-sm transition-shadow',
-        isDragging && 'shadow-lg ring-2 ring-primary/20 z-50'
+        isDragging && 'shadow-lg ring-2 ring-primary/20 opacity-50'
       )}
     >
-      <button
-        {...attributes}
-        {...listeners}
-        className="cursor-grab active:cursor-grabbing rounded p-0.5 hover:bg-muted touch-none"
-        aria-label="Glisser pour réordonner"
-      >
+      <div className="cursor-grab active:cursor-grabbing rounded p-0.5 hover:bg-muted touch-none">
         <GripVertical className="h-4 w-4 text-muted-foreground" />
-      </button>
+      </div>
       <div className="flex-1 min-w-0">
         <p className="truncate font-medium">{item.file.name}</p>
         <p className="text-xs text-muted-foreground">
@@ -87,7 +68,7 @@ function SortableItem({
       <button
         onClick={(e) => {
           e.stopPropagation()
-          onRemove()
+          onRemove(item.id)
         }}
         className="rounded-full p-1 hover:bg-muted transition-colors"
         aria-label="Supprimer"
@@ -102,12 +83,10 @@ export function PdfMerge() {
   const [files, setFiles] = useState<PdfFileItem[]>([])
   const [isMerging, setIsMerging] = useState(false)
   const [loadingPages, setLoadingPages] = useState(true)
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null)
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: { distance: 8 },
-    })
-  )
+  const dragItem = useRef<number | null>(null)
+  const dragOverItem = useRef<number | null>(null)
 
   const totalPages = files.reduce((sum, f) => sum + f.pageCount, 0)
 
@@ -153,16 +132,40 @@ export function PdfMerge() {
     setFiles((prev) => prev.filter((f) => f.id !== id))
   }, [])
 
-  const handleDragEnd = useCallback((event: DragEndEvent) => {
-    const { active, over } = event
-    if (over && active.id !== over.id) {
-      setFiles((prev) => {
-        const oldIndex = prev.findIndex((f) => f.id === active.id)
-        const newIndex = prev.findIndex((f) => f.id === over.id)
-        return arrayMove(prev, oldIndex, newIndex)
-      })
-    }
-  }, [])
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
+    dragItem.current = index
+    setDraggedIndex(index)
+    e.dataTransfer.effectAllowed = 'move'
+    e.dataTransfer.setData('text/plain', index.toString())
+  }
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'move'
+  }
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>, index: number) => {
+    e.preventDefault()
+    setDraggedIndex(null)
+
+    if (dragItem.current === null) return
+
+    dragOverItem.current = index
+
+    const newFiles = [...files]
+    const draggedItem = newFiles[dragItem.current]
+
+    // Remove the dragged item
+    newFiles.splice(dragItem.current, 1)
+    // Insert the dragged item at the new position
+    newFiles.splice(dragOverItem.current, 0, draggedItem)
+
+    setFiles(newFiles)
+
+    // Reset
+    dragItem.current = null
+    dragOverItem.current = null
+  }
 
   const handleMerge = async () => {
     if (files.length < 2) {
@@ -244,26 +247,20 @@ export function PdfMerge() {
                   Chargement des pages...
                 </div>
               ) : (
-                <DndContext
-                  sensors={sensors}
-                  collisionDetection={closestCenter}
-                  onDragEnd={handleDragEnd}
-                >
-                  <SortableContext
-                    items={files.map((f) => f.id)}
-                    strategy={verticalListSortingStrategy}
-                  >
-                    <div className="space-y-2 max-h-96 overflow-y-auto">
-                      {files.map((item) => (
-                        <SortableItem
-                          key={item.id}
-                          item={item}
-                          onRemove={() => handleRemove(item.id)}
-                        />
-                      ))}
-                    </div>
-                  </SortableContext>
-                </DndContext>
+                <div className="space-y-2 max-h-96 overflow-y-auto">
+                  {files.map((item, index) => (
+                    <SortableItem
+                      key={item.id}
+                      item={item}
+                      index={index}
+                      onRemove={handleRemove}
+                      onDragStart={handleDragStart}
+                      onDragOver={handleDragOver}
+                      onDrop={handleDrop}
+                      isDragging={draggedIndex === index}
+                    />
+                  ))}
+                </div>
               )}
             </div>
           )}

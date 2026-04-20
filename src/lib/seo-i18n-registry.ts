@@ -570,6 +570,27 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
       ],
       howTo: ['Enter the bill amount', 'Choose the tip percentage', 'Split among people if needed'],
     },
+    'ocr-image': {
+      title: 'OCR Text Recognition Online Free — Extract Text from Image',
+      desc: 'Extract text from images, scanned documents, screenshots with OCR. Free, no signup, 100% local processing.',
+      h1: 'Extract text from an image with OCR',
+      intro: 'Convert your images containing text into selectable and editable text with our advanced OCR (Optical Character Recognition) tool. Free online OCR text extractor that allows you to convert scanned documents, screenshots, photos of books or signs into exploitable digital text. Our OCR technology recognizes over 100 languages and dialects, including English, French, Spanish, German, Chinese, Japanese and Arabic. This tool is essential for students who need to digitize handwritten notes, professionals processing paper documents, translators working with images, and developers automating document processing. The OCR extracts text precisely preserving formatting, line breaks and paragraph structure. You can then copy the text, edit it, translate it or integrate it into a word processor. All processing occurs locally in your browser: your images are never sent to a remote server, ensuring total confidentiality of your sensitive documents. The service is free and requires no registration. The OCR extractor works without installation, no daily limit or watermark.',
+      faq: [
+        { q: 'Is it free and without registration?', a: 'Yes, 100% free and without registration. You can extract text from as many images as you want, without watermark or daily limit.' },
+        { q: 'Which languages are supported?', a: 'Over 100 languages are supported, including English, French, Spanish, German, Italian, Portuguese, Chinese, Japanese, Korean, Russian, Arabic and many others. Select the appropriate language for optimal recognition.' },
+        { q: 'How does OCR preserve formatting?', a: 'The tool detects text blocks, columns, headings and lists, and faithfully reproduces the original structure with line breaks and appropriate alignment.' },
+        { q: 'Can I extract text from screenshots?', a: 'Yes, OCR works perfectly with screenshots of presentations, websites, applications or videos. It recognizes text even in different fonts and sizes.' },
+        { q: 'Does image quality affect accuracy?', a: 'A clear image with good contrast offers the best results. Blurry, pixelated or low-contrast images may reduce OCR accuracy, but the algorithm is optimized to work with most image qualities.' },
+        { q: 'Can I correct OCR errors?', a: 'Yes, the extracted text is fully editable. You can correct occasional OCR errors, especially for ambiguous characters or rare words, before copying or saving the result.' }
+      ],
+      howTo: [
+        'Upload your image containing text by dragging and dropping or browsing your files',
+        'Select the text language for optimal recognition',
+        'OCR automatically analyzes the image and extracts the text',
+        'Check and correct the extracted text if necessary',
+        'Copy the text to your clipboard or download it'
+      ],
+    },
   },
 
   es: {

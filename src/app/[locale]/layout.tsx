@@ -230,31 +230,35 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <>
-      <SetLocaleAttrs locale={locale} dir={dir} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <ThemeProvider
-        attribute="class"
-        defaultTheme={locale === "ar" ? "dark" : "light"}
-        enableSystem
-        disableTransitionOnChange
-      >
-        {/* Google Analytics */}
-        <GoogleAnalytics />
-        {/* AdSense script (client-side only to prevent hydration mismatch) */}
-        <AdSenseScript />
-        <NextIntlClientProvider messages={messages}>
-          {children}
-          <CookieConsentBanner />
-          <InvalidClickProtection />
-          <AdBlockerDetector />
-        </NextIntlClientProvider>
-      <Toaster />
-      </ThemeProvider>
-      <Analytics />
-    </>
+    <html lang={locale} dir={dir}>
+      <head>
+        <SetLocaleAttrs locale={locale} dir={dir} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme={locale === "ar" ? "dark" : "light"}
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Google Analytics */}
+          <GoogleAnalytics />
+          {/* AdSense script (client-side only to prevent hydration mismatch) */}
+          <AdSenseScript />
+          <NextIntlClientProvider messages={messages}>
+            {children}
+            <CookieConsentBanner />
+            <InvalidClickProtection />
+            <AdBlockerDetector />
+          </NextIntlClientProvider>
+          <Toaster />
+        </ThemeProvider>
+        <Analytics />
+      </body>
+    </html>
   );
 }

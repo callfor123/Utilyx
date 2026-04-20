@@ -9,6 +9,7 @@ export type ToolId =
   | 'img-compress'
   | 'img-resize'
   | 'img-bgremove'
+  | 'img-ocr'
   | 'json-csv'
   | 'regex-tester'
   | 'meta-tags'
@@ -104,6 +105,7 @@ export const modules: ModuleDef[] = [
       { id: 'img-compress', label: 'Compression Image', icon: 'FileDown', description: 'Optimiser le poids de vos images' },
       { id: 'img-resize', label: 'Redimensionnement', icon: 'Maximize2', description: 'Redimensionner vos images facilement' },
       { id: 'img-bgremove', label: 'Détourage', icon: 'Scissors', description: 'Supprimer l\'arrière-plan des images' },
+      { id: 'img-ocr', label: 'OCR Texte', icon: 'ScanText', description: 'Extraire le texte d\'images avec reconnaissance optique' },
       { id: 'heic-to-jpg', label: 'HEIC vers JPG', icon: 'Smartphone', description: 'Convertir photos iPhone HEIC en JPG ou PNG' },
       { id: 'favicon-generator', label: 'Générateur d\'icônes', icon: 'Globe', description: 'Générer favicon et icônes pour votre site' },
       { id: 'youtube-thumbnail', label: 'Miniatures YouTube', icon: 'Youtube', description: 'Télécharger les miniatures HD de vidéos YouTube' },
