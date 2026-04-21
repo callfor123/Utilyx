@@ -270,6 +270,10 @@
     "tip-calculator": {
       "label": "Trinkgeldrechner",
       "description": "Trinkgeld berechnen und Rechnung aufteilen"
+    },
+    "img-ocr": {
+      "label": "OCR Text",
+      "description": "Text aus Bildern mit optischer Erkennung extrahieren"
     }
   },
   "Footer": {

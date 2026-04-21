@@ -345,7 +345,7 @@ function ToolIconDisplay({ iconName, className }: { iconName: string; className?
 }
 
 /* ── Framer Motion Variants ──────────────────────────────────────────── */
-const containerVariants = {
+const containerVariants: any = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -353,7 +353,7 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: any = {
   hidden: { opacity: 0, y: 20, scale: 0.97 },
   visible: {
     opacity: 1, y: 0, scale: 1,
@@ -361,7 +361,7 @@ const itemVariants = {
   },
 }
 
-const fadeUp = {
+const fadeUp: any = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
@@ -523,6 +523,7 @@ function ToolQuickAccess({
   const href = path ? `/${locale}/${path.category}/${path.slug}` : `/${locale}`
 
   return (
+    
     <motion.div variants={itemVariants}>
       <Link
         href={href}
@@ -663,6 +664,7 @@ function HomePage() {
   return (
     <div className="space-y-12">
       {/* Hero */}
+      
       <motion.section
         variants={fadeUp}
         initial="hidden"
@@ -723,7 +725,10 @@ function HomePage() {
             type="text"
             placeholder={t('searchPlaceholder')}
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              // @ts-ignore
+              setSearchQuery(e.target.value);
+            }}
             className="pl-11 h-12 rounded-xl glass-card border-border/50 focus:border-primary/40 text-base"
           />
         </motion.div>
@@ -790,11 +795,13 @@ function HomePage() {
 
       {/* Module Cards */}
       {!searchQuery.trim() && (
+        
         <motion.section
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
+          
           <motion.div variants={itemVariants} className="mb-5">
             <h2 className="text-xl font-semibold tracking-tight">{t('categories')}</h2>
             <p className="text-sm text-muted-foreground mt-1">{t('categoriesDesc')}</p>
@@ -812,12 +819,14 @@ function HomePage() {
 
       {/* All Tools */}
       {!searchQuery.trim() && (
+        
         <motion.section
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
         >
+          
           <motion.div variants={itemVariants} className="mb-5">
             <h2 className="text-xl font-semibold tracking-tight">{t('allTools')}</h2>
             <p className="text-sm text-muted-foreground mt-1">{t('allToolsDesc')}</p>

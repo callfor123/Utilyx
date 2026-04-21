@@ -270,6 +270,10 @@
     "tip-calculator": {
       "label": "Calculateur de Pourboire",
       "description": "Calculer le pourboire et répartir la note"
+    },
+    "img-ocr": {
+      "label": "OCR Texte",
+      "description": "Extraire le texte d'images avec reconnaissance optique"
     }
   },
   "Footer": {

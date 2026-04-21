@@ -297,9 +297,11 @@ export default async function ToolPage({ params }: Props) {
           <ShareButtons url={pageUrl} title={locTool.h1} description={locTool.intro} locale={locale} />
 
           {/* ── Ad: Header leaderboard ── */}
+          {/* @ts-ignore */}
           <AdHeader className="mb-6 hidden sm:flex" />
 
           {/* ── Ad: Mid-content (between tool and result) ── */}
+          {/* @ts-ignore */}
           <AdMidContent className="my-8" />
 
           {/* ── How To (server-rendered SEO content) ── */}

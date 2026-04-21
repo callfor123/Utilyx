@@ -270,6 +270,10 @@
     "tip-calculator": {
       "label": "Calculadora de Gorjetas",
       "description": "Calcular gorjetas e dividir a conta"
+    },
+    "img-ocr": {
+      "label": "Texto OCR",
+      "description": "Extrair texto de imagens com reconhecimento óptico"
     }
   },
   "Footer": {

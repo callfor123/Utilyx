@@ -270,6 +270,10 @@
     "tip-calculator": {
       "label": "Calculadora de Propinas",
       "description": "Calcular propinas y dividir la cuenta"
+    },
+    "img-ocr": {
+      "label": "OCR Texto",
+      "description": "Extraer texto de imágenes con reconocimiento óptico"
     }
   },
   "Footer": {

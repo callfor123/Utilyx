@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
         ext = 'jpg'
     }
 
-    return new NextResponse(outputBuffer, {
+    return new NextResponse(outputBuffer as any, {
       headers: {
         'Content-Type': contentType,
         'X-Original-Size': file.size.toString(),

@@ -270,6 +270,10 @@
     "tip-calculator": {
       "label": "Tip Calculator",
       "description": "Calculate tips and split the bill"
+    },
+    "img-ocr": {
+      "label": "OCR Text",
+      "description": "Extract text from images with optical recognition"
     }
   },
   "Footer": {

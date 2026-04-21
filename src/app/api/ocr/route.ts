@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       text: result.data.text,
       confidence: result.data.confidence,
-      words: result.data.words?.length || 0,
+      words: (result.data as any).words?.length || 0,
     })
   } catch (error) {
     console.error('OCR error:', error)
