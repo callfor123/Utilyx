@@ -1,0 +1,72 @@
+import { routes, deploymentEnv, type VercelConfig } from '@vercel/config/v1';
+
+export const config: VercelConfig = {
+  buildCommand: 'bun run build',
+  framework: 'nextjs',
+  rewrites: [
+    // Language-specific rewrites
+    routes.rewrite('/:locale(pdf|image|video|text-tools|generators|calculators|dev-seo)/:path*', '/:locale/:path*'),
+  ],
+  redirects: [
+    // Legacy redirects for French paths
+    routes.redirect('/en/pdf/compresser-pdf', '/en/pdf/compress-pdf', { permanent: true }),
+    routes.redirect('/en/pdf/fusionner-pdf', '/en/pdf/merge-pdf', { permanent: true }),
+    routes.redirect('/en/pdf/pdf-en-images', '/en/pdf/pdf-to-images', { permanent: true }),
+    routes.redirect('/en/pdf/signer-pdf', '/en/pdf/sign-pdf', { permanent: true }),
+    routes.redirect('/en/pdf/deverrouiller-pdf', '/en/pdf/unlock-pdf', { permanent: true }),
+    routes.redirect('/en/pdf/proteger-pdf', '/en/pdf/protect-pdf', { permanent: true }),
+    routes.redirect('/en/image/convertir-image', '/en/image/convert-image', { permanent: true }),
+    routes.redirect('/en/image/compresser-image', '/en/image/compress-image', { permanent: true }),
+    routes.redirect('/en/image/redimensionner-image', '/en/image/resize-image', { permanent: true }),
+    routes.redirect('/en/image/supprimer-arriere-plan', '/en/image/remove-background', { permanent: true }),
+    routes.redirect('/en/image/heic-vers-jpg', '/en/image/heic-to-jpg', { permanent: true }),
+    routes.redirect('/en/image/generateur-favicon', '/en/image/favicon-generator', { permanent: true }),
+    routes.redirect('/en/image/telecharger-miniature-youtube', '/en/image/youtube-thumbnail', { permanent: true }),
+    routes.redirect('/en/video/decouper-video', '/en/video/trim-video', { permanent: true }),
+    routes.redirect('/en/video/compresser-video', '/en/video/compress-video', { permanent: true }),
+    routes.redirect('/en/video/convertir-video', '/en/video/convert-video', { permanent: true }),
+    routes.redirect('/en/video/ajouter-audio-video', '/en/video/add-audio-to-video', { permanent: true }),
+    routes.redirect('/en/video/extraire-audio-video', '/en/video/extract-audio-from-video', { permanent: true }),
+    routes.redirect('/en/video/video-en-gif', '/en/video/video-to-gif', { permanent: true }),
+    routes.redirect('/en/video/supprimer-audio-video', '/en/video/remove-audio-from-video', { permanent: true }),
+    routes.redirect('/en/dev-seo/testeur-regex', '/en/dev-seo/regex-tester', { permanent: true }),
+    routes.redirect('/en/dev-seo/formateur-json', '/en/dev-seo/json-formatter', { permanent: true }),
+    routes.redirect('/en/dev-seo/nettoyeur-url-tracking', '/en/dev-seo/url-cleaner', { permanent: true }),
+    routes.redirect('/en/text-tools/compteur-mots', '/en/text-tools/word-counter', { permanent: true }),
+    routes.redirect('/en/text-tools/convertisseur-casse', '/en/text-tools/case-converter', { permanent: true }),
+    routes.redirect('/en/text-tools/base64', '/en/text-tools/base64-encode-decode', { permanent: true }),
+    routes.redirect('/en/text-tools/comparateur-texte', '/en/text-tools/text-diff-checker', { permanent: true }),
+    routes.redirect('/en/text-tools/separateur-nom-prenom', '/en/text-tools/name-splitter', { permanent: true }),
+    routes.redirect('/en/generators/generateur-qr-code', '/en/generators/qr-code-generator', { permanent: true }),
+    routes.redirect('/en/generators/generateur-mot-de-passe', '/en/generators/password-generator', { permanent: true }),
+    routes.redirect('/en/generators/generateur-hash', '/en/generators/hash-generator', { permanent: true }),
+    routes.redirect('/en/generators/generateur-lien-whatsapp', '/en/generators/whatsapp-link', { permanent: true }),
+    routes.redirect('/en/generators/generateur-uuid-guid', '/en/generators/uuid-generator', { permanent: true }),
+    routes.redirect('/en/calculators/calculateur-imc', '/en/calculators/bmi-calculator', { permanent: true }),
+    routes.redirect('/en/calculators/calculateur-age', '/en/calculators/age-calculator', { permanent: true }),
+    routes.redirect('/en/calculators/calculateur-pourcentage', '/en/calculators/percentage-calculator', { permanent: true }),
+    routes.redirect('/en/calculators/convertisseur-unites', '/en/calculators/unit-converter', { permanent: true }),
+    routes.redirect('/en/calculators/calculateur-dosage-beton', '/en/calculators/concrete-calculator', { permanent: true }),
+    routes.redirect('/en/calculators/calculateur-frais-kilometriques', '/en/calculators/mileage-calculator', { permanent: true }),
+    routes.redirect('/en/generators/convertisseur-couleurs', '/en/generators/color-converter', { permanent: true }),
+    routes.redirect('/en/calculators/chronometre', '/en/calculators/stopwatch', { permanent: true }),
+    routes.redirect('/en/calculators/timer-pomodoro', '/en/calculators/pomodoro-timer', { permanent: true }),
+  ],
+  headers: [
+    routes.cacheControl('/static/(.*)', { public: true, maxAge: '1 year', immutable: true }),
+    routes.cacheControl('/_next/static/(.*)', { public: true, maxAge: '1 year', immutable: true }),
+    {
+      source: '/(.*)',
+      headers: [
+        { key: 'X-Frame-Options', value: 'DENY' },
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        { key: 'X-XSS-Protection', value: '1; mode=block' },
+        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+      ],
+    },
+  ],
+  crons: [
+    { path: '/api/ping-search-engines', schedule: '0 0 * * *' }, // Daily ping to search engines
+  ],
+};
