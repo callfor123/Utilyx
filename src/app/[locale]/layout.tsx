@@ -62,59 +62,6 @@ const localeMetadata: Record<string, { title: string; description: string }> = {
   },
 };
 
-const localeKeywords: Record<string, string[]> = {
-  fr: [
-    "Utilyx", "outils en ligne gratuits", "suite d'outils gratuite", "compression PDF", "convertir PDF",
-    "convertisseur HEIC JPG", "éditer image en ligne", "redimensionner image",
-    "découper vidéo en ligne", "compresser vidéo gratuit", "convertir vidéo MP4", "extraire audio vidéo", "vidéo en GIF",
-    "générateur QR code", "générateur de mots de passe", "compteur de mots", "différence de texte",
-    "convertisseur d'unités", "calculatrice d'âge", "calculatrice IMC",
-    "outils web sans inscription", "traitement local sécurisé", "confidentialité garantie",
-    "générateur lien WhatsApp direct", "séparer nom prénom Excel", "nettoyeur URL tracking UTM",
-    "calculateur dosage béton sac 35kg", "calculateur frais kilométriques", "miniature YouTube HD"
-  ],
-  en: [
-    "Utilyx", "free online tools", "free tool suite", "PDF compressor", "convert PDF online",
-    "HEIC to JPG converter", "edit image online", "resize image",
-    "trim video online free", "compress video online", "convert video to MP4", "extract audio from video", "video to GIF converter",
-    "QR code generator", "password generator", "word counter", "text diff checker",
-    "unit converter", "age calculator", "BMI calculator",
-    "web tools no signup", "secure local processing", "privacy guaranteed",
-    "WhatsApp link generator", "split first last name Excel", "URL tracking cleaner UTM remover",
-    "concrete calculator bags cement", "mileage reimbursement calculator", "YouTube thumbnail downloader"
-  ],
-  es: [
-    "Utilyx", "herramientas online gratis", "suite de herramientas gratis", "compresor PDF", "convertir PDF",
-    "convertidor HEIC JPG", "editar imagen online", "recortar video online",
-    "comprimir video gratis", "generador QR código", "contador de palabras", "convertidor de unidades",
-    "herramientas web sin registro", "procesamiento local seguro",
-    "generador enlace WhatsApp", "separar nombres y apellidos", "limpiador URL UTM",
-    "calculadora hormigón cemento", "calculadora kilometraje", "miniatura YouTube"
-  ],
-  de: [
-    "Utilyx", "kostenlose Online-Tools", "PDF Kompressor", "HEIC zu JPG Konverter",
-    "Video online schneiden", "Video komprimieren", "Audio aus Video extrahieren",
-    "QR Code Generator", "Wortezähler", "Einheitenumrechner", "Online-Tools ohne Anmeldung", "lokale Verarbeitung DSGVO",
-    "WhatsApp-Link Generator", "Namen trennen Excel", "URL Tracking entfernen",
-    "Betonrechner Zement", "Kilometerpauschale Rechner", "YouTube Thumbnail herunterladen"
-  ],
-  ar: [
-    "Utilyx", "أدوات مجانية عبر الإنترنت", "ضغط PDF", "تحويل PDF", "تحويل HEIC إلى JPG",
-    "تعديل الصور", "قص الفيديو", "ضغط الفيديو المجاني", "تحويل الفيديو",
-    "مولد QR كود", "عداد الكلمات", "بدون تسجيل", "معالجة محلية آمنة",
-    "رابط واتساب مباشر", "فاصل الأسماء", "منظف الروابط UTM",
-    "حاسبة الخرسانة", "حاسبة المسافات", "صورة يوتيوب المصغرة"
-  ],
-  pt: [
-    "Utilyx", "ferramentas online gratuitas", "compressor PDF", "conversor HEIC JPG",
-    "cortar vídeo online", "comprimir vídeo", "converter vídeo",
-    "gerador QR code", "contador de palavras", "conversor de unidades",
-    "ferramentas web sem cadastro", "processamento local seguro",
-    "gerador link WhatsApp", "separador nomes Excel", "limpador URL UTM",
-    "calculadora concreto cimento", "calculadora quilometragem", "miniatura YouTube"
-  ],
-};
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
 
@@ -132,7 +79,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       template: "%s | Utilyx",
     },
     description: meta.description,
-    keywords: localeKeywords[locale] || localeKeywords.en,
+    keywords: locale === 'fr'
+      ? ['Utilyx', 'outils en ligne gratuits', 'suite multi-outils', 'sans inscription', 'traitement local']
+      : locale === 'en'
+        ? ['Utilyx', 'free online tools', 'multi-tool suite', 'no signup', 'local processing']
+        : locale === 'es'
+          ? ['Utilyx', 'herramientas online gratis', 'sin registro', 'procesamiento local']
+          : locale === 'de'
+            ? ['Utilyx', 'kostenlose Online-Tools', 'ohne Anmeldung', 'lokale Verarbeitung']
+            : locale === 'ar'
+              ? ['Utilyx', 'أدوات مجانية عبر الإنترنت', 'بدون تسجيل', 'معالجة محلية']
+              : ['Utilyx', 'ferramentas online gratuitas', 'sem cadastro', 'processamento local'],
     authors: [{ name: "Utilyx Team" }],
     creator: "Utilyx",
     publisher: "Utilyx",
@@ -181,6 +138,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ...Object.fromEntries(routing.locales.map((l) => [l, `${BASE_URL}/${l}`])),
       },
     },
+    manifest: "/manifest.webmanifest",
+    themeColor: "#6366f1",
     icons: {
       icon: "/favicon.ico",
       apple: "/logo.png",
@@ -208,7 +167,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   const dir = locale === "ar" ? "rtl" : "ltr";
 
-  const jsonLd = {
+  const softwareAppLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Utilyx",
@@ -229,13 +188,51 @@ export default async function LocaleLayout({ children, params }: Props) {
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
   }
 
+  const orgLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Utilyx",
+    url: "https://utilyx.app",
+    logo: "https://utilyx.app/logo.png",
+    sameAs: [],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "contact@utilyx.app",
+      url: "https://utilyx.app/fr/contact",
+    },
+  }
+
+  const webSiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Utilyx",
+    url: "https://utilyx.app",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://utilyx.app/{locale}?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  }
+
   return (
     <html lang={locale} dir={dir}>
       <head>
-        <SetLocaleAttrs locale={locale} dir={dir} />
+        <SetLocaleAttrs key="set-locale-attrs" locale={locale} dir={dir} />
         <script
+          key="ld-software-app"
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppLd) }}
+        />
+        <script
+          key="ld-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+        />
+        <script
+          key="ld-website"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
         />
       </head>
       <body>

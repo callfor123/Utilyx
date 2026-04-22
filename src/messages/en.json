@@ -56,6 +56,10 @@
     "video": {
       "label": "Video",
       "description": "Trim, compress, convert and edit videos"
+    },
+    "home": {
+      "label": "Home",
+      "description": "All tools at your fingertips"
     }
   },
   "Tools": {

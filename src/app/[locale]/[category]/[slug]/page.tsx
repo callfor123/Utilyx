@@ -98,9 +98,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     hreflangLangs[l] = `${BASE_URL}/${l}/${category}/${getSlugForLocale(tool.slug, l)}`
   }
 
+  // Build per-tool keywords from title, h1, and category
+  const toolKeywords = [
+    locTool.h1,
+    tool.slug,
+    catLabel,
+    ...locTool.howTo.slice(0, 2),
+    locale === 'fr' ? 'gratuit' : locale === 'en' ? 'free' : locale === 'es' ? 'gratis' : locale === 'de' ? 'kostenlos' : locale === 'ar' ? 'مجاني' : 'gratuito',
+    locale === 'fr' ? 'en ligne' : locale === 'en' ? 'online' : locale === 'es' ? 'en línea' : locale === 'de' ? 'online' : locale === 'ar' ? 'عبر الإنترنت' : 'online',
+    'Utilyx',
+  ]
+
   return {
     title: locTool.title,
     description: locTool.desc,
+    keywords: toolKeywords,
     alternates: {
       canonical: url,
       languages: { 'x-default': `${BASE_URL}/fr/${category}/${tool.slug}`, ...hreflangLangs },
@@ -250,6 +262,23 @@ export default async function ToolPage({ params }: Props) {
     })
     .filter(Boolean) as { slug: string; category: string; h1: string; desc: string }[]
 
+  /* ── Category tools (for internal linking hub) ── */
+  const categoryTools = Object.values(seoRegistry)
+    .filter((t) => t.category === category && t.slug !== baseSlug)
+    .map((t) => {
+      const locT = getLocalizedSeo(t.slug, locale, t)
+      return { slug: t.slug, category: t.category, h1: locT.h1, desc: locT.desc }
+    })
+
+  const categoryMoreLabel: Record<string, string> = {
+    fr: `Autres outils ${catLabel}`,
+    en: `More ${catLabel}`,
+    es: `Más ${catLabel}`,
+    de: `Weitere ${catLabel}`,
+    ar: `${catLabel} أخرى`,
+    pt: `Mais ${catLabel}`,
+  }
+
   return (
     <>
       {/* Structured data: SoftwareApplication + AggregateRating */}
@@ -363,6 +392,25 @@ export default async function ToolPage({ params }: Props) {
                     </Link>
                   )
                 })}
+              </div>
+            </section>
+          )}
+
+          {/* ── Category Hub (more tools in same category for internal linking) ── */}
+          {categoryTools.length > 0 && (
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold mb-4">{categoryMoreLabel[locale] || categoryMoreLabel.fr}</h2>
+              <div className="flex flex-wrap gap-2">
+                {categoryTools.map((ct) => (
+                  <Link
+                    key={ct.slug}
+                    href={`/${locale}/${ct.category}/${getSlugForLocale(ct.slug, locale)}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border/50 rounded-lg hover:bg-muted/30 hover:border-primary/20 transition-all duration-200"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: categorySvgs[ct.category] || categorySvgs['generators'] }} />
+                    {ct.h1}
+                  </Link>
+                ))}
               </div>
             </section>
           )}

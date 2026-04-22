@@ -303,16 +303,25 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   },
   'telecharger-miniature-youtube': {
     toolId: 'youtube-thumbnail', category: 'image', slug: 'telecharger-miniature-youtube',
-    title: 'Télécharger Miniature YouTube en HD Gratuit — Thumbnail Grabber',
-    desc: 'Téléchargez les miniatures HD de vidéos YouTube en un clic. Résolution maximale 1280x720. Gratuit et sans inscription.',
+    title: 'Télécharger Miniature YouTube HD Gratuit',
+    desc: 'Téléchargez les miniatures HD de vidéos YouTube en un clic. Résolution max 1280x720. Gratuit, sans inscription.',
     h1: 'Télécharger la miniature d\'une vidéo YouTube',
-    intro: 'Récupérez la miniature (thumbnail) de n\'importe quelle vidéo YouTube en haute résolution (1280x720 pixels) en collant simplement son URL. Les miniatures YouTube sont des visuels puissants utilisés par les créateurs de contenu, les marketeurs et les designers pour des présentations, des articles de blog, des montages vidéo ou des analyses de contenu. Notre outil récupère instantanément la miniature officielle dans la meilleure résolution disponible, sans nécessiter de connexion YouTube ni de logiciel tiers. Vous pouvez télécharger la miniature en JPG directement sur votre appareil. Cet outil est particulièrement utile pour les agences de marketing qui analysent les stratégies visuelles des chaînes populaires, ou pour les créateurs qui souhaitent s\'inspirer des miniatures performantes. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Récupérez la miniature (thumbnail) de n\'importe quelle vidéo YouTube en haute résolution (1280x720 pixels) en collant simplement son URL. Les miniatures YouTube sont des visuels puissants utilisés par les créateurs de contenu, les marketeurs et les designers pour des présentations, des articles de blog, des montages vidéo ou des analyses de contenu. Notre outil récupère instantanément la miniature officielle dans la meilleure résolution disponible, sans nécessiter de connexion YouTube ni de logiciel tiers. Vous pouvez télécharger la miniature en JPG directement sur votre appareil. Cet outil est particulièrement utile pour les agences de marketing qui analysent les stratégies visuelles des chaînes populaires, ou pour les créateurs qui souhaitent s\'inspirer des miniatures performantes pour améliorer leur propre taux de clic. Les blogueurs et journalistes utilisent aussi ces miniatures pour illustrer leurs articles lorsqu\'ils mentionnent des vidéos YouTube. Le service est gratuit et sans inscription. Cet outil en ligne ne nécessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est conçue pour être intuitive et accessible à tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir à créer de compte. Chaque fonctionnalité est optimisée pour offrir le meilleur résultat possible en un minimum de clics, vous permettant de gagner du temps sur vos tâches quotidiennes.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Téléchargez autant de miniatures que vous le souhaitez.' },
-      { q: 'Quelle résolution puis-je obtenir ?', a: 'La résolution maximale est de 1280x720 pixels (HD), soit la meilleure qualité disponible pour les miniatures YouTube.' },
-      { q: 'Puis-je télécharger la miniature de n\'importe quelle vidéo ?', a: 'Oui, tant que la vidéo est publique sur YouTube. Collez l\'URL de la vidéo et la miniature sera récupérée instantanément.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Téléchargez autant de miniatures que vous le souhaitez, sans aucune limite quotidienne ni filigrane sur le résultat.' },
+      { q: 'Quelle résolution puis-je obtenir ?', a: 'La résolution maximale est de 1280x720 pixels (HD), soit la meilleure qualité disponible pour les miniatures YouTube. Certaines vidéos plus anciennes peuvent proposer du 640x480.' },
+      { q: 'Puis-je télécharger la miniature de n\'importe quelle vidéo ?', a: 'Oui, tant que la vidéo est publique sur YouTube. Collez l\'URL de la vidéo et la miniature sera récupérée instantanément. Les vidéos privées ou non répertoriées ne sont pas accessibles.' },
+      { q: 'Puis-je utiliser la miniature pour mon propre contenu ?', a: 'La miniature appartient au créateur de la vidéo. Vous pouvez l\'utiliser à des fins personnelles ou d\'analyse. Pour une utilisation commerciale ou publique, demandez l\'autorisation du créateur.' },
+      { q: 'Quel format de fichier est téléchargé ?', a: 'La miniature est téléchargée au format JPG, le format standard utilisé par YouTube pour ses miniatures. Ce format est compatible avec tous les logiciels d\'édition et de retouche photo.' },
+      { q: 'Comment trouver l\'URL d\'une vidéo YouTube ?', a: 'Allez sur la vidéo YouTube, cliquez sur Partager puis copiez le lien. Vous pouvez aussi copier l\'URL directement depuis la barre d\'adresse de votre navigateur.' }
     ],
-    howTo: ['Collez l\'URL de la vidéo YouTube', 'Cliquez sur Télécharger', 'Récupérez la miniature en HD'],
+    howTo: [
+      'Allez sur la vidéo YouTube et copiez son URL depuis la barre d\'adresse',
+      'Collez l\'URL dans le champ prévu de notre outil',
+      'Cliquez sur le bouton pour récupérer la miniature',
+      'Prévisualisez la miniature avant de la télécharger',
+      'Téléchargez la miniature en HD sur votre appareil'
+    ],
     relatedSlugs: ['convertir-image', 'generateur-favicon', 'compresser-image'],
   },
   'decouper-video': {
@@ -404,16 +413,25 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   },
   'supprimer-audio-video': {
     toolId: 'video-remove-audio', category: 'video', slug: 'supprimer-audio-video',
-    title: 'Supprimer Audio d\'une Vidéo en Ligne Gratuit — Silencer Vidéo',
-    desc: 'Retirez la piste audio d\'une vidéo en un clic. Gratuit, sans inscription, 100% local.',
+    title: 'Supprimer Audio d\'une Vidéo en Ligne Gratuit',
+    desc: 'Retirez la piste audio d\'une vidéo en un clic. Vidéo silencieuse sans réencodage. Gratuit, sans inscription, 100% local.',
     h1: 'Supprimer l\'audio d\'une vidéo en ligne',
-    intro: 'Retirez la piste audio de n\'importe quelle vidéo en un seul clic pour obtenir un fichier vidéo silencieux. Cet outil est indispensable dans de nombreuses situations : supprimer le bruit de fond d\'une vidéo de surveillance, enlever la musique d\'origine pour ajouter une nouvelle bande son, créer des vidéos muettes pour des présentations ou des montages, ou encore préparer une vidéo avant d\'y ajouter une voix-off. Les monteurs vidéo rendent souvent leurs clips silencieux avant de réenregistrer un nouveau commentaire, tandis que les créateurs de memes suppriment l\'audio d\'origine pour le remplacer par un effet sonore viral. Le processus est rapide et ne modifie pas la qualité vidéo d\'origine. Le traitement s\'effectue entièrement dans votre navigateur : vos fichiers ne quittent jamais votre appareil. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Retirez la piste audio de n\'importe quelle vidéo en un seul clic pour obtenir un fichier vidéo silencieux. Cet outil est indispensable dans de nombreuses situations : supprimer le bruit de fond d\'une vidéo de surveillance, enlever la musique d\'origine pour ajouter une nouvelle bande son, créer des vidéos muettes pour des présentations ou des montages, ou encore préparer une vidéo avant d\'y ajouter une voix-off. Les monteurs vidéo rendent souvent leurs clips silencieux avant de réenregistrer un nouveau commentaire, tandis que les créateurs de memes suppriment l\'audio d\'origine pour le remplacer par un effet sonore viral. Les professionnels du marketing utilisent aussi cette technique pour créer des versions silencieuses de leurs publicités destinées aux plateformes qui lisent les vidéos en muet par défaut, comme Facebook et Instagram. Le processus est rapide et ne modifie pas la qualité vidéo d\'origine. Le traitement s\'effectue entièrement dans votre navigateur grâce à FFmpeg WebAssembly : vos fichiers ne quittent jamais votre appareil. Le service est gratuit et sans inscription. Cet outil en ligne ne nécessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est conçue pour être intuitive et accessible à tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir à créer de compte. Chaque fonctionnalité est optimisée pour offrir le meilleur résultat possible en un minimum de clics, vous permettant de gagner du temps sur vos tâches quotidiennes.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Supprimez l\'audio d\'autant de vidéos que vous le souhaitez.' },
-      { q: 'La qualité vidéo est-elle préservée ?', a: 'Oui, seule la piste audio est retirée. La qualité vidéo reste exactement identique à l\'originale.' },
-      { q: 'Puis-je réajouter un autre audio ensuite ?', a: 'Oui, utilisez notre outil Ajouter Audio pour superposer une nouvelle piste sonore sur votre vidéo silencieuse.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Supprimez l\'audio d\'autant de vidéos que vous le souhaitez, sans limite quotidienne ni filigrane sur le résultat.' },
+      { q: 'La qualité vidéo est-elle préservée ?', a: 'Oui, seule la piste audio est retirée. La qualité vidéo et les images restent exactement identiques à l\'originale, sans aucune perte ni réencodage.' },
+      { q: 'Puis-je réajouter un autre audio ensuite ?', a: 'Oui, utilisez notre outil Ajouter Audio pour superposer une nouvelle piste sonore sur votre vidéo silencieuse. Vous pouvez ainsi remplacer la bande son d\'origine par une musique ou une voix-off.' },
+      { q: 'Quels formats vidéo sont supportés ?', a: 'MP4, WebM, AVI, MOV, MKV et la plupart des formats vidéo courants. La vidéo de sortie est au format MP4 pour une compatibilité maximale.' },
+      { q: 'Combien de temps prend la suppression de l\'audio ?', a: 'La suppression est très rapide car il s\'agit d\'une opération de copie de flux vidéo sans réencodage. Une vidéo de quelques minutes est traitée en quelques secondes.' },
+      { q: 'Mes vidéos sont-elles en sécurité ?', a: 'Oui, le traitement s\'effectue entièrement dans votre navigateur. Vos vidéos ne sont jamais envoyées à un serveur ni stockées en ligne. La confidentialité de vos fichiers est garantie.' }
     ],
-    howTo: ['Chargez votre vidéo', 'Cliquez sur Supprimer l\'audio', 'Téléchargez la vidéo sans son'],
+    howTo: [
+      'Chargez votre vidéo en la glissant-déposant ou en parcourant vos dossiers',
+      'Prévisualisez la vidéo pour vérifier qu\'il s\'agit du bon fichier',
+      'Cliquez sur "Supprimer l\'audio" pour lancer le traitement',
+      'Attendez que le traitement se termine (quelques secondes)',
+      'Téléchargez la vidéo silencieuse sur votre appareil'
+    ],
     relatedSlugs: ['ajouter-audio-video', 'extraire-audio-video', 'compresser-video'],
   },
   'json-csv': {
@@ -660,15 +678,24 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   'generateur-hash': {
     toolId: 'hash-generator', category: 'generators', slug: 'generateur-hash',
     title: 'Générateur de Hash en Ligne Gratuit — MD5, SHA-256, SHA-512',
-    desc: 'Générez des hash MD5, SHA-1, SHA-256 et SHA-512. Gratuit, sans inscription, 100% local.',
+    desc: 'Générez des hash MD5, SHA-1, SHA-256 et SHA-512. Vérifiez l\'intégrité de fichiers. Gratuit, sans inscription, 100% local.',
     h1: 'Générer un hash MD5, SHA-256 ou SHA-512 en ligne',
-    intro: 'Calculez instantanément les empreintes numériques (hash) de n\'importe quel texte en utilisant les algorithmes les plus courants : MD5, SHA-1, SHA-256, SHA-384 et SHA-512. Les fonctions de hash sont des primitives cryptographiques essentielles utilisées pour vérifier l\'intégrité des fichiers, stocker les mots de passe de manière sécurisée, signer des documents numériquement et identifier des données de manière unique. Les développeurs utilisent les hash pour vérifier que les fichiers téléchargés n\'ont pas été altérés, les administrateurs système pour vérifier les sommes de contrôle des sauvegardes, et les security engineers pour détecter les modifications non autorisées. Notre outil calcule tous les hash en parallèle pour un résultat instantané. Le traitement s\'effectue entièrement dans votre navigateur grâce à l\'API Web Crypto : vos données ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Calculez instantanément les empreintes numériques (hash) de n\'importe quel texte en utilisant les algorithmes les plus courants : MD5, SHA-1, SHA-256, SHA-384 et SHA-512. Les fonctions de hash sont des primitives cryptographiques essentielles utilisées pour vérifier l\'intégrité des fichiers, stocker les mots de passe de manière sécurisée, signer des documents numériquement et identifier des données de manière unique. Les développeurs utilisent les hash pour vérifier que les fichiers téléchargés n\'ont pas été altérés, les administrateurs système pour vérifier les sommes de contrôle des sauvegardes, et les security engineers pour détecter les modifications non autorisées. Notre outil calcule tous les hash en parallèle pour un résultat instantané. Vous pouvez aussi comparer deux hash pour vérifier rapidement s\'ils correspondent, ce qui est particulièrement utile pour valider l\'intégrité d\'un téléchargement ou détecter des modifications dans un fichier de configuration. Le traitement s\'effectue entièrement dans votre navigateur grâce à l\'API Web Crypto : vos données ne sont jamais envoyées à un serveur. Le service est gratuit et sans inscription. Cet outil en ligne ne nécessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est conçue pour être intuitive et accessible à tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir à créer de compte. Chaque fonctionnalité est optimisée pour offrir le meilleur résultat possible en un minimum de clics, vous permettant de gagner du temps sur vos tâches quotidiennes.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Calculez autant de hash que vous le souhaitez.' },
-      { q: 'Quelle est la différence entre MD5 et SHA-256 ?', a: 'MD5 produit un hash de 128 bits (32 caractères hex) mais est considéré comme cryptographiquement cassé. SHA-256 produit un hash de 256 bits (64 caractères hex) et est recommandé pour les usages de sécurité.' },
-      { q: 'A quoi servent les hash ?', a: 'Vérification d\'intégrité des fichiers, stockage sécurisé de mots de passe, signatures numériques, identification de données, détection de doublons et de modifications.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Calculez autant de hash que vous le souhaitez, sans aucune limite quotidienne.' },
+      { q: 'Quelle est la différence entre MD5 et SHA-256 ?', a: 'MD5 produit un hash de 128 bits (32 caractères hex) mais est considéré comme cryptographiquement cassé et ne doit plus être utilisé pour la sécurité. SHA-256 produit un hash de 256 bits (64 caractères hex) et est recommandé pour tous les usages de sécurité.' },
+      { q: 'À quoi servent les hash ?', a: 'Vérification d\'intégrité des fichiers téléchargés, stockage sécurisé de mots de passe, signatures numériques, identification de données, détection de doublons et de modifications non autorisées dans des fichiers de configuration.' },
+      { q: 'Puis-je hasher des fichiers ?', a: 'Oui, vous pouvez charger n\'importe quel fichier (image, PDF, archive) pour calculer son hash. C\'est utile pour vérifier qu\'un fichier téléchargé correspond à la somme de contrôle fournie par l\'éditeur.' },
+      { q: 'Le hash est-il réversible ?', a: 'Non, les fonctions de hash sont à sens unique. Il est impossible de retrouver le texte d\'origine à partir du hash. C\'est ce qui les rend adaptées au stockage sécurisé de mots de passe.' },
+      { q: 'Quels algorithmes sont disponibles ?', a: 'MD5, SHA-1, SHA-256, SHA-384 et SHA-512. Tous sont calculés simultanément en temps réel au fur et à mesure que vous tapez votre texte.' }
     ],
-    howTo: ['Entrez ou collez votre texte', 'Les hash sont calculés instantanément', 'Copiez le hash souhaité (MD5, SHA-1, SHA-256, SHA-512)'],
+    howTo: [
+      'Entrez ou collez votre texte dans le champ prévu',
+      'Les hash sont calculés instantanément en temps réel pour chaque algorithme',
+      'Comparez deux hash si vous souhaitez vérifier une correspondance',
+      'Cliquez sur le bouton Copier à côté du hash souhaité',
+      'Utilisez le hash pour vérifier l\'intégrité ou stocker une empreinte sécurisée'
+    ],
     relatedSlugs: ['generateur-mot-de-passe', 'base64', 'generateur-uuid-guid'],
   },
   'color-picker': {

@@ -1,0 +1,52 @@
+{
+  "name": "Utilyx — Suite Multi-Outils Gratuite",
+  "short_name": "Utilyx",
+  "description": "47+ outils gratuits en ligne : PDF, images, vidéo, SEO, texte, générateurs et calculateurs. Traitement 100% local.",
+  "start_url": "/fr",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "lang": "fr",
+  "dir": "ltr",
+  "categories": ["utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Outils PDF",
+      "url": "/fr/pdf",
+      "description": "Compresser, fusionner, convertir des PDF"
+    },
+    {
+      "name": "Outils Image",
+      "url": "/fr/image",
+      "description": "Convertir, redimensionner, compresser des images"
+    },
+    {
+      "name": "Outils Vidéo",
+      "url": "/fr/video",
+      "description": "Découper, compresser, convertir des vidéos"
+    }
+  ]
+}

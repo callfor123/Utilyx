@@ -56,6 +56,10 @@
     "video": {
       "label": "Vídeo",
       "description": "Cortar, comprimir, converter e editar vídeos"
+    },
+    "home": {
+      "label": "Início",
+      "description": "Todas as ferramentas ao seu alcance"
     }
   },
   "Tools": {

@@ -56,6 +56,10 @@
     "video": {
       "label": "Video",
       "description": "Videos schneiden, komprimieren, konvertieren und bearbeiten"
+    },
+    "home": {
+      "label": "Startseite",
+      "description": "Alle Werkzeuge griffbereit"
     }
   },
   "Tools": {
