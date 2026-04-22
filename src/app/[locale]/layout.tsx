@@ -215,47 +215,47 @@ export default async function LocaleLayout({ children, params }: Props) {
     },
   }
 
+  // Note: <html>/<body> are rendered by the root layout (src/app/layout.tsx).
+  // This locale layout only wraps children with client-side providers and
+  // sets locale attributes via SetLocaleAttrs. This avoids nested <html>/<body>
+  // which causes Next.js 16 prerender crashes (useContext null error).
   return (
-    <html lang={locale} dir={dir}>
-      <head>
-        <SetLocaleAttrs key="set-locale-attrs" locale={locale} dir={dir} />
-        <script
-          key="ld-software-app"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppLd) }}
-        />
-        <script
-          key="ld-org"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
-        />
-        <script
-          key="ld-website"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
-        />
-      </head>
-      <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme={locale === "ar" ? "dark" : "light"}
-          enableSystem
-          disableTransitionOnChange
-        >
-          {/* Google Analytics */}
-          <GoogleAnalytics />
-          {/* AdSense script (client-side only to prevent hydration mismatch) */}
-          <AdSenseScript />
-          <NextIntlClientProvider messages={messages}>
-            {children}
-            <CookieConsentBanner />
-            <InvalidClickProtection />
-            <AdBlockerDetector />
-          </NextIntlClientProvider>
-          <Toaster />
-        </ThemeProvider>
-        <Analytics />
-      </body>
-    </html>
+    <>
+      <SetLocaleAttrs key="set-locale-attrs" locale={locale} dir={dir} />
+      <script
+        key="ld-software-app"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppLd) }}
+      />
+      <script
+        key="ld-org"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+      />
+      <script
+        key="ld-website"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
+      />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme={locale === "ar" ? "dark" : "light"}
+        enableSystem
+        disableTransitionOnChange
+      >
+        {/* Google Analytics */}
+        <GoogleAnalytics />
+        {/* AdSense script (client-side only to prevent hydration mismatch) */}
+        <AdSenseScript />
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <CookieConsentBanner />
+          <InvalidClickProtection />
+          <AdBlockerDetector />
+        </NextIntlClientProvider>
+        <Toaster />
+      </ThemeProvider>
+      <Analytics />
+    </>
   );
 }

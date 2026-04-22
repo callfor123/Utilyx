@@ -1,5 +1,9 @@
 'use client'
 
+// Prevent Next.js from statically prerendering this page.
+// SSG fails because context providers are null during prerender.
+export const dynamic = 'force-dynamic'
+
 export default function GlobalError({
   error,
   reset,

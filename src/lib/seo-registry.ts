@@ -76,7 +76,13 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, l\'outil est 100% gratuit et ne nécessite aucune inscription. Vous pouvez convertir autant de fichiers que vous le souhaitez.' },
       { q: 'Puis-je extraire le texte des images générées ?', a: 'Oui, vous pouvez utiliser notre outil OCR "Extraire le texte d\'une image" pour convertir le contenu textuel de vos images en texte sélectionnable et modifiable.' }
     ],
-    howTo: ['Chargez votre PDF', 'Choisissez le format de sortie (JPG ou PNG)', 'Téléchargez les images générées'],
+    howTo: [
+      'Chargez votre fichier PDF en le glissant-déposant ou en parcourant vos dossiers',
+      'Choisissez le format de sortie : JPG pour un fichier léger ou PNG pour une qualité maximale',
+      'Ajustez la résolution de sortie selon vos besoins (72 dpi pour le web, 300 dpi pour l\'impression)',
+      'Prévisualisez les pages converties avant de télécharger',
+      'Téléchargez les images générées individuellement ou en lot'
+    ],
     relatedSlugs: ['compresser-pdf', 'fusionner-pdf', 'convertir-image'],
   },
   'signer-pdf': {
@@ -113,7 +119,12 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
       { q: 'Le contenu du PDF est-il modifié ?', a: 'Non, le contenu reste exactement identique. Seule la protection par mot de passe est retirée.' },
       { q: 'Combien de PDF puis-je déverrouiller ?', a: 'Il n\'y a aucune limite. Vous pouvez déverrouiller autant de fichiers que vous le souhaitez, gratuitement.' }
     ],
-    howTo: ['Chargez votre PDF protégé', 'Entrez le mot de passe', 'Téléchargez le PDF déverrouillé'],
+    howTo: [
+      'Chargez votre fichier PDF protégé par mot de passe',
+      'Saisissez le mot de passe du document pour le déverrouiller',
+      'Vérifiez que le contenu est accessible et complet',
+      'Téléchargez le PDF déverrouillé sans mot de passe sur votre appareil'
+    ],
     relatedSlugs: ['proteger-pdf', 'compresser-pdf', 'fusionner-pdf'],
   },
   'proteger-pdf': {
@@ -128,7 +139,12 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
       { q: 'Puis-je protéger plusieurs PDF à la fois ?', a: 'Oui, vous pouvez protéger autant de PDF que vous le souhaitez, sans limite ni inscription.' },
       { q: 'Que se passe-t-il si j\'oublie le mot de passe ?', a: 'Il n\'existe aucun moyen de récupérer le mot de passe. Conservez-le soigneusement, car sans lui le PDF sera inaccessible.' }
     ],
-    howTo: ['Chargez votre PDF', 'Choisissez un mot de passe', 'Téléchargez le PDF protégé'],
+    howTo: [
+      'Chargez votre document PDF dans l\'outil',
+      'Choisissez un mot de passe robuste (au moins 8 caractères, combinant majuscules, minuscules, chiffres et symboles)',
+      'Confirmez le mot de passe pour éviter les erreurs de saisie',
+      'Téléchargez le PDF protégé sur votre appareil'
+    ],
     relatedSlugs: ['deverrouiller-pdf', 'compresser-pdf', 'signer-pdf'],
   },
   'convertir-image': {
@@ -333,7 +349,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Aucune limite sur le nombre de vidéos à découper.' },
       { q: 'Comment fonctionne le découpage vidéo ?', a: 'Chargez votre vidéo, définissez les points de début et de fin de la séquence à conserver en utilisant le lecteur vidéo ou les champs numériques, puis cliquez sur Découper. Le traitement s\'effectue localement dans votre navigateur.' },
-      { q: 'Quels formats vidéo sont supportés ?', a: 'MP4, WebM, AVI, MOV, MKV et la plupart des formats courants. La vidéo de sortie est au format MP4.' }
+      { q: 'Quels formats vidéo sont supportés ?', a: 'MP4, WebM, AVI, MOV, MKV et la plupart des formats courants. La vidéo de sortie est au format MP4.' },
+      { q: 'Puis-je découper plusieurs segments d\'une même vidéo ?', a: 'Oui, vous pouvez découper plusieurs segments en effectuant plusieurs opérations de découpage successives sur la même vidéo.' },
+      { q: 'La qualité vidéo est-elle préservée après le découpage ?', a: 'Oui, le découpage supprime uniquement les segments indésirables sans réencodage. La qualité vidéo de la séquence conservée est identique à l\'originale.' }
     ],
     howTo: ['Chargez votre vidéo', 'Définissez les points de début et de fin', 'Prévisualisez la sélection', 'Cliquez sur Découper et téléchargez'],
     relatedSlugs: ['compresser-video', 'convertir-video', 'video-en-gif'],
@@ -362,7 +380,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Convertissez autant de vidéos que vous le souhaitez.' },
       { q: 'Quels formats de sortie sont disponibles ?', a: 'MP4, WebM, AVI, MKV, MOV et GIF. Le MP4 est recommandé pour une compatibilité maximale.' },
-      { q: 'La conversion préserve-t-elle la qualité ?', a: 'Oui, la conversion préserve la qualité d\'origine au maximum. Vous pouvez ajuster les paramètres de bitrate si nécessaire.' }
+      { q: 'La conversion préserve-t-elle la qualité ?', a: 'Oui, la conversion préserve la qualité d\'origine au maximum. Vous pouvez ajuster les paramètres de bitrate si nécessaire.' },
+      { q: 'Puis-je convertir une vidéo pour Instagram ou YouTube ?', a: 'Oui, choisissez le format MP4 pour une compatibilité optimale avec Instagram, YouTube, TikTok et toutes les plateformes de partage vidéo.' },
+      { q: 'Quelle est la durée maximale de vidéo convertible ?', a: 'Il n\'y a pas de limite stricte. La conversion s\'effectue localement dans votre navigateur, la seule contrainte est la mémoire disponible sur votre appareil.' }
     ],
     howTo: ['Chargez votre vidéo', 'Choisissez le format de sortie', 'Ajustez les paramètres si nécessaire', 'Téléchargez la vidéo convertie'],
     relatedSlugs: ['compresser-video', 'decouper-video', 'video-en-gif'],
@@ -391,7 +411,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Extrayez l\'audio d\'autant de vidéos que vous le souhaitez.' },
       { q: 'Quels formats audio puis-je obtenir ?', a: 'MP3 (format universel, fichier léger), WAV (qualité maximale, sans perte) et AAC (bonne qualité, fichier compact).' },
-      { q: 'La qualité audio sera-t-elle préservée ?', a: 'Oui, l\'audio est extrait sans réencodage si possible. En MP3, vous pouvez choisir le bitrate de sortie (128, 192 ou 320 kbps).' }
+      { q: 'La qualité audio sera-t-elle préservée ?', a: 'Oui, l\'audio est extrait sans réencodage si possible. En MP3, vous pouvez choisir le bitrate de sortie (128, 192 ou 320 kbps).' },
+      { q: 'Puis-je extraire l\'audio d\'une vidéo YouTube ?', a: 'Notre outil fonctionne avec des fichiers vidéo locaux. Pour extraire l\'audio d\'une vidéo en ligne, vous devez d\'abord la télécharger sur votre appareil, puis l\'importer dans l\'outil.' },
+      { q: 'Quels formats vidéo sont supportés en entrée ?', a: 'MP4, WebM, AVI, MOV, MKV et la plupart des formats vidéo courants. L\'audio est extrait quelle que soit la vidéo source.' }
     ],
     howTo: ['Chargez votre vidéo', 'Choisissez le format de sortie (MP3, WAV ou AAC)', 'Ajustez la qualité si nécessaire', 'Téléchargez le fichier audio'],
     relatedSlugs: ['ajouter-audio-video', 'supprimer-audio-video', 'decouper-video'],
@@ -443,7 +465,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Aucune limite sur le nombre de conversions.' },
       { q: 'Comment convertir du JSON en CSV ?', a: 'Collez ou chargez vos données JSON, l\'outil détecte automatiquement la structure et génère le CSV correspondant. Vous pouvez ensuite télécharger ou copier le résultat.' },
-      { q: 'Les données imbriquées JSON sont-elles supportées ?', a: 'Oui, les objets imbriqués sont aplatis automatiquement. Les clés imbriquées sont combinées avec des points (ex: user.name) pour créer des colonnes CSV.' }
+      { q: 'Les données imbriquées JSON sont-elles supportées ?', a: 'Oui, les objets imbriqués sont aplatis automatiquement. Les clés imbriquées sont combinées avec des points (ex: user.name) pour créer des colonnes CSV.' },
+      { q: 'Puis-je convertir du CSV en JSON ?', a: 'Oui, l\'outil fonctionne dans les deux sens. Collez votre CSV, choisissez la direction de conversion, et obtenez un JSON structuré avec les en-têtes comme clés.' },
+      { q: 'Mes données sont-elles sécurisées ?', a: 'Oui, 100% sécurisé. Toutes les conversions s\'effectuent localement dans votre navigateur. Aucune donnée n\'est envoyée à un serveur externe.' }
     ],
     howTo: ['Collez ou chargez vos données JSON ou CSV', 'L\'outil convertit automatiquement', 'Ajustez les options si nécessaire', 'Copiez ou téléchargez le résultat'],
     relatedSlugs: ['formateur-json', 'url-encode-decode', 'markdown-preview'],
@@ -457,7 +481,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Testez autant d\'expressions régulières que vous le souhaitez.' },
       { q: 'Quels flags regex sont supportés ?', a: 'Les flags standards sont supportés : g (global), i (insensible à la casse), m (multiligne), s (dotAll) et u (unicode).' },
-      { q: 'Les groupes capturés sont-ils affichés ?', a: 'Oui, tous les groupes de capture et groupes nommés sont affichés avec leur contenu correspondant.' }
+      { q: 'Les groupes capturés sont-ils affichés ?', a: 'Oui, tous les groupes de capture et groupes nommés sont affichés avec leur contenu correspondant.' },
+      { q: 'Puis-je partager mes regex ?', a: 'Oui, vous pouvez copier l\'URL de la page avec votre pattern et vos chaînes de test pré-remplies pour les partager avec vos collègues.' },
+      { q: 'Quels cas d\'usage courants sont possibles ?', a: 'Validation d\'email, extraction de données, nettoyage de texte, recherche et remplacement avancé, parsing de logs, validation de formulaires et bien plus.' }
     ],
     howTo: ['Entrez votre expression régulière', 'Ajoutez vos chaînes de test', 'Les correspondances s\'affichent en temps réel', 'Ajustez et itérez'],
     relatedSlugs: ['formateur-json', 'url-encode-decode', 'meta-tags'],
@@ -471,7 +497,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Générez autant de meta tags que vous le souhaitez.' },
       { q: 'Quels meta tags sont générés ?', a: 'Title, description, Open Graph (og:title, og:description, og:image, og:type), Twitter Cards, robots, canonical et les balises de vérification pour Google et Bing.' },
-      { q: 'Comment installer les meta tags ?', a: 'Copiez le code HTML généré et collez-le dans la section <head> de votre page web.' }
+      { q: 'Comment installer les meta tags ?', a: 'Copiez le code HTML généré et collez-le dans la section <head> de votre page web.' },
+      { q: 'Pourquoi les meta tags sont-ils importants pour le SEO ?', a: 'Les meta tags indiquent aux moteurs de recherche le titre et la description de votre page, ce qui influence directement le taux de clic dans les résultats Google. Les balises Open Graph contrôlent l\'apparence lors du partage sur les réseaux sociaux.' },
+      { q: 'Quelle longueur recommandée pour le title et la description ?', a: 'Title : 50 à 60 caractères pour éviter la troncature dans Google. Description : 150 à 160 caractères pour un affichage optimal dans les résultats de recherche.' }
     ],
     howTo: ['Remplissez les champs (titre, description, image)', 'Prévisualisez le résultat sur Google et les réseaux', 'Copiez le code HTML généré', 'Collez dans la balise head de votre page'],
     relatedSlugs: ['sitemap-robots', 'css-gradient', 'url-encode-decode'],
@@ -485,7 +513,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Générez autant de sitemaps et robots.txt que vous le souhaitez.' },
       { q: 'Comment soumettre le sitemap à Google ?', a: 'Uploadez le fichier sitemap.xml à la racine de votre site, puis soumettez-le via Google Search Console dans la section Sitemaps.' },
-      { q: 'Que mettre dans le robots.txt ?', a: 'Autorisez l\'accès aux pages publiques et bloquez les pages privées, en développement ou sans valeur SEO (admin, API, assets).' }
+      { q: 'Que mettre dans le robots.txt ?', a: 'Autorisez l\'accès aux pages publiques et bloquez les pages privées, en développement ou sans valeur SEO (admin, API, assets).' },
+      { q: 'Quelle est la différence entre sitemap et robots.txt ?', a: 'Le sitemap.xml liste les pages que vous voulez que Google indexe. Le robots.txt indique aux robots quelles pages ils peuvent ou ne peuvent pas explorer. Les deux sont complémentaires pour le SEO.' },
+      { q: 'À quelle fréquence mettre à jour le sitemap ?', a: 'Mettez à jour votre sitemap à chaque ajout ou suppression de pages significatives. Indiquez la fréquence de mise à jour (daily, weekly, monthly) pour aider Google à explorer vos pages plus efficacement.' }
     ],
     howTo: ['Ajoutez vos URLs', 'Configurez les priorités et fréquences', 'Définissez les règles robots.txt', 'Téléchargez les fichiers générés'],
     relatedSlugs: ['meta-tags', 'url-encode-decode', 'nettoyeur-url-tracking'],
@@ -729,15 +759,24 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   'generateur-uuid-guid': {
     toolId: 'uuid-generator', category: 'generators', slug: 'generateur-uuid-guid',
     title: 'Générateur d\'UUID en Ligne Gratuit — GUID v4',
-    desc: 'Générez instantanément des UUID v4 uniques et aléatoires. Gratuit, sans inscription, 100% local.',
+    desc: 'Générez instantanément des UUID v4 uniques et aléatoires. Jusqu\'à 100 UUID en un clic. Gratuit, sans inscription, 100% local.',
     h1: 'Générer un UUID (GUID) v4 en ligne',
-    intro: 'Générez instantanément des identifiants universels uniques (UUID v4 / GUID) directement dans votre navigateur. Les UUID sont des identifiants de 128 bits représentés sous forme de chaîne de 36 caractères (ex: 550e8400-e29b-41d4-a716-446655440000) utilisés pour identifier de manière unique des enregistrements dans les bases de données, des fichiers, des sessions utilisateur, des transactions et des messages. La version 4 (aléatoire) offre 2^122 combinaisons possibles, rendant la probabilité de collision quasiment nulle. Les développeurs backend utilisent les UUID comme clés primaires dans leurs bases de données, les développeurs frontend pour les identifiants de composants, et les DevOps pour les noms de ressources cloud. Notre générateur utilise l\'API Crypto.getRandomValues() pour une véritable randomisation cryptographique. Vous pouvez générer un ou plusieurs UUID à la fois. Le traitement s\'effectue entièrement dans votre navigateur. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    intro: 'Générez instantanément des identifiants universels uniques (UUID v4 / GUID) directement dans votre navigateur. Les UUID sont des identifiants de 128 bits représentés sous forme de chaîne de 36 caractères (ex: 550e8400-e29b-41d4-a716-446655440000) utilisés pour identifier de manière unique des enregistrements dans les bases de données, des fichiers, des sessions utilisateur, des transactions et des messages. La version 4 (aléatoire) offre 2^122 combinaisons possibles, rendant la probabilité de collision quasiment nulle. Les développeurs backend utilisent les UUID comme clés primaires dans leurs bases de données, les développeurs frontend pour les identifiants de composants React ou Vue, et les DevOps pour les noms de ressources cloud. Notre générateur utilise l\'API Crypto.getRandomValues() pour une véritable randomisation cryptographique, garantissant que chaque UUID est imprévisible et unique. Vous pouvez générer un ou plusieurs UUID à la fois (jusqu\'à 100 en un clic) et les copier dans différents formats : majuscules, minuscules, avec ou sans tirets, et en formatURN. Le traitement s\'effectue entièrement dans votre navigateur. Le service est gratuit et sans inscription. Cet outil en ligne ne nécessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est conçue pour être intuitive et accessible à tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir à créer de compte. Chaque fonctionnalité est optimisée pour offrir le meilleur résultat possible en un minimum de clics, vous permettant de gagner du temps sur vos tâches quotidiennes.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Générez autant d\'UUID que vous le souhaitez.' },
-      { q: 'Quelle est la probabilité de collision ?', a: 'Avec UUID v4, la probabilité de deux UUID identiques est d\'environ 1 sur 2.71 × 10^18, soit virtuellement impossible.' },
-      { q: 'Quelle est la différence entre UUID et GUID ?', a: 'UUID et GUID désignent la même chose. UUID est le terme standard (RFC 4122), tandis que GUID est le terme utilisé par Microsoft.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Générez autant d\'UUID que vous le souhaitez, sans aucune limite quotidienne.' },
+      { q: 'Quelle est la probabilité de collision ?', a: 'Avec UUID v4, la probabilité de deux UUID identiques est d\'environ 1 sur 2.71 × 10^18, soit virtuellement impossible. Même en générant des milliards d\'UUID, les collisions restent extrêmement improbables.' },
+      { q: 'Quelle est la différence entre UUID et GUID ?', a: 'UUID et GUID désignent la même chose. UUID (Universally Unique Identifier) est le terme standard RFC 4122, tandis que GUID (Globally Unique Identifier) est le terme utilisé par Microsoft dans l\'écosystème .NET et Windows.' },
+      { q: 'Puis-je générer plusieurs UUID à la fois ?', a: 'Oui, vous pouvez générer jusqu\'à 100 UUID en un seul clic. Tous les UUID générés sont uniques et peuvent être copiés individuellement ou en bloc.' },
+      { q: 'Quels formats de sortie sont disponibles ?', a: 'Minuscules avec tirets (standard), majuscules avec tirets, sans tirets (compact), et format URN. Vous pouvez copier dans le format qui convient à votre usage.' },
+      { q: 'Les UUID sont-ils sécurisés ?', a: 'Oui, notre générateur utilise Crypto.getRandomValues() qui produit une véritable randomisation cryptographique. Les UUID générés sont imprévisibles et ne peuvent pas être devinés.' }
     ],
-    howTo: ['Choisissez le nombre d\'UUID à générer', 'Cliquez sur Générer', 'Copiez les UUID individuellement ou en bloc'],
+    howTo: [
+      'Choisissez le nombre d\'UUID à générer (de 1 à 100)',
+      'Sélectionnez le format de sortie souhaité (minuscules, majuscules, sans tirets)',
+      'Cliquez sur "Générer" pour créer les UUID',
+      'Vérifiez les UUID générés dans la zone de résultats',
+      'Copiez les UUID individuellement ou en bloc avec le bouton Copier'
+    ],
     relatedSlugs: ['generateur-hash', 'generateur-mot-de-passe', 'generateur-nombres-aleatoires'],
   },
   'generateur-nombres-aleatoires': {
