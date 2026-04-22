@@ -32,28 +32,36 @@ const Analytics = dynamic(
   () => import('@vercel/analytics/react').then(mod => mod.Analytics),
   { ssr: false }
 )
+const SetLocaleAttrs = dynamic(
+  () => import('@/components/i18n/set-locale-attrs').then(mod => mod.SetLocaleAttrs),
+  { ssr: false }
+)
 
 type Props = {
   locale: string
+  dir: string
   messages: Record<string, any>
   children: React.ReactNode
 }
 
-export function LocaleClientShell({ locale, messages, children }: Props) {
+export function LocaleClientShell({ locale, dir, messages, children }: Props) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme={locale === "ar" ? "dark" : "light"}
-      enableSystem
-      disableTransitionOnChange
-    >
-      <AdSenseScript />
-      <LocaleIntlProvider messages={messages}>
-        {children}
-        <ClientOnlyProviders />
-      </LocaleIntlProvider>
-      <Toaster />
-      <Analytics />
-    </ThemeProvider>
+    <>
+      <SetLocaleAttrs locale={locale} dir={dir} />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme={locale === "ar" ? "dark" : "light"}
+        enableSystem
+        disableTransitionOnChange
+      >
+        <AdSenseScript />
+        <LocaleIntlProvider messages={messages}>
+          {children}
+          <ClientOnlyProviders />
+        </LocaleIntlProvider>
+        <Toaster />
+        <Analytics />
+      </ThemeProvider>
+    </>
   )
 }

@@ -2,17 +2,19 @@
 
 import React from 'react'
 import dynamic from 'next/dynamic'
+import { useTranslations } from 'next-intl'
 import { Sparkles } from 'lucide-react'
 import type { ToolId } from '@/lib/tools-store'
 
 function ToolLoader({ label }: { label: string }) {
+  const t = useTranslations('Common')
   return (
     <div className="flex flex-col items-center justify-center py-20 gap-4">
       <div className="relative">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary/30 border-t-primary" />
         <div className="absolute inset-0 animate-ping rounded-full bg-primary/10" />
       </div>
-      <p className="text-sm text-muted-foreground">Chargement de {label}…</p>
+      <p className="text-sm text-muted-foreground">{t('loading', { label })}</p>
     </div>
   )
 }
@@ -76,12 +78,13 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
 }
 
 export function ToolRenderer({ toolId }: { toolId: ToolId }) {
+  const t = useTranslations('Common')
   const Component = toolComponentMap[toolId]
   if (!Component) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
         <Sparkles className="h-8 w-8 text-muted-foreground/50" />
-        <p className="text-muted-foreground text-sm">Outil non disponible</p>
+        <p className="text-muted-foreground text-sm">{t('comingSoon')}</p>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, memo } from 'react'
+import React, { useEffect, useRef, memo, useState } from 'react'
 import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE } from './adsense-provider'
 
 export type AdFormat = 'auto' | 'rectangle' | 'horizontal' | 'vertical' | 'fluid'
@@ -142,6 +142,10 @@ export function AdSidebar({ className = '' }: { className?: string }) {
 }
 
 export function AdStickyBottom({ className = '' }: { className?: string }) {
+  const [dismissed, setDismissed] = useState(false)
+
+  if (dismissed) return null
+
   return (
     <div className={`fixed bottom-0 left-0 right-0 z-40 sm:hidden ${className}`}>
       <div className="bg-background/95 backdrop-blur-sm border-t border-border/50 py-1 px-2">
@@ -152,10 +156,7 @@ export function AdStickyBottom({ className = '' }: { className?: string }) {
           style={{ minHeight: '50px' }}
         />
         <button
-          onClick={() => {
-            const el = document.querySelector('.fixed.bottom-0.z-40')
-            if (el) el.remove()
-          }}
+          onClick={() => setDismissed(true)}
           className="absolute top-0 right-2 text-xs text-muted-foreground hover:text-foreground p-1"
           aria-label="Close ad"
         >

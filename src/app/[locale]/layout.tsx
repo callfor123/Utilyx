@@ -3,12 +3,6 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { LocaleClientShell } from "@/components/layout/locale-client-shell";
-import dynamic from "next/dynamic";
-
-const SetLocaleAttrs = dynamic(
-  () => import("@/components/i18n/set-locale-attrs").then(mod => mod.SetLocaleAttrs),
-  { ssr: false }
-)
 
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 
@@ -234,7 +228,6 @@ export default async function LocaleLayout({ children, params }: Props) {
   // which causes Next.js 16 prerender crashes (useContext null error).
   return (
     <>
-      <SetLocaleAttrs key="set-locale-attrs" locale={locale} dir={dir} />
       <script
         key="ld-software-app"
         type="application/ld+json"
@@ -250,7 +243,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
       />
-      <LocaleClientShell locale={locale} messages={messages}>
+      <LocaleClientShell locale={locale} dir={dir} messages={messages}>
         {children}
       </LocaleClientShell>
     </>
