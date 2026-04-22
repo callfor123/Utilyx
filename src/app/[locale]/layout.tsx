@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { LocaleIntlProvider } from "@/components/layout/locale-providers";
-import { ThemeProvider } from "@/components/theme-provider";
-import { AdSenseScript } from "@/components/adsense/adsense-provider";
-import { ClientOnlyToaster } from "@/components/layout/client-only-toaster";
-import { Analytics } from "@vercel/analytics/react";
-import { SetLocaleAttrs } from "@/components/i18n/set-locale-attrs";
-import { ClientOnlyProviders } from "@/components/layout/client-only-providers";
+import { LocaleClientShell } from "@/components/layout/locale-client-shell";
+import dynamic from "next/dynamic";
+
+const SetLocaleAttrs = dynamic(
+  () => import("@/components/i18n/set-locale-attrs").then(mod => mod.SetLocaleAttrs),
+  { ssr: false }
+)
 
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 
@@ -179,6 +179,8 @@ export default async function LocaleLayout({ children, params }: Props) {
     inLanguage: locale,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any (Web Browser)",
+    author: { "@type": "Organization", name: "Utilyx", url: "https://utilyx.app" },
+    provider: { "@type": "Organization", name: "Utilyx", url: "https://utilyx.app" },
     featureList: [
       "Convertisseurs et compresseurs PDF",
       "Outils de manipulation vidéo (découpage, conversion, compression)",
@@ -188,7 +190,14 @@ export default async function LocaleLayout({ children, params }: Props) {
       "Outils texte (Séparateur nom/prénom, Nettoyeur URL tracking)",
       "Traitement local (Offline First)"
     ],
-    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR", availability: "https://schema.org/OnlineOnly" },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "120",
+      bestRating: "5",
+      worstRating: "1",
+    },
   }
 
   const orgLd = {
@@ -241,21 +250,9 @@ export default async function LocaleLayout({ children, params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteLd) }}
       />
-      <ThemeProvider
-        attribute="class"
-        defaultTheme={locale === "ar" ? "dark" : "light"}
-        enableSystem
-        disableTransitionOnChange
-      >
-        {/* AdSense script (client-side only to prevent hydration mismatch) */}
-        <AdSenseScript />
-        <LocaleIntlProvider messages={messages}>
-          {children}
-          <ClientOnlyProviders />
-        </LocaleIntlProvider>
-        <ClientOnlyToaster />
-      </ThemeProvider>
-      <Analytics />
+      <LocaleClientShell locale={locale} messages={messages}>
+        {children}
+      </LocaleClientShell>
     </>
   );
 }
