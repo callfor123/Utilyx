@@ -529,7 +529,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Formatez et validez autant de JSON que vous le souhaitez.' },
       { q: 'Comment formater du JSON ?', a: 'Collez votre JSON brut dans l\'éditeur, l\'outil le formate automatiquement avec indentation et coloration syntaxique.' },
-      { q: 'L\'outil détecte-t-il les erreurs ?', a: 'Oui, les erreurs de syntaxe sont immédiatement signalées avec leur position exacte (ligne et colonne) pour faciliter la correction.' }
+      { q: 'L\'outil détecte-t-il les erreurs ?', a: 'Oui, les erreurs de syntaxe sont immédiatement signalées avec leur position exacte (ligne et colonne) pour faciliter la correction.' },
+      { q: 'Puis-je minifier du JSON ?', a: 'Oui, l\'outil permet de minifier un JSON formaté pour réduire sa taille, utile pour les transferts réseau et les fichiers de configuration en production.' },
+      { q: 'Quelle est la taille maximale de JSON supportée ?', a: 'Il n\'y a pas de limite stricte. Cependant, pour des fichiers très volumineux (plusieurs Mo), le formatage peut prendre quelques secondes selon les performances de votre appareil.' }
     ],
     howTo: ['Collez votre JSON', 'L\'outil formate et valide automatiquement', 'Corrigez les erreurs signalées', 'Copiez ou téléchargez le JSON formaté'],
     relatedSlugs: ['json-csv', 'url-encode-decode', 'testeur-regex'],
@@ -543,7 +545,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Encodez et décodez autant d\'URLs que vous le souhaitez.' },
       { q: 'Quelle est la différence entre encodeURI et encodeURIComponent ?', a: 'encodeURI conserve les séparateurs d\'URL (/, ?, &, =, #) tandis que encodeURIComponent encode tous les caractères spéciaux. Utilisez encodeURIComponent pour les paramètres de requête.' },
-      { q: 'Les caractères Unicode sont-ils supportés ?', a: 'Oui, tous les caractères Unicode (accents, emojis, CJK) sont correctement encodés en séquences UTF-8 percent-encodées.' }
+      { q: 'Les caractères Unicode sont-ils supportés ?', a: 'Oui, tous les caractères Unicode (accents, emojis, CJK) sont correctement encodés en séquences UTF-8 percent-encodées.' },
+      { q: 'Pourquoi encoder une URL ?', a: 'Les caractères spéciaux (espaces, accents, &, =, ?) doivent être encodés pour être transmis correctement dans une URL. Sans encodage, ils peuvent provoquer des erreurs de routage ou des paramètres tronqués.' },
+      { q: 'Puis-je encoder des paramètres de requête complexes ?', a: 'Oui, l\'outil encode correctement les paramètres de requête contenant des espaces, des accents, des caractères spéciaux et des valeurs imbriquées.' }
     ],
     howTo: ['Collez votre URL ou texte', 'Choisissez encoder ou décoder', 'Le résultat s\'affiche instantanément', 'Copiez le résultat'],
     relatedSlugs: ['nettoyeur-url-tracking', 'json-csv', 'base64'],
@@ -557,7 +561,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Créez autant de dégradés que vous le souhaitez.' },
       { q: 'Quels types de dégradés sont supportés ?', a: 'Dégradés linéaires (linear-gradient) et radiaux (radial-gradient) avec un nombre illimité de stops de couleur.' },
-      { q: 'Le code CSS est-il compatible avec tous les navigateurs ?', a: 'Oui, le code généré inclut les préfixes vendeur (-webkit-, -moz-) pour une compatibilité maximale avec les anciens navigateurs.' }
+      { q: 'Le code CSS est-il compatible avec tous les navigateurs ?', a: 'Oui, le code généré inclut les préfixes vendeur (-webkit-, -moz-) pour une compatibilité maximale avec les anciens navigateurs.' },
+      { q: 'Puis-je copier le code CSS directement ?', a: 'Oui, le code CSS complet est généré en temps réel et peut être copié en un clic pour être collé dans votre feuille de styles ou votre composant Tailwind.' },
+      { q: 'Comment créer un dégradé en diagonale ?', a: 'Utilisez l\'angle de direction : 45deg pour une diagonale haut-gauche vers bas-droite, 135deg pour l\'inverse. Vous pouvez saisir n\'importe quel angle de 0 à 360 degrés.' }
     ],
     howTo: ['Choisissez le type de dégradé (linéaire ou radial)', 'Ajoutez et ajustez les couleurs', 'Modifiez l\'angle et la direction', 'Copiez le code CSS généré'],
     relatedSlugs: ['color-picker', 'convertisseur-couleurs', 'meta-tags'],
@@ -571,7 +577,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Rédigez autant de documents Markdown que vous le souhaitez.' },
       { q: 'Quelle syntaxe Markdown est supportée ?', a: 'Markdown standard (CommonMark) + extensions : tableaux, blocs de code, listes de tâches, notes de bas de page, maths LaTeX et diagrammes Mermaid.' },
-      { q: 'Puis-je exporter le résultat ?', a: 'Oui, vous pouvez copier le rendu HTML ou télécharger le document au format HTML.' }
+      { q: 'Puis-je exporter le résultat ?', a: 'Oui, vous pouvez copier le rendu HTML ou télécharger le document au format HTML.' },
+      { q: 'Le contenu est-il sauvegardé ?', a: 'Votre contenu reste dans votre navigateur en local. Aucune donnée n\'est envoyée à un serveur. Pensez à sauvegarder votre travail en le copiant ou le téléchargeant.' },
+      { q: 'À quoi sert le Markdown ?', a: 'Le Markdown est utilisé pour la documentation technique (GitHub, GitLab), les fichiers README, les blogs statiques (Hugo, Jekyll), les systèmes de prise de notes (Notion, Obsidian) et les commentaires de code.' }
     ],
     howTo: ['Rédigez votre contenu Markdown dans l\'éditeur', 'L\'aperçu HTML s\'affiche en temps réel', 'Utilisez la barre d\'outils pour les raccourcis', 'Copiez ou téléchargez le résultat'],
     relatedSlugs: ['formateur-json', 'testeur-regex', 'compteur-mots'],
@@ -585,7 +593,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Nettoyez autant d\'URLs que vous le souhaitez.' },
       { q: 'Quels paramètres sont supprimés ?', a: 'Plus de 200 paramètres de tracking connus : UTM (utm_source, utm_medium, utm_campaign, utm_content, utm_term), fbclid, gclid, mc_eid, mc_cid, yclid, _hsenc et bien d\'autres.' },
-      { q: 'Les paramètres fonctionnels sont-ils conservés ?', a: 'Oui, les paramètres nécessaires au fonctionnement de la page (page, id, category, q, search, etc.) sont préservés. Seuls les paramètres de tracking sont supprimés.' }
+      { q: 'Les paramètres fonctionnels sont-ils conservés ?', a: 'Oui, les paramètres nécessaires au fonctionnement de la page (page, id, category, q, search, etc.) sont préservés. Seuls les paramètres de tracking sont supprimés.' },
+      { q: 'Pourquoi nettoyer les URLs de tracking ?', a: 'Les paramètres de tracking alourdissent les URLs, les rendent peu esthétiques dans les messages et emails, et peuvent révéler des informations de campagne marketing que vous ne souhaitez pas partager.' },
+      { q: 'Puis-je nettoyer plusieurs URLs à la fois ?', a: 'Oui, collez plusieurs URLs (une par ligne) et l\'outil nettoiera chacune d\'entre elles automatiquement en supprimant les paramètres de tracking détectés.' }
     ],
     howTo: ['Collez votre URL', 'L\'outil détecte les paramètres de tracking', 'Vérifiez l\'URL nettoyée', 'Copiez l\'URL propre'],
     relatedSlugs: ['url-encode-decode', 'sitemap-robots', 'meta-tags'],
@@ -599,7 +609,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Analysez autant de textes que vous le souhaitez.' },
       { q: 'Comment sont comptés les mots ?', a: 'Les mots sont comptés en séparant le texte par les espaces et la ponctuation. Les caractères spéciaux et les tirets sont gérés intelligemment pour un comptage précis.' },
-      { q: 'Le temps de lecture est-il fiable ?', a: 'Oui, le temps de lecture est estimé sur une moyenne de 200 à 250 mots par minute, ce qui correspond à la vitesse de lecture silencieuse d\'un adulte.' }
+      { q: 'Le temps de lecture est-il fiable ?', a: 'Oui, le temps de lecture est estimé sur une moyenne de 200 à 250 mots par minute, ce qui correspond à la vitesse de lecture silencieuse d\'un adulte.' },
+      { q: 'Quels sont les caractères comptés ?', a: 'L\'outil compte les caractères avec et sans espaces, les mots, les phrases (séparées par . ! ?) et les paragraphes (séparés par des retours à la ligne).' },
+      { q: 'Le compteur fonctionne-t-il avec d\'autres langues ?', a: 'Oui, l\'outil détecte automatiquement la langue du texte pour un comptage précis, y compris pour les langues à caractères non séparés par des espaces comme le chinois ou le japonais.' }
     ],
     howTo: ['Collez ou tapez votre texte', 'Les statistiques s\'affichent en temps réel', 'Ajustez votre texte selon les limites souhaitées', 'Copiez le texte final'],
     relatedSlugs: ['convertisseur-casse', 'comparateur-texte', 'lorem-ipsum'],
@@ -613,7 +625,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Convertissez autant de textes que vous le souhaitez.' },
       { q: 'Quels types de casse sont disponibles ?', a: 'MAJUSCULES, minuscules, Title Case, camelCase, PascalCase, snake_case, SCREAMING_SNAKE_CASE, kebab-case et CONSTANT_CASE.' },
-      { q: 'Les mots composés sont-ils gérés ?', a: 'Oui, les mots composés avec tirets ou underscores sont intelligemment préservés lors de la conversion entre les différents formats.' }
+      { q: 'Les mots composés sont-ils gérés ?', a: 'Oui, les mots composés avec tirets ou underscores sont intelligemment préservés lors de la conversion entre les différents formats.' },
+      { q: 'Quand utiliser chaque type de casse ?', a: 'camelCase pour les variables JavaScript, PascalCase pour les composants React, snake_case pour Python et les bases de données, SCREAMING_SNAKE_CASE pour les constantes, kebab-case pour les URLs et CSS.' },
+      { q: 'Le Title Case fonctionne-t-il en français ?', a: 'Oui, l\'outil applique les règles du Title Case adaptées au français, où les mots courts (articles, prépositions) restent en minuscules sauf en début de phrase.' }
     ],
     howTo: ['Collez votre texte', 'Choisissez le type de casse', 'Le texte converti s\'affiche instantanément', 'Copiez le résultat'],
     relatedSlugs: ['compteur-mots', 'lorem-ipsum', 'comparateur-texte'],
@@ -627,7 +641,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Générez autant de Lorem Ipsum que vous le souhaitez.' },
       { q: 'Puis-je choisir la quantité de texte ?', a: 'Oui, vous pouvez générer du Lorem Ipsum par nombre de paragraphes, de mots ou de caractères selon vos besoins.' },
-      { q: 'Pourquoi utiliser du Lorem Ipsum plutôt que du texte réel ?', a: 'Le Lorem Ipsum simule la distribution visuelle du texte réel sans en distraire le lecteur par le sens, ce qui permet de se concentrer sur la mise en page et le design.' }
+      { q: 'Pourquoi utiliser du Lorem Ipsum plutôt que du texte réel ?', a: 'Le Lorem Ipsum simule la distribution visuelle du texte réel sans en distraire le lecteur par le sens, ce qui permet de se concentrer sur la mise en page et le design.' },
+      { q: 'Le Lorem Ipsum généré est-il varié ?', a: 'Oui, notre générateur propose du Lorem Ipsum classique et des variantes pour éviter la répétition dans vos maquettes. Chaque génération produit un texte différent.' },
+      { q: 'Puis-je copier le texte facilement ?', a: 'Oui, un bouton Copier en un clic vous permet de coller le Lorem Ipsum directement dans votre éditeur, votre wireframe ou votre prototype Figma.' }
     ],
     howTo: ['Choisissez le mode (paragraphes, mots ou caractères)', 'Définissez la quantité souhaitée', 'Générez le texte', 'Copiez le Lorem Ipsum'],
     relatedSlugs: ['compteur-mots', 'convertisseur-casse', 'comparateur-texte'],
@@ -641,7 +657,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Encodez et décodez autant de données que vous le souhaitez.' },
       { q: 'Quelle est la différence entre Base64 standard et URL-safe ?', a: 'Le Base64 standard utilise + et / qui sont des caractères réservés dans les URLs. Le Base64 URL-safe les remplace par - et _ pour une utilisation sécurisée dans les URLs et noms de fichiers.' },
-      { q: 'Puis-je encoder des fichiers en Base64 ?', a: 'Oui, vous pouvez encoder n\'importe quel fichier (images, PDF, etc.) en Base64 pour l\'intégrer dans du CSS, du HTML ou du JSON.' }
+      { q: 'Puis-je encoder des fichiers en Base64 ?', a: 'Oui, vous pouvez encoder n\'importe quel fichier (images, PDF, etc.) en Base64 pour l\'intégrer dans du CSS, du HTML ou du JSON.' },
+      { q: 'À quoi sert l\'encodage Base64 ?', a: 'Le Base64 convertit des données binaires en texte ASCII pour les intégrer dans des emails, des data URIs CSS, des payloads JWT, des certificats et des APIs JSON qui ne supportent pas le binaire.' },
+      { q: 'Le Base64 augmente-t-il la taille des données ?', a: 'Oui, l\'encodage Base64 augmente la taille d\'environ 33%. Un fichier de 1 Mo donnera un encodage Base64 d\'environ 1,33 Mo. C\'est le compromis pour pouvoir transporter du binaire dans du texte.' }
     ],
     howTo: ['Collez votre texte ou chargez un fichier', 'Choisissez encoder ou décoder', 'Sélectionnez le mode (standard ou URL-safe)', 'Copiez le résultat'],
     relatedSlugs: ['url-encode-decode', 'generateur-hash', 'generateur-mot-de-passe'],
@@ -655,7 +673,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Comparez autant de textes que vous le souhaitez.' },
       { q: 'Comment fonctionne la comparaison ?', a: 'L\'algorithme analyse les deux textes ligne par ligne et identifie les ajouts, suppressions et modifications. Les différences sont mises en surbrillance avec des couleurs distinctes.' },
-      { q: 'Puis-je ignorer les différences de casse ou d\'espaces ?', a: 'Oui, des options permettent d\'ignorer les différences de casse (majuscules/minuscules) et d\'espaces (espaces multiples, tabulations) pour une comparaison plus souple.' }
+      { q: 'Puis-je ignorer les différences de casse ou d\'espaces ?', a: 'Oui, des options permettent d\'ignorer les différences de casse (majuscules/minuscules) et d\'espaces (espaces multiples, tabulations) pour une comparaison plus souple.' },
+      { q: 'Quels cas d\'usage sont possibles ?', a: 'Révision d\'articles, vérification de traductions, comparaison de contrats, suivi de modifications dans des documents collaboratifs, validation de données et audit de configurations.' },
+      { q: 'Les textes sont-ils sécurisés ?', a: 'Oui, le traitement s\'effectue entièrement dans votre navigateur. Vos textes ne sont jamais envoyés à un serveur ni stockés en ligne, garantissant la confidentialité de vos documents.' }
     ],
     howTo: ['Collez le texte original dans le panneau gauche', 'Collez le texte modifié dans le panneau droit', 'Les différences s\'affichent en surbrillance', 'Ajustez les options de comparaison si nécessaire'],
     relatedSlugs: ['compteur-mots', 'convertisseur-casse', 'lorem-ipsum'],
@@ -737,7 +757,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Choisissez autant de couleurs que vous le souhaitez.' },
       { q: 'Quels formats de couleur sont disponibles ?', a: 'HEX (#rrggbb), RGB (r, g, b), HSL (h, s%, l%) et le nom CSS le plus proche (par ex. dodgerblue, coral).' },
-      { q: 'Puis-je copier les valeurs facilement ?', a: 'Oui, chaque format dispose d\'un bouton Copier en un clic pour coller directement dans votre CSS ou code.' }
+      { q: 'Puis-je copier les valeurs facilement ?', a: 'Oui, chaque format dispose d\'un bouton Copier en un clic pour coller directement dans votre CSS ou code.' },
+      { q: 'Comment trouver la couleur d\'un élément d\'une image ?', a: 'Utilisez l\'outil de pipette intégré pour sélectionner n\'importe quelle couleur affichée à l\'écran et obtenir instantanément ses valeurs HEX, RGB et HSL.' },
+      { q: 'Quelle est la différence entre HEX et RGB ?', a: 'HEX est une notation hexadécimale compacte (#3b82f6) utilisée en CSS, tandis que RGB (59, 130, 246) est une notation décimale plus lisible. Les deux représentent la même couleur.' }
     ],
     howTo: ['Utilisez le sélecteur de couleur visuel', 'Ajustez saturation et luminosité', 'Visualisez les valeurs HEX, RGB et HSL', 'Copiez le format souhaité'],
     relatedSlugs: ['convertisseur-couleurs', 'css-gradient', 'generateur-favicon'],
@@ -751,7 +773,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Générez autant de liens WhatsApp que vous le souhaitez.' },
       { q: 'Comment fonctionne le lien wa.me ?', a: 'Le lien wa.me/33612345678 ouvre WhatsApp directement sur la conversation avec le numéro +33612345678. Vous pouvez ajouter ?text=VotreMessage pour pré-remplir le message.' },
-      { q: 'Le numéro doit-il inclure l\'indicatif pays ?', a: 'Oui, le numéro doit être au format international sans le + (ex: 33612345678 pour la France, 212612345678 pour le Maroc).' }
+      { q: 'Le numéro doit-il inclure l\'indicatif pays ?', a: 'Oui, le numéro doit être au format international sans le + (ex: 33612345678 pour la France, 212612345678 pour le Maroc).' },
+      { q: 'Où placer le lien WhatsApp ?', a: 'Sur votre site web (bouton Contactez-nous), dans vos emails, vos signatures email, vos réseaux sociaux, vos cartes de visite numériques et vos publicités en ligne.' },
+      { q: 'Le lien fonctionne-t-il sur tous les appareils ?', a: 'Oui, le lien wa.me est universellement compatible avec iOS, Android, WhatsApp Web et WhatsApp Desktop. Il ouvre l\'application si elle est installée, sinon la version web.' }
     ],
     howTo: ['Entrez le numéro de téléphone avec indicatif pays', 'Rédigez le message par défaut', 'Prévisualisez le lien', 'Copiez le lien wa.me généré'],
     relatedSlugs: ['generateur-qr-code', 'generateur-mot-de-passe', 'color-picker'],
@@ -818,7 +842,9 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     faq: [
       { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Aucune donnée n\'est collectée.' },
       { q: 'Quel est un IMC sain ?', a: 'Selon l\'OMS, un IMC entre 18,5 et 24,9 est considéré comme un poids normal. L\'insuffisance pondérale est en dessous de 18,5, le surpoids entre 25 et 29,9, et l\'obésité à 30 et au-dessus.' },
-      { q: 'L\'IMC est-il fiable pour tout le monde ?', a: 'L\'IMC est un indicateur de dépistage utile mais il ne prend pas en compte la masse musculaire, la répartition des graisses ni l\'âge. Consultez un professionnel de santé pour une évaluation complète.' }
+      { q: 'L\'IMC est-il fiable pour tout le monde ?', a: 'L\'IMC est un indicateur de dépistage utile mais il ne prend pas en compte la masse musculaire, la répartition des graisses ni l\'âge. Consultez un professionnel de santé pour une évaluation complète.' },
+      { q: 'Comment est calculé l\'IMC ?', a: 'L\'IMC est calculé en divisant le poids (en kg) par le carré de la taille (en m²). Formule : IMC = poids / taille². Par exemple, 70 kg pour 1,75 m donne un IMC de 22,9.' },
+      { q: 'L\'outil fonctionne-t-il avec les unités impériales ?', a: 'Oui, vous pouvez saisir votre poids en livres (lb) et votre taille en pieds et pouces. La conversion en unités métriques est effectuée automatiquement pour le calcul.' }
     ],
     howTo: ['Entrez votre taille (en cm ou pieds/pouces)', 'Entrez votre poids (en kg ou livres)', 'L\'IMC et la catégorie s\'affichent instantanément', 'Consultez la plage de poids idéal pour votre taille'],
     relatedSlugs: ['calculateur-age', 'calculateur-pourcentage', 'convertisseur-unites'],

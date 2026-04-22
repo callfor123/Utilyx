@@ -1,11 +1,6 @@
 'use client'
 
-// Global error page for unhandled errors.
-// In Next.js 16, this page is prerendered through the root layout during build.
-// We use 'use client' so the reset button works with onClick.
-// We do NOT render <html>/<body> here because the root layout provides them,
-// and nesting them causes the useContext null crash during SSG prerender.
-export default function GlobalError({
+export default function LocaleGlobalError({
   error,
   reset,
 }: {

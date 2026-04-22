@@ -99,10 +99,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   // Build per-tool keywords from title, h1, and category
+  const metaCatLabel = (categoryLabels[locale] || categoryLabels.fr)[category] || category
   const toolKeywords = [
     locTool.h1,
     tool.slug,
-    catLabel,
+    metaCatLabel,
     ...locTool.howTo.slice(0, 2),
     locale === 'fr' ? 'gratuit' : locale === 'en' ? 'free' : locale === 'es' ? 'gratis' : locale === 'de' ? 'kostenlos' : locale === 'ar' ? 'مجاني' : 'gratuito',
     locale === 'fr' ? 'en ligne' : locale === 'en' ? 'online' : locale === 'es' ? 'en línea' : locale === 'de' ? 'online' : locale === 'ar' ? 'عبر الإنترنت' : 'online',
@@ -174,8 +175,10 @@ export default async function ToolPage({ params }: Props) {
     description: locTool.desc,
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any (Web Browser)',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', availability: 'https://schema.org/OnlineOnly' },
     inLanguage: locale,
+    author: { '@type': 'Organization', name: 'Utilyx', url: BASE_URL },
+    provider: { '@type': 'Organization', name: 'Utilyx', url: BASE_URL },
     isPartOf: { '@type': 'WebSite', name: 'Utilyx', url: BASE_URL },
     featureList: locTool.howTo.join('. '),
     screenshot: `${BASE_URL}/og-image.png`,
@@ -186,6 +189,8 @@ export default async function ToolPage({ params }: Props) {
       bestRating: '5',
       worstRating: '1',
     },
+    datePublished: '2025-01-01',
+    dateModified: new Date().toISOString().split('T')[0],
   }
 
   /* ── JSON-LD: FAQPage ── */
@@ -208,11 +213,16 @@ export default async function ToolPage({ params }: Props) {
         '@type': 'HowTo',
         name: locTool.h1,
         description: locTool.intro,
+        url: pageUrl,
+        totalTime: 'PT2M',
+        supply: { '@type': 'HowToSupply', name: locale === 'en' ? 'Web browser' : locale === 'es' ? 'Navegador web' : locale === 'de' ? 'Webbrowser' : locale === 'ar' ? 'متصفح ويب' : locale === 'pt' ? 'Navegador web' : 'Navigateur web' },
+        tool: { '@type': 'HowToTool', name: 'Utilyx' },
         step: locTool.howTo.map((text, i) => ({
           '@type': 'HowToStep',
           position: i + 1,
           name: text,
           text,
+          url: pageUrl,
         })),
       }
     : null

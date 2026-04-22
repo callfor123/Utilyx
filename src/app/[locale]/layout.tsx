@@ -2,18 +2,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { NextIntlClientProvider } from "next-intl";
+import { LocaleIntlProvider } from "@/components/layout/locale-providers";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
 import { AdSenseScript } from "@/components/adsense/adsense-provider";
-import { InvalidClickProtection } from "@/components/adsense/invalid-click-protection";
-import { AdBlockerDetector } from "@/components/adsense/ad-blocker-detector";
+import { ClientOnlyToaster } from "@/components/layout/client-only-toaster";
 import { Analytics } from "@vercel/analytics/react";
-import { CookieConsentBanner } from "@/components/adsense/cookie-consent";
 import { SetLocaleAttrs } from "@/components/i18n/set-locale-attrs";
+import { ClientOnlyProviders } from "@/components/layout/client-only-providers";
 
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
-import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 
 // Prevent static prerendering — the locale layout uses client-side context
 // providers (ThemeProvider, NextIntlClientProvider) that crash during SSG
@@ -243,17 +240,13 @@ export default async function LocaleLayout({ children, params }: Props) {
         enableSystem
         disableTransitionOnChange
       >
-        {/* Google Analytics */}
-        <GoogleAnalytics />
         {/* AdSense script (client-side only to prevent hydration mismatch) */}
         <AdSenseScript />
-        <NextIntlClientProvider messages={messages}>
+        <LocaleIntlProvider messages={messages}>
           {children}
-          <CookieConsentBanner />
-          <InvalidClickProtection />
-          <AdBlockerDetector />
-        </NextIntlClientProvider>
-        <Toaster />
+          <ClientOnlyProviders />
+        </LocaleIntlProvider>
+        <ClientOnlyToaster />
       </ThemeProvider>
       <Analytics />
     </>
