@@ -21,6 +21,12 @@ export const dynamic = 'force-dynamic'
 // ISR: revalidate every 24h for SEO + AdSense indexing
 export const revalidate = 86400
 
+// Explicitly list valid locale params to prevent Next.js from trying to
+// prerender the [locale] layout with invalid values like "_global-error".
+export function generateStaticParams() {
+  return routing.locales.map(locale => ({ locale }))
+}
+
 type Props = {
   params: Promise<{ locale: string }>;
   children: React.ReactNode;
@@ -204,10 +210,11 @@ export default async function LocaleLayout({ children, params }: Props) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Utilyx",
-    url: "https://utilyx.app",
+    url: `https://utilyx.app/${locale}`,
+    inLanguage: locale,
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://utilyx.app/{locale}?q={search_term_string}",
+      target: `https://utilyx.app/${locale}?q={search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   }
