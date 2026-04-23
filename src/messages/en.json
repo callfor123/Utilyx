@@ -380,7 +380,18 @@
     "sending": "Sending...",
     "successMessage": "Thank you! Your message has been sent successfully. We will get back to you as soon as possible.",
     "errorMessage": "An error occurred. Please try again or contact us directly by email.",
-    "altContact": "You can also write to us directly at contact@utilyx.app"
+    "altContact": "You can also write to us directly at contact@utilyx.app",
+    "faqTitle": "Frequently Asked Questions",
+    "faq1Q": "How can I contact Utilyx?",
+    "faq1A": "You can contact us via the form above or by email at contact@utilyx.app. We typically respond within 24 to 48 hours.",
+    "faq2Q": "Are my personal data safe?",
+    "faq2A": "Yes. All our tools run 100% locally in your browser. Your files are never sent to our servers. The only data we collect is from the contact form, retained for a maximum of 12 months.",
+    "faq3Q": "Is Utilyx really free?",
+    "faq3A": "Yes, all Utilyx tools are 100% free, with no signup required and no usage limits. The site is funded by advertising (Google AdSense).",
+    "faq4Q": "How do I report a bug or suggest an improvement?",
+    "faq4A": "Use the contact form above and select \"Suggestion\" or \"Bug\" as the subject. You can also email us directly at contact@utilyx.app.",
+    "faq5Q": "How long does it take to get a response?",
+    "faq5A": "We aim to respond within 24 to 48 business hours. For urgent matters, please mention it in your message."
   },
   "Legal": {
     "title": "Legal Notice",
@@ -394,6 +405,25 @@
     "directorContent": "The publication director of the Utilyx website is the legal representative of the publisher.",
     "contactTitle": "Contact",
     "contactContent": "For any questions regarding the site, you can contact us at: contact@utilyx.app",
-    "contactCta": "Contact us"
+    "contactCta": "Contact us",
+    "cnilTitle": "Data Protection Declaration",
+    "cnilContent": "In accordance with the French Data Protection Act of January 6, 1978, as amended, and the General Data Protection Regulation (GDPR), you have the right to access, rectify, delete and port your personal data. To exercise these rights, contact us at: privacy@utilyx.app. The Utilyx website does not collect personal data directly through its tools, as they operate entirely locally in your browser.",
+    "rgpdTitle": "GDPR Compliance",
+    "rgpdContent": "Utilyx complies with the General Data Protection Regulation (GDPR – Regulation EU 2016/679). The data controller is Utilyx (contact@utilyx.app). The only personal data collected is from the contact form (name, email, subject, message) and analytics/advertising cookies. Contact form data is retained for a maximum of 12 months and then deleted. No file data processed by our tools is collected or stored.",
+    "personalDataTitle": "Personal Data and Rights",
+    "personalDataContent": "In accordance with the GDPR, you have the following rights:\n- Right of access: obtain a copy of your data\n- Right to rectification: correct inaccurate data\n- Right to erasure: request the deletion of your data\n- Right to data portability: receive your data in a structured format\n- Right to object: object to the processing of your data\n- Right to restriction: limit the processing of your data\nTo exercise these rights, contact privacy@utilyx.app. You may also file a complaint with the relevant supervisory authority.",
+    "cookiesTitle": "Cookies and Trackers",
+    "cookiesContent": "The utilyx.app website uses cookies in the following categories:\n1. Strictly necessary cookies: theme preference (dark/light), cookie consent. Lifetime: 1 year.\n2. Analytics cookies: Google Analytics (_ga, _gid). Lifetime: up to 2 years. IP anonymized.\n3. Advertising cookies: Google AdSense and DoubleClick (IDE, DSID, etc.). Lifetime: variable (13 months max). Used for ad personalization.\nYou can manage your cookie preferences via our consent banner or your browser settings.",
+    "intellectualTitle": "Intellectual Property",
+    "intellectualContent": "All content on the utilyx.app website (texts, images, logos, design, source code) is protected by copyright and intellectual property law. Any reproduction, representation, modification or distribution, even partial, by any means whatsoever, is prohibited without the prior written authorization of Utilyx. The name \"Utilyx\" and the Utilyx logo are protected trademarks.",
+    "liabilityTitle": "Limitation of Liability",
+    "liabilityContent": "Utilyx provides its tools \"as is\" without any warranty, express or implied. Utilyx shall not be held liable for any direct or indirect damages resulting from the use of the site or its tools. The tools are provided free of charge and the user remains solely responsible for the use made of the results obtained.",
+    "faqTitle": "Frequently Asked Questions",
+    "faq1Q": "Does Utilyx collect my personal data?",
+    "faq1A": "No. All Utilyx tools operate 100% locally in your browser. Your files (PDF, images, videos) are never sent to our servers. The only data collected is from the contact form and analytics/advertising cookies.",
+    "faq2Q": "Who hosts the website?",
+    "faq2A": "The site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States.",
+    "faq3Q": "How can I exercise my GDPR rights?",
+    "faq3A": "You can exercise your rights of access, rectification, erasure and portability by contacting us at privacy@utilyx.app. You may also file a complaint with the relevant supervisory authority."
   }
 }

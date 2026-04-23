@@ -380,7 +380,18 @@
     "sending": "Enviando...",
     "successMessage": "¡Gracias! Su mensaje se ha enviado correctamente. Le responderemos lo antes posible.",
     "errorMessage": "Se produjo un error. Inténtelo de nuevo o contáctenos directamente por correo electrónico.",
-    "altContact": "También puede escribirnos directamente a contact@utilyx.app"
+    "altContact": "También puede escribirnos directamente a contact@utilyx.app",
+    "faqTitle": "Preguntas Frecuentes",
+    "faq1Q": "¿Cómo contactar con Utilyx?",
+    "faq1A": "Puede contactarnos a través del formulario de arriba o por email a contact@utilyx.app. Respondemos generalmente en 24 a 48 horas.",
+    "faq2Q": "¿Están seguros mis datos personales?",
+    "faq2A": "Sí. Todas nuestras herramientas funcionan 100% en local en su navegador. Sus archivos nunca se envían a nuestros servidores. Los únicos datos que recopilamos son los del formulario de contacto, conservados un máximo de 12 meses.",
+    "faq3Q": "¿Utilyx es realmente gratuito?",
+    "faq3A": "Sí, todas las herramientas de Utilyx son 100% gratuitas, sin registro y sin límite de uso. El sitio se financia mediante publicidad (Google AdSense).",
+    "faq4Q": "¿Cómo informar de un error o sugerir una mejora?",
+    "faq4A": "Utilice el formulario de contacto de arriba seleccionando el asunto \"Sugerencia\" o \"Error\". También puede escribirnos directamente a contact@utilyx.app.",
+    "faq5Q": "¿Cuánto tiempo tarda en recibir una respuesta?",
+    "faq5A": "Nos comprometemos a responder en un plazo de 24 a 48 horas laborables. Para cuestiones urgentes, indíquelo en su mensaje."
   },
   "Legal": {
     "title": "Aviso Legal",
@@ -394,6 +405,25 @@
     "directorContent": "El director de la publicación del sitio Utilyx es el representante legal del editor.",
     "contactTitle": "Contacto",
     "contactContent": "Para cualquier pregunta sobre el sitio, puede contactarnos en: contact@utilyx.app",
-    "contactCta": "Contáctenos"
+    "contactCta": "Contáctenos",
+    "cnilTitle": "Declaración de Protección de Datos",
+    "cnilContent": "De conformidad con la Ley Francesa de Protección de Datos del 6 de enero de 1978, modificada, y el Reglamento General de Protección de Datos (RGPD), usted tiene derecho a acceder, rectificar, suprimir y portar sus datos personales. Para ejercer estos derechos, contáctenos en: privacy@utilyx.app. El sitio web de Utilyx no recopila datos personales directamente a través de sus herramientas, ya que funcionan completamente en local en su navegador.",
+    "rgpdTitle": "Conformidad con el RGPD",
+    "rgpdContent": "Utilyx cumple con el Reglamento General de Protección de Datos (RGPD – Reglamento UE 2016/679). El responsable del tratamiento es Utilyx (contact@utilyx.app). Los únicos datos personales recopilados son los del formulario de contacto (nombre, email, asunto, mensaje) y las cookies de análisis/publicidad. Los datos del formulario de contacto se conservan un máximo de 12 meses y luego se eliminan. No se recopila ni almacena ningún dato de los archivos procesados por nuestras herramientas.",
+    "personalDataTitle": "Datos Personales y Derechos",
+    "personalDataContent": "De conformidad con el RGPD, usted tiene los siguientes derechos:\n- Derecho de acceso: obtener una copia de sus datos\n- Derecho de rectificación: corregir datos inexactos\n- Derecho de supresión: solicitar la eliminación de sus datos\n- Derecho a la portabilidad: recibir sus datos en un formato estructurado\n- Derecho de oposición: oponerse al tratamiento de sus datos\n- Derecho a la limitación: limitar el tratamiento de sus datos\nPara ejercer estos derechos, contacte a privacy@utilyx.app. También puede presentar una reclamación ante la autoridad de control competente.",
+    "cookiesTitle": "Cookies y Rastreadores",
+    "cookiesContent": "El sitio web utilyx.app utiliza cookies en las siguientes categorías:\n1. Cookies estrictamente necesarias: preferencia de tema (oscuro/claro), consentimiento de cookies. Duración: 1 año.\n2. Cookies analíticas: Google Analytics (_ga, _gid). Duración: hasta 2 años. IP anonimizada.\n3. Cookies publicitarias: Google AdSense y DoubleClick (IDE, DSID, etc.). Duración: variable (13 meses máx.). Usadas para personalización de anuncios.\nPuede gestionar sus preferencias de cookies a través de nuestro banner de consentimiento o la configuración de su navegador.",
+    "intellectualTitle": "Propiedad Intelectual",
+    "intellectualContent": "Todo el contenido del sitio web utilyx.app (textos, imágenes, logotipos, diseño, código fuente) está protegido por derechos de autor y propiedad intelectual. Cualquier reproducción, representación, modificación o distribución, incluso parcial, por cualquier medio, está prohibida sin autorización escrita previa de Utilyx. El nombre \"Utilyx\" y el logotipo de Utilyx son marcas registradas protegidas.",
+    "liabilityTitle": "Limitación de Responsabilidad",
+    "liabilityContent": "Utilyx proporciona sus herramientas \"tal cual\" sin garantía de ningún tipo, expresa o implícita. Utilyx no será responsable de los daños directos o indirectos derivados del uso del sitio o de sus herramientas. Las herramientas se proporcionan de forma gratuita y el usuario es el único responsable del uso que hace de los resultados obtenidos.",
+    "faqTitle": "Preguntas Frecuentes",
+    "faq1Q": "¿Utilyx recopila mis datos personales?",
+    "faq1A": "No. Todas las herramientas de Utilyx funcionan 100% en local en su navegador. Sus archivos (PDF, imágenes, vídeos) nunca se envían a nuestros servidores. Los únicos datos recopilados son los del formulario de contacto y las cookies de análisis/publicidad.",
+    "faq2Q": "¿Quién aloja el sitio web?",
+    "faq2A": "El sitio está alojado por Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, Estados Unidos.",
+    "faq3Q": "¿Cómo puedo ejercer mis derechos bajo el RGPD?",
+    "faq3A": "Puede ejercer sus derechos de acceso, rectificación, supresión y portabilidad contactándonos en privacy@utilyx.app. También puede presentar una reclamación ante la autoridad de control competente."
   }
 }

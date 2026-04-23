@@ -380,7 +380,18 @@
     "sending": "Envoi en cours...",
     "successMessage": "Merci ! Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.",
     "errorMessage": "Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.",
-    "altContact": "Vous pouvez également nous écrire directement à contact@utilyx.app"
+    "altContact": "Vous pouvez également nous écrire directement à contact@utilyx.app",
+    "faqTitle": "Questions fréquentes",
+    "faq1Q": "Comment contacter Utilyx ?",
+    "faq1A": "Vous pouvez nous contacter via le formulaire ci-dessus ou par email à contact@utilyx.app. Nous répondons généralement sous 24 à 48 heures.",
+    "faq2Q": "Mes données personnelles sont-elles en sécurité ?",
+    "faq2A": "Oui. Tous nos outils fonctionnent 100% en local dans votre navigateur. Vos fichiers ne sont jamais envoyés à nos serveurs. Les seules données que nous collectons sont celles du formulaire de contact, conservées 12 mois maximum.",
+    "faq3Q": "Utilyx est-il vraiment gratuit ?",
+    "faq3A": "Oui, tous les outils Utilyx sont 100% gratuits, sans inscription et sans limite d'utilisation. Le site est financé par la publicité (Google AdSense).",
+    "faq4Q": "Comment signaler un bug ou suggérer une amélioration ?",
+    "faq4A": "Utilisez le formulaire de contact ci-dessus en sélectionnant le sujet \"Suggestion\" ou \"Bug\". Vous pouvez également nous écrire directement à contact@utilyx.app.",
+    "faq5Q": "Combien de temps faut-il pour obtenir une réponse ?",
+    "faq5A": "Nous nous engageons à répondre dans un délai de 24 à 48 heures ouvrées. Pour les questions urgentes, précisez-le dans votre message."
   },
   "Legal": {
     "title": "Mentions Légales",
@@ -394,6 +405,25 @@
     "directorContent": "Le directeur de la publication du site Utilyx est le responsable légal de l’éditeur.",
     "contactTitle": "Contact",
     "contactContent": "Pour toute question relative au site, vous pouvez nous contacter à : contact@utilyx.app",
-    "contactCta": "Nous contacter"
+    "contactCta": "Nous contacter",
+    "cnilTitle": "Déclaration CNIL",
+    "cnilContent": "Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée et au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles. Pour exercer ces droits, contactez-nous à : privacy@utilyx.app. Le site Utilyx ne collecte pas de données personnelles directement via ses outils, ceux-ci fonctionnant entièrement en local dans votre navigateur.",
+    "rgpdTitle": "Conformité RGPD",
+    "rgpdContent": "Utilyx est conforme au Règlement Général sur la Protection des Données (RGPD – Règlement UE 2016/679). Le responsable du traitement est Utilyx (contact@utilyx.app). Les seules données personnelles collectées sont celles liées au formulaire de contact (nom, email, sujet, message) et aux cookies d'analyse/publicité. Les données du formulaire de contact sont conservées pendant 12 mois maximum puis supprimées. Aucune donnée de fichier traité par nos outils n'est collectée ou stockée.",
+    "personalDataTitle": "Données personnelles et droits",
+    "personalDataContent": "Conformément au RGPD, vous disposez des droits suivants :\n- Droit d'accès : obtenir une copie de vos données\n- Droit de rectification : corriger des données inexactes\n- Droit de suppression : demander la suppression de vos données\n- Droit à la portabilité : recevoir vos données dans un format structuré\n- Droit d'opposition : vous opposer au traitement de vos données\n- Droit à la limitation : limiter le traitement de vos données\nPour exercer ces droits, contactez privacy@utilyx.app. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).",
+    "cookiesTitle": "Cookies et traceurs",
+    "cookiesContent": "Le site utilyx.app utilise des cookies dans les catégories suivantes :\n1. Cookies strictement nécessaires : préférence de thème (sombre/clair), consentement aux cookies. Durée de vie : 1 an.\n2. Cookies analytiques : Google Analytics (_ga, _gid). Durée de vie : 2 ans maximum. IP anonymisée.\n3. Cookies publicitaires : Google AdSense et DoubleClick (IDE, DSID, etc.). Durée de vie : variable (13 mois max). Utilisés pour la personnalisation des annonces.\nVous pouvez gérer vos préférences de cookies via notre bandeau de consentement ou les paramètres de votre navigateur.",
+    "intellectualTitle": "Propriété intellectuelle",
+    "intellectualContent": "L'ensemble du contenu du site utilyx.app (textes, images, logos, design, code source) est protégé par le droit d'auteur et le droit de la propriété intellectuelle. Toute reproduction, représentation, modification ou distribution, même partielle, par quelque procédé que ce soit, est interdite sans l'autorisation écrite préalable d'Utilyx. Le nom « Utilyx » et le logo Utilyx sont des marques protégées.",
+    "liabilityTitle": "Limitation de responsabilité",
+    "liabilityContent": "Utilyx fournit ses outils « en l'état » sans garantie d'aucune sorte, expresse ou implicite. Utilyx ne saurait être tenu responsable des dommages directs ou indirects résultant de l'utilisation du site ou de ses outils. Les outils sont fournis à titre gracieux et l'utilisateur reste seul responsable de l'utilisation qu'il fait des résultats obtenus.",
+    "faqTitle": "Questions fréquentes",
+    "faq1Q": "Utilyx collecte-t-il mes données personnelles ?",
+    "faq1A": "Non. Tous les outils Utilyx fonctionnent 100% en local dans votre navigateur. Vos fichiers (PDF, images, vidéos) ne sont jamais envoyés à nos serveurs. Les seules données collectées sont celles du formulaire de contact et les cookies d'analyse/publicité.",
+    "faq2Q": "Qui est l'hébergeur du site ?",
+    "faq2A": "Le site est hébergé par Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.",
+    "faq3Q": "Comment exercer mes droits RGPD ?",
+    "faq3A": "Vous pouvez exercer vos droits d'accès, rectification, suppression et portabilité en nous contactant à privacy@utilyx.app. Vous pouvez aussi déposer une réclamation auprès de la CNIL (www.cnil.fr)."
   }
 }

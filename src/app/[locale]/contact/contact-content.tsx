@@ -2,7 +2,7 @@
 
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
-import { Mail, CheckCircle2, AlertCircle, Send } from 'lucide-react'
+import { Mail, CheckCircle2, AlertCircle, Send, HelpCircle } from 'lucide-react'
 import { useState, useRef } from 'react'
 
 export default function ContactContent() {
@@ -50,8 +50,30 @@ export default function ContactContent() {
 
   const inputClasses = 'w-full rounded-lg border border-border bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors'
 
+  const faqs = [
+    { q: t('faq1Q'), a: t('faq1A') },
+    { q: t('faq2Q'), a: t('faq2A') },
+    { q: t('faq3Q'), a: t('faq3A') },
+    { q: t('faq4Q'), a: t('faq4A') },
+    { q: t('faq5Q'), a: t('faq5A') },
+  ]
+
+  const faqLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(faq => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  }
+
   return (
     <div className="min-h-screen bg-background" dir={dir}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <Link
           href={`/${locale}`}
@@ -157,6 +179,25 @@ export default function ContactContent() {
         <p className="mt-8 text-sm text-muted-foreground">
           {t('altContact')}
         </p>
+
+        {/* FAQ Section */}
+        <section className="mt-12 pt-8 border-t border-border" id="faq">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 flex items-center gap-2">
+            <HelpCircle className="h-5 w-5 text-primary" />
+            {t('faqTitle')}
+          </h2>
+          <div className="space-y-4">
+            {faqs.map((faq, i) => (
+              <details key={i} className="group p-4 rounded-xl border border-border bg-card">
+                <summary className="cursor-pointer font-medium text-sm sm:text-base flex items-center justify-between">
+                  {faq.q}
+                  <span className="ml-2 text-muted-foreground group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p className="mt-3 text-muted-foreground text-sm sm:text-base leading-relaxed">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   )
