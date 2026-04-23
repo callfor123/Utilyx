@@ -235,29 +235,6 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     ],
     relatedSlugs: ['compresser-image', 'convertir-image', 'redimensionner-image'],
   },
-  'ocr-image': {
-    toolId: 'img-ocr', category: 'image', slug: 'ocr-image',
-    title: 'OCR Reconnaissance de Texte en Ligne Gratuit — Extraire Texte d\'Image',
-    desc: 'Extrayez le texte d\'images, documents scannés, captures d\'écran avec l\'OCR. Gratuit, sans inscription, traitement 100% local.',
-    h1: 'Extraire le texte d\'une image avec l\'OCR',
-    intro: 'Transformez vos images contenant du texte en texte sélectionnable et modifiable avec notre outil OCR (Reconnaissance Optique de Caractères) avancé. Extracteur de texte OCR gratuit en ligne qui vous permet de convertir des documents scannés, des captures d\'écran, des photos de livres ou de panneaux en texte digital exploitable. Notre technologie OCR reconnaît plus de 100 langues et dialectes, y compris le français, anglais, espagnol, allemand, chinois, japonais et arabe. Cet outil est indispensable pour les étudiants qui doivent numériser des cours manuscrits, les professionnels qui traitent des documents papier, les traducteurs qui travaillent avec des images, et les développeurs qui automatisent le traitement de documents. L\'OCR extrait précisément le texte en préservant la mise en forme, les retours à la ligne et la structure des paragraphes. Vous pouvez ensuite copier le texte, le modifier, le traduire ou l\'intégrer dans un traitement de texte. Tout le traitement s\'effectue localement dans votre navigateur : vos images ne sont jamais envoyées à un serveur distant, assurant une confidentialité totale de vos documents sensibles. Le service est gratuit et sans inscription. L\'extracteur OCR fonctionne sans installation, sans limite quotidienne ni filigrane.',
-    faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Vous pouvez extraire le texte d\'autant d\'images que vous le souhaitez, sans filigrane ni limite quotidienne.' },
-      { q: 'Quels langages sont supportés ?', a: 'Plus de 100 langues sont supportées, dont le français, anglais, espagnol, allemand, italien, portugais, chinois, japonais, coréen, russe, arabe et bien d\'autres. Sélectionnez la langue appropriée pour une reconnaissance optimale.' },
-      { q: 'Comment l\'OCR préserve-t-il la mise en forme ?', a: 'L\'outil détecte les blocs de texte, les colonnes, les titres et les listes, et reproduit fidèlement la structure d\'origine avec les retours à la ligne et l\'alignement appropriés.' },
-      { q: 'Puis-je extraire du texte de captures d\'écran ?', a: 'Oui, l\'OCR fonctionne parfaitement avec les captures d\'écran de présentations, de sites web, d\'applications ou de vidéos. Il reconnaît même le texte dans différentes polices et tailles.' },
-      { q: 'La qualité de l\'image affecte-t-elle la précision ?', a: 'Une image claire avec un bon contraste offre les meilleurs résultats. Les images floues, pixelisées ou avec peu de contraste peuvent réduire la précision de l\'OCR, mais l\'algorithme est optimisé pour fonctionner avec la plupart des qualités d\'image.' },
-      { q: 'Puis-je corriger les erreurs d\'OCR ?', a: 'Oui, le texte extrait est entièrement modifiable. Vous pouvez corriger les erreurs occasionnelles d\'OCR, notamment pour les caractères ambigus ou les mots rares, avant de copier ou sauvegarder le résultat.' }
-    ],
-    howTo: [
-      'Chargez votre image contenant du texte en la glissant-déposant ou en parcourant vos fichiers',
-      'Sélectionnez la langue du texte pour une reconnaissance optimale',
-      'L\'OCR analyse automatiquement l\'image et extrait le texte',
-      'Vérifiez et corrigez le texte extrait si nécessaire',
-      'Copiez le texte dans votre presse-papier ou téléchargez-le'
-    ],
-    relatedSlugs: ['convertir-image', 'compresser-image', 'supprimer-arriere-plan'],
-  },
   'heic-vers-jpg': {
     toolId: 'heic-to-jpg', category: 'image', slug: 'heic-vers-jpg',
     title: 'Convertir HEIC en JPG en Ligne Gratuit — Photos iPhone',
