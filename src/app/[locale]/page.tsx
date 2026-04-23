@@ -321,6 +321,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'tip-calculator': TipCalculator,
   'random-number-generator': RandomNumberGenerator,
   'vat-calculator': VatCalculator,
+  'discount-calculator': dynamic(() => import('@/components/tools/calculators/discount-calculator').then(m => m.DiscountCalculator), { ssr: false, loading: () => <ToolLoader label="Discount Calculator" /> }),
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {

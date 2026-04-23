@@ -73,6 +73,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'stopwatch': dynamic(() => import('@/components/tools/calculators/stopwatch').then(m => m.Stopwatch), { ssr: false, loading: () => <ToolLoader label="Stopwatch" /> }),
   'pomodoro-timer': dynamic(() => import('@/components/tools/calculators/pomodoro-timer').then(m => m.PomodoroTimer), { ssr: false, loading: () => <ToolLoader label="Pomodoro Timer" /> }),
   'vat-calculator': dynamic(() => import('@/components/tools/calculators/vat-calculator').then(m => m.VatCalculator), { ssr: false, loading: () => <ToolLoader label="VAT Calculator" /> }),
+  'discount-calculator': dynamic(() => import('@/components/tools/calculators/discount-calculator').then(m => m.DiscountCalculator), { ssr: false, loading: () => <ToolLoader label="Discount Calculator" /> }),
   'tip-calculator': dynamic(() => import('@/components/tools/calculators/tip-calculator').then(m => m.TipCalculator), { ssr: false, loading: () => <ToolLoader label="Tip Calculator" /> }),
   'random-number-generator': dynamic(() => import('@/components/tools/generators/random-number-generator').then(m => m.RandomNumberGenerator), { ssr: false, loading: () => <ToolLoader label="Random Number" /> }),
 }

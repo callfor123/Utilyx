@@ -874,16 +874,25 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
   },
   'calculateur-pourcentage': {
     toolId: 'percentage-calculator', category: 'calculators', slug: 'calculateur-pourcentage',
-    title: 'Calculateur de Pourcentage en Ligne Gratuit — Tous les Calculs %',
-    desc: 'Calculez tous les types de pourcentages : augmentation, réduction, proportion et plus. Gratuit, sans inscription.',
-    h1: 'Calculer un pourcentage en ligne',
-    intro: 'Réalisez tous les calculs de pourcentages en un clic : quelle est X% de Y ? X est quel pourcentage de Y ? Augmentation de X% ? Réduction de X% ? Le calcul de pourcentages est une compétence quotidienne essentielle : vérifier une remise lors des soldes, calculer la TVA, évaluer une augmentation de salaire, déterminer un pourboire, ou analyser des statistiques. Notre calculateur couvre tous les cas de figure avec des explications claires et des exemples concrets. Les consommateurs l\'utilisent pour vérifier les prix soldés et les taux d\'intérêt, les étudiants pour résoudre des exercices de mathématiques, et les professionnels pour analyser des données financières. Chaque calcul est accompagné de la formule utilisée pour vous permettre de reproduire le calcul mentalement à l\'avenir. Le calcul s\'effectue localement dans votre navigateur. Le service est gratuit et sans inscription. Cet outil en ligne ne necessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est concue pour etre intuitive et accessible a tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte. Chaque fonctionnalite est optimisee pour offrir le meilleur resultat possible en un minimum de clics, vous permettant de gagner du temps sur vos taches quotidiennes.',
+    title: 'Calculateur de Pourcentage — Tous les Calculs % en Ligne',
+    desc: 'Calculez facilement tous les pourcentages : augmentation, réduction, proportion, variation. Formules et exemples inclus. Gratuit, sans inscription.',
+    h1: 'Calculer un pourcentage en ligne — augmentation, réduction, proportion',
+    intro: 'Réalisez tous les calculs de pourcentages en quelques secondes grâce à notre calculateur complet et intuitif. Que vous souhaitiez connaître X% d\'un nombre, déterminer quel pourcentage représente une valeur par rapport à une autre, calculer une augmentation ou une réduction en pourcentage, ou mesurer la variation entre deux valeurs, notre outil couvre tous les cas de figure avec des explications claires et des formules détaillées. Le calcul de pourcentages est une compétence quotidienne indispensable : les consommateurs vérifient les remises lors des soldes et les augmentations de prix, les commerçants calculent leurs marges et la TVA, les étudiants résolvent des exercices de mathématiques, les salariés évaluent une augmentation de salaire ou le montant de leur prime, et les investisseurs analysent les rendements de leurs placements. Notre calculateur affiche systématiquement la formule utilisée et le détail des étapes de calcul, ce qui vous permet de comprendre le raisonnement et de reproduire le calcul mentalement à l\'avenir. Les résultats sont instantanés et précis, sans risque d\'erreur de calcul manuel. Le calcul s\'effectue intégralement dans votre navigateur : aucune donnée n\'est envoyée à un serveur, garantissant la confidentialité de vos calculs financiers. Le service est entièrement gratuit et ne nécessite aucune inscription. Cet outil en ligne ne nécessite aucune installation : il fonctionne directement dans votre navigateur web sur ordinateur, tablette ou smartphone. L\'interface est conçue pour être intuitive et accessible à tous, sans connaissance technique requise. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir à créer de compte. Chaque fonctionnalité est optimisée pour offrir le meilleur résultat possible en un minimum de clics, vous permettant de gagner du temps sur vos tâches quotidiennes.',
     faq: [
-      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Calculez autant de pourcentages que vous le souhaitez.' },
-      { q: 'Quels types de calculs sont disponibles ?', a: 'X% de Y, X est quel % de Y, augmentation de X%, réduction de X%, et le calcul de variation entre deux valeurs.' },
-      { q: 'Comment calculer une remise ?', a: 'Utilisez le calcul \'réduction de X%\' : entrez le prix original et le pourcentage de remise. Par exemple, 30% de réduction sur 100€ donne 70€.' }
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription. Calculez autant de pourcentages que vous le souhaitez, sans aucune limite quotidienne ni filigrane sur les résultats.' },
+      { q: 'Quels types de calculs sont disponibles ?', a: 'Notre calculateur couvre cinq modes : X% de Y (proportion), X est quel % de Y (taux), augmentation de X% (hausse), réduction de X% (baisse), et variation entre deux valeurs (évolution). Chaque mode affiche la formule et le détail du calcul.' },
+      { q: 'Comment calculer une remise lors des soldes ?', a: 'Utilisez le mode "réduction de X%" : entrez le prix original et le pourcentage de remise. Par exemple, 30% de réduction sur 100€ donne un prix soldé de 70€. L\'outil affiche aussi le montant de la remise (30€).' },
+      { q: 'Comment calculer une augmentation de salaire ?', a: 'Utilisez le mode "augmentation de X%" : entrez votre salaire actuel et le pourcentage d\'augmentation. Par exemple, une augmentation de 5% sur 2000€ donne un nouveau salaire de 2100€ avec une hausse de 100€.' },
+      { q: 'Comment calculer la variation entre deux valeurs ?', a: 'Entrez la valeur initiale et la valeur finale. L\'outil calcule le pourcentage d\'évolution : ((finale - initiale) / initiale) × 100. Un résultat positif indique une hausse, un résultat négatif une baisse. Par exemple, de 80€ à 100€ = +25%.' },
+      { q: 'Les résultats sont-ils arrondis ?', a: 'Les résultats sont affichés avec deux décimales par défaut pour une lisibilité optimale, mais le calcul interne utilise la précision maximale. Vous pouvez ajuster le nombre de décimales selon vos besoins.' }
     ],
-    howTo: ['Choisissez le type de calcul', 'Entrez les valeurs', 'Le résultat s\'affiche instantanément avec la formule'],
+    howTo: [
+      'Choisissez le type de calcul souhaité : proportion, taux, augmentation, réduction ou variation',
+      'Entrez les valeurs demandées dans les champs prévus (montant, pourcentage, valeurs de départ et d\'arrivée)',
+      'Le résultat s\'affiche instantanément avec la formule utilisée et le détail des étapes',
+      'Ajustez le nombre de décimales si nécessaire pour plus de précision',
+      'Copiez le résultat ou effectuez un nouveau calcul en modifiant les valeurs'
+    ],
     relatedSlugs: ['calculateur-tva', 'calculateur-pourboire', 'calculateur-imc'],
   },
   'convertisseur-unites': {
@@ -989,6 +998,22 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     howTo: ['Entrez le montant de l\'addition', 'Choisissez le pourcentage de pourboire', 'Indiquez le nombre de personnes', 'Le total par personne s\'affiche instantanément'],
     relatedSlugs: ['calculateur-pourcentage', 'calculateur-tva', 'calculateur-frais-kilometriques'],
   },
+  'calculateur-remise': {
+    toolId: 'discount-calculator', category: 'calculators', slug: 'calculateur-remise',
+    title: 'Calculateur de Remise en Ligne Gratuit — Prix après Réduction',
+    desc: 'Calculez instantanément le prix après remise, l\'économie réalisée ou le pourcentage de réduction. Remises simples et doubles. Gratuit, sans inscription.',
+    h1: 'Calculateur de remise : prix après réduction',
+    intro: 'Calculez en un instant le prix final après une remise ou déterminez le pourcentage de réduction à partir du prix original et du prix payé. Cet outil gratuit prend en charge les remises simples et les doubles remises (soldes cumulatives), très courantes lors des périodes de promotions. Parfait pour les achats en ligne, les soldes, les négociations commerciales ou la vérification d\'une facture. La double remise est particulièrement utile lorsque deux promotions se cumulent, par exemple -30% puis -20% supplémentaires : la remise effective n\'est pas 50% mais 44%, car la seconde remise s\'applique sur le prix déjà réduit. L\'outil calcule automatiquement la remise effective globale, vous permettant de comprendre facilement l\'économie réelle. Vous pouvez aussi utiliser le mode inverse pour retrouver le pourcentage de remise à partir du prix original et du prix final. Tout le traitement s\'effectue localement dans votre navigateur : aucune donnée n\'est envoyée à un serveur. Le service est entièrement gratuit et sans inscription.',
+    faq: [
+      { q: 'Comment calculer une remise en pourcentage ?', a: 'Pour calculer le prix après remise : Prix final = Prix original × (1 - remise/100). Par exemple, un article à 80 € avec 25% de remise : 80 × 0,75 = 60 €.' },
+      { q: 'Comment calculer le pourcentage de remise à partir du prix initial et final ?', a: 'Pourcentage de remise = ((Prix original - Prix final) / Prix original) × 100. Par exemple, de 100 € à 70 € : ((100-70)/100) × 100 = 30%.' },
+      { q: 'Comment fonctionne une double remise ?', a: 'La deuxième remise s\'applique sur le prix déjà réduit, pas sur le prix original. Par exemple, -30% puis -20% : après la première remise, le prix est à 70% du prix original. La deuxième remise de 20% s\'applique sur ce prix réduit, soit 70% × 80% = 56% du prix original. La remise effective est donc 44%, pas 50%.' },
+      { q: 'L\'outil est-il gratuit ?', a: 'Oui, l\'outil est 100% gratuit et sans inscription. Aucune limite d\'utilisation, aucun filigrane, aucune collecte de données.' },
+      { q: 'Puis-je utiliser le calculateur pour d\'autres devises que l\'euro ?', a: 'Oui, le calcul est indépendant de la devise. Entrez simplement le montant dans la devise de votre choix, les résultats seront dans la même devise.' }
+    ],
+    howTo: ['Entrez le prix original de l\'article', 'Saisissez le pourcentage de remise ou utilisez les préréglages (5%, 10%, 20%, 30%…)', 'Les résultats affichent l\'économie, le prix final et le pourcentage de réduction', 'Pour une double remise, passez à l\'onglet "Double remise" et saisissez les deux pourcentages'],
+    relatedSlugs: ['calculateur-pourcentage', 'calculateur-tva', 'calculateur-pourboire'],
+  },
 }
 
 /**
@@ -1070,6 +1095,7 @@ const localeSlugMap: Record<string, Record<string, string>> = {
   'timer-pomodoro': { ar: 'مؤقت-بومودورو', de: 'pomodoro-timer', en: 'pomodoro-timer', es: 'temporizador-pomodoro', pt: 'temporizador-pomodoro' },
   'calculateur-tva': { ar: 'حاسبة-الضريبة', de: 'mehrwertsteuer-rechner', en: 'vat-calculator', es: 'calculadora-iva', pt: 'calculadora-iva' },
   'calculateur-pourboire': { ar: 'حاسبة-البقشيش', de: 'trinkgeldrechner', en: 'tip-calculator', es: 'calculadora-propina', pt: 'calculadora-gorjeta' },
+  'calculateur-remise': { ar: 'حاسبة-الخصم', de: 'rabattrechner', en: 'discount-calculator', es: 'calculadora-descuento', pt: 'calculadora-desconto' },
 }
 /** Get locale-specific slug for a base slug */
 export function getSlugForLocale(baseSlug: string, locale: string): string {
