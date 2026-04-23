@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { ArrowUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -19,9 +19,22 @@ export function ScrollToTop({ locale }: { locale: string }) {
   const label = scrollUpLabels[locale] || scrollUpLabels.fr
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400)
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setVisible(window.scrollY > 400)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
   if (!visible) return null
@@ -33,8 +46,8 @@ export function ScrollToTop({ locale }: { locale: string }) {
           <Button
             variant="outline"
             size="icon"
-            className="fixed bottom-6 right-6 sm:bottom-6 z-50 h-10 w-10 rounded-full shadow-lg bg-background/90 backdrop-blur-sm border-border/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 max-sm:bottom-20"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 h-10 w-10 rounded-full shadow-lg bg-background/90 backdrop-blur-sm border-border/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+            onClick={scrollToTop}
           >
             <ArrowUp className="h-4 w-4" />
           </Button>

@@ -166,102 +166,6 @@ export default async function ToolPage({ params }: Props) {
   const faqLabel = faqLabels[locale] || faqLabels.fr
   const relatedLabel = relatedLabels[locale] || relatedLabels.fr
 
-  /* ── JSON-LD: SoftwareApplication (rich per-tool schema for Google rich results) ── */
-  const softwareAppLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: locTool.h1,
-    url: pageUrl,
-    description: locTool.desc,
-    applicationCategory: 'UtilitiesApplication',
-    operatingSystem: 'Any (Web Browser)',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR', availability: 'https://schema.org/OnlineOnly' },
-    inLanguage: locale,
-    author: { '@type': 'Organization', name: 'Utilyx', url: BASE_URL },
-    provider: { '@type': 'Organization', name: 'Utilyx', url: BASE_URL },
-    isPartOf: { '@type': 'WebSite', name: 'Utilyx', url: BASE_URL },
-    featureList: locTool.howTo.join('. '),
-    screenshot: `${BASE_URL}/og-image.png`,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '120',
-      bestRating: '5',
-      worstRating: '1',
-    },
-    datePublished: '2025-01-01',
-    dateModified: new Date().toISOString().split('T')[0],
-  }
-
-  /* ── JSON-LD: FAQPage ── */
-  const faqLd = locTool.faq.length > 0
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: locTool.faq.map((f) => ({
-          '@type': 'Question',
-          name: f.q,
-          acceptedAnswer: { '@type': 'Answer', text: f.a },
-        })),
-      }
-    : null
-
-  /* ── JSON-LD: HowTo ── */
-  const howToLd = locTool.howTo.length > 0
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'HowTo',
-        name: locTool.h1,
-        description: locTool.intro,
-        url: pageUrl,
-        totalTime: 'PT2M',
-        supply: { '@type': 'HowToSupply', name: locale === 'en' ? 'Web browser' : locale === 'es' ? 'Navegador web' : locale === 'de' ? 'Webbrowser' : locale === 'ar' ? 'متصفح ويب' : locale === 'pt' ? 'Navegador web' : 'Navigateur web' },
-        tool: { '@type': 'HowToTool', name: 'Utilyx' },
-        step: locTool.howTo.map((text, i) => ({
-          '@type': 'HowToStep',
-          position: i + 1,
-          name: text,
-          text,
-          url: pageUrl,
-        })),
-      }
-    : null
-
-  /* ── JSON-LD: BreadcrumbList ── */
-  const breadcrumbLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Utilyx', item: `${BASE_URL}/${locale}` },
-      { '@type': 'ListItem', position: 2, name: catLabel, item: `${BASE_URL}/${locale}/${category}` },
-      { '@type': 'ListItem', position: 3, name: locTool.h1, item: pageUrl },
-    ],
-  }
-
-  /* ── JSON-LD: SpeakableSpecification (voice search optimization) ── */
-  const speakableLd = {
-    '@context': 'https://schema.org',
-    '@type': 'SpeakableSpecification',
-    xpath: [
-      '/html/body/main/header/h1',
-      '/html/body/main/header/p',
-    ],
-  }
-
-  /* ── JSON-LD: WebPage (combined with BreadcrumbList for rich page-level schema) ── */
-  const webPageLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: locTool.title,
-    description: locTool.desc,
-    url: pageUrl,
-    inLanguage: locale,
-    isPartOf: { '@type': 'WebSite', name: 'Utilyx', url: BASE_URL },
-    breadcrumb: breadcrumbLd,
-    mainEntity: softwareAppLd,
-    speakable: speakableLd,
-  }
-
   /* ── Related tools ── */
   const relatedTools = tool.relatedSlugs
     .map((s) => {
@@ -291,15 +195,6 @@ export default async function ToolPage({ params }: Props) {
 
   return (
     <>
-      {/* Structured data: SoftwareApplication + AggregateRating */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppLd) }} />
-      {/* Structured data: FAQPage (rich FAQ snippets) */}
-      {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
-      {/* Structured data: HowTo (step-by-step rich snippets) */}
-      {howToLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }} />}
-      {/* Structured data: WebPage (unified page-level schema with BreadcrumbList, mainEntity, speakable) */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
-
       <div className="min-h-screen flex flex-col bg-background">
         {/* ── Header ── */}
         <ToolPageHeader locale={locale} />
@@ -347,9 +242,12 @@ export default async function ToolPage({ params }: Props) {
           {locTool.howTo.length > 0 && (
             <section className="mb-8">
               <h2 className="text-2xl font-semibold mb-4">{howToLabel}</h2>
-              <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
+              <ol className="space-y-3">
                 {locTool.howTo.map((step, i) => (
-                  <li key={i} className="leading-relaxed">{step}</li>
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="shrink-0 flex items-center justify-center h-7 w-7 rounded-full bg-primary/10 text-primary text-sm font-semibold">{i + 1}</span>
+                    <p className="text-muted-foreground leading-relaxed pt-0.5">{step}</p>
+                  </li>
                 ))}
               </ol>
             </section>
@@ -366,12 +264,16 @@ export default async function ToolPage({ params }: Props) {
               <h2 className="text-2xl font-semibold mb-6">{faqLabel}</h2>
               <div className="space-y-4">
                 {locTool.faq.map((item, i) => (
-                  <details key={i} className="group border border-border/50 rounded-xl p-4 open:bg-muted/30 transition-colors" open={i === 0}>
-                    <summary className="font-medium cursor-pointer list-none flex items-center justify-between">
+                  <details key={i} className="group border border-border/50 rounded-xl open:bg-muted/30 transition-colors" open={i === 0}>
+                    <summary className="font-medium cursor-pointer list-none flex items-center justify-between p-4 select-none">
                       <span>{item.q}</span>
-                      <ChevronRight className="h-4 w-4 text-muted-foreground transition-transform group-open:rotate-90" />
+                      <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-open:rotate-90" />
                     </summary>
-                    <p className="mt-3 text-muted-foreground leading-relaxed">{item.a}</p>
+                    <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-open:grid-rows-[1fr]">
+                      <div className="overflow-hidden">
+                        <p className="px-4 pb-4 text-muted-foreground leading-relaxed">{item.a}</p>
+                      </div>
+                    </div>
                   </details>
                 ))}
               </div>
@@ -390,9 +292,9 @@ export default async function ToolPage({ params }: Props) {
                     <Link
                       key={rt.slug}
                       href={`/${locale}/${rt.category}/${getSlugForLocale(resolveSlugToBase(rt.slug), locale)}`}
-                      className="group flex items-start gap-3 p-4 border border-border/50 rounded-xl hover:bg-muted/30 hover:border-primary/20 transition-all duration-200"
+                      className="group flex items-start gap-3 p-4 border border-border/50 rounded-xl hover:bg-muted/30 hover:border-primary/20 hover:shadow-md transition-all duration-200"
                     >
-                      <div className={`shrink-0 rounded-lg p-2 ${iconColorClass}`}>
+                      <div className={`shrink-0 rounded-lg p-2 ${iconColorClass} transition-transform duration-200 group-hover:scale-110`}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: iconSvg }} />
                       </div>
                       <div className="min-w-0">
