@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -57,6 +57,10 @@ const localeMetadata: Record<string, { title: string; description: string }> = {
     description:
       "47+ ferramentas online gratuitas: PDF, imagens, vídeo, SEO, texto, geradores e calculadoras. Processamento 100% local, sem cadastro.",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#6366f1",
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -136,7 +140,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     manifest: "/manifest.webmanifest",
-    themeColor: "#6366f1",
     icons: {
       icon: "/favicon.ico",
       apple: "/logo.png",

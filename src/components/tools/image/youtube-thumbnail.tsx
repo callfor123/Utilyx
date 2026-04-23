@@ -85,7 +85,6 @@ export function YoutubeThumbnailDownloader() {
              {thumbnails.map((thumb) => (
                 <Card key={thumb.name} className="overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div className="aspect-video relative bg-muted flex items-center justify-center overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
                        src={thumb.url} 
                        alt={thumb.name} 

@@ -3,12 +3,10 @@
  * Safe to call server-side (no-ops); only fires when gtag is available.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type GtagParams = Record<string, any>
 
 function gtag(...args: unknown[]) {
   if (typeof window === 'undefined') return
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const w = window as any
   if (typeof w.gtag === 'function') {
     w.gtag(...args)

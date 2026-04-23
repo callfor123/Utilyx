@@ -32,12 +32,10 @@ export const AdUnit = memo(function AdUnit({
         adRef.current &&
         !pushedRef.current &&
         typeof window !== 'undefined' &&
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).adsbygoogle
       ) {
         clearInterval(interval)
         try {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ;(window as any).adsbygoogle.push({})
           pushedRef.current = true
         } catch (err) {

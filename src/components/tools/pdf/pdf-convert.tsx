@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import {
   FileText,
-  Image,
+  Image as ImageIcon,
   Loader2,
   RotateCcw,
   Download,
@@ -202,7 +202,7 @@ export function PdfConvert() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Image className="h-5 w-5" aria-hidden="true" />
+            <ImageIcon className="h-5 w-5" aria-hidden="true" />
             PDF en Images
           </CardTitle>
           <CardDescription>
