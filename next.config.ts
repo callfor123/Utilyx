@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: false,
+  experimental: {
+    // Next.js 16 has a known bug where /_global-error prerendering crashes with
+    // "Cannot read properties of null (reading 'useContext')" even with force-dynamic.
+    // Setting prerenderEarlyExit to false allows the build to continue past this
+    // prerender error — the page is server-rendered at runtime anyway.
+    prerenderEarlyExit: false,
+  },
   // Redirects are defined in vercel.ts using the Vercel Config SDK.
   // They were previously duplicated here, causing double-processing on Vercel.
   async headers() {
