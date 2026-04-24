@@ -1,18 +1,25 @@
-import { PrismaClient } from '@prisma/client'
+let _db: any = null
+let _isDbAvailable = false
 
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined
+  prisma: any | undefined
 }
 
-const hasDb = !!process.env.DATABASE_URL
-
-export const isDbAvailable = hasDb
-
-export const db = hasDb
-  ? (globalForPrisma.prisma ??
+try {
+  _isDbAvailable = !!process.env.DATABASE_URL
+  if (_isDbAvailable) {
+    // eslint-disable-next-line @typescript-eslint/no-require-resolves
+    const { PrismaClient } = require('@prisma/client')
+    _db = globalForPrisma.prisma ??
       new PrismaClient({
         log: process.env.NODE_ENV !== 'production' ? ['query'] : [],
-      }))
-  : (null as unknown as PrismaClient)
+      })
+    if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = _db
+  }
+} catch {
+  _isDbAvailable = false
+  _db = null
+}
 
-if (hasDb && process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db
+export const isDbAvailable = _isDbAvailable
+export const db = _db as import('@prisma/client').PrismaClient
