@@ -59,3 +59,7 @@ server.log
 # Root-owned node modules (should never be committed)
 node_modules_root_owned/
 .env*.local
+
+# Environment variables (should not be committed)
+.env.local
+.env.production.local
