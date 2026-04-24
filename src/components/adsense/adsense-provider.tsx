@@ -36,12 +36,37 @@ export const AD_SLOT_MAIN = AD_SLOTS.BANNER
 
 export function AdSenseScript() {
   return (
-    <Script
-      id="adsense-script"
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-      strategy="afterInteractive"
-      crossOrigin="anonymous"
-      async
-    />
+    <>
+      <Script
+        id="adsense-script"
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+        strategy="afterInteractive"
+        crossOrigin="anonymous"
+        async
+      />
+      {/* Auto ads configuration - runs once AdSense script loads */}
+      <Script
+        id="adsense-auto-ads"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              if (typeof window.adsbygoogle === 'undefined') {
+                console.warn('AdSense script not loaded yet');
+                return;
+              }
+              try {
+                window.adsbygoogle.push({
+                  google_ad_client: "${ADSENSE_CLIENT}",
+                  enable_page_level_ads: true
+                });
+              } catch (e) {
+                console.warn('AdSense auto ads init error:', e);
+              }
+            })();
+          `,
+        }}
+      />
+    </>
   )
 }
