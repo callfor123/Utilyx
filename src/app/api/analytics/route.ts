@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db, isDbAvailable } from '@/lib/db'
 import { z } from 'zod'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
