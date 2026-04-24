@@ -37,9 +37,9 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get('user-agent') ?? undefined
 
     if (!isDbAvailable) {
-      // DB not configured - log message but don't fail
-      console.log('[Contact] DB unavailable, message logged only:', { name, email, subject })
-      return NextResponse.json({ recorded: true, note: 'Message logged (DB unavailable)' }, { status: 201 })
+      // DB not configured - log without PII but don't fail
+      console.log('[Contact] DB unavailable, message received:', { name, subject, timestamp: new Date().toISOString() })
+      return NextResponse.json({ recorded: true, note: 'Message received (DB unavailable)' }, { status: 201 })
     }
 
     await db.contactMessage.create({

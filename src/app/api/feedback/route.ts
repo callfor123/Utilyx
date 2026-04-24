@@ -38,9 +38,9 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get('user-agent') ?? undefined
 
     if (!isDbAvailable) {
-      // DB not configured - log feedback but don't fail
-      console.log('[Feedback] DB unavailable, feedback logged only:', { toolId, rating })
-      return NextResponse.json({ recorded: true, note: 'Feedback logged (DB unavailable)' }, { status: 201 })
+      // DB not configured - log without PII but don't fail
+      console.log('[Feedback] DB unavailable, feedback received:', { toolId, rating, timestamp: new Date().toISOString() })
+      return NextResponse.json({ recorded: true, note: 'Feedback received (DB unavailable)' }, { status: 201 })
     }
 
     await db.feedback.create({

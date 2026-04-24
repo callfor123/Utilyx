@@ -38,9 +38,9 @@ export async function POST(request: NextRequest) {
     const userAgent = request.headers.get('user-agent') ?? undefined
 
     if (!isDbAvailable) {
-      // DB not configured - log analytics but don't fail
-      console.log('[Analytics] DB unavailable, event logged only:', { toolId, category, action })
-      return NextResponse.json({ recorded: true, note: 'Analytics logged (DB unavailable)' }, { status: 201 })
+      // DB not configured - log without sensitive data but don't fail
+      console.log('[Analytics] DB unavailable, event received:', { toolId, category, timestamp: new Date().toISOString() })
+      return NextResponse.json({ recorded: true, note: 'Analytics received (DB unavailable)' }, { status: 201 })
     }
 
     await db.toolUsage.create({
