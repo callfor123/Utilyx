@@ -58,3 +58,4 @@ server.log
 
 # Root-owned node modules (should never be committed)
 node_modules_root_owned/
+.env*.local

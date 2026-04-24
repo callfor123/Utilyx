@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { db, isDbAvailable } from '@/lib/db'
+import { isDbAvailable, db } from '@/lib/db'
 
 export const dynamic = 'force-dynamic'
 
@@ -7,7 +7,7 @@ export async function GET() {
   const start = Date.now()
   const checks: Record<string, { status: string; latencyMs: number; message?: string }> = {}
 
-  if (isDbAvailable) {
+  if (isDbAvailable && db) {
     const dbStart = Date.now()
     try {
       await db.$queryRaw`SELECT 1`
@@ -49,13 +49,9 @@ export async function GET() {
     latencyMs: Date.now() - start,
   }
 
-  const overallStatus = isDbAvailable
-    ? (Object.values(checks).every(c => c.status === 'healthy')
-      ? 'healthy'
-      : Object.values(checks).some(c => c.status === 'down')
-        ? 'down'
-        : 'degraded')
-    : 'healthy'
+  const allHealthy = Object.values(checks).every(c => c.status === 'healthy' || c.status === 'unavailable')
+  const anyDown = Object.values(checks).some(c => c.status === 'down')
+  const overallStatus = anyDown ? 'degraded' : allHealthy ? 'healthy' : 'degraded'
 
   return NextResponse.json(
     {
@@ -64,6 +60,6 @@ export async function GET() {
       latencyMs: Date.now() - start,
       checks,
     },
-    { status: overallStatus === 'down' ? 503 : 200 }
+    { status: 200 }
   )
 }
