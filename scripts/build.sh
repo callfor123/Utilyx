@@ -10,6 +10,11 @@ set -o pipefail
 
 echo "Starting build process..."
 
+# Generate Prisma Client (MUST run before next build)
+echo "Generating Prisma Client for PostgreSQL..."
+npx prisma generate
+echo "Prisma Client generated."
+
 # Run next build and capture output
 BUILD_OUTPUT=$(npx next build 2>&1)
 BUILD_EXIT=$?
