@@ -37,6 +37,12 @@ export async function POST(request: NextRequest) {
     const { toolId, category, action, success, fileSize, duration } = parsed.data
     const userAgent = request.headers.get('user-agent') ?? undefined
 
+    if (!isDbAvailable) {
+      // DB not configured - log analytics but don't fail
+      console.log('[Analytics] DB unavailable, event logged only:', { toolId, category, action })
+      return NextResponse.json({ recorded: true, note: 'Analytics logged (DB unavailable)' }, { status: 201 })
+    }
+
     await db.toolUsage.create({
       data: {
         toolId,
@@ -86,6 +92,13 @@ export async function GET(request: NextRequest) {
     }
 
     const { toolId, category, period, limit } = parsed.data
+
+    if (!isDbAvailable) {
+      return NextResponse.json({
+        error: 'Database not configured',
+        note: 'Analytics API requires DATABASE_URL',
+      }, { status: 503 })
+    }
 
     const periodDays: Record<string, number> = { '24h': 1, '7d': 7, '30d': 30, '90d': 90 }
     const since = new Date(Date.now() - periodDays[period] * 24 * 60 * 60 * 1000)

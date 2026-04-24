@@ -37,6 +37,12 @@ export async function POST(request: NextRequest) {
     const { toolId, rating, comment, email } = parsed.data
     const userAgent = request.headers.get('user-agent') ?? undefined
 
+    if (!isDbAvailable) {
+      // DB not configured - log feedback but don't fail
+      console.log('[Feedback] DB unavailable, feedback logged only:', { toolId, rating })
+      return NextResponse.json({ recorded: true, note: 'Feedback logged (DB unavailable)' }, { status: 201 })
+    }
+
     await db.feedback.create({
       data: {
         toolId: toolId ?? null,
@@ -86,6 +92,13 @@ export async function GET(request: NextRequest) {
     }
 
     const { toolId, period, limit } = parsed.data
+
+    if (!isDbAvailable) {
+      return NextResponse.json({
+        error: 'Database not configured',
+        note: 'Feedback API requires DATABASE_URL',
+      }, { status: 503 })
+    }
 
     const periodDays: Record<string, number> = { '24h': 1, '7d': 7, '30d': 30, '90d': 90 }
     const since = new Date(Date.now() - periodDays[period] * 24 * 60 * 60 * 1000)
