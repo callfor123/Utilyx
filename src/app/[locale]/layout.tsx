@@ -64,9 +64,9 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const { locale } = (await params) ?? {};
 
-  if (!routing.locales.includes(locale as any)) {
+  if (!locale || !routing.locales.includes(locale as any)) {
     return {};
   }
 
@@ -154,16 +154,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  let locale: string;
-  try {
-    const resolved = await params;
-    locale = resolved.locale;
-  } catch (e) {
-    console.error('[LocaleLayout] Failed to resolve params:', e);
-    locale = routing.defaultLocale;
-  }
+  const { locale } = (await params) ?? {};
 
-  if (!routing.locales.includes(locale as any)) {
+  if (!locale || !routing.locales.includes(locale as any)) {
     notFound();
   }
 

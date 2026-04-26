@@ -25,7 +25,7 @@ const popularToolsByLocale: Record<string, { icon: React.ComponentType<{ classNa
 const tools = popularToolsByLocale.fr
 
 export default async function NotFound({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: rawLocale } = await params
+  const { locale: rawLocale } = (await params) ?? {}
   const locale = routing.locales.includes(rawLocale as any) ? rawLocale : 'fr'
   const msgs = notFoundMessages[locale] || notFoundMessages.fr
 

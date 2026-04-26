@@ -19,7 +19,7 @@ type Props = {
 }
 
 export default async function ToolLayout({ params, children }: Props) {
-  const { locale, category, slug } = await params
+  const { locale, category, slug } = (await params) ?? {}
 
   if (!routing.locales.includes(locale as any) || !validCategories.includes(category)) {
     return <>{children}</>

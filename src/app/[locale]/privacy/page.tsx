@@ -6,7 +6,7 @@ export const revalidate = 86400
 const BASE_URL = 'https://utilyx.app'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params
+  const { locale } = (await params) ?? {}
   const titles: Record<string, string> = {
     fr: 'Politique de Confidentialité — Utilyx',
     en: 'Privacy Policy — Utilyx',

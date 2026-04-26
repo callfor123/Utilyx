@@ -82,7 +82,7 @@ const categorySvgs: Record<string, string> = {
 
 /* ── Metadata: server-rendered <head> for Googlebot ──────────────────── */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale, category, slug } = await params
+  const { locale, category, slug } = (await params) ?? {}
 
   const baseSlug = resolveSlugToBase(slug)
   const tool = getToolBySlug(baseSlug)
@@ -148,7 +148,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 /* ── Page Component ──────────────────────────────────────────────────── */
 export default async function ToolPage({ params }: Props) {
-  const { locale, category, slug } = await params
+  const { locale, category, slug } = (await params) ?? {}
 
   if (!routing.locales.includes(locale as any)) notFound()
   if (!validCategories.includes(category)) notFound()
