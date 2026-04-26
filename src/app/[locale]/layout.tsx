@@ -154,16 +154,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  const { locale } = await params;
+  let locale: string;
+  try {
+    const resolved = await params;
+    locale = resolved.locale;
+  } catch (e) {
+    console.error('[LocaleLayout] Failed to resolve params:', e);
+    locale = routing.defaultLocale;
+  }
 
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
 
-  // Enable static rendering for next-intl (avoids headers() during prerender)
-  setRequestLocale(locale);
+  try {
+    setRequestLocale(locale);
+  } catch (e) {
+    console.error('[LocaleLayout] setRequestLocale failed:', e);
+  }
 
-  const messages = (await import(`../../messages/${locale}.json`)).default;
+  let messages: Record<string, any>;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (e) {
+    console.error('[LocaleLayout] Failed to load messages for locale:', locale, e);
+    messages = (await import(`../../messages/${routing.defaultLocale}.json`)).default;
+  }
 
   const dir = locale === "ar" ? "rtl" : "ltr";
 

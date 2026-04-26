@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+
 export default function GlobalError({
   error,
   reset,
@@ -7,6 +9,10 @@ export default function GlobalError({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  useEffect(() => {
+    console.error('[GlobalError]', error?.message, error?.digest, error?.stack)
+  }, [error])
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -24,6 +30,11 @@ export default function GlobalError({
       <p style={{ color: '#666', maxWidth: '28rem', margin: 0 }}>
         An unexpected error occurred. Please try again.
       </p>
+      {error?.digest && (
+        <p style={{ color: '#999', fontSize: '0.75rem', margin: 0 }}>
+          Error digest: {error.digest}
+        </p>
+      )}
       <button
         onClick={reset}
         style={{
