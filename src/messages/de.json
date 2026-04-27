@@ -267,6 +267,10 @@
       "label": "Rabattrechner",
       "description": "Preis nach Rabatt und Ersparnis berechnen"
     },
+    "time-converter": {
+      "label": "Zeitumrechner",
+      "description": "Sekunden, Minuten, Stunden, Tage, Wochen, Monate, Jahre umrechnen"
+    },
     "vat-calculator": {
       "label": "MwSt-Rechner",
       "description": "Netto-, Brutto- und MwSt-Betrag berechnen"

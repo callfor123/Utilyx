@@ -267,6 +267,10 @@
       "label": "Calculadora de Descuento",
       "description": "Calcular el precio após descuento y el ahorro"
     },
+    "time-converter": {
+      "label": "Conversor de Tiempo",
+      "description": "Convertir entre segundos, minutos, horas, días, semanas, meses, años"
+    },
     "vat-calculator": {
       "label": "Calculadora de IVA",
       "description": "Calcular el importe neto, bruto e IVA"

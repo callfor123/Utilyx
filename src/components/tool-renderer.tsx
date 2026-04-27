@@ -76,6 +76,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'discount-calculator': dynamic(() => import('@/components/tools/calculators/discount-calculator').then(m => m.DiscountCalculator), { ssr: false, loading: () => <ToolLoader label="Discount Calculator" /> }),
   'tip-calculator': dynamic(() => import('@/components/tools/calculators/tip-calculator').then(m => m.TipCalculator), { ssr: false, loading: () => <ToolLoader label="Tip Calculator" /> }),
   'random-number-generator': dynamic(() => import('@/components/tools/generators/random-number-generator').then(m => m.RandomNumberGenerator), { ssr: false, loading: () => <ToolLoader label="Random Number" /> }),
+  'time-converter': dynamic(() => import('@/components/tools/calculators/time-converter').then(m => m.TimeConverter), { ssr: false, loading: () => <ToolLoader label="Time Converter" /> }),
 }
 
 export function ToolRenderer({ toolId }: { toolId: ToolId }) {

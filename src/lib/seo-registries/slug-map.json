@@ -51,5 +51,6 @@
   "chronometre": "stopwatch",
   "timer-pomodoro": "pomodoro-timer",
   "calculateur-tva": "vat-calculator",
-  "calculateur-pourboire": "tip-calculator"
+  "calculateur-pourboire": "tip-calculator",
+  "convertisseur-temps": "time-converter"
 }

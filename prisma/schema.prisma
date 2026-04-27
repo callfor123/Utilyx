@@ -62,3 +62,34 @@ model ContactMessage {
 
   @@index([createdAt])
 }
+
+model ApiKey {
+  id          String   @id @default(cuid())
+  key         String   @unique @default(cuid())
+  name        String?
+  email       String?
+  plan        String   @default("free") // free, pro, enterprise
+  status      String   @default("active") // active, expired, revoked
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  lastUsedAt  DateTime?
+  usageCount  Int      @default(0)
+  ip          String?  // IP that created the key
+
+  @@index([key])
+  @@index([status, expiresAt])
+  @@index([email])
+}
+
+model ApiKeyEvent {
+  id        String   @id @default(cuid())
+  eventType String   // generated, validated, expired, regenerated
+  apiKeyId  String?
+  email     String?
+  ip        String?
+  metadata  String?  // JSON string for extra data (plan, source, etc.)
+  createdAt DateTime @default(now())
+
+  @@index([eventType, createdAt])
+  @@index([createdAt])
+}

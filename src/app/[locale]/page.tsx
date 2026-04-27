@@ -40,6 +40,7 @@ import { HashGenerator } from '@/components/tools/generators/hash-generator'
 import { ColorPicker } from '@/components/tools/generators/color-picker'
 import { RandomNumberGenerator } from '@/components/tools/generators/random-number-generator'
 import { VatCalculator } from '@/components/tools/calculators/vat-calculator'
+import { TimeConverter } from '@/components/tools/calculators/time-converter'
 
 // Dev & SEO
 import { JsonFormatter } from '@/components/tools/dev-seo/json-formatter'
@@ -197,6 +198,7 @@ import {
   MessageCircle,
   Link2Off,
   SplitSquareHorizontal,
+  Clock,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -322,6 +324,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'random-number-generator': RandomNumberGenerator,
   'vat-calculator': VatCalculator,
   'discount-calculator': dynamic(() => import('@/components/tools/calculators/discount-calculator').then(m => m.DiscountCalculator), { ssr: false, loading: () => <ToolLoader label="Discount Calculator" /> }),
+  'time-converter': TimeConverter,
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -331,7 +334,7 @@ const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> =
   Heart, Calendar, Percent, ArrowRightLeft, Link: LinkIcon, Paintbrush,
   FileCode, ArrowDownUp, Diff, Lock, Smartphone, Unlock, ShieldCheck,
   Volume2, Music, Film, VolumeX, Video,
-  HardHat, Car, MessageCircle, Link2Off, SplitSquareHorizontal,
+  HardHat, Car, MessageCircle, Link2Off, SplitSquareHorizontal, Clock,
 }
 
 toolIconMap['Image'] = ImageIcon

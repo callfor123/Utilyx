@@ -267,6 +267,10 @@
       "label": "Calculateur Remise",
       "description": "Calculer le prix après remise et l'économie réalisée"
     },
+    "time-converter": {
+      "label": "Convertisseur de Temps",
+      "description": "Convertir secondes, minutes, heures, jours, semaines, mois, années"
+    },
     "vat-calculator": {
       "label": "Calculateur TVA",
       "description": "Calculer le montant HT, TTC et la TVA"

@@ -692,4 +692,19 @@ export const seoRegistryFr: Record<string, ToolSeoEntry> = {
     howTo: ['Entrez le montant de l\'addition', 'Choisissez le pourcentage de pourboire', 'Indiquez le nombre de personnes', 'Le total par personne s\'affiche instantanément'],
     relatedSlugs: ['calculateur-pourcentage', 'calculateur-tva', 'calculateur-frais-kilometriques'],
   },
+  'convertisseur-temps': {
+    toolId: 'time-converter', category: 'calculators', slug: 'convertisseur-temps',
+    title: 'Convertisseur de Temps en Ligne Gratuit — Secondes, Minutes, Heures, Jours',
+    desc: 'Convertissez instantanément entre secondes, minutes, heures, jours, semaines, mois et années. Gratuit, sans inscription, 100% dans votre navigateur.',
+    h1: 'Convertisseur de temps : secondes, minutes, heures, jours',
+    intro: 'Convertissez facilement une durée entre toutes les unités de temps : secondes, minutes, heures, jours, semaines, mois et années. Entrez une valeur dans n\'importe quelle unité et obtenez instantanément la conversion dans toutes les autres. Parfait pour calculer des durées de projet, convertir des temps de travail, planifier des événements ou simplement comprendre une durée exprimée dans une unité différente. Les conversions utilisent les valeurs standards : 1 minute = 60 secondes, 1 heure = 60 minutes, 1 jour = 24 heures, 1 semaine = 7 jours, 1 mois = 30,44 jours (moyenne), 1 an = 365,25 jours (moyenne incluant les années bissextiles). Le calcul s\'effectue localement dans votre navigateur : aucune donnée n\'est envoyée à un serveur. Le service est entièrement gratuit et sans inscription.',
+    faq: [
+      { q: 'Comment convertir des heures en minutes ?', a: 'Multipliez le nombre d\'heures par 60. Par exemple, 2,5 heures = 2,5 × 60 = 150 minutes.' },
+      { q: 'Comment convertir des secondes en heures ?', a: 'Divisez le nombre de secondes par 3600. Par exemple, 7200 secondes = 7200 / 3600 = 2 heures.' },
+      { q: 'Combien de secondes dans une journée ?', a: 'Une journée de 24 heures contient 86 400 secondes (24 × 60 × 60).' },
+      { q: 'Comment sont calculés les mois et années ?', a: 'Un mois est calculé comme 30,44 jours en moyenne (365,25 / 12) et une année comme 365,25 jours (incluant les années bissextiles).' },
+    ],
+    howTo: ['Sélectionnez l\'unité source (secondes, minutes, heures, etc.)', 'Entrez la valeur à convertir', 'Tous les résultats s\'affichent instantanément dans chaque unité'],
+    relatedSlugs: ['convertisseur-unites', 'chronometre', 'calculateur-age'],
+  },
 }

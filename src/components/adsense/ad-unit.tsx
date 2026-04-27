@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useEffect, useRef, memo, useState } from 'react'
-import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE } from './adsense-provider'
+import React, { useEffect, useRef, memo, useState, useCallback } from 'react'
+import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE, useAdConsent } from './adsense-provider'
 
 export type AdFormat = 'auto' | 'rectangle' | 'horizontal' | 'vertical' | 'fluid'
 export type AdLayout = '-1' | '-1a' | '-1b' | '-1c' | '-1d' | '-1e' | '-1f'
@@ -15,6 +15,14 @@ interface AdUnitProps {
   responsive?: boolean
 }
 
+/**
+ * Lazy-loaded AdSense unit that only renders and pushes when:
+ * 1. User has given ad consent (via AdConsentContext)
+ * 2. The unit is visible in the viewport (IntersectionObserver)
+ *
+ * This eliminates the old 200ms polling loop and prevents off-screen ads
+ * from loading, reducing unnecessary ad requests and improving Core Web Vitals.
+ */
 export const AdUnit = memo(function AdUnit({
   adSlot = AD_SLOTS.BANNER,
   adFormat = 'auto',
@@ -25,49 +33,95 @@ export const AdUnit = memo(function AdUnit({
 }: AdUnitProps) {
   const adRef = useRef<HTMLDivElement>(null)
   const pushedRef = useRef(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [shouldRender, setShouldRender] = useState(false)
+  const { hasConsent, consentChecked } = useAdConsent()
 
+  // IntersectionObserver: only mark visible when the ad container enters viewport
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (
-        adRef.current &&
-        !pushedRef.current &&
-        typeof window !== 'undefined' &&
-        (window as any).adsbygoogle
-      ) {
-        clearInterval(interval)
-        try {
-          ;(window as any).adsbygoogle.push({})
-          pushedRef.current = true
-        } catch (err) {
-          console.warn('AdSense push error:', err)
+    const el = adRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect() // Once visible, stop observing
         }
-      }
-    }, 200)
+      },
+      { rootMargin: '200px' } // Start loading 200px before entering viewport
+    )
 
-    const timeout = setTimeout(() => clearInterval(interval), 10000)
-
-    return () => {
-      clearInterval(interval)
-      clearTimeout(timeout)
-    }
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [adSlot])
 
+  // Consent gate: only render the <ins> element when consent is given
+  useEffect(() => {
+    if (consentChecked && hasConsent && isVisible) {
+      setShouldRender(true)
+    }
+  }, [consentChecked, hasConsent, isVisible])
+
+  // Push to adsbygoogle once the <ins> is in the DOM and consent is granted
+  useEffect(() => {
+    if (!shouldRender || pushedRef.current) return
+
+    // Use a short requestAnimationFrame to ensure the <ins> element is painted
+    const rafId = requestAnimationFrame(() => {
+      if (pushedRef.current) return
+      if (typeof window === 'undefined' || !(window as any).adsbygoogle) {
+        // AdSense script not yet loaded — retry briefly
+        let attempts = 0
+        const retry = setInterval(() => {
+          if (pushedRef.current || attempts > 25) {
+            clearInterval(retry)
+            return
+          }
+          if ((window as any).adsbygoogle) {
+            clearInterval(retry)
+            try {
+              ;(window as any).adsbygoogle.push({})
+              pushedRef.current = true
+            } catch (err) {
+              console.warn('AdSense push error:', err)
+            }
+          }
+          attempts++
+        }, 200)
+        // Clean up retry on unmount
+        return () => clearInterval(retry)
+      }
+
+      try {
+        ;(window as any).adsbygoogle.push({})
+        pushedRef.current = true
+      } catch (err) {
+        console.warn('AdSense push error:', err)
+      }
+    })
+
+    return () => cancelAnimationFrame(rafId)
+  }, [shouldRender, adSlot])
+
   const defaultStyle: React.CSSProperties = {
-    display: 'block',
+    display: shouldRender ? 'block' : 'none',
     ...style,
   }
 
   return (
     <div className={`ad-container ${className}`} ref={adRef}>
-      <ins
-        className="adsbygoogle"
-        style={defaultStyle}
-        data-ad-client={ADSENSE_CLIENT}
-        data-ad-slot={adSlot}
-        data-ad-format={adFormat}
-        data-full-width-responsive={responsive ? 'true' : 'false'}
-        {...(adLayout ? { 'data-ad-layout': adLayout } : {})}
-      />
+      {shouldRender && (
+        <ins
+          className="adsbygoogle"
+          style={defaultStyle}
+          data-ad-client={ADSENSE_CLIENT}
+          data-ad-slot={adSlot}
+          data-ad-format={adFormat}
+          data-full-width-responsive={responsive ? 'true' : 'false'}
+          {...(adLayout ? { 'data-ad-layout': adLayout } : {})}
+        />
+      )}
     </div>
   )
 })
@@ -141,8 +195,9 @@ export function AdSidebar({ className = '' }: { className?: string }) {
 
 export function AdStickyBottom({ className = '' }: { className?: string }) {
   const [dismissed, setDismissed] = useState(false)
+  const { hasConsent } = useAdConsent()
 
-  if (dismissed) return null
+  if (dismissed || !hasConsent) return null
 
   return (
     <div className={`fixed bottom-0 left-0 right-0 z-40 sm:hidden ${className}`}>

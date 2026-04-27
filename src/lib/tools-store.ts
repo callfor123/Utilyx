@@ -56,6 +56,7 @@ export type ToolId =
   | 'random-number-generator'
   | 'vat-calculator'
   | 'discount-calculator'
+  | 'time-converter'
 
 export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
@@ -191,6 +192,7 @@ export const modules: ModuleDef[] = [
       { id: 'pomodoro-timer', label: 'Timer Pomodoro', icon: 'Clock', description: 'Technique Pomodoro pour la productivité' },
       { id: 'vat-calculator', label: 'Calculateur TVA', icon: 'Receipt', description: 'Calculer le montant HT, TTC et la TVA' },
       { id: 'discount-calculator', label: 'Calculateur Remise', icon: 'Tag', description: 'Calculer le prix après remise et l\'économie réalisée' },
+      { id: 'time-converter', label: 'Convertisseur de Temps', icon: 'Clock', description: 'Convertir secondes, minutes, heures, jours, semaines, mois, années' },
     ],
   },
 ]

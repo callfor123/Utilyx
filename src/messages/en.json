@@ -267,6 +267,10 @@
       "label": "Discount Calculator",
       "description": "Calculate the price after discount and savings"
     },
+    "time-converter": {
+      "label": "Time Converter",
+      "description": "Convert between seconds, minutes, hours, days, weeks, months, years"
+    },
     "vat-calculator": {
       "label": "VAT Calculator",
       "description": "Calculate net, gross and VAT amounts"
