@@ -263,6 +263,10 @@
       "label": "Pomodoro Timer",
       "description": "Pomodoro technique for productivity"
     },
+    "discount-calculator": {
+      "label": "Discount Calculator",
+      "description": "Calculate the price after discount and savings"
+    },
     "vat-calculator": {
       "label": "VAT Calculator",
       "description": "Calculate net, gross and VAT amounts"

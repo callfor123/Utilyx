@@ -263,6 +263,10 @@
       "label": "Timer Pomodoro",
       "description": "Technique Pomodoro pour la productivité"
     },
+    "discount-calculator": {
+      "label": "Calculateur Remise",
+      "description": "Calculer le prix après remise et l'économie réalisée"
+    },
     "vat-calculator": {
       "label": "Calculateur TVA",
       "description": "Calculer le montant HT, TTC et la TVA"

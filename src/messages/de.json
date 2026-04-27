@@ -263,6 +263,10 @@
       "label": "Pomodoro-Timer",
       "description": "Pomodoro-Technik für Produktivität"
     },
+    "discount-calculator": {
+      "label": "Rabattrechner",
+      "description": "Preis nach Rabatt und Ersparnis berechnen"
+    },
     "vat-calculator": {
       "label": "MwSt-Rechner",
       "description": "Netto-, Brutto- und MwSt-Betrag berechnen"

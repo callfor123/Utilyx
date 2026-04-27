@@ -263,6 +263,10 @@
       "label": "مؤقت بومودورو",
       "description": "تقنية بومودورو للإنتاجية"
     },
+    "discount-calculator": {
+      "label": "حاسبة الخصم",
+      "description": "حساب السعر بعد الخصم والتوفير"
+    },
     "vat-calculator": {
       "label": "حاسبة الضريبة",
       "description": "حساب المبلغ الصافي والإجمالي والضريبة"

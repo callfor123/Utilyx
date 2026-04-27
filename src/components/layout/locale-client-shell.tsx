@@ -55,7 +55,7 @@ export function LocaleClientShell({ locale, dir, messages, children }: Props) {
         disableTransitionOnChange
       >
         <AdSenseScript />
-        <LocaleIntlProvider messages={messages}>
+        <LocaleIntlProvider locale={locale} messages={messages}>
           {children}
           <ClientOnlyProviders />
         </LocaleIntlProvider>
