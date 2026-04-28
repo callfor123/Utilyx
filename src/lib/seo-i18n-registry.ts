@@ -23,7 +23,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'fusionner-pdf': {
       title: 'Merge PDF Online Free — Combine Multiple PDFs',
-      desc: 'Merge multiple PDF files into one document in seconds. Free, no signup, 100% local processing in your browser.',
+      desc: 'Merge multiple PDF files into one document in seconds. Reorder pages by drag-and-drop before combining. Free, no signup, 100% local processing in your browser.',
       h1: 'Merge multiple PDFs into one file',
       intro: 'Easily combine 2 or more PDF documents into a single unified file in seconds. Our free online PDF merger lets you reorder pages by drag-and-drop before merging, giving you full control over the final result. Perfect for assembling invoices, reports, administrative files, university theses, or any multi-page document. No signup required and the service is entirely free. All processing happens 100% locally in your browser — your documents are never sent to a remote server, ensuring total confidentiality of your data. The PDF merger works without installation on desktop, tablet, or smartphone, with no daily limit or watermark.',
       faq: [
@@ -59,7 +59,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'deverrouiller-pdf': {
       title: 'Unlock PDF Online Free — Remove PDF Password',
-      desc: 'Remove password protection from your PDF files easily. Free, no signup, 100% local processing in your browser.',
+      desc: 'Remove password protection from your PDF files easily. Unlock secured PDFs when you know the password. Free, no signup, 100% local processing in your browser.',
       h1: 'Unlock a password-protected PDF online free',
       intro: 'Have a protected PDF whose password you know but need to open frequently? Our tool lets you remove the password protection in one click, so you can access and share your document freely without entering the password every time. This is especially useful for password-protected bank statements, secured contracts, or any document where you want to remove the password constraint while keeping the content intact. The process is simple: upload your protected PDF, enter the password, and download the unlocked file. Everything happens in your browser — no data is sent to a server, guaranteeing total confidentiality. The tool is entirely free and requires no signup. Important: you must know the password to unlock the file. Our tool does not crack passwords.',
       faq: [
@@ -83,7 +83,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'convertir-image': {
       title: 'Image Converter Online Free — WebP, AVIF, JPG, PNG',
-      desc: 'Convert images between formats: WebP, AVIF, JPG, PNG, and more. Free, no signup, 100% local processing.',
+      desc: 'Convert images between formats: WebP, AVIF, JPG, PNG, and more. Batch conversion supported, no quality loss. Free, no signup, 100% local processing.',
       h1: 'Convert images to WebP, AVIF, JPG, PNG online free',
       intro: 'Convert your images between all popular formats: WebP, AVIF, JPG, PNG, GIF, BMP, and TIFF. WebP and AVIF are modern formats that offer significantly better compression than classic JPG, reducing your image file sizes by 30 to 50% without visible quality loss. Ideal for speeding up your website loading times and improving your SEO ranking. Web developers, graphic designers, and bloggers regularly use image conversion to optimize visuals for their projects. You can convert one or multiple images at once, choose the output quality, and download the results. All processing happens locally in your browser — your images stay on your device and are never sent to a server. The service is completely free and requires no signup.',
       faq: [
@@ -95,7 +95,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'compresser-image': {
       title: 'Compress Image Online Free — Reduce Image Size',
-      desc: 'Optimize and reduce image file size without visible quality loss. Free, no signup, 100% local processing.',
+      desc: 'Optimize and reduce image file size without visible quality loss. Compress JPG, PNG, WebP images easily. Free, no signup, 100% local processing.',
       h1: 'Compress an image online for free',
       intro: 'Instantly reduce the file size of your images without visible quality degradation. Our free online image compressor optimizes your JPG, PNG, and WebP files by adjusting the compression level to your needs. A compressed image loads faster on websites, uses less bandwidth, and improves user experience and SEO rankings. Web developers, bloggers, and marketing professionals all benefit from compressing images before publishing them online. You can choose between light, balanced, or strong compression, and compare the result with the original before downloading. All processing happens locally in your browser — your images are never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -489,7 +489,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'generateur-uuid-guid': {
       title: 'UUID GUID Generator Online Free',
-      desc: 'Generate UUID v4 and GUID identifiers instantly. Create up to 100 unique IDs in one click. Free, no signup, 100% local.',
+      desc: 'Generate UUID v4 and GUID identifiers instantly. Create up to 100 unique IDs in one click for your databases and apps. Free, no signup, 100% local.',
       h1: 'Generate UUID and GUID identifiers online',
       intro: 'Generate random UUID v4 (Universally Unique Identifier) identifiers instantly, directly in your browser. UUIDs are 128-bit unique identifiers used as primary keys in databases, identifiers in distributed systems, session tokens, and API request IDs. Our tool lets you generate a single UUID or a batch of up to 100 at once, with one click to copy all results. Developers use UUIDs in PostgreSQL, MongoDB, MySQL, and REST APIs to ensure uniqueness without central coordination. System administrators use them for trace IDs in microservices architectures. All generation is done locally using the Web Crypto API — no data is sent to any server. The service is free and requires no signup.',
       faq: [
