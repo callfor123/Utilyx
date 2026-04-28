@@ -55,6 +55,7 @@ server.log
 # Backup files
 *.bak
 *.backup
+*.tmp
 
 # Root-owned node modules (should never be committed)
 node_modules_root_owned/
