@@ -36,7 +36,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'pdf-en-images': {
       title: 'Convert PDF to JPG PNG Images Online Free',
       desc: 'Convert each page of your PDF into high-quality JPG or PNG images. Free, no signup, 100% local processing.',
-      h1: 'Convert a PDF to JPG or PNG images',
+      h1: 'Convert a PDF to JPG or PNG images online free',
       intro: 'Transform every page of your PDF documents into high-resolution images (JPG or PNG) in seconds. This tool is particularly useful for integrating PDF pages into PowerPoint presentations, sharing on social media, or editing in photo editors like Photoshop or GIMP. JPG produces lightweight files ideal for web and email, while PNG offers maximum quality with transparency support. Marketing professionals, graphic designers, and students regularly use PDF-to-image conversion to create visuals from reports, brochures, or catalogs. All processing happens locally in your browser — your documents stay on your device and are never transferred to a server. The service is completely free and requires no signup.',
       faq: [
         { q: 'What format will my images be?', a: 'You can choose between JPG (lightweight, ideal for web) and PNG (maximum quality, transparency possible).' },
@@ -48,7 +48,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'signer-pdf': {
       title: 'Sign PDF Online Free — Electronic Signature',
       desc: 'Sign and annotate your PDF documents directly in the browser. Draw or type your signature. Free, no signup, 100% local.',
-      h1: 'Sign a PDF document online',
+      h1: 'Sign a PDF document online for free',
       intro: 'Add your handwritten or typed signature to any PDF document without printing or scanning. Our free online PDF signer lets you draw your signature directly on screen, type it in a calligraphic font, or import it from an image. You can then position and resize it precisely on the document. Ideal for employment contracts, purchase orders, administrative forms, NDAs, and any document requiring a signature. This tool eliminates the tedious cycle of printing, signing, and scanning, saving you valuable time. The process is 100% local — your document stays on your device and is never sent to a server. The service is completely free and requires no signup. Note that our tool creates a simple signature. For enhanced legal validity under the eIDAS regulation, consult a certified electronic signature service.',
       faq: [
         { q: 'Is my signature legally valid?', a: 'Our tool creates a simple signature, ideal for everyday use. For enhanced legal validity under the eIDAS regulation, consult a certified electronic signature service with timestamping and certificate.' },
@@ -60,7 +60,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'deverrouiller-pdf': {
       title: 'Unlock PDF Online Free — Remove PDF Password',
       desc: 'Remove password protection from your PDF files easily. Free, no signup, 100% local processing in your browser.',
-      h1: 'Unlock a password-protected PDF',
+      h1: 'Unlock a password-protected PDF online free',
       intro: 'Have a protected PDF whose password you know but need to open frequently? Our tool lets you remove the password protection in one click, so you can access and share your document freely without entering the password every time. This is especially useful for password-protected bank statements, secured contracts, or any document where you want to remove the password constraint while keeping the content intact. The process is simple: upload your protected PDF, enter the password, and download the unlocked file. Everything happens in your browser — no data is sent to a server, guaranteeing total confidentiality. The tool is entirely free and requires no signup. Important: you must know the password to unlock the file. Our tool does not crack passwords.',
       faq: [
         { q: 'Can I unlock a PDF without the password?', a: 'No, you need to know the password to unlock it. Our tool removes the protection but does not crack passwords.' },
@@ -72,7 +72,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'proteger-pdf': {
       title: 'Protect PDF Online Free — Add Password to PDF',
       desc: 'Add password protection to your PDF files for free. 100% local processing, no server upload, no signup required.',
-      h1: 'Protect a PDF with a password',
+      h1: 'Protect a PDF with a password online free',
       intro: 'Secure your PDF documents by adding password protection. Only people who know the password will be able to open and read your file, which is essential for confidential documents like contracts, bank statements, medical records, or personal data. Our tool lets you choose a strong password and apply it instantly to your PDF. AES-128 or AES-256 encryption is used to ensure solid protection. The process is entirely local: your document and password stay on your device and are never transmitted to a server. The service is free and requires no signup. You can protect as many PDFs as you want. For optimal security, choose a password of at least 8 characters combining uppercase, lowercase, numbers, and symbols.',
       faq: [
         { q: 'What level of protection does this provide?', a: 'Your PDF will be encrypted with AES-128 or AES-256 and will require a password to open. Use a strong password for maximum security.' },
@@ -84,7 +84,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'convertir-image': {
       title: 'Image Converter Online Free — WebP, AVIF, JPG, PNG',
       desc: 'Convert images between formats: WebP, AVIF, JPG, PNG, and more. Free, no signup, 100% local processing.',
-      h1: 'Convert images to WebP, AVIF, JPG, PNG',
+      h1: 'Convert images to WebP, AVIF, JPG, PNG online free',
       intro: 'Convert your images between all popular formats: WebP, AVIF, JPG, PNG, GIF, BMP, and TIFF. WebP and AVIF are modern formats that offer significantly better compression than classic JPG, reducing your image file sizes by 30 to 50% without visible quality loss. Ideal for speeding up your website loading times and improving your SEO ranking. Web developers, graphic designers, and bloggers regularly use image conversion to optimize visuals for their projects. You can convert one or multiple images at once, choose the output quality, and download the results. All processing happens locally in your browser — your images stay on your device and are never sent to a server. The service is completely free and requires no signup.',
       faq: [
         { q: 'Is it free and without signup?', a: 'Yes, 100% free and no signup required. Convert as many images as you want, with no watermark or quality limitations.' },
@@ -710,7 +710,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'convertir-image': {
       title: 'Convertidor de Imágenes Online Gratis — WebP, AVIF, JPG, PNG',
       desc: 'Convierte imágenes entre formatos: WebP, AVIF, JPG, PNG y más. Gratis, sin registro.',
-      h1: 'Convertir imágenes a WebP, AVIF, JPG, PNG',
+      h1: 'Convertir imágenes a WebP, AVIF, JPG, PNG gratis en línea',
       intro: 'Convierte tus imágenes a formatos modernos como WebP y AVIF para mejor rendimiento web, o cambia entre JPG, PNG y otros formatos.',
       faq: [
         { q: '¿Qué formatos son compatibles?', a: 'JPG, PNG, WebP, AVIF, BMP, GIF y más.' },
@@ -821,7 +821,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'pdf-en-images': {
       title: 'Convertir PDF a Imágenes JPG PNG Gratis en Línea',
       desc: 'Convierte cada página de tu PDF en imágenes JPG o PNG de alta calidad. Gratis, sin registro, procesamiento 100% local.',
-      h1: 'Convertir un PDF a imágenes JPG o PNG en línea',
+      h1: 'Convertir un PDF a imágenes JPG o PNG gratis en línea',
       intro: 'Transforma cada página de tus documentos PDF en imágenes de alta resolución (JPG o PNG) en segundos. Esta herramienta es especialmente útil para integrar páginas PDF en presentaciones PowerPoint, compartirlas en redes sociales o editarlas en software de retoque fotográfico. Todo el procesamiento se realiza localmente en tu navegador, garantizando la privacidad total de tus documentos.',
       faq: [
         { q: '¿En qué formato serán mis imágenes?', a: 'Puedes elegir entre JPG (ligero) y PNG (calidad máxima, transparencia posible).' },
@@ -833,7 +833,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'signer-pdf': {
       title: 'Firmar PDF en Línea Gratis — Firma Electrónica',
       desc: 'Firma y anota tus documentos PDF directamente en el navegador. Dibuja o escribe tu firma. 100% gratuito.',
-      h1: 'Firmar un documento PDF en línea',
+      h1: 'Firmar un documento PDF gratis en línea',
       intro: 'Añade tu firma manuscrita o escrita a cualquier documento PDF sin imprimir ni escanear. Ideal para contratos, pedidos y formularios administrativos. Todo se procesa localmente en tu navegador.',
       faq: [
         { q: '¿Mi firma es legalmente válida?', a: 'Nuestra herramienta crea una firma simple. Para un valor jurídico reforzado, consulta un servicio de firma electrónica certificado eIDAS.' },
@@ -843,7 +843,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'deverrouiller-pdf': {
       title: 'Desbloquear PDF en Línea Gratis — Quitar Contraseña',
       desc: 'Elimina la protección por contraseña de tus archivos PDF fácilmente. Gratis y 100% en tu navegador.',
-      h1: 'Desbloquear un PDF protegido por contraseña',
+      h1: 'Desbloquear un PDF protegido por contraseña gratis en línea',
       intro: '¿Tienes un PDF protegido cuya contraseña conoces? Elimina la protección en un clic para acceder libremente a él. No se sube ningún archivo a servidores, todo se procesa en tu navegador.',
       faq: [
         { q: '¿Puedo desbloquear un PDF sin la contraseña?', a: 'No, necesitas conocer la contraseña para desbloquearlo. Nuestra herramienta elimina la protección pero no descifra contraseñas.' },
@@ -853,7 +853,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'proteger-pdf': {
       title: 'Proteger PDF en Línea Gratis — Añadir Contraseña',
       desc: 'Añade protección por contraseña a tus archivos PDF gratis. Procesamiento 100% local, sin subir archivos.',
-      h1: 'Proteger un PDF con contraseña',
+      h1: 'Proteger un PDF con contraseña gratis en línea',
       intro: 'Asegura tus documentos PDF añadiendo una contraseña. Solo las personas que conozcan la contraseña podrán abrir y leer tu archivo. No se sube ningún archivo a servidores, todo se procesa localmente.',
       faq: [
         { q: '¿Qué nivel de protección ofrece?', a: 'Tu PDF requerirá una contraseña para abrirse. Usa una contraseña fuerte para mayor seguridad.' },
@@ -1429,7 +1429,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'pdf-en-images': {
       title: 'PDF in Bilder Umwandeln Online Kostenlos — JPG, PNG',
       desc: 'Wandeln Sie jede PDF-Seite in hochwertige JPG- oder PNG-Bilder um. Kostenlos, ohne Anmeldung.',
-      h1: 'PDF in JPG- oder PNG-Bilder umwandeln',
+      h1: 'PDF in JPG- oder PNG-Bilder online kostenlos umwandeln',
       intro: 'Verwandeln Sie jede Seite Ihrer PDF-Dokumente in hochauflösende Bilder. Nützlich für Präsentationen, Social Media oder zur Bearbeitung in Bildbearbeitungssoftware.',
       faq: [
         { q: 'Welches Format erhalten meine Bilder?', a: 'Sie können zwischen JPG (kleinere Dateigröße) und PNG (maximale Qualität, Transparenz möglich) wählen.' },
@@ -1440,7 +1440,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'signer-pdf': {
       title: 'PDF Signieren Online Kostenlos — Elektronische Unterschrift',
       desc: 'Signieren und kommentieren Sie Ihre PDF-Dokumente direkt im Browser. Handgezeichnet oder getippt. 100% kostenlos.',
-      h1: 'PDF-Dokument online signieren',
+      h1: 'PDF-Dokument online kostenlos signieren',
       intro: 'Fügen Sie Ihre handgeschriebene oder getippte Unterschrift zu jedem PDF-Dokument hinzu — ohne Drucken oder Scannen. Ideal für Verträge, Bestellungen und Formulare.',
       faq: [
         { q: 'Ist meine Unterschrift rechtsgültig?', a: 'Unser Tool erstellt eine einfache Unterschrift. Für erweiterte Rechtsverbindlichkeit nutzen Sie einen zertifizierten eIDAS-Signaturdienst.' },
@@ -1450,7 +1450,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'deverrouiller-pdf': {
       title: 'PDF Entsperren Online Kostenlos — PDF Passwort Entfernen',
       desc: 'Entfernen Sie den Passwortschutz Ihrer PDF-Dateien mühelos. Kostenlos und 100% in Ihrem Browser.',
-      h1: 'Passwortgeschütztes PDF entsperren',
+      h1: 'Passwortgeschütztes PDF online kostenlos entsperren',
       intro: 'Haben Sie ein geschütztes PDF, dessen Passwort Sie kennen? Entfernen Sie den Schutz mit einem Klick für freien Zugriff. Kein Server-Upload, alles bleibt in Ihrem Browser.',
       faq: [
         { q: 'Kann ich ein PDF ohne Passwort entsperren?', a: 'Nein, Sie müssen das Passwort kennen, um das PDF zu entsperren. Unser Tool entfernt den Schutz, knackt aber keine Passwörter.' },
@@ -1460,7 +1460,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'proteger-pdf': {
       title: 'PDF Schützen Online Kostenlos — PDF Mit Passwort Verschlüsseln',
       desc: 'Fügen Sie Ihren PDF-Dateien Passwortschutz hinzu. Kostenlos, 100% lokale Verarbeitung, ohne Server-Upload.',
-      h1: 'PDF mit einem Passwort schützen',
+      h1: 'PDF online kostenlos mit einem Passwort schützen',
       intro: 'Sichern Sie Ihre PDF-Dokumente mit einem Passwort. Nur Personen, die das Passwort kennen, können die Datei öffnen und lesen. Kein Server-Upload, alles wird lokal verarbeitet.',
       faq: [
         { q: 'Welchen Schutz bietet dieses Tool?', a: 'Ihr PDF erfordert ein Passwort zum Öffnen. Verwenden Sie ein starkes Passwort für optimale Sicherheit.' },
@@ -1470,7 +1470,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'convertir-image': {
       title: 'Bildkonverter Online Kostenlos — WebP, AVIF, JPG, PNG',
       desc: 'Konvertieren Sie Bilder zwischen Formaten: WebP, AVIF, JPG, PNG und mehr. Kostenlos, ohne Anmeldung, 100% lokal.',
-      h1: 'Bilder in WebP, AVIF, JPG, PNG umwandeln',
+      h1: 'Bilder online kostenlos in WebP, AVIF, JPG, PNG umwandeln',
       intro: 'Konvertieren Sie Ihre Bilder in moderne Formate wie WebP und AVIF für bessere Web-Leistung oder wechseln Sie zwischen JPG, PNG und anderen Formaten. Alles wird in Ihrem Browser verarbeitet.',
       faq: [
         { q: 'Welche Formate werden unterstützt?', a: 'JPG, PNG, WebP, AVIF, BMP, GIF und mehr. Konvertieren Sie zwischen allen unterstützten Formaten.' },
@@ -2037,7 +2037,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'pdf-en-images': {
       title: 'تحويل PDF إلى صور JPG PNG مجاناً عبر الإنترنت',
       desc: 'حوّل كل صفحة من PDF إلى صورة JPG أو PNG عالية الجودة. مجاني، بدون تسجيل.',
-      h1: 'تحويل PDF إلى صور JPG أو PNG',
+      h1: 'تحويل PDF إلى صور JPG أو PNG مجاناً عبر الإنترنت',
       intro: 'حوّل كل صفحة من مستندات PDF إلى صور عالية الدقة. مفيد لإضافة الصفحات إلى العروض التقديمية أو المشاركة على وسائل التواصل الاجتماعي أو التحرير في برامج تحرير الصور.',
       faq: [
         { q: 'ما هو صيغة الصور الناتجة؟', a: 'يمكنك الاختيار بين JPG (حجم خفيف) وPNG (أقصى جودة، إمكانية الشفافية).' },
@@ -2048,7 +2048,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'signer-pdf': {
       title: 'توقيع PDF مجاناً عبر الإنترنت — توقيع إلكتروني',
       desc: 'وقّع وأضف ملاحظات على مستندات PDF مباشرة في المتصفح. ارسم أو اكتب توقيعك. 100% مجاني.',
-      h1: 'توقيع مستند PDF عبر الإنترنت',
+      h1: 'توقيع مستند PDF مجاناً عبر الإنترنت',
       intro: 'أضف توقيعك المكتوب بخط اليد أو المطبوع إلى أي مستند PDF دون طباعة أو مسح ضوئي. مثالي للعقود وأوامر الشراء والنماذج الإدارية.',
       faq: [
         { q: 'هل توقيعي صالح قانونياً؟', a: 'تُنشئ أداتنا توقيعاً بسيطاً. للحصول على قيمة قانونية مُعزّزة، استخدم خدمة توقيع إلكتروني معتمدة مثل eIDAS.' },
@@ -2058,7 +2058,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'deverrouiller-pdf': {
       title: 'إلغاء قفل PDF مجاناً عبر الإنترنت — إزالة كلمة مرور PDF',
       desc: 'أزل الحماية بكلمة مرور من ملفات PDF بسهولة. مجاني، معالجة 100% في متصفحك.',
-      h1: 'إلغاء قفل ملف PDF محمي بكلمة مرور',
+      h1: 'إلغاء قفل ملف PDF محمي بكلمة مرور مجاناً عبر الإنترنت',
       intro: 'لديك ملف PDF محمي تعرف كلمة مروره؟ أزل الحماية بنقرة واحدة للوصول إليه بحرية. لا يتم رفع أي ملف إلى أي خادم، كل شيء يبقى في متصفحك.',
       faq: [
         { q: 'هل يمكنني إلغاء قفل PDF دون كلمة المرور؟', a: 'لا، تحتاج إلى معرفة كلمة المرور لإلغاء القفل. أداتنا تزيل الحماية لكنها لا تكسر كلمات المرور.' },
@@ -2068,7 +2068,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'proteger-pdf': {
       title: 'حماية PDF مجاناً عبر الإنترنت — إضافة كلمة مرور لـ PDF',
       desc: 'أضف حماية بكلمة مرور إلى ملفات PDF مجاناً. معالجة محلية 100%، بدون رفع إلى خادم.',
-      h1: 'حماية ملف PDF بكلمة مرور',
+      h1: 'حماية ملف PDF بكلمة مرور مجاناً عبر الإنترنت',
       intro: 'آمن مستندات PDF بإضافة كلمة مرور. فقط الأشخاص الذين يعرفون كلمة المرور يمكنهم فتح وقراءة ملفك. لا يتم رفع أي ملف إلى خادم، كل شيء يُعالَج محلياً.',
       faq: [
         { q: 'ما مستوى الحماية الذي توفره هذه الأداة؟', a: 'سيطلب ملف PDF كلمة مرور لفتحه. استخدم كلمة مرور قوية لأفضل أمان.' },
@@ -2078,7 +2078,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'convertir-image': {
       title: 'محول صور مجاناً عبر الإنترنت — WebP، AVIF، JPG، PNG',
       desc: 'حوّل الصور بين الصيغ: WebP، AVIF، JPG، PNG والمزيد. مجاني، بدون تسجيل، محلي 100%.',
-      h1: 'تحويل الصور إلى WebP، AVIF، JPG، PNG',
+      h1: 'تحويل الصور إلى WebP، AVIF، JPG، PNG مجاناً عبر الإنترنت',
       intro: 'حوّل صورك إلى صيغ حديثة مثل WebP وAVIF لأداء أفضل على الويب، أو بدّل بين JPG وPNG والصيغ الأخرى. كل شيء يُعالَج في متصفحك.',
       faq: [
         { q: 'ما الصيغ المدعومة؟', a: 'JPG، PNG، WebP، AVIF، BMP، GIF والمزيد. حوّل بين أي صيغة مدعومة.' },
@@ -2643,7 +2643,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'pdf-en-images': {
       title: 'Converter PDF em Imagens JPG PNG Online Gratis',
       desc: 'Converta cada pagina do seu PDF em imagens JPG ou PNG de alta qualidade. Gratis, sem cadastro.',
-      h1: 'Converter PDF em imagens JPG ou PNG',
+      h1: 'Converter PDF em imagens JPG ou PNG online gratis',
       intro: 'Transforme cada pagina dos seus documentos PDF em imagens de alta resolucao. Util para adicionar paginas em apresentacoes, compartilhar em redes sociais ou editar em softwares de edicao de fotos.',
       faq: [
         { q: 'Qual sera o formato das imagens?', a: 'Voce pode escolher entre JPG (leve) e PNG (qualidade maxima, com possibilidade de transparencia).' },
@@ -2654,7 +2654,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'signer-pdf': {
       title: 'Assinar PDF Online Gratis — Assinatura Eletronica',
       desc: 'Assine e anote seus documentos PDF diretamente no navegador. Desenhe ou digite sua assinatura. 100% gratis.',
-      h1: 'Assinar documento PDF online',
+      h1: 'Assinar documento PDF online gratis',
       intro: 'Adicione sua assinatura manuscrita ou digitada a qualquer documento PDF sem precisar imprimir ou escanear. Ideal para contratos, pedidos de compra e formularios administrativos.',
       faq: [
         { q: 'Minha assinatura tem validade juridica?', a: 'Nossa ferramenta cria uma assinatura simples. Para valor juridico aprimorado, utilize um servico de assinatura eletronica certificado.' },
@@ -2664,7 +2664,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'deverrouiller-pdf': {
       title: 'Desbloquear PDF Online Gratis — Remover Senha do PDF',
       desc: 'Remova a protecao por senha dos seus arquivos PDF facilmente. Gratis e 100% no seu navegador.',
-      h1: 'Desbloquear PDF protegido por senha',
+      h1: 'Desbloquear PDF protegido por senha online gratis',
       intro: 'Tem um PDF protegido cuja senha voce conhece? Remova a protecao em um clique para acessa-lo livremente. Nenhum upload para servidores, tudo fica no seu navegador.',
       faq: [
         { q: 'Posso desbloquear um PDF sem a senha?', a: 'Nao, voce precisa conhecer a senha para desbloquea-lo. Nossa ferramenta remove a protecao, mas nao decifra senhas.' },
@@ -2674,7 +2674,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'proteger-pdf': {
       title: 'Proteger PDF Online Gratis — Adicionar Senha ao PDF',
       desc: 'Adicione protecao por senha aos seus arquivos PDF gratis. Processamento 100% local, sem upload.',
-      h1: 'Proteger PDF com senha',
+      h1: 'Proteger PDF com senha online gratis',
       intro: 'Proteja seus documentos PDF adicionando uma senha. Apenas quem souber a senha podera abrir e ler seu arquivo. Sem upload para servidores, tudo e processado localmente.',
       faq: [
         { q: 'Qual nivel de protecao isso ofrece?', a: 'Seu PDF exigira uma senha para ser aberto. Use uma senha forte para melhor seguranca.' },
@@ -2684,7 +2684,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     'convertir-image': {
       title: 'Conversor de Imagens Online Gratis — WebP, AVIF, JPG, PNG',
       desc: 'Converta imagens entre formatos: WebP, AVIF, JPG, PNG e mais. Gratis, sem cadastro, 100% local.',
-      h1: 'Converter imagens para WebP, AVIF, JPG, PNG',
+      h1: 'Converter imagens para WebP, AVIF, JPG, PNG online gratis',
       intro: 'Converta suas imagens para formatos modernos como WebP e AVIF para melhor desempenho na web, ou alterne entre JPG, PNG e outros formatos. Tudo e processado no seu navegador.',
       faq: [
         { q: 'Quais formatos sao suportados?', a: 'JPG, PNG, WebP, AVIF, BMP, GIF e mais. Converta entre qualquer formato suportado.' },

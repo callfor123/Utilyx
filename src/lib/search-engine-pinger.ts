@@ -4,7 +4,7 @@
  * URL list is built dynamically from the seo-registry (single source of truth).
  */
 
-import { seoRegistry, getSlugForLocale, validCategories } from './seo-registry'
+import { seoRegistry, getSlugForLocale } from './seo-registry'
 
 const SITEMAP_URL = 'https://utilyx.app/sitemap.xml'
 const BASE_URL = 'https://utilyx.app'
