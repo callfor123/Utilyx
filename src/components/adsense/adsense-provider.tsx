@@ -101,6 +101,53 @@ export function AdConsentProvider({ children }: { children: ReactNode }) {
   )
 }
 
+// ── Ad Visibility Limiter ───────────────────────────────────────────────
+// AdSense policy limits visible ad units to 3 per viewport. This context
+// tracks which ad slots have registered and only allows the first 3 (by
+// render order / priority) to actually push adsbygoogle. This prevents
+// policy violations while keeping layout slots in place for natural flow.
+
+const MAX_VISIBLE_ADS = 3
+
+interface AdLimiterState {
+  registerSlot: (id: string) => boolean // returns true if slot is allowed
+  unregisterSlot: (id: string) => void
+}
+
+const AdLimiterContext = createContext<AdLimiterState>({
+  registerSlot: () => true,
+  unregisterSlot: () => {},
+})
+
+export function useAdLimiter() {
+  return useContext(AdLimiterContext)
+}
+
+export function AdLimiterProvider({ children }: { children: ReactNode }) {
+  // Track registered slots in order — first N get rendered
+  const registeredRef = useRef<string[]>([])
+
+  const registerSlot = useCallback((id: string): boolean => {
+    if (registeredRef.current.includes(id)) {
+      // Already registered — check if it's in the first 3
+      return registeredRef.current.indexOf(id) < MAX_VISIBLE_ADS
+    }
+    registeredRef.current.push(id)
+    // Only the first MAX_VISIBLE_ADS slots get to render
+    return registeredRef.current.length <= MAX_VISIBLE_ADS
+  }, [])
+
+  const unregisterSlot = useCallback((id: string) => {
+    registeredRef.current = registeredRef.current.filter(s => s !== id)
+  }, [])
+
+  return (
+    <AdLimiterContext.Provider value={{ registerSlot, unregisterSlot }}>
+      {children}
+    </AdLimiterContext.Provider>
+  )
+}
+
 export function AdSenseScript() {
   const { hasConsent, consentChecked } = useAdConsent()
 

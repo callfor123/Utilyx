@@ -1,12 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useLocale } from 'next-intl'
-import { Copy, Check, Key, AlertTriangle, Clock, Shield } from 'lucide-react'
+import { Copy, Check, Key, AlertTriangle, Clock, Shield, X, RefreshCw, ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog'
 
 type KeyInfo = {
   id: string
@@ -54,6 +61,15 @@ const messages: Record<string, {
   feature1: string
   feature2: string
   feature3: string
+  expiresCountdown: string
+  days: string
+  hours: string
+  modalExpiredTitle: string
+  modalExpiredDesc: string
+  modalRegenerateBtn: string
+  modalUpgradeBtn: string
+  regenerateBtn: string
+  regenerating: string
 }> = {
   fr: {
     title: 'Clés API Gratuites',
@@ -89,6 +105,15 @@ const messages: Record<string, {
     feature1: 'Expiration automatique après 7 jours',
     feature2: '100 requêtes par heure par clé',
     feature3: 'Aucune inscription requise',
+    expiresCountdown: 'Expire dans',
+    days: 'jours',
+    hours: 'heures',
+    modalExpiredTitle: 'Votre clé API a expiré',
+    modalExpiredDesc: 'Votre clé gratuite n\'est plus valide. Régénérez une nouvelle clé ou passez à l\'illimité.',
+    modalRegenerateBtn: 'Régénérer une clé gratuite (7 jours)',
+    modalUpgradeBtn: 'Passer à l\'illimité',
+    regenerateBtn: 'Régénérer',
+    regenerating: 'Régénération...',
   },
   en: {
     title: 'Free API Keys',
@@ -124,6 +149,15 @@ const messages: Record<string, {
     feature1: 'Auto-expires after 7 days',
     feature2: '100 requests per hour per key',
     feature3: 'No signup required',
+    expiresCountdown: 'Expires in',
+    days: 'days',
+    hours: 'hours',
+    modalExpiredTitle: 'Your API key has expired',
+    modalExpiredDesc: 'Your free key is no longer valid. Regenerate a new key or upgrade to unlimited.',
+    modalRegenerateBtn: 'Regenerate free key (7 days)',
+    modalUpgradeBtn: 'Upgrade to Unlimited',
+    regenerateBtn: 'Regenerate',
+    regenerating: 'Regenerating...',
   },
   es: {
     title: 'Claves API Gratuitas',
@@ -159,6 +193,15 @@ const messages: Record<string, {
     feature1: 'Expira automáticamente después de 7 días',
     feature2: '100 solicitudes por hora por clave',
     feature3: 'Sin registro requerido',
+    expiresCountdown: 'Expira en',
+    days: 'días',
+    hours: 'horas',
+    modalExpiredTitle: 'Tu clave API ha expirado',
+    modalExpiredDesc: 'Tu clave gratuita ya no es válida. Regenera una nueva clave o pasa a ilimitado.',
+    modalRegenerateBtn: 'Regenerar clave gratuita (7 días)',
+    modalUpgradeBtn: 'Pasar a ilimitado',
+    regenerateBtn: 'Regenerar',
+    regenerating: 'Regenerando...',
   },
   de: {
     title: 'Kostenlose API-Schlüssel',
@@ -194,6 +237,15 @@ const messages: Record<string, {
     feature1: 'Läuft nach 7 Tagen automatisch ab',
     feature2: '100 Anfragen pro Stunde pro Schlüssel',
     feature3: 'Keine Anmeldung erforderlich',
+    expiresCountdown: 'Läuft ab in',
+    days: 'Tagen',
+    hours: 'Stunden',
+    modalExpiredTitle: 'Ihr API-Schlüssel ist abgelaufen',
+    modalExpiredDesc: 'Ihr kostenloser Schlüssel ist nicht mehr gültig. Generieren Sie einen neuen oder upgraden Sie.',
+    modalRegenerateBtn: 'Neuen Schlüssel generieren (7 Tage)',
+    modalUpgradeBtn: 'Auf Unlimited upgraden',
+    regenerateBtn: 'Regenerieren',
+    regenerating: 'Regeneriere...',
   },
   ar: {
     title: 'مفاتيح API مجانية',
@@ -229,6 +281,15 @@ const messages: Record<string, {
     feature1: 'ينتهي تلقائيًا بعد 7 أيام',
     feature2: '100 طلب في الساعة لكل مفتاح',
     feature3: 'بدون تسجيل',
+    expiresCountdown: 'ينتهي في',
+    days: 'أيام',
+    hours: 'ساعات',
+    modalExpiredTitle: 'انتهت صلاحية مفتاح API',
+    modalExpiredDesc: 'مفتاحك المجاني لم يعد صالحاً. أنشئ مفتاحاً جديداً أو انتقل إلى غير المحدود.',
+    modalRegenerateBtn: 'إنشاء مفتاح مجاني (7 أيام)',
+    modalUpgradeBtn: 'الانتقال إلى غير المحدود',
+    regenerateBtn: 'إعادة إنشاء',
+    regenerating: 'جاري إعادة الإنشاء...',
   },
   pt: {
     title: 'Chaves API Gratuitas',
@@ -264,6 +325,15 @@ const messages: Record<string, {
     feature1: 'Expira automaticamente após 7 dias',
     feature2: '100 requisições por hora por chave',
     feature3: 'Sem cadastro necessário',
+    expiresCountdown: 'Expira em',
+    days: 'dias',
+    hours: 'horas',
+    modalExpiredTitle: 'Sua chave API expirou',
+    modalExpiredDesc: 'Sua chave gratuita não é mais válida. Regenere uma nova ou atualize para ilimitado.',
+    modalRegenerateBtn: 'Regenerar chave gratuita (7 dias)',
+    modalUpgradeBtn: 'Atualizar para Ilimitado',
+    regenerateBtn: 'Regenerar',
+    regenerating: 'Regenerando...',
   },
 }
 
@@ -283,6 +353,41 @@ export default function ApiKeysContent() {
   const [myKeys, setMyKeys] = useState<KeyInfo[]>([])
   const [lookupLoading, setLookupLoading] = useState(false)
   const [revokingId, setRevokingId] = useState<string | null>(null)
+
+  // Conversion modal state
+  const [showModal, setShowModal] = useState(false)
+  const [modalContext, setModalContext] = useState<'expired' | 'regenerate'>('expired')
+  const [regenerating, setRegenerating] = useState(false)
+
+  // Countdown timer for generated key
+  const [countdown, setCountdown] = useState<string | null>(null)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const updateCountdown = useCallback(() => {
+    if (!newKeyExpires) return
+    const now = Date.now()
+    const expires = new Date(newKeyExpires).getTime()
+    const diff = expires - now
+    if (diff <= 0) {
+      setCountdown(null)
+      if (intervalRef.current) clearInterval(intervalRef.current)
+      return
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    setCountdown(`${days} ${msg.days}, ${hours} ${msg.hours}`)
+  }, [newKeyExpires, msg.days, msg.hours])
+
+  useEffect(() => {
+    if (newKeyExpires) {
+      updateCountdown()
+      intervalRef.current = setInterval(updateCountdown, 60000)
+      return () => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+      }
+    }
+    setCountdown(null)
+  }, [newKeyExpires, updateCountdown])
 
   const handleGenerate = async () => {
     setGenerating(true)
@@ -348,6 +453,36 @@ export default function ApiKeysContent() {
       // ignore
     } finally {
       setRevokingId(null)
+    }
+  }
+
+  const openConversionModal = (context: 'expired' | 'regenerate') => {
+    setModalContext(context)
+    setShowModal(true)
+  }
+
+  const handleRegenerate = async () => {
+    setRegenerating(true)
+    try {
+      const res = await fetch('/api/api-keys', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name || undefined, email: email || undefined }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setError(data.error || 'Failed to regenerate key')
+        return
+      }
+      setNewKey(data.data.key)
+      setNewKeyExpires(data.data.expiresAt)
+      setShowModal(false)
+      setName('')
+      setEmail('')
+    } catch {
+      setError('Network error. Please try again.')
+    } finally {
+      setRegenerating(false)
     }
   }
 
@@ -445,9 +580,17 @@ export default function ApiKeysContent() {
                     </Button>
                   </div>
                   {newKeyExpires && (
-                    <p className="text-xs text-muted-foreground mt-2">
-                      {msg.expires}: {new Date(newKeyExpires).toLocaleDateString()}
-                    </p>
+                    <div className="flex flex-col gap-0.5 mt-2">
+                      <p className="text-xs text-muted-foreground">
+                        {msg.expires}: {new Date(newKeyExpires).toLocaleDateString()}
+                      </p>
+                      {countdown && (
+                        <p className="text-xs font-medium text-amber-600 dark:text-amber-400">
+                          <Clock className="h-3 w-3 inline mr-1" />
+                          {msg.expiresCountdown} {countdown}
+                        </p>
+                      )}
+                    </div>
                   )}
                 </div>
                 <div className="flex items-start gap-2 text-amber-600 dark:text-amber-400 text-xs">
@@ -502,6 +645,17 @@ export default function ApiKeysContent() {
                           {revokingId === k.key ? msg.revoking : msg.revoke}
                         </Button>
                       )}
+                      {(k.status === 'expired') && (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="text-xs"
+                          onClick={() => openConversionModal('expired')}
+                        >
+                          <RefreshCw className="h-3 w-3 mr-1" />
+                          {msg.regenerateBtn}
+                        </Button>
+                      )}
                     </div>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
                       {k.name && <span>{k.name}</span>}
@@ -517,6 +671,31 @@ export default function ApiKeysContent() {
             ) : null}
           </CardContent>
         </Card>
+
+        {/* Conversion Modal */}
+        <Dialog open={showModal} onOpenChange={setShowModal}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <AlertTriangle className="h-5 w-5 text-amber-500" />
+                {msg.modalExpiredTitle}
+              </DialogTitle>
+              <DialogDescription>{msg.modalExpiredDesc}</DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col gap-3 mt-4">
+              <Button onClick={handleRegenerate} disabled={regenerating} className="w-full">
+                <RefreshCw className="h-4 w-4 mr-2" />
+                {regenerating ? msg.regenerating : msg.modalRegenerateBtn}
+              </Button>
+              <Button variant="outline" asChild className="w-full">
+                <a href={`/${locale}/pricing`}>
+                  <ArrowUpRight className="h-4 w-4 mr-2" />
+                  {msg.modalUpgradeBtn}
+                </a>
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   )
