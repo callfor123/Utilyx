@@ -211,11 +211,6 @@ function extractApiKey(request: Request): string | null {
   const headerKey = request.headers.get('x-api-key')
   if (headerKey) return headerKey.trim()
 
-  // Also support query param for convenience (e.g. /api/tools/pdf-compress?api_key=...)
-  const url = new URL(request.url)
-  const queryKey = url.searchParams.get('api_key')
-  if (queryKey) return queryKey.trim()
-
   return null
 }
 
