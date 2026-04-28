@@ -144,7 +144,7 @@ export function VideoConvert() {
                   </div>
                 </div>
                 {outputFormat === 'gif' ? (
-                  <img src={resultUrl} alt="GIF converti" className="w-full rounded-lg max-h-[300px] object-contain" />
+                  <img src={resultUrl} alt="Converted GIF result" className="w-full rounded-lg max-h-[300px] object-contain" />
                 ) : (
                   <video src={resultUrl} controls className="w-full rounded-lg max-h-[300px] bg-black" />
                 )}

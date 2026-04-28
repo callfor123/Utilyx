@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, memo, useState, useCallback } from 'react'
-import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE, useAdConsent } from './adsense-provider'
+import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE, useAdConsent, useAdLimiter } from './adsense-provider'
 
 export type AdFormat = 'auto' | 'rectangle' | 'horizontal' | 'vertical' | 'fluid'
 export type AdLayout = '-1' | '-1a' | '-1b' | '-1c' | '-1d' | '-1e' | '-1f'
@@ -36,6 +36,10 @@ export const AdUnit = memo(function AdUnit({
   const [isVisible, setIsVisible] = useState(false)
   const [shouldRender, setShouldRender] = useState(false)
   const { hasConsent, consentChecked } = useAdConsent()
+  const { registerSlot, unregisterSlot } = useAdLimiter()
+
+  // Unique ID for this ad unit instance
+  const slotIdRef = useRef(`${adSlot}-${Math.random().toString(36).slice(2, 9)}`)
 
   // IntersectionObserver: only mark visible when the ad container enters viewport
   useEffect(() => {
@@ -56,12 +60,23 @@ export const AdUnit = memo(function AdUnit({
     return () => observer.disconnect()
   }, [adSlot])
 
+  // Unregister from limiter on unmount
+  useEffect(() => {
+    return () => {
+      unregisterSlot(slotIdRef.current)
+    }
+  }, [unregisterSlot])
+
   // Consent gate: only render the <ins> element when consent is given
+  // AND the ad limiter allows this slot (max 3 visible ads per viewport)
   useEffect(() => {
     if (consentChecked && hasConsent && isVisible) {
-      setShouldRender(true)
+      const allowed = registerSlot(slotIdRef.current)
+      if (allowed) {
+        setShouldRender(true)
+      }
     }
-  }, [consentChecked, hasConsent, isVisible])
+  }, [consentChecked, hasConsent, isVisible, registerSlot])
 
   // Push to adsbygoogle once the <ins> is in the DOM and consent is granted
   useEffect(() => {

@@ -229,7 +229,7 @@ export function FaviconGenerator() {
               <div className="flex items-center gap-4 rounded-lg border bg-muted/30 p-4">
                 {previewUrl && (
                   <div className="rounded-lg bg-white p-1 border shrink-0">
-                    <img src={previewUrl} alt="Source" className="h-12 w-12 object-contain" />
+                    <img src={previewUrl} alt="Favicon source image" className="h-12 w-12 object-contain" />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">

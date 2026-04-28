@@ -169,7 +169,7 @@ export function VideoToGif() {
                   <p className="text-sm font-medium">GIF créé</p>
                   <Badge variant="secondary">{formatFileSize(resultBlob.size)}</Badge>
                 </div>
-                <img src={resultUrl} alt="GIF animé" className="w-full rounded-lg max-h-[300px] object-contain bg-black" />
+                <img src={resultUrl} alt="Generated GIF result" className="w-full rounded-lg max-h-[300px] object-contain bg-black" />
                 <Button onClick={() => downloadBlob(resultBlob, `${file.name.replace(/\.[^.]+$/, '')}.gif`)} className="w-full">
                   <Download className="h-4 w-4 mr-2" />Télécharger le GIF
                 </Button>

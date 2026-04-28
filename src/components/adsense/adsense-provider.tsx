@@ -1,7 +1,7 @@
 'use client'
 
 import Script from 'next/script'
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react'
 
 export const ADSENSE_PUBLISHER_ID = 'ca-pub-7035626578237932'
 export const ADSENSE_CLIENT = 'ca-pub-7035626578237932'

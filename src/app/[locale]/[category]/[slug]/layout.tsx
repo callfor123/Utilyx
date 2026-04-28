@@ -60,7 +60,7 @@ export default async function ToolLayout({ params, children }: Props) {
         bestRating: '5',
         worstRating: '1',
       },
-      datePublished: '2025-01-01',
+      datePublished: '2024-06-01',
       dateModified: new Date().toISOString().split('T')[0],
     },
     // BreadcrumbList

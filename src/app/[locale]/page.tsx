@@ -10,7 +10,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
 import { routing, type Locale } from '@/i18n/routing'
 import { toolIdToPath, getPathForLocale } from '@/lib/seo-registry'
-import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom } from '@/components/adsense'
+import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom, AdHomeGrid } from '@/components/adsense'
 
 
 // Existing tools
@@ -606,8 +606,8 @@ function ModuleView({ moduleId }: { moduleId: ModuleId }) {
         })}
       </div>
 
-      {/* Ad Banner — Above the active tool */}
-      <AdBanner className="mb-4" />
+      {/* Ad — Above the active tool (dedicated home grid slot) */}
+      <AdHomeGrid className="mb-4" />
 
       <AnimatePresence mode="wait">
         {activeTool && ActiveToolComponent ? (
