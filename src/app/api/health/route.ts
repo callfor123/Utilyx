@@ -1,9 +1,20 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  // Rate limit: 30 requests per minute per IP (prevents DB fill from unbounded writes)
+  const ip = getClientIp(request)
+  const rl = rateLimit(ip, 30, 60_000)
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { status: 'rate_limited', error: 'Too many requests' },
+      { status: 429 },
+    )
+  }
+
   const start = Date.now()
   const checks: Record<string, { status: string; latencyMs: number; message?: string }> = {}
 
@@ -51,6 +62,6 @@ export async function GET() {
       latencyMs: Date.now() - start,
       checks,
     },
-    { status: 200 }
+    { status: 200 },
   )
 }

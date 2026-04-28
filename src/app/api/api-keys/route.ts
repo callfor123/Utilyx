@@ -3,7 +3,7 @@
  *
  * POST   /api/api-keys          — Generate a new free API key
  * GET    /api/api-keys?email=   — List keys by email (admin-only)
- * DELETE /api/api-keys          — Revoke a key
+ * DELETE /api/api-keys          — Revoke a key (admin-only)
  */
 
 import { NextRequest, NextResponse } from 'next/server'
@@ -92,6 +92,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const authError = requireAdminAuth(request)
+  if (authError) return authError
+
   try {
     const body = await request.json().catch(() => ({}))
     const { key } = body

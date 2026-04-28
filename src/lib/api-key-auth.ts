@@ -6,7 +6,7 @@
  */
 
 import { db } from './db'
-import { timingSafeEqual } from 'crypto'
+import { randomBytes, timingSafeEqual } from 'crypto'
 
 /**
  * Track an API key event for analytics.
@@ -218,9 +218,10 @@ function generateSecureToken(): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   const segments: string[] = []
   for (let s = 0; s < 4; s++) {
+    const bytes = randomBytes(8)
     let segment = ''
     for (let i = 0; i < 8; i++) {
-      segment += chars.charAt(Math.floor(Math.random() * chars.length))
+      segment += chars[bytes[i] % chars.length]
     }
     segments.push(segment)
   }

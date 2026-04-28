@@ -1,9 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export const runtime = 'nodejs'
 export const maxDuration = 120
 
+const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50 MB
+const ALLOWED_FORMATS = ['jpeg', 'jpg', 'png', 'webp', 'avif'] as const
+const MAX_DIMENSION = 10000
+
 export async function POST(request: NextRequest) {
+  // Rate limit: 20 requests per minute per IP
+  const ip = getClientIp(request)
+  const rl = rateLimit(ip, 20, 60_000)
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please try again later.' },
+      { status: 429, headers: { 'X-RateLimit-Remaining': '0' } },
+    )
+  }
+
   try {
     const formData = await request.formData()
     const file = formData.get('file') as File | null
@@ -20,6 +35,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'File must be an image' }, { status: 400 })
     }
 
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json({ error: 'File too large. Maximum size is 50 MB.' }, { status: 400 })
+    }
+
+    // Validate dimensions
+    if (width !== undefined && (width < 1 || width > MAX_DIMENSION || !Number.isFinite(width))) {
+      return NextResponse.json({ error: `Width must be between 1 and ${MAX_DIMENSION}.` }, { status: 400 })
+    }
+    if (height !== undefined && (height < 1 || height > MAX_DIMENSION || !Number.isFinite(height))) {
+      return NextResponse.json({ error: `Height must be between 1 and ${MAX_DIMENSION}.` }, { status: 400 })
+    }
+
+    // Validate format
+    const normalizedFormat = format.toLowerCase() as string
+    if (!ALLOWED_FORMATS.includes(normalizedFormat as any)) {
+      return NextResponse.json(
+        { error: `Invalid format. Allowed: ${ALLOWED_FORMATS.join(', ')}` },
+        { status: 400 },
+      )
+    }
+    const sharpFormat = normalizedFormat === 'jpg' ? 'jpeg' : normalizedFormat
+
     const arrayBuffer = await file.arrayBuffer()
     const buffer = Buffer.from(arrayBuffer)
 
@@ -33,14 +70,14 @@ export async function POST(request: NextRequest) {
       pipeline = pipeline.resize(width, height, { fit: 'inside', withoutEnlargement: true })
     }
 
-    // Apply format and quality
+    // Apply format and quality (clamped)
     const qualityClamped = Math.max(1, Math.min(100, quality))
 
     let outputBuffer: Buffer
     let contentType: string
     let ext: string
 
-    switch (format) {
+    switch (sharpFormat) {
       case 'webp':
         outputBuffer = await pipeline.webp({ quality: qualityClamped }).toBuffer()
         contentType = 'image/webp'
@@ -68,13 +105,14 @@ export async function POST(request: NextRequest) {
         'X-Original-Size': file.size.toString(),
         'X-Compressed-Size': outputBuffer.length.toString(),
         'X-Format': ext,
+        'X-RateLimit-Remaining': rl.remaining.toString(),
       },
     })
   } catch (error) {
     console.error('Image compression error:', error)
     return NextResponse.json(
       { error: 'Image compression failed' },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
