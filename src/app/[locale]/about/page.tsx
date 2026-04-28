@@ -16,12 +16,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     pt: 'Sobre',
   }
   const descriptions: Record<string, string> = {
-    fr: 'Découvrez Utilyx — suite de 47+ outils en ligne gratuits, 100% privés et sans inscription.',
-    en: 'Discover Utilyx — suite of 47+ free online tools, 100% private and no signup required.',
-    es: 'Descubre Utilyx — suite de 47+ herramientas online gratuitas, 100% privadas y sin registro.',
-    de: 'Entdecken Sie Utilyx — 47+ kostenlose Online-Tools, 100% privat und ohne Anmeldung.',
-    ar: 'اكتشف Utilyx — مجموعة من 47+ أداة مجانية عبر الإنترنت، خصوصية 100% بدون تسجيل.',
-    pt: 'Descubra Utilyx — suíte de 47+ ferramentas online gratuitas, 100% privadas e sem cadastro.',
+    fr: 'Découvrez Utilyx — suite complète de 47+ outils en ligne gratuits pour PDF, images, vidéo, SEO et texte. Traitement 100% local et privé, sans inscription requise.',
+    en: 'Discover Utilyx — a complete suite of 47+ free online tools for PDF, images, video, SEO and text. 100% client-side processing, fully private, no signup required.',
+    es: 'Descubre Utilyx — una suite completa de 47+ herramientas online gratuitas para PDF, imágenes, vídeo, SEO y texto. Procesamiento 100% local y privado, sin registro.',
+    de: 'Entdecken Sie Utilyx — eine vollständige Suite von 47+ kostenlosen Online-Tools für PDF, Bilder, Video, SEO und Text. 100% clientseitig, privat, ohne Anmeldung.',
+    ar: 'اكتشف Utilyx — مجموعة متكاملة من 47+ أداة مجانية عبر الإنترنت لملفات PDF والصور والفيديو وتحسين محركات البحث والنصوص. معالجة 100% محلية وخاصة بدون تسجيل.',
+    pt: 'Descubra Utilyx — uma suíte completa de 47+ ferramentas online gratuitas para PDF, imagens, vídeo, SEO e texto. Processamento 100% local e privado, sem cadastro.',
   }
   const title = titles[locale] || titles.fr
   const description = descriptions[locale] || descriptions.fr

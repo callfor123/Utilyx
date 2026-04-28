@@ -17,10 +17,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   }
   const descriptions: Record<string, string> = {
     fr: 'Conditions générales d\'utilisation du site Utilyx — responsabilités, propriété intellectuelle, publicité AdSense et droits des utilisateurs.',
-    en: 'Terms of service for Utilyx — responsibilities, intellectual property, AdSense advertising and user rights.',
+    en: 'Terms of service for Utilyx — responsibilities, intellectual property rights, AdSense advertising policies, user obligations and legal disclaimers for all platform tools.',
     es: 'Condiciones de uso del sitio Utilyx — responsabilidades, propiedad intelectual, publicidad AdSense y derechos de los usuarios.',
-    de: 'Nutzungsbedingungen für Utilyx — Verantwortlichkeiten, geistiges Eigentum, AdSense-Werbung und Nutzerrechte.',
-    ar: 'شروط استخدام موقع Utilyx — المسؤوليات، الملكية الفكرية، إعلانات AdSense وحقوق المستخدمين.',
+    de: 'Nutzungsbedingungen für Utilyx — Verantwortlichkeiten, geistiges Eigentum, AdSense-Werbung, Nutzerpflichten und rechtliche Hinweise für alle Plattform-Tools.',
+    ar: 'شروط استخدام موقع Utilyx — المسؤوليات، الملكية الفكرية، سياسات إعلانات AdSense، التزامات المستخدم والإخلاءات القانونية لجميع أدوات المنصة.',
     pt: 'Termos de uso do site Utilyx — responsabilidades, propriedade intelectual, publicidade AdSense e direitos dos utilizadores.',
   }
   const title = titles[locale] || titles.fr

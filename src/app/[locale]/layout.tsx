@@ -50,7 +50,7 @@ const localeMetadata: Record<string, { title: string; description: string }> = {
   ar: {
     title: "Utilyx — مجموعة أدوات مجانية متعددة الوظائف",
     description:
-      "47+ أداة مجانية عبر الإنترنت: PDF، صور، فيديو، SEO، نصوص، مولدات وحاسبات. معالجة 100% محلية، بدون تسجيل.",
+      "47+ أداة مجانية عبر الإنترنت: PDF، صور، فيديو، SEO، نصوص، مولدات وحاسبات. معالجة 100% محلية وخاصة، بدون تسجيل أو اشتراك مطلوب.",
   },
   pt: {
     title: "Utilyx — Suite de Ferramentas Online Gratuitas",
