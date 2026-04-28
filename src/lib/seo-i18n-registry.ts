@@ -11,7 +11,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
   en: {
     'compresser-pdf': {
       title: 'Compress PDF Online Free — Reduce PDF Size',
-      desc: 'Reduce your PDF file size up to 80% for free. No signup, 100% local processing in your browser. Compress without quality loss.',
+      desc: 'Reduce PDF file size up to 80% for free. No signup, 100% local browser processing. Compress without quality loss.',
       h1: 'Compress a PDF file online for free',
       intro: 'Our PDF compression tool instantly reduces the size of your documents without visible quality loss. Perfect for emailing files, uploading to websites, or saving storage space. No files are sent to any server — everything runs in your browser.',
       faq: [
@@ -23,7 +23,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'fusionner-pdf': {
       title: 'Merge PDF Online Free — Combine Multiple PDFs',
-      desc: 'Merge multiple PDF files into one document in seconds. Reorder pages by drag-and-drop before combining. Free, no signup, 100% local processing in your browser.',
+      desc: 'Merge multiple PDFs into one document. Reorder pages by drag-and-drop. Free, no signup, 100% local browser processing.',
       h1: 'Merge multiple PDFs into one file',
       intro: 'Easily combine 2 or more PDF documents into a single unified file in seconds. Our free online PDF merger lets you reorder pages by drag-and-drop before merging, giving you full control over the final result. Perfect for assembling invoices, reports, administrative files, university theses, or any multi-page document. No signup required and the service is entirely free. All processing happens 100% locally in your browser — your documents are never sent to a remote server, ensuring total confidentiality of your data. The PDF merger works without installation on desktop, tablet, or smartphone, with no daily limit or watermark.',
       faq: [
@@ -35,7 +35,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'pdf-en-images': {
       title: 'Convert PDF to JPG PNG Images Online Free',
-      desc: 'Convert each page of your PDF into high-quality JPG or PNG images instantly. Free online tool, no signup, 100% local processing in your browser.',
+      desc: 'Convert PDF pages to high-quality JPG or PNG images instantly. Free, no signup, 100% local browser processing.',
       h1: 'Convert a PDF to JPG or PNG images online free',
       intro: 'Transform every page of your PDF documents into high-resolution images (JPG or PNG) in seconds. This tool is particularly useful for integrating PDF pages into PowerPoint presentations, sharing on social media, or editing in photo editors like Photoshop or GIMP. JPG produces lightweight files ideal for web and email, while PNG offers maximum quality with transparency support. Marketing professionals, graphic designers, and students regularly use PDF-to-image conversion to create visuals from reports, brochures, or catalogs. All processing happens locally in your browser — your documents stay on your device and are never transferred to a server. The service is completely free and requires no signup.',
       faq: [
@@ -47,7 +47,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'signer-pdf': {
       title: 'Sign PDF Online Free — Electronic Signature',
-      desc: 'Sign and annotate your PDF documents directly in the browser. Draw or type your electronic signature. Free, no signup, 100% local processing.',
+      desc: 'Sign and annotate PDF documents in your browser. Draw or type your electronic signature. Free, no signup, 100% local.',
       h1: 'Sign a PDF document online for free',
       intro: 'Add your handwritten or typed signature to any PDF document without printing or scanning. Our free online PDF signer lets you draw your signature directly on screen, type it in a calligraphic font, or import it from an image. You can then position and resize it precisely on the document. Ideal for employment contracts, purchase orders, administrative forms, NDAs, and any document requiring a signature. This tool eliminates the tedious cycle of printing, signing, and scanning, saving you valuable time. The process is 100% local — your document stays on your device and is never sent to a server. The service is completely free and requires no signup. Note that our tool creates a simple signature. For enhanced legal validity under the eIDAS regulation, consult a certified electronic signature service.',
       faq: [
@@ -59,7 +59,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'deverrouiller-pdf': {
       title: 'Unlock PDF Online Free — Remove PDF Password',
-      desc: 'Remove password protection from your PDF files easily. Unlock secured PDFs when you know the password. Free, no signup, 100% local processing in your browser.',
+      desc: 'Remove PDF password protection easily. Unlock secured PDFs when you know the password. Free, no signup, 100% local.',
       h1: 'Unlock a password-protected PDF online free',
       intro: 'Have a protected PDF whose password you know but need to open frequently? Our tool lets you remove the password protection in one click, so you can access and share your document freely without entering the password every time. This is especially useful for password-protected bank statements, secured contracts, or any document where you want to remove the password constraint while keeping the content intact. The process is simple: upload your protected PDF, enter the password, and download the unlocked file. Everything happens in your browser — no data is sent to a server, guaranteeing total confidentiality. The tool is entirely free and requires no signup. Important: you must know the password to unlock the file. Our tool does not crack passwords.',
       faq: [
@@ -71,7 +71,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'proteger-pdf': {
       title: 'Protect PDF Online Free — Add Password to PDF',
-      desc: 'Add password protection and AES-256 encryption to your PDF files for free. 100% local processing, no server upload, no signup required.',
+      desc: 'Add password and AES-256 encryption to PDF files for free. 100% local processing, no server upload, no signup.',
       h1: 'Protect a PDF with a password online free',
       intro: 'Secure your PDF documents by adding password protection. Only people who know the password will be able to open and read your file, which is essential for confidential documents like contracts, bank statements, medical records, or personal data. Our tool lets you choose a strong password and apply it instantly to your PDF. AES-128 or AES-256 encryption is used to ensure solid protection. The process is entirely local: your document and password stay on your device and are never transmitted to a server. The service is free and requires no signup. You can protect as many PDFs as you want. For optimal security, choose a password of at least 8 characters combining uppercase, lowercase, numbers, and symbols.',
       faq: [
@@ -83,7 +83,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'convertir-image': {
       title: 'Image Converter Online Free — WebP, AVIF, JPG, PNG',
-      desc: 'Convert images between formats: WebP, AVIF, JPG, PNG, and more. Batch conversion supported, no quality loss. Free, no signup, 100% local processing.',
+      desc: 'Convert images between WebP, AVIF, JPG, PNG and more. Batch conversion, no quality loss. Free, no signup, 100% local.',
       h1: 'Convert images to WebP, AVIF, JPG, PNG online free',
       intro: 'Convert your images between all popular formats: WebP, AVIF, JPG, PNG, GIF, BMP, and TIFF. WebP and AVIF are modern formats that offer significantly better compression than classic JPG, reducing your image file sizes by 30 to 50% without visible quality loss. Ideal for speeding up your website loading times and improving your SEO ranking. Web developers, graphic designers, and bloggers regularly use image conversion to optimize visuals for their projects. You can convert one or multiple images at once, choose the output quality, and download the results. All processing happens locally in your browser — your images stay on your device and are never sent to a server. The service is completely free and requires no signup.',
       faq: [
@@ -95,7 +95,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'compresser-image': {
       title: 'Compress Image Online Free — Reduce Image Size',
-      desc: 'Optimize and reduce image file size without visible quality loss. Compress JPG, PNG, WebP images easily. Free, no signup, 100% local processing.',
+      desc: 'Reduce image file size without visible quality loss. Compress JPG, PNG, WebP easily. Free, no signup, 100% local.',
       h1: 'Compress an image online for free',
       intro: 'Instantly reduce the file size of your images without visible quality degradation. Our free online image compressor optimizes your JPG, PNG, and WebP files by adjusting the compression level to your needs. A compressed image loads faster on websites, uses less bandwidth, and improves user experience and SEO rankings. Web developers, bloggers, and marketing professionals all benefit from compressing images before publishing them online. You can choose between light, balanced, or strong compression, and compare the result with the original before downloading. All processing happens locally in your browser — your images are never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -107,7 +107,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'redimensionner-image': {
       title: 'Resize Image Online Free — Change Image Dimensions',
-      desc: 'Resize images to any dimension while maintaining aspect ratio. Set exact pixels or percentage, batch support. Free, no signup, 100% local.',
+      desc: 'Resize images to any dimension with aspect ratio lock. Set pixels or percentage, batch support. Free, no signup, 100% local.',
       h1: 'Resize an image online for free',
       intro: 'Quickly change your image dimensions in a few clicks, whether for adapting to a website, a social media profile, a print layout, or an email attachment. Our free online image resizer lets you resize by percentage, by fixed width or height, or by specifying exact dimensions. You can choose to maintain the aspect ratio or force new dimensions. Web developers resize images to fit screen resolutions and CSS grids, while photographers adjust dimensions for printing. All processing happens locally in your browser — your images stay on your device and are never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -119,7 +119,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'supprimer-arriere-plan': {
       title: 'Remove Image Background Online Free — AI Cutout Tool',
-      desc: 'Remove image backgrounds instantly with AI-powered cutout. Get transparent PNG results for product photos and portraits. Free, no signup, 100% local.',
+      desc: 'Remove image backgrounds instantly with AI cutout. Get transparent PNG for product photos. Free, no signup, 100% local.',
       h1: 'Remove image background online free — AI cutout',
       intro: 'Automatically remove the background from your photos in one click with our AI-powered cutout tool. No need to manually trace complex outlines in Photoshop — our algorithm detects the main subject and removes the background with precision. This background remover is essential for creating e-commerce product photos on a clean white background, professional portraits with transparent backgrounds, transparent logos, or photo montages. Online sellers use it to present products on a uniform background, while designers use it to isolate graphic elements for composites. The result can be downloaded as PNG with transparency or JPG with a white background. All processing happens locally in your browser using integrated artificial intelligence — your images are never sent to a server. The service is free, requires no signup, and has no daily limit or watermark.',
       faq: [
@@ -132,7 +132,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'heic-vers-jpg': {
       title: 'HEIC to JPG Converter Online Free — iPhone Photo Converter',
-      desc: 'Convert iPhone HEIC photos to JPG or PNG with batch support and quality preservation. Free online HEIC converter, no signup, 100% local processing.',
+      desc: 'Convert iPhone HEIC photos to JPG or PNG with batch support. Free HEIC converter, no signup, 100% local.',
       h1: 'Convert HEIC to JPG or PNG online free — iPhone photos',
       intro: 'Convert your iPhone HEIC photos to the universally compatible JPG or PNG format. The HEIC format (High Efficiency Image Container) has been the default on iPhones since iOS 11, but many software programs, websites, and devices do not support it. Our HEIC-to-JPG converter lets you regain full compatibility by transforming your photos to JPG (ideal for sharing on social media and email) or PNG (ideal for maximum quality with transparency). You can convert one or multiple photos at once — especially useful after transferring photos from an iPhone to a Windows PC or Android device. All processing happens locally in your browser — your photos stay on your device and are never sent to a server. The service is free, requires no signup, and has no daily limit or watermark.',
       faq: [
@@ -145,7 +145,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'generateur-favicon': {
       title: 'Favicon Generator Online Free — Create Favicon.ico & App Icons',
-      desc: 'Generate favicon.ico, Apple Touch, Android and PWA icons from any image. Complete icon pack for web and mobile. Free, no signup, 100% local.',
+      desc: 'Generate favicon.ico, Apple Touch, Android and PWA icons from any image. Complete icon pack. Free, no signup, 100% local.',
       h1: 'Generate a favicon and app icons online free',
       intro: 'Create a favicon.ico and all the icon sizes needed for your website from a single image. Our favicon generator produces a complete icon pack: 16x16, 32x32, and 48x48 favicon.ico for browser tabs, 180x180 Apple Touch Icon for iOS devices, 192x192 and 512x512 Android and PWA icons for mobile home screens. Simply upload your logo or image, preview the result at each size, and download the full package. Web developers and site owners use favicons to improve brand recognition in browser tabs, bookmarks, and mobile home screens. A favicon is a small but essential element of any professional website — without one, browsers display a generic icon that reduces credibility. Supports ICO, PNG, and SVG output formats. All processing happens locally in your browser — your images are never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -158,7 +158,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'telecharger-miniature-youtube': {
       title: 'YouTube Thumbnail Downloader Online Free — HD',
-      desc: 'Download YouTube video thumbnails in HD and full resolution up to 1280x720. One-click instant download. Free, no signup required.',
+      desc: 'Download YouTube thumbnails in HD up to 1280x720. One-click instant download. Free, no signup required.',
       h1: 'Download YouTube video thumbnails in HD',
       intro: 'Retrieve the thumbnail of any YouTube video in high resolution (1280x720 pixels) simply by pasting its URL. YouTube thumbnails are powerful visuals used by content creators, marketers, and designers for presentations, blog articles, video montages, or content analysis. Our tool instantly fetches the official thumbnail in the best available resolution, without requiring a YouTube login or third-party software. You can download the thumbnail as a JPG directly to your device. This tool is especially useful for marketing agencies analyzing visual strategies of popular channels, or for creators looking for inspiration from high-performing thumbnails. The service is free and requires no signup.',
       faq: [
@@ -170,7 +170,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'decouper-video': {
       title: 'Trim Video Online Free — Cut Video Clips',
-      desc: 'Cut and trim video clips directly in your browser with millisecond precision and real-time preview. Free, no signup, 100% local.',
+      desc: 'Cut and trim video clips in your browser with millisecond precision and real-time preview. Free, no signup, 100% local.',
       h1: 'Trim a video online for free',
       intro: 'Cut and extract the portions you want from your videos in a few clicks, without installing heavy software. Our video trimming tool lets you precisely set the start and end of the sequence to keep, with real-time preview to adjust your cut points to the millisecond. Ideal for removing unnecessary intros, cutting silences at the beginning or end, isolating highlights from a recording, or preparing clips for social media. Content creators, trainers, and video marketing professionals use trimming daily to optimize their videos before publishing. All processing happens locally in your browser using FFmpeg WebAssembly — your video files are never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -182,7 +182,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'compresser-video': {
       title: 'Compress Video Online Free — Reduce Video Size',
-      desc: 'Reduce video file size while maintaining quality with multi-level compression. Free, no signup, processed locally in your browser.',
+      desc: 'Reduce video file size with multi-level compression while maintaining quality. Free, no signup, 100% local.',
       h1: 'Compress a video online for free',
       intro: 'Significantly reduce the file size of your videos while maintaining optimal visual quality. Our video compression tool automatically adjusts the bitrate and resolution to achieve the best quality-to-size ratio. A compressed video loads faster on websites, uses less bandwidth, and is easier to share by email or messaging. Content creators compress their videos before uploading to YouTube, TikTok, or Instagram to reduce processing times. Video marketing professionals optimize their ads for fast mobile loading. You can choose between several compression levels depending on your needs. All processing happens locally in your browser — your videos never leave your device. The service is free and requires no signup.',
       faq: [
@@ -194,7 +194,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'convertir-video': {
       title: 'Convert Video Online Free — MP4, WebM, MOV',
-      desc: 'Convert videos between MP4, WebM, AVI, MKV and more formats with full codec support. Free, no signup, 100% local processing.',
+      desc: 'Convert videos between MP4, WebM, AVI, MKV and more with full codec support. Free, no signup, 100% local.',
       h1: 'Convert video format online for free',
       intro: 'Convert your videos between all popular formats: MP4, WebM, AVI, MKV, MOV, and GIF. MP4 is the most universally compatible format for the web and social media, while WebM offers better compression for modern websites. AVI is supported by many editing software, and MKV preserves multiple audio tracks and subtitles. Content creators regularly convert their videos to meet platform requirements: MP4 for YouTube, WebM for websites, MOV for Final Cut Pro. All processing happens locally in your browser using FFmpeg WebAssembly — your video files stay on your device and are never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -206,7 +206,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'ajouter-audio-video': {
       title: 'Add Audio to Video Online Free',
-      desc: 'Add music or audio track to your video with independent volume mixing for MP3 and video merging. Free, no signup, 100% local.',
+      desc: 'Add music or audio to your video with independent volume mixing. Free, no signup, 100% local.',
       h1: 'Add audio to a video online',
       intro: 'Add an audio track to your video in a few clicks, whether to add background music, a voiceover, or a commentary. Our tool lets you merge an audio file (MP3, WAV, AAC, OGG) with a video, choosing whether to replace or mix with the existing audio. YouTube creators regularly add background music to their videos, trainers overlay educational commentary, and marketers integrate advertising voiceovers. You can adjust the volume of the added track and the original audio independently for the perfect mix. All processing happens locally in your browser — your files are never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -218,7 +218,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'extraire-audio-video': {
       title: 'Extract Audio from Video Online Free — MP3, WAV',
-      desc: 'Extract the audio track from any video as MP3, WAV or AAC with customizable bitrate selection. Free, no signup, 100% local.',
+      desc: 'Extract audio from any video as MP3, WAV or AAC with customizable bitrate. Free, no signup, 100% local.',
       h1: 'Extract audio from a video online',
       intro: 'Isolate and extract the audio track from any video in seconds. Our tool lets you convert the soundtrack of a video file to audio format (MP3, WAV, or AAC), ideal for extracting music from a video clip, isolating a podcast from a YouTube recording, or extracting a sound clip for audio editing. Musicians extract audio tracks from music videos to listen again, podcasters recover audio from their live streams, and journalists isolate video interviews to keep only the sound. You can choose the output quality and format that best suits your needs. All processing happens locally in your browser — your files stay on your device. The service is free and requires no signup.',
       faq: [
@@ -242,7 +242,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'supprimer-audio-video': {
       title: 'Remove Audio from Video Online Free — Mute Video',
-      desc: 'Remove the audio track from any video to create a silent video without re-encoding. Free, no signup, 100% local processing.',
+      desc: 'Remove audio from any video to create a silent video without re-encoding. Free, no signup, 100% local.',
       h1: 'Remove audio from a video online',
       intro: 'Remove the audio track from any video in one click to get a silent video file. This tool is essential in many situations: remove background noise from a surveillance video, strip the original music to add a new soundtrack, create silent videos for presentations or edits, or prepare a video before adding a voiceover. Video editors often mute their clips before re-recording a new commentary, while meme creators remove the original audio to replace it with a viral sound effect. Marketing professionals also use this technique to create silent versions of their ads for platforms that autoplay videos muted by default, like Facebook and Instagram. The process is fast and does not modify the original video quality. All processing happens locally in your browser using FFmpeg WebAssembly — your files never leave your device. The service is free and requires no signup.',
       faq: [
@@ -254,7 +254,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'json-csv': {
       title: 'JSON to CSV Converter Online Free & Vice Versa',
-      desc: 'Convert JSON to CSV and CSV to JSON easily with Excel import/export support and nested data flattening. Free, no signup, 100% local.',
+      desc: 'Convert JSON to CSV and vice versa with Excel support and nested data flattening. Free, no signup, 100% local.',
       h1: 'Convert JSON to CSV and vice versa',
       intro: 'Easily convert your data between JSON and CSV formats, two of the most widely used data formats in web development and data analysis. JSON (JavaScript Object Notation) is the standard for REST APIs and data exchange between applications, while CSV (Comma-Separated Values) is the universal format for spreadsheets like Excel and Google Sheets. Our tool lets you transform a JSON array into a CSV file ready for Excel import, or conversely convert a CSV into structured JSON for an API or script. Developers use this conversion to migrate data between databases and APIs, analysts to leverage API responses in their spreadsheets, and data scientists to prepare datasets. All processing happens locally in your browser — your data stays on your device. The service is free and requires no signup.',
       faq: [
@@ -266,7 +266,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'testeur-regex': {
       title: 'Regex Tester Online Free — Regular Expression Tester',
-      desc: 'Test your regular expressions with real-time matching, group highlighting and instant debugging. Free, no signup, 100% local.',
+      desc: 'Test regex with real-time matching, group highlighting and instant debugging. Free, no signup, 100% local.',
       h1: 'Test regular expressions online',
       intro: 'Test and debug your regular expressions (regex) in real time with our interactive tool. Regular expressions are powerful search patterns used for validating emails, extracting data, cleaning text, or configuring routing rules. However, their cryptic syntax makes them difficult to write and debug without a proper tool. Our regex tester highlights matches in real time as you type, shows captured groups, and lets you test multiple input strings simultaneously. Developers use it to validate form patterns (email, phone, zip code), DevOps to configure Nginx rewrite rules, and data engineers to clean datasets. All processing happens locally in your browser. The service is free and requires no signup.',
       faq: [
@@ -278,7 +278,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'meta-tags': {
       title: 'Meta Tags Generator & Previewer Online Free',
-      desc: 'Generate and preview meta tags for SEO and social media sharing. See how your page appears on Google, Twitter/X, and Facebook. Free, no signup.',
+      desc: 'Generate and preview meta tags for SEO and social sharing. See how your page looks on Google and social media. Free, no signup.',
       h1: 'Generate and preview meta tags online',
       intro: 'Create and preview the essential meta tags for natural search engine optimization (SEO) and social media sharing. Meta tags are invisible HTML elements that tell search engines and social networks how to display your page: title, description, preview image, content type, and more. Our tool generates Open Graph tags (Facebook, LinkedIn), Twitter Cards, classic SEO meta tags, and verification tags for Google Search Console and Bing Webmaster Tools. You can preview in real time how your page will appear in Google results and on social networks before publishing. SEO professionals optimize their meta tags to maximize click-through rate (CTR), developers integrate them into their templates, and marketers configure them for each campaign. The service is free and requires no signup.',
       faq: [
@@ -290,7 +290,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'sitemap-robots': {
       title: 'Sitemap & Robots.txt Generator Online Free',
-      desc: 'Generate XML sitemaps and robots.txt files for your website to optimize Google indexing. Free, no signup, 100% local processing.',
+      desc: 'Generate XML sitemaps and robots.txt to optimize Google indexing. Free, no signup, 100% local.',
       h1: 'Generate sitemap.xml and robots.txt online',
       intro: 'Easily create the sitemap.xml and robots.txt files essential for your website SEO. The XML sitemap is a file that lists all pages on your site to guide search engines in their crawling, while the robots.txt file tells indexing robots which pages to allow or block. Without these files, Google and Bing may miss important pages on your site or waste their crawl budget on useless ones. Our generator lets you configure your URLs, define priorities and update frequencies, and specify allow and disallow rules for robots. SEO professionals submit the sitemap to Google Search Console to speed up indexing, while developers configure robots.txt to block private or development pages. The service is free and requires no signup.',
       faq: [
@@ -302,7 +302,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'formateur-json': {
       title: 'JSON Formatter Online Free — Beautify & Validate JSON',
-      desc: 'Format, validate, and minify JSON data instantly with syntax highlighting and real-time error detection. Free, no signup, 100% local.',
+      desc: 'Format, validate and minify JSON with syntax highlighting and real-time error detection. Free, no signup, 100% local.',
       h1: 'Format and validate JSON online',
       intro: 'Format, validate, and minify your JSON data in one click directly in your browser. JSON is the most widely used data format on the web, but raw unformatted JSON is hard to read and debug. Our tool instantly transforms compact JSON into a readable version with indentation and syntax highlighting, validates syntax to detect errors, and also lets you minify formatted JSON to reduce its size. Developers use JSON formatting daily to debug API responses, DevOps to verify configuration files, and data engineers to inspect database payloads. The tool precisely detects and reports syntax errors (missing commas, forgotten quotes, unclosed braces). All processing happens locally in your browser — your data stays on your device. The service is free and requires no signup.',
       faq: [
@@ -314,7 +314,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'url-encode-decode': {
       title: 'URL Encode Decode Online Free',
-      desc: 'Encode and decode URLs and query strings instantly with full Unicode and emoji support. Free developer tool, no signup, 100% local.',
+      desc: 'Encode and decode URLs and query strings with full Unicode and emoji support. Free developer tool, no signup, 100% local.',
       h1: 'Encode and decode URLs online',
       intro: 'Encode and decode URLs and their query parameters in seconds. URL encoding (percent-encoding) converts special characters into %XX sequences to ensure they are transmitted correctly in links and HTTP requests. This is essential for query parameters containing spaces, accents, or special characters. Our tool instantly encodes and decodes URLs, query parameters, and fragments. Developers use it to build API URLs with complex parameters, QA testers to verify tracking parameters, and SEO professionals to analyze encoded URLs in server logs. The tool correctly handles reserved characters, accents, and Unicode characters (emojis, CJK). All processing happens locally in your browser. The service is free and requires no signup.',
       faq: [
@@ -326,7 +326,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'css-gradient': {
       title: 'CSS Gradient Generator Online Free',
-      desc: 'Create beautiful CSS gradients visually with copy-ready code. Linear, radial, and conic gradient support. Free, no signup, 100% local.',
+      desc: 'Create CSS gradients visually with copy-ready code. Linear, radial and conic gradient support. Free, no signup, 100% local.',
       h1: 'Create CSS gradients online',
       intro: 'Visually generate CSS gradients for your web projects without writing a single line of code. CSS gradients are ubiquitous in modern web design: section backgrounds, buttons, cards, hero banners, and overlays. Our generator lets you create linear and radial gradients by dragging color stops, adjusting angles and positions, and adding as many color stops as needed. The CSS code is generated in real time with browser prefixes for maximum compatibility. Web designers use it to quickly prototype backgrounds, frontend developers to integrate pixel-perfect gradients, and theme creators for their palettes. All processing happens locally in your browser. The service is free and requires no signup.',
       faq: [
@@ -338,7 +338,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'markdown-preview': {
       title: 'Markdown Preview Online Free — Live Editor',
-      desc: 'Write Markdown with live preview, table support, code blocks and LaTeX rendering. Free online editor, no signup, 100% local processing.',
+      desc: 'Write Markdown with live preview, tables, code blocks and LaTeX rendering. Free editor, no signup, 100% local.',
       h1: 'Markdown editor with live preview',
       intro: 'Write in Markdown and instantly see the HTML rendering in our editor with real-time preview. Markdown is the most popular writing format among developers, used for technical documentation (GitHub, GitLab), README files, static blogs (Hugo, Jekyll, Gatsby), and note-taking systems (Notion, Obsidian). Our editor supports extended Markdown syntax: tables, code blocks with syntax highlighting, task lists, footnotes, LaTeX math, and Mermaid diagrams. Developers use it to write READMEs and documentation, writers to preview blog articles, and students to take structured notes. All processing happens locally in your browser — your content stays on your device. The service is free and requires no signup.',
       faq: [
@@ -362,7 +362,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'compteur-mots': {
       title: 'Word Counter Online Free — Character & Sentence Counter',
-      desc: 'Count words, characters, sentences, and paragraphs instantly with estimated reading time. Free, no signup, 100% local processing.',
+      desc: 'Count words, characters, sentences and paragraphs with estimated reading time. Free, no signup, 100% local.',
       h1: 'Count words and characters online',
       intro: 'Instantly analyze your text statistics: word count, character count (with and without spaces), sentence count, paragraph count, and estimated reading time. Our word counter is essential for writers, students, journalists, and professionals who need to meet specific length requirements. Whether you are writing a blog post, an academic paper, a social media caption, or a press release, knowing your text length is crucial. The tool also provides keyword density analysis to help SEO professionals optimize their content. All processing happens locally in your browser — your text is never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -374,7 +374,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'convertisseur-casse': {
       title: 'Case Converter Online Free — UPPER, lower, camelCase',
-      desc: 'Convert text between UPPERCASE, lowercase, Title Case, camelCase, snake_case and 9 more formats. Free, no signup, 100% local.',
+      desc: 'Convert text between UPPERCASE, lowercase, Title Case, camelCase, snake_case and more. Free, no signup, 100% local.',
       h1: 'Convert text case online',
       intro: 'Instantly transform the case of your text between all common formats: UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and more. This tool is indispensable for developers converting variable names between programming conventions, copywriters adjusting headline formatting, and data specialists normalizing database entries. Rather than manually retyping or using complex find-and-replace patterns, our case converter handles the transformation in one click while preserving your original content. All processing happens locally in your browser — your text stays on your device. The service is free and requires no signup.',
       faq: [
@@ -386,7 +386,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'lorem-ipsum': {
       title: 'Lorem Ipsum Generator Online Free',
-      desc: 'Generate Lorem Ipsum placeholder text in paragraphs, sentences, or words for your mockups and designs. Free, no signup, 100% local.',
+      desc: 'Generate Lorem Ipsum placeholder text in paragraphs, sentences or words. Free, no signup, 100% local.',
       h1: 'Generate Lorem Ipsum placeholder text',
       intro: 'Instantly generate Lorem Ipsum placeholder text to fill your mockups, prototypes, and design layouts. Lorem Ipsum is the standard dummy text used by graphic designers, web developers, and UX professionals since the 1500s. Our generator lets you choose the exact amount of text you need by paragraphs, sentences, or words. Whether you are building a website mockup, testing a document layout, or filling a prototype with realistic content, our tool produces clean, professional placeholder text that looks natural in any design. All processing happens locally in your browser. The service is free and requires no signup.',
       faq: [
@@ -422,7 +422,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'separateur-nom-prenom': {
       title: 'Name Splitter Online Free — Split First & Last Name',
-      desc: 'Separate full names into first name and last name columns with support for compound names and particles. Free, no signup, 100% local.',
+      desc: 'Split full names into first and last name columns. Supports compound names and particles. Free, no signup, 100% local.',
       h1: 'Split full names into first and last name online',
       intro: 'Paste a list of full names and automatically split them into first name and last name columns. Our name splitter recognizes common patterns for compound first names and multi-part last names, intelligently handling names with prefixes like "de", "van", "von", and "Mc". Export the results as CSV or TSV for easy import into spreadsheets, CRM systems, or databases. This tool is perfect for HR professionals cleaning up employee directories, marketers normalizing contact lists, and data analysts preparing datasets for mail merge. All processing happens locally in your browser — your data stays on your device. The service is free and requires no signup.',
       faq: [
@@ -434,7 +434,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'generateur-qr-code': {
       title: 'QR Code Generator Online Free — Create QR Codes',
-      desc: 'Generate QR codes for URLs, text, WiFi and more with custom colors and size. Export as PNG or SVG. Free, no signup, 100% local.',
+      desc: 'Generate QR codes for URLs, text, WiFi and more with custom colors. Export as PNG or SVG. Free, no signup, 100% local.',
       h1: 'Generate QR codes online for free',
       intro: 'Create custom QR codes for URLs, plain text, WiFi credentials, email addresses, and phone numbers in seconds. QR codes are essential for bridging the physical and digital worlds: scan a code with a smartphone camera to instantly open a website, connect to WiFi, send an email, or dial a phone number. Our generator lets you customize the foreground and background colors, adjust the size, and download the result as PNG or SVG for print or digital use. Marketing professionals use QR codes on business cards, flyers, and product packaging to drive traffic. Restaurant owners place QR codes on tables to link to digital menus. Event organizers use them for ticket validation. All generation happens locally in your browser — your data is never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -446,7 +446,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'generateur-mot-de-passe': {
       title: 'Password Generator Online Free — Secure Random Passwords',
-      desc: 'Generate strong, random passwords with customizable length, characters and real-time strength indicator. Free, no signup, 100% local.',
+      desc: 'Generate strong random passwords with custom length, characters and real-time strength check. Free, no signup, 100% local.',
       h1: 'Generate secure passwords online',
       intro: 'Create strong, random passwords with customizable length, character types, and exclusion rules. Our password generator lets you choose the exact composition: uppercase letters, lowercase letters, numbers, special characters, and the ability to exclude ambiguous characters like 0/O or 1/l. A strong password of 16+ characters combining all character types is recommended for maximum security. Whether you are securing an email account, a banking portal, or a server, our tool generates cryptographically random passwords that are impossible to guess. All generation happens locally in your browser — your passwords are never sent to any server or stored anywhere. The service is free and requires no signup.',
       faq: [
@@ -458,7 +458,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'generateur-hash': {
       title: 'Hash Generator Online Free — MD5, SHA-1, SHA-256',
-      desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 hashes instantly and verify file integrity. Free, no signup, 100% local processing.',
+      desc: 'Generate MD5, SHA-1, SHA-256, SHA-512 hashes and verify file integrity. Free, no signup, 100% local.',
       h1: 'Generate MD5, SHA-1, SHA-256 hashes online',
       intro: 'Generate cryptographic hashes from any text or file instantly. A hash is a fixed-length string produced by a one-way mathematical function, used for verifying data integrity, storing passwords securely, detecting duplicate files, and authenticating digital signatures. Our tool supports MD5, SHA-1, SHA-256, SHA-384, and SHA-512 algorithms. Developers use SHA-256 for API authentication, system administrators to verify file integrity after downloads, and security professionals to detect compromised data. All hashing is done locally in your browser — your data is never sent to a server. The service is free and requires no signup.',
       faq: [
@@ -506,7 +506,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'calculateur-imc': {
       title: 'BMI Calculator Online Free — Body Mass Index',
-      desc: 'Calculate your Body Mass Index (BMI) instantly with health category classification and metric/imperial units. Free, no signup, 100% local.',
+      desc: 'Calculate your BMI instantly with health category classification and metric/imperial units. Free, no signup, 100% local.',
       h1: 'Calculate your Body Mass Index (BMI) online',
       intro: 'Calculate your Body Mass Index (BMI) by entering your weight and height, and instantly see which health category you fall into. BMI is a widely used indicator of body fat that helps assess health risks related to weight. Our calculator supports both metric (kg/cm) and imperial (lbs/ft) units and provides a clear classification: underweight, normal weight, overweight, or obese. Healthcare professionals, fitness coaches, and individuals use BMI as a quick screening tool. All processing happens locally in your browser. The service is free and requires no signup.',
       faq: [
@@ -530,7 +530,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'calculateur-pourcentage': {
       title: 'Percentage Calculator Online Free',
-      desc: 'Calculate percentages, increases, decreases, and ratios instantly with formulas and examples included. Free, no signup, 100% local.',
+      desc: 'Calculate percentages, increases, decreases and ratios with formulas and examples. Free, no signup, 100% local.',
       h1: 'Calculate percentages online',
       intro: 'Quickly calculate all types of percentages in seconds. Our percentage calculator handles every common calculation: what is X% of Y, what percentage is X of Y, percentage increase or decrease between two values, and adding or subtracting a percentage from a number. Whether you are calculating a tip at a restaurant, figuring out a sale discount, determining a tax rate, analyzing financial growth, or computing grade percentages, our tool gives you instant results. Students, financial professionals, shoppers, and business owners use percentage calculations daily. All processing happens locally in your browser. The service is free and requires no signup.',
       faq: [
@@ -566,7 +566,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'calculateur-frais-kilometriques': {
       title: 'Mileage Reimbursement Calculator Online Free',
-      desc: 'Calculate mileage reimbursement based on distance and applicable rates for cars, motorcycles and mopeds. Free, no signup, 100% local.',
+      desc: 'Calculate mileage reimbursement by distance and rates for cars, motorcycles and mopeds. Free, no signup, 100% local.',
       h1: 'Calculate mileage reimbursement online',
       intro: 'Calculate your mileage reimbursement based on distance traveled and the applicable per-kilometer rates. Our calculator uses the official French tax scale (barème URSSAF) which varies based on the vehicle power and distance, ensuring your reimbursements are accurate and compliant. Freelancers, employees, and business owners use this tool to calculate travel expense deductions for tax returns and expense reports. You can also enter a custom per-km rate for specific company policies. The calculator automatically applies the correct rate based on your vehicle category and distance. All processing happens locally in your browser. The service is free and requires no signup.',
       faq: [
@@ -590,7 +590,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'chronometre': {
       title: 'Online Stopwatch Free — Precision Timer with Laps',
-      desc: 'Free online stopwatch with lap functionality and precision to the hundredth of a second. Ideal for sports and task tracking.',
+      desc: 'Free online stopwatch with lap times and precision to the hundredth of a second. Ideal for sports and task tracking.',
       h1: 'Online stopwatch with lap times',
       intro: 'A precision stopwatch right in your browser. Record lap times, measure to the hundredth of a second, and track your performance.',
       faq: [
@@ -635,7 +635,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'calculateur-pourboire': {
       title: 'Tip Calculator Online Free — Calculate Tips & Split Bill',
-      desc: 'Calculate tips and split bills easily between multiple people with custom percentages and smart rounding. Free, no signup, 100% local.',
+      desc: 'Calculate tips and split bills between multiple people with custom percentages and rounding. Free, no signup, 100% local.',
       h1: 'Calculate tips and split bills online',
       intro: 'Enter the bill amount, choose a tip percentage, and optionally split the total among multiple people. Quick and easy for restaurants and group outings.',
       faq: [
@@ -645,7 +645,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'calculateur-remise': {
       title: 'Discount Calculator Online Free — Price After Discount',
-      desc: 'Calculate the price after discount, savings, or discount percentage with support for single and double discounts. Free, no signup, 100% local.',
+      desc: 'Calculate price after discount, savings or percentage with single and double discount support. Free, no signup, 100% local.',
       h1: 'Discount Calculator: price after reduction',
       intro: 'Instantly calculate the final price after a discount or determine the discount percentage from the original and paid prices. Supports single and double discounts (cumulative sales), common during promotional periods. Perfect for online shopping, sales, commercial negotiations, or invoice verification. Double discount is especially useful when two promotions stack, e.g. -30% then -20% extra: the effective discount is 44%, not 50%, because the second discount applies to the already-reduced price. All processing happens locally in your browser: no data is sent to any server. The service is completely free and requires no signup.',
       faq: [

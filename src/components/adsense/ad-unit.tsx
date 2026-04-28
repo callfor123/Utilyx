@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, memo, useState, useCallback } from 'react'
-import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE, useAdConsent, useAdLimiter } from './adsense-provider'
+import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE, useAdConsent, useAdLimiter, type AdPriority } from './adsense-provider'
 
 export type AdFormat = 'auto' | 'rectangle' | 'horizontal' | 'vertical' | 'fluid'
 export type AdLayout = '-1' | '-1a' | '-1b' | '-1c' | '-1d' | '-1e' | '-1f'
@@ -13,6 +13,8 @@ interface AdUnitProps {
   style?: React.CSSProperties
   className?: string
   responsive?: boolean
+  /** Priority for the ad limiter: 1 = highest (near active content), 2 = standard, 3 = low (footers) */
+  priority?: AdPriority
 }
 
 /**
@@ -30,6 +32,7 @@ export const AdUnit = memo(function AdUnit({
   style,
   className = '',
   responsive = true,
+  priority = 2,
 }: AdUnitProps) {
   const adRef = useRef<HTMLDivElement>(null)
   const pushedRef = useRef(false)
@@ -71,12 +74,12 @@ export const AdUnit = memo(function AdUnit({
   // AND the ad limiter allows this slot (max 3 visible ads per viewport)
   useEffect(() => {
     if (consentChecked && hasConsent && isVisible) {
-      const allowed = registerSlot(slotIdRef.current)
+      const allowed = registerSlot(slotIdRef.current, priority)
       if (allowed) {
         setShouldRender(true)
       }
     }
-  }, [consentChecked, hasConsent, isVisible, registerSlot])
+  }, [consentChecked, hasConsent, isVisible, registerSlot, priority])
 
   // Push to adsbygoogle once the <ins> is in the DOM and consent is granted
   useEffect(() => {
@@ -147,6 +150,7 @@ export function AdBanner({ className = '' }: { className?: string }) {
       <AdUnit
         adSlot={AD_SLOTS.BANNER}
         adFormat="horizontal"
+        priority={2}
         className="w-full max-w-4xl mx-auto"
         style={{ minHeight: '90px' }}
       />
@@ -160,6 +164,7 @@ export function AdRectangle({ className = '' }: { className?: string }) {
       <AdUnit
         adSlot={AD_SLOTS.RECTANGLE}
         adFormat="rectangle"
+        priority={3}
         className="w-full max-w-[300px]"
         style={{ minHeight: '250px' }}
       />
@@ -167,13 +172,14 @@ export function AdRectangle({ className = '' }: { className?: string }) {
   )
 }
 
-export function AdInFeed({ className = '' }: { className?: string }) {
+export function AdInFeed({ className = '', priority: priorityOverride }: { className?: string; priority?: AdPriority }) {
   return (
     <div className={`w-full ${className}`}>
       <AdUnit
         adSlot={AD_SLOTS.IN_FEED}
         adFormat="fluid"
         adLayout="-1e"
+        priority={priorityOverride ?? 2}
         className="w-full"
         style={{ minHeight: '120px' }}
       />
@@ -188,6 +194,7 @@ export function AdInArticle({ className = '' }: { className?: string }) {
         adSlot={AD_SLOTS.IN_ARTICLE}
         adFormat="fluid"
         adLayout="in-article"
+        priority={1}
         className="w-full"
         style={{ minHeight: '250px' }}
       />
@@ -201,6 +208,7 @@ export function AdSidebar({ className = '' }: { className?: string }) {
       <AdUnit
         adSlot={AD_SLOTS.SIDEBAR}
         adFormat="vertical"
+        priority={3}
         className="w-full max-w-[160px]"
         style={{ minHeight: '600px' }}
       />
@@ -220,6 +228,7 @@ export function AdStickyBottom({ className = '' }: { className?: string }) {
         <AdUnit
           adSlot={AD_SLOTS.STICKY_MOBILE}
           adFormat="auto"
+          priority={1}
           className="w-full max-w-[320px] mx-auto"
           style={{ minHeight: '50px' }}
         />
@@ -235,13 +244,14 @@ export function AdStickyBottom({ className = '' }: { className?: string }) {
   )
 }
 
-export function AdLeaderboard({ className = '' }: { className?: string }) {
+export function AdLeaderboard({ className = '', priority: priorityOverride }: { className?: string; priority?: AdPriority }) {
   return (
     <div className={`w-full min-h-[90px] flex items-center justify-center ${className}`}>
       <AdUnit
         adSlot={AD_SLOTS.LEADERBOARD}
         adFormat="horizontal"
         adLayout="-1a"
+        priority={priorityOverride ?? 2}
         className="w-full max-w-5xl mx-auto"
         style={{ minHeight: '90px' }}
       />
@@ -254,6 +264,7 @@ export function AdFlexible({ className = '' }: { className?: string }) {
     <div className={`w-full min-h-[100px] ${className}`}>
       <AdUnit
         adFormat="auto"
+        priority={3}
         className="w-full"
         style={{ minHeight: '100px' }}
       />
@@ -271,6 +282,7 @@ export function AdHomeGrid({ className = '' }: { className?: string }) {
       <AdUnit
         adSlot={AD_SLOT_HOME_GRID}
         adFormat="horizontal"
+        priority={1}
         className="w-full"
         style={{ minHeight: '90px' }}
       />
@@ -285,6 +297,7 @@ export function AdToolPage({ className = '' }: { className?: string }) {
       <AdUnit
         adSlot={AD_SLOT_TOOL_PAGE}
         adFormat="horizontal"
+        priority={2}
         className="w-full max-w-4xl mx-auto"
         style={{ minHeight: '90px' }}
       />

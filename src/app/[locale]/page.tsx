@@ -815,8 +815,8 @@ function HomePage() {
         </motion.section>
       )}
 
-      {/* In-Feed Ad — Between Categories and All Tools */}
-      {!searchQuery.trim() && <AdInFeed className="my-4" />}
+      {/* In-Feed Ad — Between Categories and All Tools (low CTR transition zone) */}
+      {!searchQuery.trim() && <AdInFeed className="my-4" priority={3} />}
 
       {/* All Tools */}
       {!searchQuery.trim() && (
@@ -847,8 +847,8 @@ function HomePage() {
         </motion.section>
       )}
 
-      {/* Leaderboard Ad — Bottom of Homepage */}
-      {!searchQuery.trim() && <AdLeaderboard className="mt-8" />}
+      {/* Leaderboard Ad — Bottom of Homepage (low CTR, below fold) */}
+      {!searchQuery.trim() && <AdLeaderboard className="mt-8" priority={3} />}
     </div>
   )
 }

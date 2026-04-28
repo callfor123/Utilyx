@@ -103,14 +103,22 @@ export function AdConsentProvider({ children }: { children: ReactNode }) {
 
 // ── Ad Visibility Limiter ───────────────────────────────────────────────
 // AdSense policy limits visible ad units to 3 per viewport. This context
-// tracks which ad slots have registered and only allows the first 3 (by
-// render order / priority) to actually push adsbygoogle. This prevents
-// policy violations while keeping layout slots in place for natural flow.
+// tracks which ad slots have registered and only allows the top 3 by
+// priority to actually push adsbygoogle. Priority-based ordering ensures
+// high-CTR positions (near active content) always get budget over low-CTR
+// positions (transition zones, footers), preventing policy violations
+// while maximizing revenue.
 
 const MAX_VISIBLE_ADS = 3
 
+// Priority levels: lower number = higher priority (renders first)
+// 1 = critical (near active tool, between content sections)
+// 2 = standard (header banners, mid-content)
+// 3 = low-priority (footers, transition zones)
+export type AdPriority = 1 | 2 | 3
+
 interface AdLimiterState {
-  registerSlot: (id: string) => boolean // returns true if slot is allowed
+  registerSlot: (id: string, priority?: AdPriority) => boolean
   unregisterSlot: (id: string) => void
 }
 
@@ -123,23 +131,52 @@ export function useAdLimiter() {
   return useContext(AdLimiterContext)
 }
 
-export function AdLimiterProvider({ children }: { children: ReactNode }) {
-  // Track registered slots in order — first N get rendered
-  const registeredRef = useRef<string[]>([])
+interface SlotEntry {
+  id: string
+  priority: AdPriority
+  allowed: boolean | null // null = not yet decided
+}
 
-  const registerSlot = useCallback((id: string): boolean => {
-    if (registeredRef.current.includes(id)) {
-      // Already registered — check if it's in the first 3
-      return registeredRef.current.indexOf(id) < MAX_VISIBLE_ADS
-    }
-    registeredRef.current.push(id)
-    // Only the first MAX_VISIBLE_ADS slots get to render
-    return registeredRef.current.length <= MAX_VISIBLE_ADS
+export function AdLimiterProvider({ children }: { children: ReactNode }) {
+  const slotsRef = useRef<SlotEntry[]>([])
+  const [, forceUpdate] = useState(0)
+
+  const resolveSlots = useCallback(() => {
+    // Sort by priority (ascending), then by registration order for ties
+    const sorted = [...slotsRef.current].sort((a, b) => {
+      if (a.priority !== b.priority) return a.priority - b.priority
+      return slotsRef.current.indexOf(a) - slotsRef.current.indexOf(b)
+    })
+    // Top MAX_VISIBLE_ADS by priority get allowed=true
+    const allowedIds = new Set(sorted.slice(0, MAX_VISIBLE_ADS).map(s => s.id))
+    let changed = false
+    slotsRef.current.forEach(slot => {
+      const newAllowed = allowedIds.has(slot.id)
+      if (slot.allowed !== newAllowed) {
+        slot.allowed = newAllowed
+        changed = true
+      }
+    })
+    // Re-render if any slot's allowed status changed (affects already-mounted units)
+    if (changed) forceUpdate(n => n + 1)
   }, [])
+
+  const registerSlot = useCallback((id: string, priority: AdPriority = 2): boolean => {
+    const existing = slotsRef.current.find(s => s.id === id)
+    if (existing) {
+      // Already registered — return its current allowed status
+      return existing.allowed === true
+    }
+    slotsRef.current.push({ id, priority, allowed: null })
+    resolveSlots()
+    const slot = slotsRef.current.find(s => s.id === id)!
+    return slot.allowed === true
+  }, [resolveSlots])
 
   const unregisterSlot = useCallback((id: string) => {
-    registeredRef.current = registeredRef.current.filter(s => s !== id)
-  }, [])
+    slotsRef.current = slotsRef.current.filter(s => s.id !== id)
+    resolveSlots()
+  }, [resolveSlots])
 
   return (
     <AdLimiterContext.Provider value={{ registerSlot, unregisterSlot }}>
