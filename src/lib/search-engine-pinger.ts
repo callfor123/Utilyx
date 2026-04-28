@@ -1,18 +1,51 @@
 /**
  * Search Engine Ping Service
- * Submits sitemap to Google, Bing, and Yandex for indexing
+ * Submits sitemap to Google and all tool URLs to Bing/Yandex via IndexNow.
+ * URL list is built dynamically from the seo-registry (single source of truth).
  */
 
+import { seoRegistry, getSlugForLocale, validCategories } from './seo-registry'
+
 const SITEMAP_URL = 'https://utilyx.app/sitemap.xml'
+const BASE_URL = 'https://utilyx.app'
 const HOST = 'utilyx.app'
 
-// IndexNow API key (generate from your domain's root file)
-// Place a file at https://utilyx.app/88bebc39ab1bcaa5025b078a15d5f36b.txt with the key
+const LOCALES = ['fr', 'en', 'es', 'de', 'ar', 'pt'] as const
+
+const STATIC_PAGES = ['privacy', 'about', 'terms', 'contact', 'mentions-legales'] as const
+
+// IndexNow API key — public by design, verified via /88bebc39ab1bcaa5025b078a15d5f36b.txt
 const INDEXNOW_KEY = '88bebc39ab1bcaa5025b078a15d5f36b'
 
+/** Build the full URL list for IndexNow from the seo-registry */
+function buildUrlList(): string[] {
+  const urls: string[] = []
+
+  // Locale homepages
+  for (const locale of LOCALES) {
+    urls.push(`${BASE_URL}/${locale}`)
+  }
+
+  // Static pages per locale
+  for (const locale of LOCALES) {
+    for (const page of STATIC_PAGES) {
+      urls.push(`${BASE_URL}/${locale}/${page}`)
+    }
+  }
+
+  // Tool pages per locale
+  for (const entry of Object.values(seoRegistry)) {
+    for (const locale of LOCALES) {
+      const slug = getSlugForLocale(entry.slug, locale)
+      urls.push(`${BASE_URL}/${locale}/${entry.category}/${slug}`)
+    }
+  }
+
+  return urls
+}
+
 /**
- * Ping Google Search Console
- * Google uses the sitemap protocol directly
+ * Ping Google via sitemap protocol
  */
 async function pingGoogle(): Promise<boolean> {
   try {
@@ -22,9 +55,8 @@ async function pingGoogle(): Promise<boolean> {
       console.error('[Google Ping] Failed:', response.status)
       return false
     }
-    const text = await response.text()
-    console.log('[Google Ping] Success:', text.substring(0, 200))
-    return text.includes('<result>Success</result>')
+    console.log('[Google Ping] Success:', response.status)
+    return true
   } catch (error) {
     console.error('[Google Ping] Error:', error instanceof Error ? error.message : error)
     return false
@@ -32,37 +64,14 @@ async function pingGoogle(): Promise<boolean> {
 }
 
 /**
- * Ping Bing via IndexNow protocol
+ * Ping Bing via IndexNow protocol with all site URLs
  */
-async function pingBing(): Promise<boolean> {
+async function pingBing(urlList: string[]): Promise<boolean> {
   try {
-    // Submit key file location for verification
-    const keyFileUrl = `https://${HOST}/${INDEXNOW_KEY}.txt`
-
-    // Verify key file exists (optional but recommended)
-    const keyResponse = await fetch(keyFileUrl, { method: 'HEAD' })
-    if (!keyResponse.ok) {
-      console.warn('[Bing IndexNow] Key file not found at:', keyFileUrl)
-    }
-
     const response = await fetch('https://www.bing.com/indexnow', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        key: INDEXNOW_KEY,
-        host: HOST,
-        urlList: [
-          `https://${HOST}/`,
-          `https://${HOST}/fr/`,
-          `https://${HOST}/en/`,
-          `https://${HOST}/es/`,
-          `https://${HOST}/de/`,
-          `https://${HOST}/ar/`,
-          `https://${HOST}/pt/`,
-        ],
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: INDEXNOW_KEY, host: HOST, urlList }),
     })
 
     if (!response.ok) {
@@ -71,7 +80,7 @@ async function pingBing(): Promise<boolean> {
     }
 
     const text = await response.text()
-    console.log('[Bing IndexNow] Success:', text.substring(0, 200))
+    console.log('[Bing IndexNow] Success:', response.status, text.substring(0, 200))
     return true
   } catch (error) {
     console.error('[Bing IndexNow] Error:', error instanceof Error ? error.message : error)
@@ -80,24 +89,14 @@ async function pingBing(): Promise<boolean> {
 }
 
 /**
- * Ping Yandex via IndexNow protocol
+ * Ping Yandex via IndexNow protocol with all site URLs
  */
-async function pingYandex(): Promise<boolean> {
+async function pingYandex(urlList: string[]): Promise<boolean> {
   try {
     const response = await fetch('https://yandex.com/indexnow', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        key: INDEXNOW_KEY,
-        host: HOST,
-        urlList: [
-          `https://${HOST}/`,
-          `https://${HOST}/fr/`,
-          `https://${HOST}/en/`,
-        ],
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: INDEXNOW_KEY, host: HOST, urlList }),
     })
 
     if (!response.ok) {
@@ -106,7 +105,7 @@ async function pingYandex(): Promise<boolean> {
     }
 
     const text = await response.text()
-    console.log('[Yandex IndexNow] Success:', text.substring(0, 200))
+    console.log('[Yandex IndexNow] Success:', response.status, text.substring(0, 200))
     return true
   } catch (error) {
     console.error('[Yandex IndexNow] Error:', error instanceof Error ? error.message : error)
@@ -115,34 +114,35 @@ async function pingYandex(): Promise<boolean> {
 }
 
 /**
- * Ping all search engines
- * Returns summary of results
+ * Ping all search engines with the full site URL list.
+ * Returns summary of results.
  */
-export async function pingSearchEngneys(): Promise<{
+export async function pingSearchEngines(): Promise<{
   google: boolean
   bing: boolean
   yandex: boolean
+  urlCount: number
   timestamp: string
 }> {
-  console.log('[Search Engine Ping] Starting ping process...')
+  console.log('[Search Engine Ping] Building URL list from seo-registry...')
+
+  const urlList = buildUrlList()
+  console.log(`[Search Engine Ping] ${urlList.length} URLs to submit`)
 
   const [google, bing, yandex] = await Promise.all([
     pingGoogle(),
-    pingBing(),
-    pingYandex(),
+    pingBing(urlList),
+    pingYandex(urlList),
   ])
 
   const results = {
     google,
     bing,
     yandex,
+    urlCount: urlList.length,
     timestamp: new Date().toISOString(),
   }
 
   console.log('[Search Engine Ping] Results:', results)
-
   return results
 }
-
-// Alias for backwards compatibility
-export const pingSearchEngines = pingSearchEngneys
