@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useLocale } from 'next-intl'
+import { useAdConsent } from './adsense-provider'
 
 const messages: Record<string, { title: string; desc: string; accept: string; reject: string; link: string }> = {
   fr: {
@@ -48,34 +49,29 @@ const messages: Record<string, { title: string; desc: string; accept: string; re
   },
 }
 
-const CONSENT_KEY = 'utilyx-cookie-consent'
-
 export function CookieConsentBanner() {
   const [visible, setVisible] = useState(false)
   const locale = useLocale()
   const msg = messages[locale] || messages.fr
+  const { setConsent } = useAdConsent()
 
   useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_KEY)
-    if (!stored) {
+    // Only show if user hasn't made a consent choice yet
+    const stored = localStorage.getItem('utilyx-cookie-consent')
+    const dismissed = localStorage.getItem('utilyx-ads-dismissed')
+    if (!stored && dismissed !== 'true') {
       setVisible(true)
     }
   }, [])
 
   const handleAccept = () => {
-    localStorage.setItem(CONSENT_KEY, JSON.stringify({ ads: true, analytics: true, timestamp: Date.now() }))
+    setConsent(true)
     setVisible(false)
-    // Enable AdSense personalized ads
-    if (typeof window !== 'undefined' && (window as any).adsbygoogle) {
-      (window as any).adsbygoogle.push({ google_ad_client: 'ca-pub-7035626578237932' })
-    }
   }
 
   const handleReject = () => {
-    localStorage.setItem(CONSENT_KEY, JSON.stringify({ ads: false, analytics: true, timestamp: Date.now() }))
+    setConsent(false)
     setVisible(false)
-    // Store rejection — AdSenseManager will check this
-    localStorage.setItem('utilyx-ads-dismissed', 'true')
   }
 
   if (!visible) return null

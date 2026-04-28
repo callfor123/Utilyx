@@ -16,6 +16,10 @@ const LocaleIntlProvider = dynamic(
   () => import('@/components/layout/locale-providers').then(mod => mod.LocaleIntlProvider),
   { ssr: false }
 )
+const AdConsentProvider = dynamic(
+  () => import('@/components/adsense/adsense-provider').then(mod => mod.AdConsentProvider),
+  { ssr: false }
+)
 const AdSenseScript = dynamic(
   () => import('@/components/adsense/adsense-provider').then(mod => mod.AdSenseScript),
   { ssr: false }
@@ -54,11 +58,13 @@ export function LocaleClientShell({ locale, dir, messages, children }: Props) {
         enableSystem
         disableTransitionOnChange
       >
-        <AdSenseScript />
-        <LocaleIntlProvider locale={locale} messages={messages}>
-          {children}
-          <ClientOnlyProviders />
-        </LocaleIntlProvider>
+        <AdConsentProvider>
+          <AdSenseScript />
+          <LocaleIntlProvider locale={locale} messages={messages}>
+            {children}
+            <ClientOnlyProviders />
+          </LocaleIntlProvider>
+        </AdConsentProvider>
         <Toaster />
         <Analytics />
       </ThemeProvider>
