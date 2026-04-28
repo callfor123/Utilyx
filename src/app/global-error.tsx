@@ -14,45 +14,27 @@ export default function GlobalError({
   }, [error])
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: '1.5rem',
-      padding: '1rem',
-      textAlign: 'center',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-    }}>
-      <h1 style={{ fontSize: '3.75rem', fontWeight: 'bold', margin: 0 }}>500</h1>
-      <h2 style={{ fontSize: '1.5rem', fontWeight: 600, margin: 0 }}>Something went wrong</h2>
-      <p style={{ color: '#666', maxWidth: '28rem', margin: 0 }}>
-        An unexpected error occurred. Please try again.
-      </p>
-      {error?.digest && (
-        <p style={{ color: '#999', fontSize: '0.75rem', margin: 0 }}>
-          Error digest: {error.digest}
-        </p>
-      )}
-      <button
-        onClick={reset}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: '0.375rem',
-          backgroundColor: '#000',
-          color: '#fff',
-          padding: '0.75rem 1.5rem',
-          fontSize: '0.875rem',
-          fontWeight: 500,
-          border: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        Try again
-      </button>
-    </div>
+    <html lang="en">
+      <body>
+        <div className="min-h-screen flex flex-col items-center justify-center gap-6 px-4 text-center bg-background text-foreground">
+          <h1 className="text-6xl font-bold text-primary">500</h1>
+          <h2 className="text-2xl font-semibold">Something went wrong</h2>
+          <p className="text-muted-foreground max-w-md">
+            An unexpected error occurred. Please try again.
+          </p>
+          {error?.digest && (
+            <p className="text-xs text-muted-foreground/60">
+              Error digest: {error.digest}
+            </p>
+          )}
+          <button
+            onClick={reset}
+            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+          >
+            Try again
+          </button>
+        </div>
+      </body>
+    </html>
   )
 }

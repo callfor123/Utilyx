@@ -11,7 +11,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
   en: {
     'compresser-pdf': {
       title: 'Compress PDF Online Free — Reduce PDF Size',
-      desc: 'Reduce your PDF file size up to 80% for free. No signup, 100% local processing in your browser.',
+      desc: 'Reduce your PDF file size up to 80% for free. No signup, 100% local processing in your browser. Compress without quality loss.',
       h1: 'Compress a PDF file online for free',
       intro: 'Our PDF compression tool instantly reduces the size of your documents without visible quality loss. Perfect for emailing files, uploading to websites, or saving storage space. No files are sent to any server — everything runs in your browser.',
       faq: [
@@ -23,7 +23,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'fusionner-pdf': {
       title: 'Merge PDF Online Free — Combine Multiple PDFs',
-      desc: 'Merge multiple PDF files into one document in seconds. Free, no signup, local processing.',
+      desc: 'Merge multiple PDF files into one document in seconds. Free, no signup, 100% local processing in your browser.',
       h1: 'Merge multiple PDFs into one file',
       intro: 'Easily combine 2 or more PDF documents into a single unified file in seconds. Our free online PDF merger lets you reorder pages by drag-and-drop before merging, giving you full control over the final result. Perfect for assembling invoices, reports, administrative files, university theses, or any multi-page document. No signup required and the service is entirely free. All processing happens 100% locally in your browser — your documents are never sent to a remote server, ensuring total confidentiality of your data. The PDF merger works without installation on desktop, tablet, or smartphone, with no daily limit or watermark.',
       faq: [
@@ -35,7 +35,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'pdf-en-images': {
       title: 'Convert PDF to JPG PNG Images Online Free',
-      desc: 'Convert each page of your PDF into a high-quality JPG or PNG image. Free, no signup.',
+      desc: 'Convert each page of your PDF into high-quality JPG or PNG images. Free, no signup, 100% local processing.',
       h1: 'Convert a PDF to JPG or PNG images',
       intro: 'Transform every page of your PDF documents into high-resolution images (JPG or PNG) in seconds. This tool is particularly useful for integrating PDF pages into PowerPoint presentations, sharing on social media, or editing in photo editors like Photoshop or GIMP. JPG produces lightweight files ideal for web and email, while PNG offers maximum quality with transparency support. Marketing professionals, graphic designers, and students regularly use PDF-to-image conversion to create visuals from reports, brochures, or catalogs. All processing happens locally in your browser — your documents stay on your device and are never transferred to a server. The service is completely free and requires no signup.',
       faq: [
@@ -47,7 +47,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'signer-pdf': {
       title: 'Sign PDF Online Free — Electronic Signature',
-      desc: 'Sign and annotate your PDF documents directly in the browser. Draw or type your signature. 100% free.',
+      desc: 'Sign and annotate your PDF documents directly in the browser. Draw or type your signature. Free, no signup, 100% local.',
       h1: 'Sign a PDF document online',
       intro: 'Add your handwritten or typed signature to any PDF document without printing or scanning. Our free online PDF signer lets you draw your signature directly on screen, type it in a calligraphic font, or import it from an image. You can then position and resize it precisely on the document. Ideal for employment contracts, purchase orders, administrative forms, NDAs, and any document requiring a signature. This tool eliminates the tedious cycle of printing, signing, and scanning, saving you valuable time. The process is 100% local — your document stays on your device and is never sent to a server. The service is completely free and requires no signup. Note that our tool creates a simple signature. For enhanced legal validity under the eIDAS regulation, consult a certified electronic signature service.',
       faq: [
@@ -59,7 +59,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'deverrouiller-pdf': {
       title: 'Unlock PDF Online Free — Remove PDF Password',
-      desc: 'Remove password protection from your PDF files easily. Free and 100% in your browser.',
+      desc: 'Remove password protection from your PDF files easily. Free, no signup, 100% local processing in your browser.',
       h1: 'Unlock a password-protected PDF',
       intro: 'Have a protected PDF whose password you know but need to open frequently? Our tool lets you remove the password protection in one click, so you can access and share your document freely without entering the password every time. This is especially useful for password-protected bank statements, secured contracts, or any document where you want to remove the password constraint while keeping the content intact. The process is simple: upload your protected PDF, enter the password, and download the unlocked file. Everything happens in your browser — no data is sent to a server, guaranteeing total confidentiality. The tool is entirely free and requires no signup. Important: you must know the password to unlock the file. Our tool does not crack passwords.',
       faq: [
@@ -71,7 +71,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'proteger-pdf': {
       title: 'Protect PDF Online Free — Add Password to PDF',
-      desc: 'Add password protection to your PDF files for free. 100% local processing, no server upload.',
+      desc: 'Add password protection to your PDF files for free. 100% local processing, no server upload, no signup required.',
       h1: 'Protect a PDF with a password',
       intro: 'Secure your PDF documents by adding password protection. Only people who know the password will be able to open and read your file, which is essential for confidential documents like contracts, bank statements, medical records, or personal data. Our tool lets you choose a strong password and apply it instantly to your PDF. AES-128 or AES-256 encryption is used to ensure solid protection. The process is entirely local: your document and password stay on your device and are never transmitted to a server. The service is free and requires no signup. You can protect as many PDFs as you want. For optimal security, choose a password of at least 8 characters combining uppercase, lowercase, numbers, and symbols.',
       faq: [
@@ -83,7 +83,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'convertir-image': {
       title: 'Image Converter Online Free — WebP, AVIF, JPG, PNG',
-      desc: 'Convert images between formats: WebP, AVIF, JPG, PNG, and more. Free, no signup, 100% local.',
+      desc: 'Convert images between formats: WebP, AVIF, JPG, PNG, and more. Free, no signup, 100% local processing.',
       h1: 'Convert images to WebP, AVIF, JPG, PNG',
       intro: 'Convert your images between all popular formats: WebP, AVIF, JPG, PNG, GIF, BMP, and TIFF. WebP and AVIF are modern formats that offer significantly better compression than classic JPG, reducing your image file sizes by 30 to 50% without visible quality loss. Ideal for speeding up your website loading times and improving your SEO ranking. Web developers, graphic designers, and bloggers regularly use image conversion to optimize visuals for their projects. You can convert one or multiple images at once, choose the output quality, and download the results. All processing happens locally in your browser — your images stay on your device and are never sent to a server. The service is completely free and requires no signup.',
       faq: [
@@ -95,7 +95,7 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
     },
     'compresser-image': {
       title: 'Compress Image Online Free — Reduce Image Size',
-      desc: 'Optimize and reduce image file size without visible quality loss. Free, no signup, local processing.',
+      desc: 'Optimize and reduce image file size without visible quality loss. Free, no signup, 100% local processing.',
       h1: 'Compress an image online for free',
       intro: 'Instantly reduce the file size of your images without visible quality degradation. Our free online image compressor optimizes your JPG, PNG, and WebP files by adjusting the compression level to your needs. A compressed image loads faster on websites, uses less bandwidth, and improves user experience and SEO rankings. Web developers, bloggers, and marketing professionals all benefit from compressing images before publishing them online. You can choose between light, balanced, or strong compression, and compare the result with the original before downloading. All processing happens locally in your browser — your images are never sent to a server. The service is free and requires no signup.',
       faq: [
