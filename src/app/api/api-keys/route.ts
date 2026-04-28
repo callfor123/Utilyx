@@ -2,13 +2,14 @@
  * API Keys management endpoint.
  *
  * POST   /api/api-keys          — Generate a new free API key
- * GET    /api/api-keys?email=   — List keys by email
+ * GET    /api/api-keys?email=   — List keys by email (admin-only)
  * DELETE /api/api-keys          — Revoke a key
  */
 
 import { NextRequest, NextResponse } from 'next/server'
 import { generateApiKey, revokeApiKey, getApiKeysByEmail } from '@/lib/api-key-auth'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
+import { requireAdminAuth } from '@/lib/admin-auth'
 
 // Rate limit for key generation: 5 per hour per IP
 const GENERATE_RATE_LIMIT = 5
@@ -62,6 +63,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
+  const authError = requireAdminAuth(request)
+  if (authError) return authError
+
   const email = request.nextUrl.searchParams.get('email')
 
   if (!email) {

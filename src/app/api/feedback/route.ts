@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db, isDbAvailable } from '@/lib/db'
 import { z } from 'zod'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
+import { requireAdminAuth } from '@/lib/admin-auth'
 
 // POST: Submit feedback (public, rate-limited: 10/min)
 const feedbackSchema = z.object({
@@ -69,6 +70,9 @@ const feedbackQuerySchema = z.object({
 })
 
 export async function GET(request: NextRequest) {
+  const authError = requireAdminAuth(request)
+  if (authError) return authError
+
   const ip = getClientIp(request)
   const rl = rateLimit(ip, 30, 60_000)
   if (!rl.allowed) {

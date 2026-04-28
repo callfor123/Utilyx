@@ -110,38 +110,16 @@ export function AdSenseScript() {
   // Don't render the script if user rejected ads
   if (!hasConsent) return null
 
+  // NOTE: auto-ads (enable_page_level_ads) intentionally removed.
+  // Auto-ads place ads inside interactive tool areas, violating AdSense
+  // placement policy and risking invalid clicks on a tool-heavy SPA.
   return (
-    <>
-      <Script
-        id="adsense-script"
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
-        strategy="afterInteractive"
-        crossOrigin="anonymous"
-        async
-      />
-      {/* Auto ads configuration - runs once AdSense script loads */}
-      <Script
-        id="adsense-auto-ads"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (function() {
-              if (typeof window.adsbygoogle === 'undefined') {
-                console.warn('AdSense script not loaded yet');
-                return;
-              }
-              try {
-                window.adsbygoogle.push({
-                  google_ad_client: "${ADSENSE_CLIENT}",
-                  enable_page_level_ads: true
-                });
-              } catch (e) {
-                console.warn('AdSense auto ads init error:', e);
-              }
-            })();
-          `,
-        }}
-      />
-    </>
+    <Script
+      id="adsense-script"
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+      strategy="afterInteractive"
+      crossOrigin="anonymous"
+      async
+    />
   )
 }

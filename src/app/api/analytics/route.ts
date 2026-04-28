@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { db, isDbAvailable } from '@/lib/db'
 import { z } from 'zod'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
+import { requireAdminAuth } from '@/lib/admin-auth'
 
 // POST: Record a tool usage event (public, rate-limited: 60/min)
 const trackSchema = z.object({
@@ -72,6 +73,9 @@ const querySchema = z.object({
 })
 
 export async function GET(request: NextRequest) {
+  const authError = requireAdminAuth(request)
+  if (authError) return authError
+
   const ip = getClientIp(request)
   const rl = rateLimit(ip, 30, 60_000)
   if (!rl.allowed) {
