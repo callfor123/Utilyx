@@ -794,9 +794,6 @@ function HomePage() {
         )}
       </AnimatePresence>
 
-      {/* Ad Banner — Between Hero and Categories */}
-      {!searchQuery.trim() && <AdBanner className="my-4" />}
-
       {/* Module Cards */}
       {!searchQuery.trim() && (
         

@@ -671,6 +671,18 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         'Copy the text to your clipboard or download it'
       ],
     },
+    'convertisseur-temps': {
+      title: 'Time Converter Online Free — Convert Seconds, Minutes, Hours, Days',
+      desc: 'Convert between seconds, minutes, hours, days, weeks, months, and years instantly. Free, no signup, 100% local.',
+      h1: 'Convert time units instantly',
+      intro: 'Instantly convert between all time units: seconds, minutes, hours, days, weeks, months, and years. Enter any value and see all equivalent time units at a glance. Perfect for project planning, time tracking, payroll calculations, cooking timers, or any situation where you need to convert time units. For example, convert 90 minutes to 1.5 hours, 72 hours to 3 days, or 2 weeks to 14 days. All processing happens locally in your browser — no data is sent to any server. The service is completely free and requires no signup.',
+      faq: [
+        { q: 'How many seconds in an hour?', a: 'There are 3,600 seconds in one hour (60 minutes × 60 seconds).' },
+        { q: 'How many days in a year?', a: 'A standard year has 365 days. A leap year has 366 days.' },
+        { q: 'How do I convert minutes to hours?', a: 'Divide the number of minutes by 60. For example, 150 minutes ÷ 60 = 2.5 hours.' },
+      ],
+      howTo: ['Enter a time value in any unit', 'See all equivalent conversions instantly', 'Copy the result you need'],
+    },
   },
 
   es: {
@@ -1376,6 +1388,18 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         'Copia el texto a tu portapapeles o descárgalo'
       ],
     },
+    'convertisseur-temps': {
+      title: 'Conversor de Tiempo Online Gratis — Convertir Segundos, Minutos, Horas, Días',
+      desc: 'Convierte entre segundos, minutos, horas, días, semanas, meses y años al instante. Gratis, sin registro, 100% local.',
+      h1: 'Convierte unidades de tiempo al instante',
+      intro: 'Convierte al instante entre todas las unidades de tiempo: segundos, minutos, horas, días, semanas, meses y años. Introduce cualquier valor y ve todas las equivalencias de un vistazo. Perfecto para planificación de proyectos, control de tiempo, cálculos de nómina, temporizadores de cocina o cualquier situación donde necesites convertir unidades de tiempo. Por ejemplo, convierte 90 minutos a 1,5 horas, 72 horas a 3 días, o 2 semanas a 14 días. Todo el procesamiento se realiza localmente en tu navegador: no se envían datos a ningún servidor. El servicio es completamente gratuito y no requiere registro.',
+      faq: [
+        { q: '¿Cuántos segundos hay en una hora?', a: 'Hay 3.600 segundos en una hora (60 minutos × 60 segundos).' },
+        { q: '¿Cuántos días tiene un año?', a: 'Un año estándar tiene 365 días. Un año bisiesto tiene 366 días.' },
+        { q: '¿Cómo convierto minutos a horas?', a: 'Divide el número de minutos entre 60. Por ejemplo, 150 minutos ÷ 60 = 2,5 horas.' },
+      ],
+      howTo: ['Introduce un valor de tiempo en cualquier unidad', 'Ve todas las conversiones equivalentes al instante', 'Copia el resultado que necesitas'],
+    },
   },
 
   de: {
@@ -1973,6 +1997,18 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         'Kopieren Sie den Text in die Zwischenablage oder laden Sie ihn herunter',
       ],
     },
+    'convertisseur-temps': {
+      title: 'Zeitumrechner Online Kostenlos — Sekunden, Minuten, Stunden, Tage Umrechnen',
+      desc: 'Rechnen Sie sofort zwischen Sekunden, Minuten, Stunden, Tagen, Wochen, Monaten und Jahren um. Kostenlos, ohne Anmeldung, 100% lokal.',
+      h1: 'Zeiteinheiten sofort umrechnen',
+      intro: 'Rechnen Sie sofort zwischen allen Zeiteinheiten um: Sekunden, Minuten, Stunden, Tage, Wochen, Monate und Jahre. Geben Sie einen Wert ein und sehen Sie alle äquivalenten Zeiteinheiten auf einen Blick. Perfekt für Projektplanung, Zeiterfassung, Gehaltsabrechnungen, Küchentimer oder jede Situation, in der Sie Zeiteinheiten umrechnen müssen. Zum Beispiel: 90 Minuten in 1,5 Stunden, 72 Stunden in 3 Tage oder 2 Wochen in 14 Tage umrechnen. Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser: keine Daten werden an einen Server gesendet. Der Service ist komplett kostenlos und ohne Anmeldung.',
+      faq: [
+        { q: 'Wie viele Sekunden hat eine Stunde?', a: 'Eine Stunde hat 3.600 Sekunden (60 Minuten × 60 Sekunden).' },
+        { q: 'Wie viele Tage hat ein Jahr?', a: 'Ein Standardjahr hat 365 Tage. Ein Schaltjahr hat 366 Tage.' },
+        { q: 'Wie rechne ich Minuten in Stunden um?', a: 'Teilen Sie die Anzahl der Minuten durch 60. Zum Beispiel: 150 Minuten ÷ 60 = 2,5 Stunden.' },
+      ],
+      howTo: ['Geben Sie einen Zeitwert in einer beliebigen Einheit ein', 'Sehen Sie alle äquivalenten Umrechnungen sofort', 'Kopieren Sie das gewünschte Ergebnis'],
+    },
   },
   ar: {
     'compresser-pdf': {
@@ -2567,6 +2603,18 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         'انسخ النص إلى الحافظة أو حمّله',
       ],
     },
+    'convertisseur-temps': {
+      title: 'محول الوقت مجاناً عبر الإنترنت — تحويل الثواني والدقائق والساعات والأيام',
+      desc: 'حوّل بين الثواني والدقائق والساعات والأيام والأسابيع والأشهر والسنوات فوراً. مجاني، بدون تسجيل، معالجة محلية 100%.',
+      h1: 'حوّل وحدات الوقت فوراً',
+      intro: 'حوّل فوراً بين جميع وحدات الوقت: الثواني والدقائق والساعات والأيام والأسابيع والأشهر والسنوات. أدخل أي قيمة وشاهد جميع المكافئات بنظرة واحدة. مثالي لتخطيط المشاريع وتتبع الوقت وحسابات الرواتب ومؤقتات الطبخ أو أي موقف تحتاج فيه لتحويل وحدات الوقت. على سبيل المثال، حوّل 90 دقيقة إلى 1.5 ساعة، أو 72 ساعة إلى 3 أيام، أو أسبوعين إلى 14 يوماً. تتم كل المعالجة محلياً في متصفحك: لا تُرسل أي بيانات إلى أي خادم. الخدمة مجانية تماماً ولا تتطلب تسجيلاً.',
+      faq: [
+        { q: 'كم ثانية في الساعة؟', a: 'يوجد 3,600 ثانية في الساعة الواحدة (60 دقيقة × 60 ثانية).' },
+        { q: 'كم يوم في السنة؟', a: 'السنة العادية تحتوي على 365 يوماً. السنة الكبيسة تحتوي على 366 يوماً.' },
+        { q: 'كيف أحول الدقائق إلى ساعات؟', a: 'اقسم عدد الدقائق على 60. مثلاً، 150 دقيقة ÷ 60 = 2.5 ساعة.' },
+      ],
+      howTo: ['أدخل قيمة وقت بأي وحدة', 'شاهد جميع التحويلات المكافئة فوراً', 'انسخ النتيجة التي تحتاجها'],
+    },
   },
   pt: {
     'compresser-pdf': {
@@ -3154,6 +3202,18 @@ export const seoLocaleOverrides: Record<string, Record<string, LocaleSeoOverride
         { q: 'Posso extrair texto de capturas de tela?', a: 'Sim, o OCR funciona perfeitamente com capturas de tela de apresentacoes, sites, aplicativos ou videos. Reconhece texto mesmo em fontes e tamanhos diferentes.' },
       ],
       howTo: ['Suba sua imagem contendo texto arrastando ou navegando seus arquivos', 'Selecione o idioma do texto para reconhecimento ideal', 'O OCR analisa automaticamente a imagem e extrai o texto', 'Verifique e corrija o texto extraido se necessario', 'Copie o texto para a area de transferencia ou baixe'],
+    },
+    'convertisseur-temps': {
+      title: 'Conversor de Tempo Online Gratis — Converter Segundos, Minutos, Horas, Dias',
+      desc: 'Converta entre segundos, minutos, horas, dias, semanas, meses e anos instantaneamente. Gratis, sem cadastro, 100% local.',
+      h1: 'Converta unidades de tempo instantaneamente',
+      intro: 'Converta instantaneamente entre todas as unidades de tempo: segundos, minutos, horas, dias, semanas, meses e anos. Insira qualquer valor e veja todas as equivalencias de uma so vez. Perfeito para planejamento de projetos, controle de tempo, calculos de folha de pagamento, temporizadores de cozinha ou qualquer situacao em que voce precise converter unidades de tempo. Por exemplo, converta 90 minutos em 1,5 horas, 72 horas em 3 dias, ou 2 semanas em 14 dias. Todo o processamento acontece localmente no seu navegador: nenhum dado e enviado a nenhum servidor. O servico e totalmente gratis e nao requer cadastro.',
+      faq: [
+        { q: 'Quantos segundos tem uma hora?', a: 'Uma hora tem 3.600 segundos (60 minutos x 60 segundos).' },
+        { q: 'Quantos dias tem um ano?', a: 'Um ano padrao tem 365 dias. Um ano bissexto tem 366 dias.' },
+        { q: 'Como converter minutos em horas?', a: 'Divida o numero de minutos por 60. Por exemplo, 150 minutos / 60 = 2,5 horas.' },
+      ],
+      howTo: ['Insira um valor de tempo em qualquer unidade', 'Veja todas as conversoes equivalentes instantaneamente', 'Copie o resultado que voce precisa'],
     },
   },
   };
