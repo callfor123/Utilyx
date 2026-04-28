@@ -12,4 +12,4 @@ export const db =
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db
 
-export const isDbAvailable = true
+export const isDbAvailable = !!process.env.DATABASE_URL
