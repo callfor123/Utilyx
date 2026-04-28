@@ -913,7 +913,7 @@ export default function Home() {
               <span className="gradient-text">Utilyx</span>
             </button>
 
-            <nav className="flex items-center gap-1">
+            <nav className="flex items-center gap-1 overflow-x-auto scrollbar-thin -mr-2 pr-2">
               {translatedModules.map((mod) => {
                 const IconComponent = moduleIcons[mod.id] || Code
                 const isActive = activeModule === mod.id
@@ -923,7 +923,7 @@ export default function Home() {
                     variant={isActive ? 'secondary' : 'ghost'}
                     size="sm"
                     className={`
-                      text-xs sm:text-sm rounded-lg transition-all duration-200
+                      text-xs sm:text-sm rounded-lg transition-all duration-200 shrink-0
                       ${isActive
                         ? 'bg-primary/10 text-primary hover:bg-primary/15 font-semibold'
                         : 'hover:bg-muted/60'
@@ -936,7 +936,7 @@ export default function Home() {
                   </Button>
                 )
               })}
-              <div className="w-px h-5 bg-border mx-1.5" />
+              <div className="w-px h-5 bg-border mx-1.5 shrink-0" />
               <LanguageSelector />
               <ThemeToggle />
             </nav>

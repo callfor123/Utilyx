@@ -75,7 +75,7 @@ export function DropZone({
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={cn(
-        'relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-10 transition-all cursor-pointer hover:border-primary/50 hover:bg-muted/30',
+        'relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-6 sm:p-10 transition-all cursor-pointer hover:border-primary/50 hover:bg-muted/30',
         isDragging ? 'border-primary bg-primary/5 scale-[1.02]' : 'border-muted-foreground/25',
         className
       )}

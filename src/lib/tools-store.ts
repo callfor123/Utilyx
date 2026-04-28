@@ -89,12 +89,12 @@ export const modules: ModuleDef[] = [
     icon: 'FileText',
     description: 'Compression, fusion, conversion et signature de PDF',
     tools: [
-      { id: 'pdf-compress', label: 'Compression PDF', icon: 'FileDown', description: 'Compressez vos fichiers PDF gratuitement en ligne et réduisez leur taille jusqu\'à 80% sans perte de qualité' },
-      { id: 'pdf-merge', label: 'Fusion PDF', icon: 'Merge', description: 'Fusionnez plusieurs fichiers PDF en un seul document gratuitement, avec réorganisation par glisser-déposer' },
-      { id: 'pdf-convert', label: 'PDF vers Images', icon: 'Image', description: 'Convertissez chaque page de vos PDF en images JPG ou PNG haute résolution, gratuitement en ligne' },
-      { id: 'pdf-sign', label: 'Signature PDF', icon: 'PenTool', description: 'Signez vos documents PDF en ligne : signature manuscrite, tapée ou importée, sans inscription' },
-      { id: 'pdf-unlock', label: 'Déverrouiller PDF', icon: 'Unlock', description: 'Retirez le mot de passe d\'un PDF protégé en un clic, traitement 100% local dans votre navigateur' },
-      { id: 'pdf-protect', label: 'Protéger PDF', icon: 'ShieldCheck', description: 'Protégez vos PDF avec un mot de passe et chiffrement AES, gratuitement et sans inscription' },
+      { id: 'pdf-compress', label: 'Compression PDF', icon: 'FileDown', description: 'Compressez vos fichiers PDF gratuitement en ligne et réduisez leur taille jusqu\'à 80% sans perte de qualité visible' },
+      { id: 'pdf-merge', label: 'Fusion PDF', icon: 'Merge', description: 'Fusionnez plusieurs fichiers PDF en un seul document gratuitement, avec réorganisation par glisser-déposer et sans inscription' },
+      { id: 'pdf-convert', label: 'PDF vers Images', icon: 'Image', description: 'Convertissez chaque page de vos PDF en images JPG ou PNG haute résolution, gratuitement en ligne et sans inscription' },
+      { id: 'pdf-sign', label: 'Signature PDF', icon: 'PenTool', description: 'Signez vos documents PDF en ligne : signature manuscrite, tapée ou importée, sans inscription ni serveur distant' },
+      { id: 'pdf-unlock', label: 'Déverrouiller PDF', icon: 'Unlock', description: 'Retirez le mot de passe d\'un PDF protégé en un clic, traitement 100% local dans votre navigateur, sans inscription' },
+      { id: 'pdf-protect', label: 'Protéger PDF', icon: 'ShieldCheck', description: 'Protégez vos PDF avec un mot de passe et chiffrement AES-256, gratuitement et sans inscription, 100% local' },
     ],
   },
   {
