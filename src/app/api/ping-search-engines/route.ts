@@ -1,7 +1,11 @@
 import { NextRequest } from 'next/server';
 import { pingSearchEngines } from '../../lib/search-engine-pinger';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 export async function GET(request: NextRequest) {
+  const authError = requireAdminAuth(request)
+  if (authError) return authError
+
   try {
     await pingSearchEngines();
     return new Response(

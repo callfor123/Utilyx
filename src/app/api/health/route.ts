@@ -20,7 +20,7 @@ export async function GET() {
     checks.database = {
       status: 'down',
       latencyMs: dbLatency,
-      message: error instanceof Error ? error.message : 'Unknown error',
+      message: 'Connection failed',
     }
   }
 
