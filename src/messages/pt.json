@@ -283,6 +283,10 @@
       "label": "Texto OCR",
       "description": "Extrair texto de imagens com reconhecimento óptico"
     },
+    "img-color-extractor": {
+      "label": "Extrator de Cores",
+      "description": "Extrair cores dominantes de uma imagem com proporções HEX, RGB, HSL"
+    },
     "time-converter": {
       "label": "Conversor de Tempo",
       "description": "Converter segundos, minutos, horas, dias, semanas, meses, anos"

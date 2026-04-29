@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useRef } from 'react'
 import {
-  FileText,
   GripVertical,
   X,
   Merge,
@@ -135,13 +134,15 @@ export function PdfMerge() {
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
     dragItem.current = index
     setDraggedIndex(index)
-    e.dataTransfer.effectAllowed = 'move'
-    e.dataTransfer.setData('text/plain', index.toString())
+    const dt = e.dataTransfer as any
+    dt.effectAllowed = 'move'
+    dt.setData('text/plain', index.toString())
   }
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
-    e.dataTransfer.dropEffect = 'move'
+    const dt = e.dataTransfer as any
+    dt.dropEffect = 'move'
   }
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>, index: number) => {
@@ -185,7 +186,7 @@ export function PdfMerge() {
       }
 
       const mergedBytes = await mergedDoc.save()
-      const blob = new Blob([mergedBytes], { type: 'application/pdf' })
+      const blob = new Blob([new Uint8Array(mergedBytes) as BlobPart], { type: 'application/pdf' })
       downloadBlob(blob, 'document_fusionné.pdf')
 
       toast.success(

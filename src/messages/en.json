@@ -286,6 +286,10 @@
     "img-ocr": {
       "label": "OCR Text",
       "description": "Extract text from images with optical recognition"
+    },
+    "img-color-extractor": {
+      "label": "Color Extractor",
+      "description": "Extract dominant colors from an image with HEX, RGB, HSL proportions"
     }
   },
   "Footer": {
