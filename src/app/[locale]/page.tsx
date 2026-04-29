@@ -1003,6 +1003,7 @@ export default function Home() {
               {t('copyright', { year: new Date().getFullYear() })}
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
+              <Link href={`/${locale}/api-keys`} className="hover:text-foreground transition-colors">{tFooter('apiKeys')}</Link>
               <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">{tFooter('privacy')}</Link>
               <Link href={`/${locale}/about`} className="hover:text-foreground transition-colors">{tFooter('about')}</Link>
               <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">{tFooter('terms')}</Link>

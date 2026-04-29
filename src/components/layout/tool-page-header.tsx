@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { useRouter, usePathname } from 'next/navigation'
-import { Sun, Moon, Globe } from 'lucide-react'
+import { Sun, Moon, Globe, Key } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -106,6 +106,18 @@ export function ToolPageHeader({ locale }: { locale: string }) {
           <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Utilyx</span>
         </Link>
         <div className="ml-auto flex items-center gap-1">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full" asChild>
+                  <Link href={`/${locale}/api-keys`}>
+                    <Key className="h-4 w-4" />
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>API Keys</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <LanguageSelector locale={locale} />
           <ThemeToggle locale={locale} />
         </div>
