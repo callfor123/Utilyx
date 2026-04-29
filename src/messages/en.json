@@ -294,7 +294,8 @@
     "about": "About",
     "terms": "Terms",
     "contact": "Contact",
-    "legal": "Legal Notice"
+    "legal": "Legal Notice",
+    "apiKeys": "API Keys"
   },
   "Privacy": {
     "title": "Privacy Policy",

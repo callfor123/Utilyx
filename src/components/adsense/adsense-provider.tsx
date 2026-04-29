@@ -2,38 +2,10 @@
 
 import Script from 'next/script'
 import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react'
+import { ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE, AD_SLOT_MAIN, ADSENSE_PUBLISHER_ID, type AdPriority } from './ad-constants'
 
-export const ADSENSE_PUBLISHER_ID = 'ca-pub-7035626578237932'
-export const ADSENSE_CLIENT = 'ca-pub-7035626578237932'
-
-// ── Ad slot registry ──────────────────────────────────────────────────
-// Each unit should have a unique slot ID from your AdSense account.
-// Go to: AdSense > My ads > Ad units > Create ad unit
-// Unique slots = more ad diversity = higher RPM
-export const AD_SLOTS = {
-  // Homepage / tool page banner (horizontal, top of content)
-  BANNER: '1623570820',
-  // In-Feed ad (between tool rows or search results)
-  IN_FEED: '1623570821',
-  // Leaderboard (wide horizontal, typically at top)
-  LEADERBOARD: '1623570822',
-  // Rectangle (300x250, inline or sidebar)
-  RECTANGLE: '1623570823',
-  // Sidebar (vertical, 160x600)
-  SIDEBAR: '1623570824',
-  // In-article (native-looking ad within tool content)
-  IN_ARTICLE: '1623570825',
-  // Sticky mobile (fixed bottom bar on mobile)
-  STICKY_MOBILE: '1623570826',
-} as const
-
-// Per-page slots for homepage tool grid (place every 8-10 tools)
-export const AD_SLOT_HOME_GRID = '1623570827'
-
-// Per-page slots for individual tool pages
-export const AD_SLOT_TOOL_PAGE = '1623570828'
-
-export const AD_SLOT_MAIN = AD_SLOTS.BANNER
+// Re-export constants for backward compatibility
+export { ADSENSE_PUBLISHER_ID, ADSENSE_CLIENT, AD_SLOTS, AD_SLOT_HOME_GRID, AD_SLOT_TOOL_PAGE, AD_SLOT_MAIN, type AdPriority }
 
 // ── Consent Context ──────────────────────────────────────────────────
 // Provides a reactive consent state that gates both the AdSense script
@@ -41,35 +13,51 @@ export const AD_SLOT_MAIN = AD_SLOTS.BANNER
 // from firing before the user has given explicit consent, which is a
 // major GDPR / privacy compliance risk.
 
+const CONSENT_KEY = 'utilyx-cookie-consent'
+const DISMISSED_KEY = 'utilyx-ads-dismissed'
+// Re-prompt dismissed users after 30 days (gives them a chance to opt back in)
+const DISMISSED_TTL_MS = 30 * 24 * 60 * 60 * 1000
+
 interface AdConsentState {
   hasConsent: boolean
   consentChecked: boolean // true once we've read localStorage (avoids flash)
   setConsent: (ads: boolean) => void
+  resetConsent: () => void // re-shows the consent banner
 }
 
 const AdConsentContext = createContext<AdConsentState>({
   hasConsent: false,
   consentChecked: false,
   setConsent: () => {},
+  resetConsent: () => {},
 })
 
 export function useAdConsent() {
   return useContext(AdConsentContext)
 }
 
-const CONSENT_KEY = 'utilyx-cookie-consent'
-const DISMISSED_KEY = 'utilyx-ads-dismissed'
-
 export function AdConsentProvider({ children }: { children: ReactNode }) {
   const [hasConsent, setHasConsent] = useState(false)
   const [consentChecked, setConsentChecked] = useState(false)
 
   useEffect(() => {
-    // Check for explicit dismissal first
-    if (localStorage.getItem(DISMISSED_KEY) === 'true') {
-      setHasConsent(false)
-      setConsentChecked(true)
-      return
+    // Check for explicit dismissal — but only if within TTL
+    const dismissedRaw = localStorage.getItem(DISMISSED_KEY)
+    if (dismissedRaw) {
+      try {
+        const dismissed = JSON.parse(dismissedRaw)
+        const dismissedAt = dismissed.timestamp || 0
+        if (Date.now() - dismissedAt < DISMISSED_TTL_MS) {
+          setHasConsent(false)
+          setConsentChecked(true)
+          return
+        }
+        // TTL expired — clear dismissal so banner re-shows
+        localStorage.removeItem(DISMISSED_KEY)
+      } catch {
+        // Legacy format ("true" string) — treat as expired for re-prompt
+        localStorage.removeItem(DISMISSED_KEY)
+      }
     }
     // Check for prior consent
     const stored = localStorage.getItem(CONSENT_KEY)
@@ -87,15 +75,22 @@ export function AdConsentProvider({ children }: { children: ReactNode }) {
   const setConsent = useCallback((ads: boolean) => {
     localStorage.setItem(CONSENT_KEY, JSON.stringify({ ads, analytics: true, timestamp: Date.now() }))
     if (!ads) {
-      localStorage.setItem(DISMISSED_KEY, 'true')
+      localStorage.setItem(DISMISSED_KEY, JSON.stringify({ timestamp: Date.now() }))
     } else {
       localStorage.removeItem(DISMISSED_KEY)
     }
     setHasConsent(ads)
   }, [])
 
+  const resetConsent = useCallback(() => {
+    localStorage.removeItem(CONSENT_KEY)
+    localStorage.removeItem(DISMISSED_KEY)
+    setHasConsent(false)
+    setConsentChecked(false)
+  }, [])
+
   return (
-    <AdConsentContext.Provider value={{ hasConsent, consentChecked, setConsent }}>
+    <AdConsentContext.Provider value={{ hasConsent, consentChecked, setConsent, resetConsent }}>
       {children}
     </AdConsentContext.Provider>
   )
@@ -111,11 +106,6 @@ export function AdConsentProvider({ children }: { children: ReactNode }) {
 
 const MAX_VISIBLE_ADS = 3
 
-// Priority levels: lower number = higher priority (renders first)
-// 1 = critical (near active tool, between content sections)
-// 2 = standard (header banners, mid-content)
-// 3 = low-priority (footers, transition zones)
-export type AdPriority = 1 | 2 | 3
 
 interface AdLimiterState {
   registerSlot: (id: string, priority?: AdPriority) => boolean

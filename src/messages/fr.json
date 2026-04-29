@@ -294,7 +294,8 @@
     "about": "À Propos",
     "terms": "CGU",
     "contact": "Contact",
-    "legal": "Mentions légales"
+    "legal": "Mentions légales",
+    "apiKeys": "Clés API"
   },
   "Privacy": {
     "title": "Politique de Confidentialité",

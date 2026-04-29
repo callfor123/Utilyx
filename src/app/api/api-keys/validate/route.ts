@@ -7,7 +7,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { validateApiKey } from '@/lib/api-key-auth'
+import { validateApiKey, trackApiKeyEvent } from '@/lib/api-key-auth'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function GET(request: NextRequest) {
@@ -24,11 +24,26 @@ export async function GET(request: NextRequest) {
   const result = await validateApiKey(request)
 
   if (!result.valid) {
+    // Track expiry event when a key is found but expired
+    if (result.error?.includes('expired')) {
+      trackApiKeyEvent({
+        eventType: 'expired',
+        ip,
+        metadata: { reason: 'validation_check' },
+      })
+    }
     return NextResponse.json(
       { valid: false, error: result.error },
       { status: 401 },
     )
   }
+
+  // Track validation event (fire-and-forget)
+  trackApiKeyEvent({
+    eventType: 'validated',
+    apiKeyId: result.key!.id,
+    ip,
+  })
 
   return NextResponse.json({
     valid: true,

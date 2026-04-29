@@ -152,6 +152,7 @@ import {
   Search,
   Shield,
   Zap,
+  Menu,
   Sparkles,
   Sun,
   Moon,
@@ -205,6 +206,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@/components/ui/sheet'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -733,8 +735,17 @@ function HomePage() {
               // @ts-ignore
               setSearchQuery(e.target.value);
             }}
-            className="pl-11 h-12 rounded-xl glass-card border-border/50 focus:border-primary/40 text-base"
+            className="pl-11 pr-10 h-12 rounded-xl glass-card border-border/50 focus:border-primary/40 text-base"
           />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted/80 transition-colors text-muted-foreground hover:text-foreground"
+              aria-label="Clear search"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
         </motion.div>
 
         <motion.div

@@ -54,6 +54,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
 
     entries.push({
+      url: `${BASE_URL}/${locale}/api-keys`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+
+    entries.push({
+      url: `${BASE_URL}/${locale}/api-docs`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })
+
+    entries.push({
       url: `${BASE_URL}/${locale}/mentions-legales`,
       lastModified: now,
       changeFrequency: 'yearly',

@@ -294,7 +294,8 @@
     "about": "Über uns",
     "terms": "AGB",
     "contact": "Kontakt",
-    "legal": "Impressum"
+    "legal": "Impressum",
+    "apiKeys": "API-Schlüssel"
   },
   "Privacy": {
     "title": "Datenschutzerklärung",

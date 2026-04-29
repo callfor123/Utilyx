@@ -294,7 +294,8 @@
     "about": "Sobre",
     "terms": "Termos",
     "contact": "Contato",
-    "legal": "Aviso Legal"
+    "legal": "Aviso Legal",
+    "apiKeys": "Chaves API"
   },
   "Privacy": {
     "title": "Política de Privacidade",
