@@ -1,17 +1,16 @@
 'use client'
 
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import {
   FileText,
   Image as ImageIcon,
   Loader2,
   RotateCcw,
   Download,
-  Settings2,
 } from 'lucide-react'
 import JSZip from 'jszip'
 import { toast } from 'sonner'
-import { cn, formatFileSize, downloadBlob, downloadDataUrl } from '@/lib/utils'
+import { cn, formatFileSize, downloadBlob } from '@/lib/utils'
 import { DropZone } from '@/components/layout/drop-zone'
 import { Button } from '@/components/ui/button'
 import {
@@ -123,6 +122,10 @@ export function PdfConvert() {
       const pdfDoc = await pdfjs.getDocument({ data: new Uint8Array(arrayBuffer) }).promise
       const count = pdfDoc.numPages
 
+      const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png'
+      const ext = format === 'jpg' ? 'jpg' : 'png'
+      const baseName = file.name.replace(/\.pdf$/i, '')
+
       if (count === 1) {
         // Single page: download directly
         const page = await pdfDoc.getPage(1)
@@ -133,14 +136,13 @@ export function PdfConvert() {
         const ctx = canvas.getContext('2d')!
         await page.render({ canvasContext: ctx, viewport }).promise
 
-        const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png'
-        const ext = format === 'jpg' ? 'jpg' : 'png'
-        const dataUrl = canvas.toDataURL(mimeType, format === 'jpg' ? quality : undefined)
-
-        // Convert dataUrl to blob for download
-        const res = await fetch(dataUrl)
-        const blob = await res.blob()
-        const baseName = file.name.replace(/\.pdf$/i, '')
+        const blob = await new Promise<Blob>((resolve, reject) => {
+          canvas.toBlob(
+            (b) => (b ? resolve(b) : reject(new Error('Canvas toBlob failed'))),
+            mimeType,
+            format === 'jpg' ? quality : undefined
+          )
+        })
         downloadBlob(blob, `${baseName}.${ext}`)
 
         toast.success('Image téléchargée avec succès !')
@@ -157,23 +159,19 @@ export function PdfConvert() {
           const ctx = canvas.getContext('2d')!
           await page.render({ canvasContext: ctx, viewport }).promise
 
-          const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png'
-          const ext = format === 'jpg' ? 'jpg' : 'png'
-          const dataUrl = canvas.toDataURL(
-            mimeType,
-            format === 'jpg' ? quality : undefined
-          )
-
-          // Convert dataUrl to blob
-          const res = await fetch(dataUrl)
-          const blob = await res.blob()
+          const blob = await new Promise<Blob>((resolve, reject) => {
+            canvas.toBlob(
+              (b) => (b ? resolve(b) : reject(new Error('Canvas toBlob failed'))),
+              mimeType,
+              format === 'jpg' ? quality : undefined
+            )
+          })
           zip.file(`page_${i}.${ext}`, blob)
 
           setProgress(Math.round((i / count) * 100))
         }
 
         const zipBlob = await zip.generateAsync({ type: 'blob' })
-        const baseName = file.name.replace(/\.pdf$/i, '')
         downloadBlob(zipBlob, `${baseName}_images.zip`)
 
         toast.success(
