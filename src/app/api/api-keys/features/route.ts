@@ -43,8 +43,8 @@ export async function GET() {
       description: '100 requests per hour per API key',
     },
     autoExpire: {
-      durationDays: 7,
-      description: 'Keys auto-expire after 7 days',
+      durationDays: 5,
+      description: 'Keys auto-expire after 5 days',
     },
     categories,
     features,

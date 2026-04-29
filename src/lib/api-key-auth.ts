@@ -32,8 +32,8 @@ export function trackApiKeyEvent(params: {
     .catch((err) => console.error('[ApiKeyEvent] Track error:', err))
 }
 
-/** Free plan: key expires after 7 days */
-const FREE_KEY_DURATION_MS = 7 * 24 * 60 * 60 * 1000
+/** Free plan: key expires after 5 days */
+const FREE_KEY_DURATION_MS = 5 * 24 * 60 * 60 * 1000
 
 /** Rate limit: max 100 requests per key per hour */
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000

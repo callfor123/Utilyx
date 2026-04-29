@@ -76,6 +76,7 @@
     }
   ],
   "crons": [
-    { "path": "/api/ping-search-engines", "schedule": "0 0 * * *" }
+    { "path": "/api/ping-search-engines", "schedule": "0 0 * * *" },
+    { "path": "/api/api-keys/cleanup", "schedule": "0 */6 * * *" }
   ]
 }

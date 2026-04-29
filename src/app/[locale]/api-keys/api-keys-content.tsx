@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useLocale } from 'next-intl'
 import { Copy, Check, Key, AlertTriangle, Clock, Shield, X, RefreshCw, ArrowUpRight } from 'lucide-react'
+import { trackEvent } from '@/lib/analytics'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -102,7 +103,7 @@ const messages: Record<string, {
     expired: 'Expirée',
     backHome: 'Retour à l\'accueil',
     featuresTitle: 'Caractéristiques',
-    feature1: 'Expiration automatique après 7 jours',
+    feature1: 'Expiration automatique après 5 jours',
     feature2: '100 requêtes par heure par clé',
     feature3: 'Aucune inscription requise',
     expiresCountdown: 'Expire dans',
@@ -110,7 +111,7 @@ const messages: Record<string, {
     hours: 'heures',
     modalExpiredTitle: 'Votre clé API a expiré',
     modalExpiredDesc: 'Votre clé gratuite n\'est plus valide. Régénérez une nouvelle clé ou passez à l\'illimité.',
-    modalRegenerateBtn: 'Régénérer une clé gratuite (7 jours)',
+    modalRegenerateBtn: 'Régénérer une clé gratuite (5 jours)',
     modalUpgradeBtn: 'Passer à l\'illimité',
     regenerateBtn: 'Régénérer',
     regenerating: 'Régénération...',
@@ -146,7 +147,7 @@ const messages: Record<string, {
     expired: 'Expired',
     backHome: 'Back to home',
     featuresTitle: 'Features',
-    feature1: 'Auto-expires after 7 days',
+    feature1: 'Auto-expires after 5 days',
     feature2: '100 requests per hour per key',
     feature3: 'No signup required',
     expiresCountdown: 'Expires in',
@@ -154,7 +155,7 @@ const messages: Record<string, {
     hours: 'hours',
     modalExpiredTitle: 'Your API key has expired',
     modalExpiredDesc: 'Your free key is no longer valid. Regenerate a new key or upgrade to unlimited.',
-    modalRegenerateBtn: 'Regenerate free key (7 days)',
+    modalRegenerateBtn: 'Regenerate free key (5 days)',
     modalUpgradeBtn: 'Upgrade to Unlimited',
     regenerateBtn: 'Regenerate',
     regenerating: 'Regenerating...',
@@ -190,7 +191,7 @@ const messages: Record<string, {
     expired: 'Expirada',
     backHome: 'Volver al inicio',
     featuresTitle: 'Características',
-    feature1: 'Expira automáticamente después de 7 días',
+    feature1: 'Expira automáticamente después de 5 días',
     feature2: '100 solicitudes por hora por clave',
     feature3: 'Sin registro requerido',
     expiresCountdown: 'Expira en',
@@ -198,7 +199,7 @@ const messages: Record<string, {
     hours: 'horas',
     modalExpiredTitle: 'Tu clave API ha expirado',
     modalExpiredDesc: 'Tu clave gratuita ya no es válida. Regenera una nueva clave o pasa a ilimitado.',
-    modalRegenerateBtn: 'Regenerar clave gratuita (7 días)',
+    modalRegenerateBtn: 'Regenerar clave gratuita (5 días)',
     modalUpgradeBtn: 'Pasar a ilimitado',
     regenerateBtn: 'Regenerar',
     regenerating: 'Regenerando...',
@@ -234,7 +235,7 @@ const messages: Record<string, {
     expired: 'Abgelaufen',
     backHome: 'Zurück zur Startseite',
     featuresTitle: 'Funktionen',
-    feature1: 'Läuft nach 7 Tagen automatisch ab',
+    feature1: 'Läuft nach 5 Tagen automatisch ab',
     feature2: '100 Anfragen pro Stunde pro Schlüssel',
     feature3: 'Keine Anmeldung erforderlich',
     expiresCountdown: 'Läuft ab in',
@@ -242,7 +243,7 @@ const messages: Record<string, {
     hours: 'Stunden',
     modalExpiredTitle: 'Ihr API-Schlüssel ist abgelaufen',
     modalExpiredDesc: 'Ihr kostenloser Schlüssel ist nicht mehr gültig. Generieren Sie einen neuen oder upgraden Sie.',
-    modalRegenerateBtn: 'Neuen Schlüssel generieren (7 Tage)',
+    modalRegenerateBtn: 'Neuen Schlüssel generieren (5 Tage)',
     modalUpgradeBtn: 'Auf Unlimited upgraden',
     regenerateBtn: 'Regenerieren',
     regenerating: 'Regeneriere...',
@@ -278,7 +279,7 @@ const messages: Record<string, {
     expired: 'منتهي',
     backHome: 'العودة للرئيسية',
     featuresTitle: 'المميزات',
-    feature1: 'ينتهي تلقائيًا بعد 7 أيام',
+    feature1: 'ينتهي تلقائيًا بعد 5 أيام',
     feature2: '100 طلب في الساعة لكل مفتاح',
     feature3: 'بدون تسجيل',
     expiresCountdown: 'ينتهي في',
@@ -286,7 +287,7 @@ const messages: Record<string, {
     hours: 'ساعات',
     modalExpiredTitle: 'انتهت صلاحية مفتاح API',
     modalExpiredDesc: 'مفتاحك المجاني لم يعد صالحاً. أنشئ مفتاحاً جديداً أو انتقل إلى غير المحدود.',
-    modalRegenerateBtn: 'إنشاء مفتاح مجاني (7 أيام)',
+    modalRegenerateBtn: 'إنشاء مفتاح مجاني (5 أيام)',
     modalUpgradeBtn: 'الانتقال إلى غير المحدود',
     regenerateBtn: 'إعادة إنشاء',
     regenerating: 'جاري إعادة الإنشاء...',
@@ -322,7 +323,7 @@ const messages: Record<string, {
     expired: 'Expirada',
     backHome: 'Voltar ao início',
     featuresTitle: 'Recursos',
-    feature1: 'Expira automaticamente após 7 dias',
+    feature1: 'Expira automaticamente após 5 dias',
     feature2: '100 requisições por hora por chave',
     feature3: 'Sem cadastro necessário',
     expiresCountdown: 'Expira em',
@@ -330,7 +331,7 @@ const messages: Record<string, {
     hours: 'horas',
     modalExpiredTitle: 'Sua chave API expirou',
     modalExpiredDesc: 'Sua chave gratuita não é mais válida. Regenere uma nova ou atualize para ilimitado.',
-    modalRegenerateBtn: 'Regenerar chave gratuita (7 dias)',
+    modalRegenerateBtn: 'Regenerar chave gratuita (5 dias)',
     modalUpgradeBtn: 'Atualizar para Ilimitado',
     regenerateBtn: 'Regenerar',
     regenerating: 'Regenerando...',
@@ -459,6 +460,7 @@ export default function ApiKeysContent() {
   const openConversionModal = (context: 'expired' | 'regenerate') => {
     setModalContext(context)
     setShowModal(true)
+    trackEvent('conversion_modal_shown', { context })
   }
 
   const handleRegenerate = async () => {
@@ -688,7 +690,7 @@ export default function ApiKeysContent() {
                 {regenerating ? msg.regenerating : msg.modalRegenerateBtn}
               </Button>
               <Button variant="outline" asChild className="w-full">
-                <a href={`/${locale}/pricing`}>
+                <a href={`/${locale}/pricing`} onClick={() => trackEvent('conversion_modal_upgrade_clicked')}>
                   <ArrowUpRight className="h-4 w-4 mr-2" />
                   {msg.modalUpgradeBtn}
                 </a>

@@ -16,12 +16,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     pt: 'Chaves API Gratuitas',
   }
   const descriptions: Record<string, string> = {
-    fr: 'Générez une clé API gratuite pour accéder aux outils Utilyx. Expiration automatique après 7 jours, sans inscription ni carte bancaire requise.',
-    en: 'Generate a free API key to access Utilyx tools for PDF, images, video, SEO and more. Auto-expires after 7 days, no signup or credit card required.',
-    es: 'Genera una clave API gratuita para acceder a las herramientas de Utilyx para PDF, imágenes, vídeo, SEO y más. Expira automáticamente después de 7 días, sin registro.',
-    de: 'Generieren Sie einen kostenlosen API-Schlüssel für Utilyx-Tools für PDF, Bilder, Video, SEO und mehr. Läuft nach 7 Tagen automatisch ab, keine Anmeldung erforderlich.',
-    ar: 'أنشئ مفتاح API مجاني للوصول إلى أدوات Utilyx لملفات PDF والصور والفيديو وتحسين محركات البحث والمزيد. ينتهي تلقائيًا بعد 7 أيام بدون تسجيل أو بطاقة ائتمان.',
-    pt: 'Gere uma chave API gratuita para acessar as ferramentas Utilyx de PDF, imagens, vídeo, SEO e mais. Expira automaticamente após 7 dias, sem cadastro ou cartão de crédito.',
+    fr: 'Générez une clé API gratuite pour accéder aux outils Utilyx. Expiration automatique après 5 jours, sans inscription ni carte bancaire requise.',
+    en: 'Generate a free API key to access Utilyx tools for PDF, images, video, SEO and more. Auto-expires after 5 days, no signup or credit card required.',
+    es: 'Genera una clave API gratuita para acceder a las herramientas de Utilyx para PDF, imágenes, vídeo, SEO y más. Expira automáticamente después de 5 días, sin registro.',
+    de: 'Generieren Sie einen kostenlosen API-Schlüssel für Utilyx-Tools für PDF, Bilder, Video, SEO und mehr. Läuft nach 5 Tagen automatisch ab, keine Anmeldung erforderlich.',
+    ar: 'أنشئ مفتاح API مجاني للوصول إلى أدوات Utilyx لملفات PDF والصور والفيديو وتحسين محركات البحث والمزيد. ينتهي تلقائيًا بعد 5 أيام بدون تسجيل أو بطاقة ائتمان.',
+    pt: 'Gere uma chave API gratuita para acessar as ferramentas Utilyx de PDF, imagens, vídeo, SEO e mais. Expira automaticamente após 5 dias, sem cadastro ou cartão de crédito.',
   }
   const title = titles[locale] || titles.fr
   const description = descriptions[locale] || descriptions.fr
