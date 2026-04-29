@@ -924,7 +924,8 @@ export default function Home() {
               <span className="gradient-text">Utilyx</span>
             </button>
 
-            <nav className="flex items-center gap-1 overflow-x-auto scrollbar-thin -mr-2 pr-2">
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-1 overflow-x-auto scrollbar-thin -mr-2 pr-2">
               {translatedModules.map((mod) => {
                 const IconComponent = moduleIcons[mod.id] || Code
                 const isActive = activeModule === mod.id
@@ -951,6 +952,55 @@ export default function Home() {
               <LanguageSelector />
               <ThemeToggle />
             </nav>
+
+            {/* Mobile hamburger */}
+            <div className="flex md:hidden items-center gap-1">
+              <LanguageSelector />
+              <ThemeToggle />
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="shrink-0">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-72">
+                  <SheetHeader>
+                    <SheetTitle className="flex items-center gap-2">
+                      <div className="rounded-lg bg-primary/10 p-1.5">
+                        <Sparkles className="h-4 w-4 text-primary" />
+                      </div>
+                      <span className="gradient-text">Utilyx</span>
+                    </SheetTitle>
+                    <SheetDescription className="sr-only">Navigation menu</SheetDescription>
+                  </SheetHeader>
+                  <div className="flex flex-col gap-1 px-4 pb-4">
+                    {translatedModules.map((mod) => {
+                      const IconComponent = moduleIcons[mod.id] || Code
+                      const isActive = activeModule === mod.id
+                      return (
+                        <button
+                          key={mod.id}
+                          onClick={() => {
+                            useToolsStore.getState().setActiveModule(mod.id)
+                          }}
+                          className={`
+                            flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-200
+                            ${isActive
+                              ? 'bg-primary/10 text-primary font-semibold'
+                              : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+                            }
+                          `}
+                        >
+                          <IconComponent className="h-4 w-4 shrink-0" />
+                          <span>{mod.label}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
       </header>

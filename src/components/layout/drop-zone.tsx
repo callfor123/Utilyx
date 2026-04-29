@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useState, useRef } from 'react'
-import { Upload, X } from 'lucide-react'
+import { Upload, X, AlertCircle, FileUp } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface DropZoneProps {
@@ -15,6 +15,19 @@ interface DropZoneProps {
   icon?: React.ReactNode
 }
 
+function isValidFileType(file: File, accept: string): boolean {
+  if (!accept) return true
+  const types = accept.split(',').map(t => t.trim().toLowerCase())
+  const ext = '.' + file.name.split('.').pop()?.toLowerCase()
+  const mime = file.type.toLowerCase()
+
+  return types.some(t => {
+    if (t.startsWith('.')) return ext === t
+    if (t.endsWith('/*')) return mime.startsWith(t.replace('/*', '/'))
+    return mime === t
+  })
+}
+
 export function DropZone({
   accept,
   multiple = false,
@@ -26,13 +39,19 @@ export function DropZone({
   icon,
 }: DropZoneProps) {
   const [isDragging, setIsDragging] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const clearError = useCallback(() => {
+    if (error) setError(null)
+  }, [error])
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault()
     e.stopPropagation()
     setIsDragging(true)
-  }, [])
+    clearError()
+  }, [clearError])
 
   const handleDragLeave = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -45,27 +64,59 @@ export function DropZone({
       e.preventDefault()
       e.stopPropagation()
       setIsDragging(false)
-      const files = Array.from(e.dataTransfer.files).filter(
-        (f) => f.size <= maxSize * 1024 * 1024
-      )
-      if (files.length > 0) onFiles(files)
+      const allFiles = Array.from(e.dataTransfer.files)
+
+      // Check for invalid file types
+      const invalidFiles = allFiles.filter(f => !isValidFileType(f, accept))
+      if (invalidFiles.length > 0) {
+        const exts = [...new Set(invalidFiles.map(f => f.name.split('.').pop()?.toUpperCase()))].join(', ')
+        setError(`Format non supporté : ${exts}. Formats acceptés : ${accept}`)
+        return
+      }
+
+      const files = allFiles.filter(f => f.size <= maxSize * 1024 * 1024)
+      const oversized = allFiles.filter(f => f.size > maxSize * 1024 * 1024)
+      if (oversized.length > 0) {
+        setError(`Fichier trop volumineux (max ${maxSize} MB)`)
+      }
+      if (files.length > 0) {
+        setError(null)
+        onFiles(files)
+      }
     },
-    [onFiles, maxSize]
+    [onFiles, maxSize, accept]
   )
 
   const handleClick = useCallback(() => {
+    clearError()
     inputRef.current?.click()
-  }, [])
+  }, [clearError])
 
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const files = Array.from(e.target.files || []).filter(
-        (f) => f.size <= maxSize * 1024 * 1024
-      )
-      if (files.length > 0) onFiles(files)
+      const allFiles = Array.from(e.target.files || [])
+
+      // Check for invalid file types
+      const invalidFiles = allFiles.filter(f => !isValidFileType(f, accept))
+      if (invalidFiles.length > 0) {
+        const exts = [...new Set(invalidFiles.map(f => f.name.split('.').pop()?.toUpperCase()))].join(', ')
+        setError(`Format non supporté : ${exts}. Formats acceptés : ${accept}`)
+        if (inputRef.current) inputRef.current.value = ''
+        return
+      }
+
+      const files = allFiles.filter(f => f.size <= maxSize * 1024 * 1024)
+      const oversized = allFiles.filter(f => f.size > maxSize * 1024 * 1024)
+      if (oversized.length > 0) {
+        setError(`Fichier trop volumineux (max ${maxSize} MB)`)
+      }
+      if (files.length > 0) {
+        setError(null)
+        onFiles(files)
+      }
       if (inputRef.current) inputRef.current.value = ''
     },
-    [onFiles, maxSize]
+    [onFiles, maxSize, accept]
   )
 
   return (
@@ -75,8 +126,12 @@ export function DropZone({
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       className={cn(
-        'relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-6 sm:p-10 transition-all cursor-pointer hover:border-primary/50 hover:bg-muted/30',
-        isDragging ? 'border-primary bg-primary/5 scale-[1.02]' : 'border-muted-foreground/25',
+        'relative flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed p-6 sm:p-10 transition-all duration-300 cursor-pointer',
+        isDragging
+          ? 'border-primary bg-primary/10 scale-[1.02] shadow-lg shadow-primary/20 ring-2 ring-primary/30'
+          : error
+            ? 'border-destructive/50 bg-destructive/5 hover:border-destructive/70 hover:bg-destructive/10'
+            : 'border-muted-foreground/25 hover:border-primary/50 hover:bg-muted/30',
         className
       )}
     >
@@ -88,16 +143,34 @@ export function DropZone({
         onChange={handleChange}
         className="hidden"
       />
-      <div className="rounded-full bg-muted p-4 text-muted-foreground">
-        {icon || <Upload className="h-8 w-8" />}
+      <div className={cn(
+        'rounded-full p-4 transition-all duration-300',
+        isDragging
+          ? 'bg-primary/20 text-primary scale-110'
+          : error
+            ? 'bg-destructive/10 text-destructive'
+            : 'bg-muted text-muted-foreground'
+      )}>
+        {icon || (isDragging ? <FileUp className="h-8 w-8" /> : error ? <AlertCircle className="h-8 w-8" /> : <Upload className="h-8 w-8" />)}
       </div>
       <div className="text-center">
-        <p className="text-sm font-medium">{label}</p>
+        <p className={cn(
+          'text-sm font-medium transition-colors',
+          isDragging ? 'text-primary' : error ? 'text-destructive' : ''
+        )}>
+          {isDragging ? 'Déposez vos fichiers ici' : label}
+        </p>
         <p className="text-xs text-muted-foreground mt-1">{sublabel}</p>
       </div>
-      <p className="text-[10px] text-muted-foreground/60">
-        Taille max : {maxSize} MB
-      </p>
+      {error ? (
+        <p className="text-xs text-destructive font-medium animate-in fade-in slide-in-from-top-1 duration-200">
+          {error}
+        </p>
+      ) : (
+        <p className="text-[10px] text-muted-foreground/60">
+          Taille max : {maxSize} MB
+        </p>
+      )}
     </div>
   )
 }
@@ -115,7 +188,7 @@ export function FileList({ files, onRemove, className }: FileListProps) {
       {files.map((file, i) => (
         <div
           key={`${file.name}-${i}`}
-          className="flex items-center gap-3 rounded-lg border bg-muted/30 px-3 py-2 text-sm"
+          className="flex items-center gap-3 rounded-lg border bg-muted/30 px-3 py-2 text-sm animate-in fade-in slide-in-from-bottom-1 duration-200"
         >
           <div className="flex-1 min-w-0">
             <p className="truncate font-medium">{file.name}</p>
@@ -129,7 +202,7 @@ export function FileList({ files, onRemove, className }: FileListProps) {
                 e.stopPropagation()
                 onRemove(i)
               }}
-              className="rounded-full p-1 hover:bg-muted"
+              className="rounded-full p-1 hover:bg-muted transition-colors"
             >
               <X className="h-4 w-4 text-muted-foreground" />
             </button>

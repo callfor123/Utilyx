@@ -114,44 +114,55 @@ export function CookieConsentBanner() {
     }
   }, [consentChecked, visible])
 
-  const dismiss = useCallback((onComplete: () => void) => {
-    setAnimating(false)
-    // Wait for CSS transition to finish before removing from DOM
-    setTimeout(onComplete, 300)
-  }, [])
-
   const handleAccept = useCallback(() => {
     setChoice('accepted')
-    // Brief confirmation delay so user sees the feedback
+    // Brief confirmation delay so user sees the feedback, then slide out
     setTimeout(() => {
-      dismiss(() => setConsent(true))
+      setAnimating(false)
     }, 600)
-  }, [dismiss, setConsent])
+  }, [])
 
   const handleReject = useCallback(() => {
     setChoice('rejected')
     setTimeout(() => {
-      dismiss(() => setConsent(false))
+      setAnimating(false)
     }, 600)
-  }, [dismiss, setConsent])
+  }, [])
 
   const handleDismiss = useCallback(() => {
-    // Treat dismiss same as reject — store dismissal
-    dismiss(() => setConsent(false))
-  }, [dismiss, setConsent])
+    // Treat dismiss same as reject — slide out immediately
+    setAnimating(false)
+  }, [])
 
   if (!visible) return null
 
   const showConfirmation = choice !== null
 
   return (
-    <div
-      className={`fixed bottom-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-t border-border/50 shadow-lg transition-all duration-300 ease-in-out ${
-        animating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-      }`}
-      role="dialog"
-      aria-label={msg.title}
-    >
+    <>
+      {/* Backdrop overlay */}
+      <div
+        className={`fixed inset-0 z-[59] bg-black/20 backdrop-blur-sm transition-opacity duration-300 ${
+          animating ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        aria-hidden="true"
+      />
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-[60] bg-background/95 backdrop-blur-md border-t border-border/50 shadow-lg transition-all duration-500 ${
+          animating ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+        }`}
+        style={{ transitionTimingFunction: animating ? 'cubic-bezier(0.34, 1.56, 0.64, 1)' : 'ease-in-out' }}
+        onTransitionEnd={(e) => {
+          if (e.propertyName === 'transform' && !animating) {
+            // Banner has finished sliding out — safe to unmount
+            if (choice === 'accepted') setConsent(true)
+            else if (choice === 'rejected') setConsent(false)
+            else if (!choice) setConsent(false)
+          }
+        }}
+        role="dialog"
+        aria-label={msg.title}
+      >
       <div className="container mx-auto max-w-4xl px-4 py-3 sm:py-3">
         {showConfirmation ? (
           <div className="flex items-center justify-center gap-2 py-1">
@@ -203,7 +214,8 @@ export function CookieConsentBanner() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   )
 }
 
