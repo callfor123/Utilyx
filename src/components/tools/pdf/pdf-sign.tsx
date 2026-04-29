@@ -117,19 +117,8 @@ export function PdfSign() {
       try {
         const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
         if (cancelled) return
-        // Load worker via fetch + Blob URL to avoid CSP/path issues
-        try {
-          const resp = await fetch('/pdf.worker.min.mjs')
-          if (resp.ok) {
-            const workerText = await resp.text()
-            const blob = new Blob([workerText], { type: 'text/javascript' })
-            pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob)
-          } else {
-            pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
-          }
-        } catch {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = ''
-        }
+        // Use direct URL — avoids blob: ESM dynamic import errors
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
         pdfjsRef.current = pdfjsLib
         setPdfJsReady(true)
       } catch (err) {

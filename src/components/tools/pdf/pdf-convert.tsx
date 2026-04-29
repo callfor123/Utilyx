@@ -30,7 +30,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-// Load pdfjs with Blob URL worker for reliability
+// Load pdfjs — use direct URL for worker to avoid blob: ESM import issues
 let pdfjsLib: any = null
 let pdfjsReady = false
 async function getPdfjs() {
@@ -38,18 +38,9 @@ async function getPdfjs() {
     pdfjsLib = await import('pdfjs-dist/legacy/build/pdf.mjs')
     if (!pdfjsReady) {
       pdfjsReady = true
-      try {
-        const resp = await fetch('/pdf.worker.min.mjs')
-        if (resp.ok) {
-          const workerText = await resp.text()
-          const blob = new Blob([workerText], { type: 'text/javascript' })
-          pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob)
-        } else {
-          pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
-        }
-      } catch {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = ''
-      }
+      // Use the direct URL — avoids blob: URL dynamic import errors that
+      // occur when the browser tries to resolve ESM imports from a blob.
+      pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'
     }
   }
   return pdfjsLib
