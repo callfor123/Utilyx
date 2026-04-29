@@ -8,12 +8,12 @@ const BASE_URL = 'https://utilyx.app'
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = (await params) ?? {}
   const titles: Record<string, string> = {
-    fr: 'API Keys Gratuites',
-    en: 'Free API Keys',
-    es: 'Claves API Gratuitas',
-    de: 'Kostenlose API-Schlüssel',
-    ar: 'مفاتيح API مجانية',
-    pt: 'Chaves API Gratuitas',
+    fr: 'Clés API Gratuites — Utilyx',
+    en: 'Free API Keys — Utilyx',
+    es: 'Claves API Gratuitas — Utilyx',
+    de: 'Kostenlose API-Schlüssel — Utilyx',
+    ar: 'مفاتيح API مجانية — Utilyx',
+    pt: 'Chaves API Gratuitas — Utilyx',
   }
   const descriptions: Record<string, string> = {
     fr: 'Générez une clé API gratuite pour accéder aux outils Utilyx. Expiration automatique après 5 jours, sans inscription ni carte bancaire requise.',

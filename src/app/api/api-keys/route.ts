@@ -7,9 +7,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { generateApiKey, revokeApiKey, getApiKeysByEmail, trackApiKeyEvent } from '@/lib/api-key-auth'
+import { generateApiKey, revokeApiKey, getApiKeysByEmail, getApiKeysByUserId, trackApiKeyEvent } from '@/lib/api-key-auth'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
 import { requireAdminAuth } from '@/lib/admin-auth'
+import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 
 // Rate limit for key generation: 5 per hour per IP
@@ -33,9 +34,15 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    // Check for authenticated session
+    const session = await getSession()
+    const userId = session?.userId
+    const userEmail = session?.email
+
     const body = await request.json().catch(() => ({}))
     const name = typeof body.name === 'string' ? body.name.slice(0, 100) : undefined
-    const email = typeof body.email === 'string' ? body.email.slice(0, 255) : undefined
+    // Use session email if available, otherwise fall back to body email
+    const email = userEmail || (typeof body.email === 'string' ? body.email.slice(0, 255) : undefined)
 
     // Security: reject regenerate/replace flags — new keys must go through the form
     if (body.regenerate || body.replace) {
@@ -50,8 +57,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid email format.' }, { status: 400 })
     }
 
-    // Anti-abuse: limit active keys per email
-    if (email) {
+    // Anti-abuse: limit active keys per user (authenticated) or email (anonymous)
+    if (userId) {
+      const userKeyCount = await db.apiKey.count({ where: { userId, status: 'active' } })
+      if (userKeyCount >= MAX_ACTIVE_KEYS_PER_EMAIL) {
+        return NextResponse.json(
+          { error: `You already have ${MAX_ACTIVE_KEYS_PER_EMAIL} active API keys. Revoke an existing key before generating a new one.` },
+          { status: 429 },
+        )
+      }
+    } else if (email) {
       const emailKeyCount = await db.apiKey.count({ where: { email, status: 'active' } })
       if (emailKeyCount >= MAX_ACTIVE_KEYS_PER_EMAIL) {
         return NextResponse.json(
@@ -59,10 +74,8 @@ export async function POST(request: NextRequest) {
           { status: 429 },
         )
       }
-    }
-
-    // Anti-abuse: limit active keys per IP (when no email provided)
-    if (!email) {
+    } else {
+      // Anti-abuse: limit active keys per IP (when no email provided)
       const ipKeyCount = await db.apiKey.count({ where: { ip, status: 'active' } })
       if (ipKeyCount >= MAX_ACTIVE_KEYS_PER_IP) {
         return NextResponse.json(
@@ -72,12 +85,14 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const result = await generateApiKey({ name, email, ip })
+    const result = await generateApiKey({ name, email, ip, userId })
 
-    // Detect regeneration: user had a prior expired key (same email or IP)
-    const hadExpiredKey = email
-      ? (await db.apiKey.count({ where: { email, status: 'expired' } })) > 0
-      : (await db.apiKey.count({ where: { ip, status: 'expired' } })) > 0
+    // Detect regeneration: user had a prior expired key
+    const hadExpiredKey = userId
+      ? (await db.apiKey.count({ where: { userId, status: 'expired' } })) > 0
+      : email
+        ? (await db.apiKey.count({ where: { email, status: 'expired' } })) > 0
+        : (await db.apiKey.count({ where: { ip, status: 'expired' } })) > 0
 
     // Track generation event (regenerated if user had a prior expired key)
     trackApiKeyEvent({
@@ -85,7 +100,7 @@ export async function POST(request: NextRequest) {
       apiKeyId: result.id,
       email,
       ip,
-      metadata: { plan: result.plan, has_email: !!email },
+      metadata: { plan: result.plan, has_email: !!email, authenticated: !!userId },
     })
 
     return NextResponse.json(
@@ -127,10 +142,10 @@ export async function GET(request: NextRequest) {
   try {
     const keys = await getApiKeysByEmail(email)
 
-    // Mask keys for security (show only last 8 chars)
+    // Keys are already stored as hashes — return prefix for display
     const masked = keys.map((k) => ({
       ...k,
-      key: k.key.length > 12 ? `••••••${k.key.slice(-8)}` : k.key,
+      keyPrefix: k.keyPrefix ?? '••••••••',
     }))
 
     return NextResponse.json({ success: true, data: masked })
@@ -146,19 +161,29 @@ export async function DELETE(request: NextRequest) {
 
   try {
     const body = await request.json().catch(() => ({}))
-    const { key } = body
+    const { id, key } = body
 
-    if (!key || typeof key !== 'string') {
-      return NextResponse.json({ error: 'API key is required in request body.' }, { status: 400 })
+    // Support revocation by ID (preferred) or by full key value (legacy)
+    if (id && typeof id === 'string') {
+      const result = await db.apiKey.updateMany({
+        where: { id, status: 'active' },
+        data: { status: 'revoked' },
+      })
+      if (result.count === 0) {
+        return NextResponse.json({ error: 'API key not found or already revoked/expired.' }, { status: 404 })
+      }
+      return NextResponse.json({ success: true, message: 'API key revoked.' })
     }
 
-    const revoked = await revokeApiKey(key)
-
-    if (!revoked) {
-      return NextResponse.json({ error: 'API key not found or already revoked/expired.' }, { status: 404 })
+    if (key && typeof key === 'string') {
+      const revoked = await revokeApiKey(key)
+      if (!revoked) {
+        return NextResponse.json({ error: 'API key not found or already revoked/expired.' }, { status: 404 })
+      }
+      return NextResponse.json({ success: true, message: 'API key revoked.' })
     }
 
-    return NextResponse.json({ success: true, message: 'API key revoked.' })
+    return NextResponse.json({ error: 'API key id or key value is required in request body.' }, { status: 400 })
   } catch (error) {
     console.error('[API Keys] Revoke error:', error)
     return NextResponse.json({ error: 'Failed to revoke API key.' }, { status: 500 })

@@ -8,12 +8,12 @@ const BASE_URL = 'https://utilyx.app'
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = (await params) ?? {}
   const titles: Record<string, string> = {
-    fr: 'À Propos',
-    en: 'About',
-    es: 'Acerca de',
-    de: 'Über uns',
-    ar: 'من نحن',
-    pt: 'Sobre',
+    fr: 'À Propos de Utilyx — Suite d\'Outils Gratuits en Ligne',
+    en: 'About Utilyx — Free Online Tool Suite',
+    es: 'Acerca de Utilyx — Suite de Herramientas Gratuitas',
+    de: 'Über Utilyx — Kostenlose Online-Werkzeugsammlung',
+    ar: 'من نحن — Utilyx مجموعة أدوات مجانية',
+    pt: 'Sobre o Utilyx — Suite de Ferramentas Gratuitas',
   }
   const descriptions: Record<string, string> = {
     fr: 'Découvrez Utilyx — suite complète de 47+ outils en ligne gratuits pour PDF, images, vidéo, SEO et texte. Traitement 100% local et privé, sans inscription requise.',

@@ -50,6 +50,7 @@ export type ToolId =
   | 'concrete-calculator'
   | 'mileage-calculator'
   | 'color-converter'
+  | 'img-color-extractor'
   | 'stopwatch'
   | 'pomodoro-timer'
   | 'tip-calculator'
@@ -111,6 +112,7 @@ export const modules: ModuleDef[] = [
       { id: 'heic-to-jpg', label: 'HEIC vers JPG', icon: 'Smartphone', description: 'Convertissez vos photos iPhone HEIC en JPG ou PNG universellement compatibles, gratuit en ligne' },
       { id: 'favicon-generator', label: 'Générateur d\'icônes', icon: 'Globe', description: 'Générez un pack complet de favicons et icônes pour votre site : ICO, Apple, Android, PWA' },
       { id: 'youtube-thumbnail', label: 'Miniatures YouTube', icon: 'Youtube', description: 'Téléchargez les miniatures HD de vidéos YouTube en 1280x720, gratuit et sans inscription' },
+      { id: 'img-color-extractor', label: 'Extracteur de Couleurs', icon: 'Pipette', description: 'Extrayez les couleurs dominantes d\'une image avec proportions HEX, RGB, HSL — 100% local' },
     ],
   },
   {

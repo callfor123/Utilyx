@@ -35,6 +35,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'heic-to-jpg': dynamic(() => import('@/components/tools/image/heic-to-jpg').then(m => m.HeicToJpg), { ssr: false, loading: () => <ToolLoader label="HEIC to JPG" /> }),
   'favicon-generator': dynamic(() => import('@/components/tools/image/favicon-generator').then(m => m.FaviconGenerator), { ssr: false, loading: () => <ToolLoader label="Favicon Generator" /> }),
   'youtube-thumbnail': dynamic(() => import('@/components/tools/image/youtube-thumbnail').then(m => m.YoutubeThumbnailDownloader), { ssr: false, loading: () => <ToolLoader label="YouTube Thumbnail" /> }),
+  'img-color-extractor': dynamic(() => import('@/components/tools/image/img-color-extractor').then(m => m.ImgColorExtractor), { ssr: false, loading: () => <ToolLoader label="Color Extractor" /> }),
   'json-csv': dynamic(() => import('@/components/tools/dev-seo/json-csv').then(m => m.JsonCsv), { ssr: false, loading: () => <ToolLoader label="JSON CSV" /> }),
   'regex-tester': dynamic(() => import('@/components/tools/dev-seo/regex-tester').then(m => m.RegexTester), { ssr: false, loading: () => <ToolLoader label="Regex Tester" /> }),
   'meta-tags': dynamic(() => import('@/components/tools/dev-seo/meta-tags').then(m => m.MetaTags), { ssr: false, loading: () => <ToolLoader label="Meta Tags" /> }),

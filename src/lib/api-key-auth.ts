@@ -3,10 +3,14 @@
  *
  * Free API keys expire automatically after a configurable period.
  * Keys are validated against the database on each request.
+ *
+ * Security: Keys are stored as SHA-256 hashes (keyHash) with a short
+ * prefix (keyPrefix) for display. The full key is only returned once
+ * at creation time and never stored in plaintext.
  */
 
 import { db } from './db'
-import { randomBytes, timingSafeEqual } from 'crypto'
+import { createHash, randomBytes } from 'crypto'
 
 /**
  * Track an API key event for analytics.
@@ -30,6 +34,16 @@ export function trackApiKeyEvent(params: {
       },
     })
     .catch((err) => console.error('[ApiKeyEvent] Track error:', err))
+}
+
+/** Hash an API key with SHA-256 for secure storage */
+function hashApiKey(key: string): string {
+  return createHash('sha256').update(key).digest('hex')
+}
+
+/** Extract a display prefix from an API key (e.g. "utilyx_aBcD1234") */
+function prefixOfKey(key: string): string {
+  return key.length > 16 ? key.slice(0, 16) : key
 }
 
 /** Free plan: key expires after 5 days */
@@ -74,8 +88,9 @@ export async function validateApiKey(request: Request): Promise<ApiKeyValidation
     return { valid: false, error: 'API key required. Provide via Authorization: Bearer <key> or X-API-Key header.' }
   }
 
-  // Look up key in database
-  const apiKeyRecord = await db.apiKey.findUnique({ where: { key: rawKey } })
+  // Look up key by hash — never store or search by plaintext
+  const keyHash = hashApiKey(rawKey)
+  const apiKeyRecord = await db.apiKey.findUnique({ where: { keyHash } })
   if (!apiKeyRecord) {
     return { valid: false, error: 'Invalid API key.' }
   }
@@ -124,16 +139,21 @@ export async function generateApiKey(options: {
   name?: string
   email?: string
   ip?: string
+  userId?: string
   durationMs?: number
 }): Promise<{ id: string; key: string; expiresAt: Date; plan: string }> {
   const key = `utilyx_${generateSecureToken()}`
+  const keyHash = hashApiKey(key)
+  const keyPrefix = prefixOfKey(key)
   const expiresAt = new Date(Date.now() + (options.durationMs || FREE_KEY_DURATION_MS))
 
   const record = await db.apiKey.create({
     data: {
-      key,
+      keyHash,
+      keyPrefix,
       name: options.name || null,
       email: options.email || null,
+      userId: options.userId || null,
       plan: 'free',
       status: 'active',
       expiresAt,
@@ -143,31 +163,34 @@ export async function generateApiKey(options: {
 
   return {
     id: record.id,
-    key: record.key,
+    key, // Full key returned once — never stored
     expiresAt: record.expiresAt,
     plan: record.plan,
   }
 }
 
 /**
- * Revoke an API key by its value.
+ * Revoke an API key by its full value (hashes it for lookup).
  */
 export async function revokeApiKey(keyValue: string): Promise<boolean> {
+  const keyHash = hashApiKey(keyValue)
   const result = await db.apiKey.updateMany({
-    where: { key: keyValue, status: 'active' },
+    where: { keyHash, status: 'active' },
     data: { status: 'revoked' },
   })
   return result.count > 0
 }
 
 /**
- * Get API key info (for dashboard display).
+ * Get API key info by full key value (hashes it for lookup).
  */
 export async function getApiKeyInfo(keyValue: string) {
+  const keyHash = hashApiKey(keyValue)
   return db.apiKey.findUnique({
-    where: { key: keyValue },
+    where: { keyHash },
     select: {
       id: true,
+      keyPrefix: true,
       name: true,
       email: true,
       plan: true,
@@ -182,13 +205,36 @@ export async function getApiKeyInfo(keyValue: string) {
 
 /**
  * Look up keys by email (for "my keys" dashboard).
+ * Returns only the prefix for display — never the full key.
  */
 export async function getApiKeysByEmail(email: string) {
   return db.apiKey.findMany({
     where: { email },
     select: {
       id: true,
-      key: true,
+      keyPrefix: true,
+      name: true,
+      plan: true,
+      status: true,
+      expiresAt: true,
+      createdAt: true,
+      lastUsedAt: true,
+      usageCount: true,
+    },
+    orderBy: { createdAt: 'desc' },
+  })
+}
+
+/**
+ * Look up keys by user ID (for authenticated dashboard).
+ * Returns only the prefix for display — never the full key.
+ */
+export async function getApiKeysByUserId(userId: string) {
+  return db.apiKey.findMany({
+    where: { userId },
+    select: {
+      id: true,
+      keyPrefix: true,
       name: true,
       plan: true,
       status: true,

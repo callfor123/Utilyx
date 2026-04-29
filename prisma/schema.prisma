@@ -63,11 +63,26 @@ model ContactMessage {
   @@index([createdAt])
 }
 
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  passwordHash  String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  apiKeys       ApiKey[]
+
+  @@index([email])
+}
+
 model ApiKey {
   id          String   @id @default(cuid())
-  key         String   @unique @default(cuid())
+  keyHash     String   @unique // SHA-256 hash of the full API key
+  keyPrefix   String?  // e.g. "utilyx_aBcD1234" — for display only
   name        String?
-  email       String?
+  email       String?  // legacy: kept for keys created without user account
+  userId      String?  // links to User when created from dashboard
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   plan        String   @default("free") // free, pro, enterprise
   status      String   @default("active") // active, expired, revoked
   expiresAt   DateTime
@@ -76,9 +91,10 @@ model ApiKey {
   usageCount  Int      @default(0)
   ip          String?  // IP that created the key
 
-  @@index([key])
+  @@index([keyHash])
   @@index([status, expiresAt])
   @@index([email])
+  @@index([userId])
 }
 
 model ApiKeyEvent {

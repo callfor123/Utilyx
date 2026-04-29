@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useLocale } from 'next-intl'
-import { Copy, Check, Key, AlertTriangle, Clock, Shield, X, RefreshCw, ArrowUpRight } from 'lucide-react'
+import { Copy, Check, Key, AlertTriangle, Clock, Shield, RefreshCw, ArrowUpRight } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -18,7 +18,7 @@ import {
 
 type KeyInfo = {
   id: string
-  key: string
+  keyPrefix: string
   name: string | null
   plan: string
   status: string
@@ -349,6 +349,7 @@ export default function ApiKeysContent() {
   const [newKeyExpires, setNewKeyExpires] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showNewKey, setShowNewKey] = useState(false)
 
   const [lookupEmail, setLookupEmail] = useState('')
   const [myKeys, setMyKeys] = useState<KeyInfo[]>([])
@@ -441,15 +442,15 @@ export default function ApiKeysContent() {
     }
   }
 
-  const handleRevoke = async (key: string) => {
-    setRevokingId(key)
+  const handleRevoke = async (id: string) => {
+    setRevokingId(id)
     try {
       await fetch('/api/api-keys', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key }),
+        body: JSON.stringify({ id }),
       })
-      setMyKeys(prev => prev.map(k => k.key === key ? { ...k, status: 'revoked' } : k))
+      setMyKeys(prev => prev.map(k => k.id === id ? { ...k, status: 'revoked' } : k))
     } catch {
       // ignore
     } finally {
@@ -633,7 +634,7 @@ export default function ApiKeysContent() {
                   <div key={k.id} className="border rounded-lg p-4 space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <code className="text-xs font-mono bg-muted px-2 py-0.5 rounded">{k.key}</code>
+                        <code className="text-xs font-mono bg-muted px-2 py-0.5 rounded">{k.keyPrefix}</code>
                         {statusBadge(k.status)}
                       </div>
                       {k.status === 'active' && (
@@ -641,8 +642,8 @@ export default function ApiKeysContent() {
                           size="sm"
                           variant="ghost"
                           className="text-destructive text-xs"
-                          disabled={revokingId === k.key}
-                          onClick={() => handleRevoke(k.key)}
+                          disabled={revokingId === k.id}
+                          onClick={() => handleRevoke(k.id)}
                         >
                           {revokingId === k.key ? msg.revoking : msg.revoke}
                         </Button>

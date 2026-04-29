@@ -7,15 +7,8 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         disallow: ['/api/', '/_next/'],
-        crawlDelay: 1,
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        crawlDelay: 0,
       },
     ],
     sitemap: 'https://utilyx.app/sitemap.xml',
-    host: 'https://utilyx.app',
   }
 }
