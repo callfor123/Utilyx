@@ -41,6 +41,7 @@ import { ColorPicker } from '@/components/tools/generators/color-picker'
 import { RandomNumberGenerator } from '@/components/tools/generators/random-number-generator'
 import { VatCalculator } from '@/components/tools/calculators/vat-calculator'
 import { TimeConverter } from '@/components/tools/calculators/time-converter'
+import { ImgColorExtractor } from '@/components/tools/image/img-color-extractor'
 
 // Dev & SEO
 import { JsonFormatter } from '@/components/tools/dev-seo/json-formatter'
@@ -284,6 +285,7 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'img-ocr': ImageOcr,
   'heic-to-jpg': HeicToJpgDynamic,
   'favicon-generator': FaviconGeneratorDynamic,
+  'img-color-extractor': ImgColorExtractor,
   'youtube-thumbnail': dynamic(() => import('@/components/tools/image/youtube-thumbnail').then(m => m.YoutubeThumbnailDownloader)),
   'json-csv': JsonCsv,
   'regex-tester': RegexTester,
