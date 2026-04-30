@@ -10,7 +10,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
 import { routing, type Locale } from '@/i18n/routing'
 import { toolIdToPath, getPathForLocale } from '@/lib/seo-registry'
-import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom, AdHomeGrid } from '@/components/adsense'
+import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom, AdHomeGrid, AdSidebar } from '@/components/adsense'
 
 
 // Existing tools
@@ -827,7 +827,17 @@ function HomePage() {
       )}
 
       {/* In-Feed Ad — Between Categories and All Tools (low CTR transition zone) */}
-      {!searchQuery.trim() && <AdInFeed className="my-4" priority={3} />}
+      {/* Sidebar Ad — Desktop only (160x600 vertical) alongside the in-feed ad */}
+      {!searchQuery.trim() && (
+        <div className="my-4 flex flex-col lg:flex-row items-start gap-4">
+          <div className="flex-1">
+            <AdInFeed priority={3} />
+          </div>
+          <div className="hidden lg:block">
+            <AdSidebar />
+          </div>
+        </div>
+      )}
 
       {/* All Tools */}
       {!searchQuery.trim() && (

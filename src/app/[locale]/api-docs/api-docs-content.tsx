@@ -1,7 +1,7 @@
 'use client'
 
 import { useLocale } from 'next-intl'
-import { Key, Code, Zap, Globe, ArrowRight, Terminal, FileText, QrCode, Hash } from 'lucide-react'
+import { Key, Code, Zap, Globe, ArrowRight, Terminal, FileText, QrCode, Hash, Binary, Palette, Lock, Paintbrush } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 
@@ -42,6 +42,42 @@ const toolApis: ToolApiInfo[] = [
     method: 'GET',
     icon: <Hash className="h-5 w-5" />,
     href: '/api-docs/uuid-generator',
+  },
+  {
+    id: 'base64',
+    label: { fr: 'API Base64', en: 'Base64 API', es: 'API Base64', de: 'Base64-API', ar: 'API Base64', pt: 'API Base64' },
+    description: { fr: 'Encodez ou décodez du texte en Base64 via API.', en: 'Encode or decode text to/from Base64 via API.', es: 'Codifica o decodifica texto en Base64 vía API.', de: 'Kodieren oder dekodieren Sie Text per Base64-API.', ar: 'رمّز أو فك ترميز النص بتنسيق Base64 عبر API.', pt: 'Codifique ou decodifique texto em Base64 via API.' },
+    endpoint: '/api/v1/base64',
+    method: 'POST',
+    icon: <Binary className="h-5 w-5" />,
+    href: '/api-docs/base64',
+  },
+  {
+    id: 'hash-generator',
+    label: { fr: 'API Hash', en: 'Hash API', es: 'API Hash', de: 'Hash-API', ar: 'API هاش', pt: 'API Hash' },
+    description: { fr: 'Générez des hashes MD5, SHA-1, SHA-256, SHA-384, SHA-512 via API.', en: 'Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes via API.', es: 'Genera hashes MD5, SHA-1, SHA-256, SHA-384, SHA-512 vía API.', de: 'Erstellen Sie MD5, SHA-1, SHA-256, SHA-384, SHA-512-Hashes per API.', ar: 'أنشئ هاشات MD5, SHA-1, SHA-256, SHA-384, SHA-512 عبر API.', pt: 'Gere hashes MD5, SHA-1, SHA-256, SHA-384, SHA-512 via API.' },
+    endpoint: '/api/v1/hash-generator',
+    method: 'POST',
+    icon: <Lock className="h-5 w-5" />,
+    href: '/api-docs/hash-generator',
+  },
+  {
+    id: 'password-generator',
+    label: { fr: 'API Mot de passe', en: 'Password API', es: 'API Contraseña', de: 'Passwort-API', ar: 'API كلمة المرور', pt: 'API Senha' },
+    description: { fr: 'Générez des mots de passe aléatoires et sécurisés via API.', en: 'Generate random, secure passwords via API.', es: 'Genera contraseñas aleatorias y seguras vía API.', de: 'Erstellen Sie zufällige, sichere Passwörter per API.', ar: 'أنشئ كلمات مرور عشوائية وآمنة عبر API.', pt: 'Gere senhas aleatórias e seguras via API.' },
+    endpoint: '/api/v1/password-generator',
+    method: 'POST',
+    icon: <Key className="h-5 w-5" />,
+    href: '/api-docs/password-generator',
+  },
+  {
+    id: 'color-converter',
+    label: { fr: 'API Convertisseur couleur', en: 'Color Converter API', es: 'API Conversor de colores', de: 'Farbkonverter-API', ar: 'API محول الألوان', pt: 'API Conversor de cores' },
+    description: { fr: 'Convertissez des couleurs entre HEX, RGB, HSL et CMYK via API.', en: 'Convert colors between HEX, RGB, HSL and CMYK via API.', es: 'Convierte colores entre HEX, RGB, HSL y CMYK vía API.', de: 'Konvertieren Sie Farben zwischen HEX, RGB, HSL und CMYK per API.', ar: 'حوّل الألوان بين HEX, RGB, HSL و CMYK عبر API.', pt: 'Converta cores entre HEX, RGB, HSL e CMYK via API.' },
+    endpoint: '/api/v1/color-converter',
+    method: 'POST',
+    icon: <Palette className="h-5 w-5" />,
+    href: '/api-docs/color-converter',
   },
 ]
 
@@ -109,7 +145,7 @@ const content: Record<string, {
     faq3Q: 'Quelle est la limite de requêtes ?',
     faq3A: '100 requêtes par heure par clé API. C\'est suffisant pour la plupart des projets personnels et prototypes.',
     faq4Q: 'Quels outils sont accessibles via l\'API ?',
-    faq4A: 'Actuellement : compteur de mots, QR code et UUID. D\'autres endpoints (OCR, compression d\'images, etc.) arrivent bientôt.',
+    faq4A: 'Actuellement : compteur de mots, QR code, UUID, Base64, hash, mot de passe et convertisseur couleur. D\'autres endpoints arrivent bientôt.',
     faq5Q: 'Comment m\'authentifier ?',
     faq5A: 'Ajoutez votre clé dans l\'en-tête Authorization: Bearer <votre-clé> ou X-API-Key: <votre-clé>.',
     tryItTitle: 'Essayez maintenant',
@@ -145,7 +181,7 @@ const content: Record<string, {
     faq3Q: 'What is the rate limit?',
     faq3A: '100 requests per hour per API key. Sufficient for most personal projects and prototypes.',
     faq4Q: 'Which tools are accessible via the API?',
-    faq4A: 'Currently: word counter, QR code and UUID. More endpoints (OCR, image compression, etc.) coming soon.',
+    faq4A: 'Currently: word counter, QR code, UUID, Base64, hash, password and color converter. More endpoints coming soon.',
     faq5Q: 'How do I authenticate?',
     faq5A: 'Add your key in the Authorization: Bearer <your-key> or X-API-Key: <your-key> header.',
     tryItTitle: 'Try it now',
@@ -181,7 +217,7 @@ const content: Record<string, {
     faq3Q: '¿Cuál es el límite de solicitudes?',
     faq3A: '100 solicitudes por hora por clave API. Suficiente para la mayoría de proyectos personales y prototipos.',
     faq4Q: '¿Qué herramientas son accesibles vía API?',
-    faq4A: 'Actualmente: contador de palabras, QR code y UUID. Más endpoints (OCR, compresión de imágenes, etc.) próximamente.',
+    faq4A: 'Actualmente: contador de palabras, QR code, UUID, Base64, hash, contraseña y conversor de colores. Más endpoints próximamente.',
     faq5Q: '¿Cómo me autentico?',
     faq5A: 'Agrega tu clave en el encabezado Authorization: Bearer <tu-clave> o X-API-Key: <tu-clave>.',
     tryItTitle: 'Pruébalo ahora',
@@ -217,7 +253,7 @@ const content: Record<string, {
     faq3Q: 'Wie hoch ist das Ratenlimit?',
     faq3A: '100 Anfragen pro Stunde pro API-Schlüssel. Ausreichend für die meisten persönlichen Projekte und Prototypen.',
     faq4Q: 'Welche Tools sind über die API zugänglich?',
-    faq4A: 'Aktuell: Wortzähler, QR-Code und UUID. Weitere Endpoints (OCR, Bildkomprimierung etc.) folgen bald.',
+    faq4A: 'Aktuell: Wortzähler, QR-Code, UUID, Base64, Hash, Passwort und Farbkonverter. Weitere Endpoints folgen bald.',
     faq5Q: 'Wie authentifiziere ich mich?',
     faq5A: 'Fügen Sie Ihren Schlüssel im Header Authorization: Bearer <ihr-schlüssel> oder X-API-Key: <ihr-schlüssel> hinzu.',
     tryItTitle: 'Jetzt ausprobieren',

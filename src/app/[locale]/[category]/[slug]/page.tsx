@@ -5,8 +5,8 @@ import { routing } from '@/i18n/routing'
 import { seoRegistry, getToolBySlug, validCategories, getSlugForLocale, resolveSlugToBase } from '@/lib/seo-registry'
 import { getLocalizedSeo } from '@/lib/seo-i18n-registry'
 import { ToolRenderer } from '@/components/tool-renderer'
-import { AdLeaderboard as AdHeader, ToolPageAdSections as AdMidContent, AdFlexible as AdFooter } from '@/components/adsense'
-import { AdInArticle } from '@/components/adsense'
+import { AdLeaderboard as AdHeader, ToolPageAdSections as AdMidContent } from '@/components/adsense'
+import { AdInArticle, AdRectangle, AdToolPage } from '@/components/adsense'
 import { ChevronRight, Shield, Zap } from 'lucide-react'
 import { ShareButtons } from '@/components/share/share-buttons'
 import { ToolPageHeader } from '@/components/layout/tool-page-header'
@@ -308,6 +308,9 @@ export default async function ToolPage({ params }: Props) {
             </section>
           )}
 
+          {/* ── Ad: Rectangle (300x250, between related tools and category hub) ── */}
+          {relatedTools.length > 0 && <AdRectangle className="my-6" />}
+
           {/* ── Category Hub (more tools in same category for internal linking) ── */}
           {categoryTools.length > 0 && (
             <section className="mb-8">
@@ -328,8 +331,8 @@ export default async function ToolPage({ params }: Props) {
           )}
         </main>
 
-        {/* ── Ad: Footer banner ── */}
-        <AdFooter className="my-6" />
+        {/* ── Ad: Tool page footer (dedicated tool page slot) ── */}
+        <AdToolPage className="my-6" />
 
         {/* ── Footer ── */}
         <footer className="border-t border-border/50 mt-auto">

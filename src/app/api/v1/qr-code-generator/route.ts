@@ -87,8 +87,7 @@ export async function POST(request: NextRequest) {
       size_bytes: buffer.length,
       data: buffer.toString('base64'),
     })
-  } catch (err) {
-    console.error('[QR API] Generation error:', err)
+  } catch {
     return apiError('server_error', 'Failed to generate QR code. The data may be too long for the error correction level.')
   }
 }
