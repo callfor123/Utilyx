@@ -64,7 +64,6 @@ export function LocaleClientShell({ locale, dir, messages, children }: Props) {
       >
         <AdConsentProvider>
           <AdLimiterProvider>
-            <AdSenseScript />
             <LocaleIntlProvider locale={locale} messages={messages}>
               {children}
               <ClientOnlyProviders />
