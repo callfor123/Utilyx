@@ -6,12 +6,11 @@ import { LocaleClientShell } from "@/components/layout/locale-client-shell";
 
 const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 
-// Prevent static prerendering — the locale layout uses client-side context
-// providers (ThemeProvider, NextIntlClientProvider) that crash during SSG
-// because React context is null when Next.js 16 prerenders pages like
-// /_global-error through this layout tree.
-export const dynamic = 'force-dynamic'
-// Note: revalidate is intentionally omitted — force-dynamic disables ISR caching.
+// Revalidate every 24h (ISR) — allows Vercel CDN and Google to cache pages,
+// which improves crawl budget usage and indexation speed.
+// generateStaticParams below ensures only valid locales are prerendered,
+// preventing the _global-error crash that required force-dynamic before.
+export const revalidate = 86400
 
 // Explicitly list valid locale params to prevent Next.js from trying to
 // prerender the [locale] layout with invalid values like "_global-error".

@@ -78,6 +78,25 @@ export async function proxy(request: NextRequest) {
 
   // Let next-intl handle locale routing, then add security headers
   const response = intlMiddleware(request)
+
+  // Convert temporary (307) locale redirects to permanent (301) so that
+  // Google AdSense and other bots follow the redirect reliably.
+  if (response.status === 307) {
+    const location = response.headers.get('location')
+    if (location) {
+      const redirectUrl = location.startsWith('http')
+        ? new URL(location)
+        : new URL(location, request.url)
+      const permanent = NextResponse.redirect(redirectUrl, { status: 301 })
+      withSecurityHeaders(permanent)
+      // Preserve the locale cookie set by next-intl
+      response.headers.getSetCookie().forEach(cookie => {
+        permanent.headers.append('set-cookie', cookie)
+      })
+      return permanent
+    }
+  }
+
   return withSecurityHeaders(response)
 }
 
