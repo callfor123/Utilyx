@@ -11,9 +11,7 @@ const ADSENSE_CLIENT = 'ca-pub-7035626578237932';
 // because React context is null when Next.js 16 prerenders pages like
 // /_global-error through this layout tree.
 export const dynamic = 'force-dynamic'
-
-// ISR: revalidate every 24h for SEO + AdSense indexing
-export const revalidate = 86400
+// Note: revalidate is intentionally omitted — force-dynamic disables ISR caching.
 
 // Explicitly list valid locale params to prevent Next.js from trying to
 // prerender the [locale] layout with invalid values like "_global-error".

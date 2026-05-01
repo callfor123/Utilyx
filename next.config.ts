@@ -7,25 +7,25 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 const cspDev = [
   "default-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: http://localhost:3000 ws://localhost:3000",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: http://localhost:3000 https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: http://localhost:3000 https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
   "worker-src 'self' blob:",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://pagead2.googlesyndication.com https://www.google.com https://www.gstatic.com https://img.youtube.com http://localhost:3000",
+  "img-src 'self' data: blob: https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.google.com https://www.gstatic.com https://img.youtube.com http://localhost:3000",
   "font-src 'self' data:",
-  "connect-src 'self' data: blob: http://localhost:3000 ws://localhost:3000 https://pagead2.googlesyndication.com https://www.google-analytics.com https://api.remove.bg",
-  "frame-src 'self' https://googleads.g.doubleclick.net http://localhost:3000",
+  "connect-src 'self' data: blob: http://localhost:3000 ws://localhost:3000 https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.google-analytics.com https://api.remove.bg",
+  "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com http://localhost:3000",
 ].join('; ')
 
 const cspProd = [
   "default-src 'self'",
   "manifest-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://pagead2.googlesyndication.com https://adservice.google.com https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com",
   "worker-src 'self' blob:",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://pagead2.googlesyndication.com https://www.google.com https://www.gstatic.com https://img.youtube.com",
+  "img-src 'self' data: blob: https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.google.com https://www.gstatic.com https://img.youtube.com",
   "font-src 'self' data:",
-  "connect-src 'self' data: blob: https://pagead2.googlesyndication.com https://www.google-analytics.com https://api.remove.bg",
-  "frame-src 'self' https://googleads.g.doubleclick.net",
+  "connect-src 'self' data: blob: https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://www.google-analytics.com https://api.remove.bg",
+  "frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com",
 ].join('; ')
 
 const nextConfig: NextConfig = {
