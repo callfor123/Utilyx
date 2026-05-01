@@ -58,8 +58,14 @@ export type ToolId =
   | 'vat-calculator'
   | 'discount-calculator'
   | 'time-converter'
+  | 'html-interpreter'
+  | 'css-interpreter'
+  | 'js-interpreter'
+  | 'sql-interpreter'
+  | 'regex-interpreter'
+  | 'markdown-interpreter'
 
-export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'text-tools' | 'generators' | 'calculators' | 'home'
+export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'interpreters' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
 interface ToolsState {
   activeModule: ModuleId
@@ -145,6 +151,20 @@ export const modules: ModuleDef[] = [
       { id: 'css-gradient-generator', label: 'CSS Gradient', icon: 'Paintbrush', description: 'Créez des dégradés CSS linéaires et radiaux visuellement, code CSS copiable en un clic' },
       { id: 'markdown-preview', label: 'Markdown Preview', icon: 'FileCode', description: 'Éditeur Markdown avec aperçu en temps réel, support tableaux, code et LaTeX' },
       { id: 'url-cleaner', label: 'Nettoyeur d\'URL', icon: 'Link2Off', description: 'Supprimez les paramètres de tracking UTM et les paramètres inutiles d\'un lien en un clic' },
+    ],
+  },
+  {
+    id: 'interpreters',
+    label: 'Interpreteurs de Code',
+    icon: 'Terminal',
+    description: 'Interpreteurs HTML, CSS, JS, SQL, Regex et Markdown en ligne',
+    tools: [
+      { id: 'html-interpreter', label: 'Interpreteur HTML', icon: 'Code2', description: 'Interpreteur HTML en ligne : ecrivez et previsualisez votre code HTML en temps reel avec apercu Desktop et Mobile' },
+      { id: 'css-interpreter', label: 'Interpreteur CSS', icon: 'Palette', description: 'Visualisez l\'effet de votre code CSS en temps reel avec apercu instantané Desktop et Mobile' },
+      { id: 'js-interpreter', label: 'Console JS (REPL)', icon: 'Play', description: 'Console JavaScript interactive pour tester et executer votre code JS en navigateur, resultat en temps reel' },
+      { id: 'sql-interpreter', label: 'Interpreteur SQL', icon: 'Database', description: 'Interpreteur SQL interactif avec CRUD complet, import CSV/XLSX, export CSV/JSON/HTML, historique et exemples' },
+      { id: 'regex-interpreter', label: 'Regex Visualizer', icon: 'Regex', description: 'Testeur d\'expressions regulieres avec surlignage visuel des correspondances et groupes captures' },
+      { id: 'markdown-interpreter', label: 'Markdown Live', icon: 'FileText', description: 'Interpreteur Markdown avec apercu en direct, mode Split, support titres listes liens code' },
     ],
   },
   {

@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Volume2, Download, Loader2, RotateCcw, Music } from 'lucide-react'
 import { toast } from 'sonner'
@@ -16,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useFFmpeg, formatDuration } from './use-ffmpeg'
 
 export function VideoAddAudio() {
+  const t = useTranslations('ToolsUI')
   const [videoFile, setVideoFile] = useState<File | null>(null)
   const [audioFile, setAudioFile] = useState<File | null>(null)
   const [videoUrl, setVideoUrl] = useState('')
@@ -149,7 +152,7 @@ export function VideoAddAudio() {
           <div className="space-y-2">
             <Label className="text-sm font-medium">Audio</Label>
             {!audioFile ? (
-              <DropZone accept="audio/*" onFiles={handleAudioFiles} maxSize={100} label="Déposez votre audio" sublabel="MP3, WAV, AAC, OGG" icon={<Music className="h-6 w-6 text-muted-foreground" />} className="min-h-[150px]" />
+              <DropZone accept="audio/*" onFiles={handleAudioFiles} maxSize={100} label="Déposez votre audio" sublabel={t("audioFormats")} icon={<Music className="h-6 w-6 text-muted-foreground" />} className="min-h-[150px]" />
             ) : (
               <div className="p-3 rounded-lg bg-muted/40 space-y-2">
                 <div className="flex items-center gap-2">

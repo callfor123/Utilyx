@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef } from 'react'
 import {
   FileText,
@@ -47,6 +49,7 @@ async function getPdfjs() {
 }
 
 export function PdfConvert() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [format, setFormat] = useState<'jpg' | 'png'>('png')
   const [quality, setQuality] = useState<number>(0.85)
@@ -204,8 +207,8 @@ export function PdfConvert() {
               accept=".pdf"
               onFiles={handleFiles}
               maxSize={100}
-              label="Glissez-déposez votre PDF ici"
-              sublabel="ou cliquez pour parcourir"
+              label={t("dropPdf")}
+              sublabel={t("orClickBrowse")}
               icon={<FileText className="h-8 w-8" />}
             />
           ) : (

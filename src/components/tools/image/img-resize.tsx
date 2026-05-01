@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useEffect } from 'react'
 import {
   FileImage,
@@ -35,6 +37,7 @@ const PRESETS = [
 ] as const
 
 export function ImgResize() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string>('')
   const [originalWidth, setOriginalWidth] = useState<number>(0)
@@ -191,8 +194,8 @@ export function ImgResize() {
             accept="image/*"
             onFiles={handleFiles}
             maxSize={50}
-            label="Glissez-déposez votre image ici"
-            sublabel="ou cliquez pour parcourir"
+            label={t("dropImage")}
+            sublabel={t("orClickBrowse")}
             icon={<FileImage className="h-8 w-8" />}
           />
         ) : (
@@ -218,7 +221,7 @@ export function ImgResize() {
               <div className="relative max-w-md w-full rounded-lg border overflow-hidden bg-[repeating-conic-gradient(#e5e7eb_0%_25%,white_0%_50%)] bg-[length:16px_16px]">
                 <img
                   src={previewUrl}
-                  alt="Aperçu"
+                  alt={t("preview")}
                   className="w-full h-auto max-h-64 object-contain"
                 />
               </div>

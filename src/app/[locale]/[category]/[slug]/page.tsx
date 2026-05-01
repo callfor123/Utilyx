@@ -11,6 +11,7 @@ import { ChevronRight, Shield, Zap } from 'lucide-react'
 import { ShareButtons } from '@/components/share/share-buttons'
 import { ToolPageHeader } from '@/components/layout/tool-page-header'
 import { ScrollToTop } from '@/components/layout/scroll-to-top'
+import { SiteFooter } from '@/components/layout/site-footer'
 
 // ISR: revalidate tool pages every 24h for SEO
 export const revalidate = 86400
@@ -23,12 +24,12 @@ type Props = {
 
 /* ── Category labels per locale ─────────────────────────────────────── */
 const categoryLabels: Record<string, Record<string, string>> = {
-  fr: { pdf: 'Outils PDF', image: 'Outils Image', video: 'Outils Vidéo', 'dev-seo': 'Dev & SEO', 'text-tools': 'Outils Texte', generators: 'Générateurs', calculators: 'Calculateurs' },
-  en: { pdf: 'PDF Tools', image: 'Image Tools', video: 'Video Tools', 'dev-seo': 'Dev & SEO', 'text-tools': 'Text Tools', generators: 'Generators', calculators: 'Calculators' },
-  es: { pdf: 'Herramientas PDF', image: 'Herramientas de Imagen', video: 'Herramientas de Vídeo', 'dev-seo': 'Dev & SEO', 'text-tools': 'Herramientas de Texto', generators: 'Generadores', calculators: 'Calculadoras' },
-  de: { pdf: 'PDF-Werkzeuge', image: 'Bild-Werkzeuge', video: 'Video-Werkzeuge', 'dev-seo': 'Dev & SEO', 'text-tools': 'Text-Werkzeuge', generators: 'Generatoren', calculators: 'Rechner' },
-  ar: { pdf: 'أدوات PDF', image: 'أدوات الصور', video: 'أدوات الفيديو', 'dev-seo': 'Dev & SEO', 'text-tools': 'أدوات النص', generators: 'مولدات', calculators: 'حاسبات' },
-  pt: { pdf: 'Ferramentas PDF', image: 'Ferramentas de Imagem', video: 'Ferramentas de Vídeo', 'dev-seo': 'Dev & SEO', 'text-tools': 'Ferramentas de Texto', generators: 'Geradores', calculators: 'Calculadoras' },
+  fr: { pdf: 'Outils PDF', image: 'Outils Image', video: 'Outils Vidéo', 'dev-seo': 'Dev & SEO', interpreters: 'Interpréteurs de Code', 'text-tools': 'Outils Texte', generators: 'Générateurs', calculators: 'Calculateurs' },
+  en: { pdf: 'PDF Tools', image: 'Image Tools', video: 'Video Tools', 'dev-seo': 'Dev & SEO', interpreters: 'Code Interpreters', 'text-tools': 'Text Tools', generators: 'Generators', calculators: 'Calculators' },
+  es: { pdf: 'Herramientas PDF', image: 'Herramientas de Imagen', video: 'Herramientas de Vídeo', 'dev-seo': 'Dev & SEO', interpreters: 'Intérpretes de Código', 'text-tools': 'Herramientas de Texto', generators: 'Generadores', calculators: 'Calculadoras' },
+  de: { pdf: 'PDF-Werkzeuge', image: 'Bild-Werkzeuge', video: 'Video-Werkzeuge', 'dev-seo': 'Dev & SEO', interpreters: 'Code-Interpreter', 'text-tools': 'Text-Werkzeuge', generators: 'Generatoren', calculators: 'Rechner' },
+  ar: { pdf: 'أدوات PDF', image: 'أدوات الصور', video: 'أدوات الفيديو', 'dev-seo': 'Dev & SEO', interpreters: 'مفسرون الكود', 'text-tools': 'أدوات النص', generators: 'مولدات', calculators: 'حاسبات' },
+  pt: { pdf: 'Ferramentas PDF', image: 'Ferramentas de Imagem', video: 'Ferramentas de Vídeo', 'dev-seo': 'Dev & SEO', interpreters: 'Interpretadores de Código', 'text-tools': 'Ferramentas de Texto', generators: 'Geradores', calculators: 'Calculadoras' },
 }
 
 /* ── Content labels per locale ──────────────────────────────────────── */
@@ -64,6 +65,7 @@ const categoryIconColors: Record<string, string> = {
   image: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/30',
   video: 'text-pink-500 bg-pink-50 dark:bg-pink-950/30',
   'dev-seo': 'text-violet-500 bg-violet-50 dark:bg-violet-950/30',
+  interpreters: 'text-orange-500 bg-orange-50 dark:bg-orange-950/30',
   'text-tools': 'text-blue-500 bg-blue-50 dark:bg-blue-950/30',
   generators: 'text-rose-500 bg-rose-50 dark:bg-rose-950/30',
   calculators: 'text-amber-500 bg-amber-50 dark:bg-amber-950/30',
@@ -74,6 +76,7 @@ const categorySvgs: Record<string, string> = {
   image: '<rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>',
   video: '<path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/>',
   'dev-seo': '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  interpreters: '<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>',
   'text-tools': '<polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/>',
   generators: '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .962L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>',
   calculators: '<rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="16" y1="18" x2="16" y2="18.01"/>',
@@ -334,18 +337,7 @@ export default async function ToolPage({ params }: Props) {
         {/* ── Ad: Tool page footer (dedicated tool page slot) ── */}
         <AdToolPage className="my-6" />
 
-        {/* ── Footer ── */}
-        <footer className="border-t border-border/50 mt-auto">
-          <div className="container mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-foreground">
-              © {new Date().getFullYear()} Utilyx — {locale === 'en' ? 'All rights reserved' : locale === 'es' ? 'Todos los derechos reservados' : locale === 'de' ? 'Alle Rechte vorbehalten' : locale === 'ar' ? 'جميع الحقوق محفوظة' : locale === 'pt' ? 'Todos os direitos reservados' : 'Tous droits réservés'}
-            </p>
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span className="flex items-center gap-1"><Shield className="h-3 w-3 text-emerald-500" /> {locale === 'en' ? '100% local data' : locale === 'es' ? 'Datos 100% locales' : locale === 'de' ? '100% lokale Daten' : locale === 'ar' ? 'بيانات محلية 100%' : locale === 'pt' ? 'Dados 100% locais' : 'Données 100 % locales'}</span>
-              <span className="flex items-center gap-1"><Zap className="h-3 w-3 text-amber-500" /> {locale === 'en' ? 'No signup required' : locale === 'es' ? 'Sin registro' : locale === 'de' ? 'Ohne Anmeldung' : locale === 'ar' ? 'بدون تسجيل' : locale === 'pt' ? 'Sem cadastro' : 'Sans inscription'}</span>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter />
 
         {/* ── Scroll to top ── */}
         <ScrollToTop locale={locale} />

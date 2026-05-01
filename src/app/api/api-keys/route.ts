@@ -2,12 +2,12 @@
  * API Keys management endpoint.
  *
  * POST   /api/api-keys          — Generate a new free API key
- * GET    /api/api-keys?email=   — List keys by email (admin-only)
- * DELETE /api/api-keys          — Revoke a key (admin-only)
+ * GET    /api/api-keys?email=   — List keys by email (rate-limited for public use)
+ * DELETE /api/api-keys          — Revoke a key by ID (owner or admin)
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { generateApiKey, revokeApiKey, getApiKeysByEmail, getApiKeysByUserId, trackApiKeyEvent } from '@/lib/api-key-auth'
+import { generateApiKey, revokeApiKey, getApiKeysByEmail, trackApiKeyEvent } from '@/lib/api-key-auth'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
 import { requireAdminAuth } from '@/lib/admin-auth'
 import { getSession } from '@/lib/auth'
@@ -16,6 +16,10 @@ import { db } from '@/lib/db'
 // Rate limit for key generation: 5 per hour per IP
 const GENERATE_RATE_LIMIT = 5
 const GENERATE_RATE_WINDOW = 60 * 60 * 1000
+
+// Rate limit for key lookup: 20 per hour per IP
+const LOOKUP_RATE_LIMIT = 20
+const LOOKUP_RATE_WINDOW = 60 * 60 * 1000
 
 // Anti-abuse: max active keys per email / IP
 const MAX_ACTIVE_KEYS_PER_EMAIL = 3
@@ -127,8 +131,16 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  const authError = requireAdminAuth(request)
-  if (authError) return authError
+  const ip = getClientIp(request)
+
+  // Rate limit key lookup: 20 per hour per IP
+  const rl = rateLimit(ip, LOOKUP_RATE_LIMIT, LOOKUP_RATE_WINDOW)
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: 'Rate limit exceeded. Please try again later.' },
+      { status: 429 },
+    )
+  }
 
   const email = request.nextUrl.searchParams.get('email')
 
@@ -139,14 +151,36 @@ export async function GET(request: NextRequest) {
     )
   }
 
+  // Validate email format
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return NextResponse.json({ error: 'Invalid email format.' }, { status: 400 })
+  }
+
   try {
+    const session = await getSession()
+
     const keys = await getApiKeysByEmail(email)
 
-    // Keys are already stored as hashes — return prefix for display
+    // Return key info for the lookup (only prefix, never the full key)
     const masked = keys.map((k) => ({
-      ...k,
+      id: k.id,
       keyPrefix: k.keyPrefix ?? '••••••••',
+      name: k.name,
+      plan: k.plan,
+      status: k.status,
+      expiresAt: k.expiresAt,
+      createdAt: k.createdAt,
+      lastUsedAt: k.lastUsedAt,
+      usageCount: k.usageCount,
     }))
+
+    // Track lookup event
+    trackApiKeyEvent({
+      eventType: 'validated',
+      email,
+      ip,
+      metadata: { action: 'lookup', authenticated: !!session },
+    })
 
     return NextResponse.json({ success: true, data: masked })
   } catch (error) {
@@ -156,26 +190,58 @@ export async function GET(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const authError = requireAdminAuth(request)
-  if (authError) return authError
-
   try {
     const body = await request.json().catch(() => ({}))
     const { id, key } = body
 
-    // Support revocation by ID (preferred) or by full key value (legacy)
+    if (!id && !key) {
+      return NextResponse.json({ error: 'API key id or key value is required in request body.' }, { status: 400 })
+    }
+
+    // Allow revocation by ID — verify the key belongs to the caller
     if (id && typeof id === 'string') {
-      const result = await db.apiKey.updateMany({
-        where: { id, status: 'active' },
+      const ip = getClientIp(request)
+
+      const existingKey = await db.apiKey.findUnique({ where: { id } })
+      if (!existingKey) {
+        return NextResponse.json({ error: 'API key not found.' }, { status: 404 })
+      }
+      if (existingKey.status !== 'active') {
+        return NextResponse.json({ error: 'API key is already revoked or expired.' }, { status: 400 })
+      }
+
+      // Verify ownership: session user, matching email, or admin auth
+      const session = await getSession()
+      const isOwner = (session?.userId && existingKey.userId === session.userId)
+        || (session?.email && existingKey.email === session.email)
+        || (body.email && typeof body.email === 'string' && existingKey.email === body.email)
+
+      if (!isOwner) {
+        const authError = requireAdminAuth(request)
+        if (authError) return authError
+      }
+
+      await db.apiKey.update({
+        where: { id },
         data: { status: 'revoked' },
       })
-      if (result.count === 0) {
-        return NextResponse.json({ error: 'API key not found or already revoked/expired.' }, { status: 404 })
-      }
+
+      trackApiKeyEvent({
+        eventType: 'validated',
+        apiKeyId: id,
+        email: existingKey.email,
+        ip,
+        metadata: { action: 'revoke', authenticated: !!session },
+      })
+
       return NextResponse.json({ success: true, message: 'API key revoked.' })
     }
 
+    // Legacy: revocation by full key value (requires admin auth)
     if (key && typeof key === 'string') {
+      const authError = requireAdminAuth(request)
+      if (authError) return authError
+
       const revoked = await revokeApiKey(key)
       if (!revoked) {
         return NextResponse.json({ error: 'API key not found or already revoked/expired.' }, { status: 404 })

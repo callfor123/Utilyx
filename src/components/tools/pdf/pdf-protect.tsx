@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback } from 'react'
 import { ShieldCheck, Download, Loader2, RotateCcw, FileText, Eye, EyeOff, Info } from 'lucide-react'
 import { PDFDocument } from 'pdf-lib'
@@ -12,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 export function PdfProtect() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -185,8 +188,8 @@ export function PdfProtect() {
               accept=".pdf"
               onFiles={handleFiles}
               maxSize={100}
-              label="Glissez-déposez votre PDF ici"
-              sublabel="ou cliquez pour parcourir"
+              label={t("dropPdf")}
+              sublabel={t("orClickBrowse")}
               icon={<FileText className="h-8 w-8" />}
             />
           ) : (

@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Scissors, Download, Loader2, RotateCcw, Play, Pause, Clock } from 'lucide-react'
 import { toast } from 'sonner'
@@ -15,6 +17,7 @@ import { Slider } from '@/components/ui/slider'
 import { useFFmpeg, formatDuration, parseTimeToSeconds } from './use-ffmpeg'
 
 export function VideoTrim() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [videoUrl, setVideoUrl] = useState('')
   const [duration, setDuration] = useState(0)
@@ -116,7 +119,7 @@ export function VideoTrim() {
       </CardHeader>
       <CardContent className="px-0 space-y-6">
         {!file ? (
-          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label="Glissez-déposez votre vidéo ici" sublabel="MP4, WebM, AVI, MOV — max 500 MB" />
+          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label={t("dropVideo")} sublabel={t("videoFormats")} />
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-between">

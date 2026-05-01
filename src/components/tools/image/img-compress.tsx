@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef, useEffect } from 'react'
 import {
   FileImage,
@@ -49,6 +51,7 @@ function getMimeTypeLabel(mime: string): string {
 }
 
 export function ImgCompress() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [originalUrl, setOriginalUrl] = useState<string>('')
   const [compressedUrl, setCompressedUrl] = useState<string>('')
@@ -229,8 +232,8 @@ export function ImgCompress() {
             accept="image/*"
             onFiles={handleFiles}
             maxSize={50}
-            label="Glissez-déposez votre image ici"
-            sublabel="ou cliquez pour parcourir"
+            label={t("dropImage")}
+            sublabel={t("orClickBrowse")}
             icon={<FileImage className="h-8 w-8" />}
           />
         ) : (

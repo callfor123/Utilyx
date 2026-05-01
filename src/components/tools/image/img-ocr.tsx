@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef } from 'react'
 import {
   FileImage,
@@ -41,6 +43,7 @@ const LANGUAGE_OPTIONS = [
 ] as const
 
 export function ImageOcr() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [imageUrl, setImageUrl] = useState<string>('')
   const [ocrResult, setOcrResult] = useState<string>('')
@@ -162,8 +165,8 @@ export function ImageOcr() {
             accept="image/*"
             onFiles={handleFiles}
             maxSize={20}
-            label="Glissez-déposez votre image ici"
-            sublabel="ou cliquez pour parcourir"
+            label={t("dropImage")}
+            sublabel={t("orClickBrowse")}
             icon={<ScanText className="h-8 w-8" />}
           />
         ) : (
@@ -213,7 +216,7 @@ export function ImageOcr() {
                 <div className="relative mx-auto max-w-full overflow-hidden rounded-lg border bg-[repeating-conic-gradient(#e5e7eb_0%_25%,white_0%_50%)] bg-[length:16px_16px]">
                   <img
                     src={imageUrl}
-                    alt="Prévisualisation"
+                    alt={t("preview")}
                     className="w-full h-auto max-h-[400px] object-contain"
                     draggable={false}
                   />

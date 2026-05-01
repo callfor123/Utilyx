@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef, useMemo } from 'react'
 import {
   Pipette,
@@ -89,6 +91,7 @@ function extractColors(imageData: ImageData, maxColors: number): ExtractedColor[
 }
 
 export function ImgColorExtractor() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [imageUrl, setImageUrl] = useState<string>('')
   const [colors, setColors] = useState<ExtractedColor[]>([])
@@ -208,8 +211,8 @@ export function ImgColorExtractor() {
             accept="image/*"
             onFiles={handleFiles}
             maxSize={20}
-            label="Glissez-déposez votre image ici"
-            sublabel="ou cliquez pour parcourir"
+            label={t("dropImage")}
+            sublabel={t("orClickBrowse")}
             icon={<Pipette className="h-8 w-8" />}
           />
         ) : (
@@ -259,7 +262,7 @@ export function ImgColorExtractor() {
                 <div className="relative mx-auto max-w-full overflow-hidden rounded-lg border bg-[repeating-conic-gradient(#e5e7eb_0%_25%,white_0%_50%)] bg-[length:16px_16px]">
                   <img
                     src={imageUrl}
-                    alt="Prévisualisation"
+                    alt={t("preview")}
                     className="w-full h-auto max-h-[300px] object-contain"
                     draggable={false}
                   />
@@ -329,7 +332,7 @@ export function ImgColorExtractor() {
                         className="w-10 h-10 rounded-md border shrink-0 cursor-pointer"
                         style={{ backgroundColor: color.hex }}
                         onClick={() => copyColor(color, 'hex')}
-                        title="Cliquez pour copier HEX"
+                        title={t("clickCopyHex")}
                       />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -344,7 +347,7 @@ export function ImgColorExtractor() {
                         </div>
                       </div>
                       <div className="flex gap-1">
-                        <Button variant="ghost" size="sm" onClick={() => copyColor(color, 'hex')} title="Copier HEX">
+                        <Button variant="ghost" size="sm" onClick={() => copyColor(color, 'hex')} title={t("copyHex")}>
                           <Copy className="h-3 w-3" />
                         </Button>
                       </div>

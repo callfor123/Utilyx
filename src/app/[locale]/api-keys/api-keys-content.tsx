@@ -2,12 +2,18 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useLocale } from 'next-intl'
-import { Copy, Check, Key, AlertTriangle, Clock, Shield, RefreshCw, ArrowUpRight } from 'lucide-react'
+import { Copy, Check, Key, AlertTriangle, Clock, Shield, RefreshCw, ArrowUpRight, Code, Terminal, BookOpen, HelpCircle } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
 import {
   Dialog,
   DialogContent,
@@ -338,9 +344,260 @@ const messages: Record<string, {
   },
 }
 
+const docMessages: Record<string, {
+  howItWorksTitle: string
+  howItWorksSteps: string[]
+  apiDocsTitle: string
+  apiDocsIntro: string
+  apiEndpoints: { method: string; path: string; desc: string }[]
+  authTitle: string
+  authDesc: string
+  authExample: string
+  curlExamplesTitle: string
+  curlExamples: { label: string; curl: string }[]
+  faqTitle: string
+  faqItems: { q: string; a: string }[]
+}> = {
+  fr: {
+    howItWorksTitle: 'Comment ça marche',
+    howItWorksSteps: [
+      'Générez votre clé API gratuite en un clic — aucune inscription requise',
+      'Copiez votre clé et ajoutez-la à vos requêtes HTTP (header Authorization: Bearer)',
+      'Appelez les endpoints Utilyx (compression d\'images, OCR, etc.) avec votre clé',
+      'Votre clé expire automatiquement après 5 jours — régénérez-en une gratuitement',
+    ],
+    apiDocsTitle: 'Documentation API',
+    apiDocsIntro: 'L\'API REST Utilyx vous permet d\'intégrer nos outils directement dans vos applications. Toutes les requêtes nécessitent une clé API valide dans le header.',
+    apiEndpoints: [
+      { method: 'POST', path: '/api/api-keys', desc: 'Générer une nouvelle clé API gratuite' },
+      { method: 'GET', path: '/api/api-keys/validate', desc: 'Vérifier la validité d\'une clé API' },
+      { method: 'POST', path: '/api/image-compress', desc: 'Compresser une image (multipart/form-data)' },
+      { method: 'POST', path: '/api/ocr', desc: 'Extraire le texte d\'une image (OCR)' },
+      { method: 'GET', path: '/api/api-keys/features', desc: 'Lister les fonctionnalités accessibles' },
+    ],
+    authTitle: 'Authentification',
+    authDesc: 'Passez votre clé API dans le header Authorization ou X-API-Key de chaque requête :',
+    authExample: 'Authorization: Bearer utilyx_votre_cle_api',
+    curlExamplesTitle: 'Exemples curl',
+    curlExamples: [
+      { label: 'Générer une clé', curl: "curl -X POST https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"name\":\"Ma clé\",\"email\":\"vous@exemple.com\"}'" },
+      { label: 'Valider une clé', curl: "curl https://utilyx.app/api/api-keys/validate \\\n  -H 'Authorization: Bearer utilyx_votre_cle_api'" },
+      { label: 'Rechercher vos clés', curl: "curl 'https://utilyx.app/api/api-keys?email=vous@exemple.com'" },
+      { label: 'Révoquer une clé', curl: "curl -X DELETE https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"id\":\"votre_cle_id\",\"email\":\"vous@exemple.com\"}'" },
+      { label: 'Compresser une image', curl: "curl -X POST https://utilyx.app/api/image-compress \\\n  -H 'Authorization: Bearer utilyx_votre_cle_api' \\\n  -F 'file=@photo.jpg'" },
+      { label: 'OCR — Extraire du texte', curl: "curl -X POST https://utilyx.app/api/ocr \\\n  -H 'Authorization: Bearer utilyx_votre_cle_api' \\\n  -F 'file=@document.png' \\\n  -F 'lang=fra'" },
+    ],
+    faqTitle: 'Questions fréquentes',
+    faqItems: [
+      { q: 'Comment obtenir une clé API gratuite ?', a: 'Rendez-vous sur cette page, entrez éventuellement votre email et cliquez sur "Générer une clé". Votre clé est créée instantanément, sans inscription ni carte bancaire.' },
+      { q: 'Combien de requêtes puis-je faire ?', a: 'La clé gratuite permet 100 requêtes par heure par clé. C\'est suffisant pour tester l\'API et automatiser des tâches légères.' },
+      { q: 'Combien de temps dure une clé ?', a: 'La clé API gratuite expire automatiquement après 5 jours. Vous pouvez régénérer une nouvelle clé gratuitement à tout moment.' },
+      { q: 'Mes données sont-elles sécurisées ?', a: 'Oui. Les clés API sont stockées sous forme de hachage SHA-256. La clé complète n\'est affichée qu\'une seule fois et n\'est jamais stockée en clair.' },
+      { q: 'Quels outils sont disponibles via l\'API ?', a: 'L\'API donne accès à la compression d\'images, l\'OCR, et d\'autres outils. De nouveaux endpoints sont ajoutés régulièrement.' },
+      { q: 'Puis-je révoquer ma clé ?', a: 'Oui, vous pouvez révoquer votre clé à tout moment depuis la section "Mes clés" en recherchant par email.' },
+    ],
+  },
+  en: {
+    howItWorksTitle: 'How it works',
+    howItWorksSteps: [
+      'Generate your free API key in one click — no signup required',
+      'Copy your key and add it to your HTTP requests (Authorization: Bearer header)',
+      'Call Utilyx endpoints (image compression, OCR, etc.) with your key',
+      'Your key auto-expires after 5 days — regenerate a new one for free',
+    ],
+    apiDocsTitle: 'API Documentation',
+    apiDocsIntro: 'The Utilyx REST API lets you integrate our tools directly into your applications. All requests require a valid API key in the header.',
+    apiEndpoints: [
+      { method: 'POST', path: '/api/api-keys', desc: 'Generate a new free API key' },
+      { method: 'GET', path: '/api/api-keys/validate', desc: 'Check if an API key is valid' },
+      { method: 'POST', path: '/api/image-compress', desc: 'Compress an image (multipart/form-data)' },
+      { method: 'POST', path: '/api/ocr', desc: 'Extract text from an image (OCR)' },
+      { method: 'GET', path: '/api/api-keys/features', desc: 'List available API features' },
+    ],
+    authTitle: 'Authentication',
+    authDesc: 'Pass your API key in the Authorization or X-API-Key header of each request:',
+    authExample: 'Authorization: Bearer utilyx_your_api_key',
+    curlExamplesTitle: 'curl examples',
+    curlExamples: [
+      { label: 'Generate a key', curl: "curl -X POST https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"name\":\"My key\",\"email\":\"you@example.com\"}'" },
+      { label: 'Validate a key', curl: "curl https://utilyx.app/api/api-keys/validate \\\n  -H 'Authorization: Bearer utilyx_your_api_key'" },
+      { label: 'Look up your keys', curl: "curl 'https://utilyx.app/api/api-keys?email=you@example.com'" },
+      { label: 'Revoke a key', curl: "curl -X DELETE https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"id\":\"your_key_id\",\"email\":\"you@example.com\"}'" },
+      { label: 'Compress an image', curl: "curl -X POST https://utilyx.app/api/image-compress \\\n  -H 'Authorization: Bearer utilyx_your_api_key' \\\n  -F 'file=@photo.jpg'" },
+      { label: 'OCR — Extract text', curl: "curl -X POST https://utilyx.app/api/ocr \\\n  -H 'Authorization: Bearer utilyx_your_api_key' \\\n  -F 'file=@document.png' \\\n  -F 'lang=eng'" },
+    ],
+    faqTitle: 'Frequently asked questions',
+    faqItems: [
+      { q: 'How do I get a free API key?', a: 'Visit this page, optionally enter your email, and click "Generate key". Your key is created instantly with no signup or credit card required.' },
+      { q: 'How many requests can I make?', a: 'The free key allows 100 requests per hour per key. This is sufficient for testing the API and automating lightweight tasks.' },
+      { q: 'How long does a key last?', a: 'The free API key auto-expires after 5 days. You can regenerate a new key for free at any time.' },
+      { q: 'Is my data secure?', a: 'Yes. API keys are stored as SHA-256 hashes. The full key is only displayed once during creation and never stored in plaintext.' },
+      { q: 'Which tools are available via the API?', a: 'The API provides access to image compression, OCR, and other tools. New endpoints are added regularly.' },
+      { q: 'Can I revoke my key?', a: 'Yes, you can revoke your key at any time from the "My keys" section by searching with your email.' },
+    ],
+  },
+  es: {
+    howItWorksTitle: 'Cómo funciona',
+    howItWorksSteps: [
+      'Genera tu clave API gratuita en un clic — sin registro requerido',
+      'Copia tu clave y añádela a tus solicitudes HTTP (header Authorization: Bearer)',
+      'Llama a los endpoints de Utilyx (compresión de imágenes, OCR, etc.) con tu clave',
+      'Tu clave expira automáticamente después de 5 días — regenera una nueva gratis',
+    ],
+    apiDocsTitle: 'Documentación de la API',
+    apiDocsIntro: 'La API REST de Utilyx te permite integrar nuestras herramientas directamente en tus aplicaciones. Todas las solicitudes requieren una clave API válida en el header.',
+    apiEndpoints: [
+      { method: 'POST', path: '/api/api-keys', desc: 'Generar una nueva clave API gratuita' },
+      { method: 'GET', path: '/api/api-keys/validate', desc: 'Verificar si una clave API es válida' },
+      { method: 'POST', path: '/api/image-compress', desc: 'Comprimir una imagen (multipart/form-data)' },
+      { method: 'POST', path: '/api/ocr', desc: 'Extraer texto de una imagen (OCR)' },
+      { method: 'GET', path: '/api/api-keys/features', desc: 'Listar las funciones disponibles' },
+    ],
+    authTitle: 'Autenticación',
+    authDesc: 'Pasa tu clave API en el header Authorization o X-API-Key de cada solicitud:',
+    authExample: 'Authorization: Bearer utilyx_tu_clave_api',
+    curlExamplesTitle: 'Ejemplos curl',
+    curlExamples: [
+      { label: 'Generar una clave', curl: "curl -X POST https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"name\":\"Mi clave\",\"email\":\"tu@ejemplo.com\"}'" },
+      { label: 'Validar una clave', curl: "curl https://utilyx.app/api/api-keys/validate \\\n  -H 'Authorization: Bearer utilyx_tu_clave_api'" },
+      { label: 'Buscar tus claves', curl: "curl 'https://utilyx.app/api/api-keys?email=tu@ejemplo.com'" },
+      { label: 'Revocar una clave', curl: "curl -X DELETE https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"id\":\"tu_clave_id\",\"email\":\"tu@ejemplo.com\"}'" },
+      { label: 'Comprimir una imagen', curl: "curl -X POST https://utilyx.app/api/image-compress \\\n  -H 'Authorization: Bearer utilyx_tu_clave_api' \\\n  -F 'file=@foto.jpg'" },
+      { label: 'OCR — Extraer texto', curl: "curl -X POST https://utilyx.app/api/ocr \\\n  -H 'Authorization: Bearer utilyx_tu_clave_api' \\\n  -F 'file=@documento.png' \\\n  -F 'lang=spa'" },
+    ],
+    faqTitle: 'Preguntas frecuentes',
+    faqItems: [
+      { q: '¿Cómo obtengo una clave API gratuita?', a: 'Visita esta página, introduce tu email opcionalmente y haz clic en "Generar clave". Tu clave se crea al instante sin registro ni tarjeta de crédito.' },
+      { q: '¿Cuántas solicitudes puedo hacer?', a: 'La clave gratuita permite 100 solicitudes por hora por clave. Es suficiente para probar la API y automatizar tareas ligeras.' },
+      { q: '¿Cuánto dura una clave?', a: 'La clave API gratuita expira automáticamente después de 5 días. Puedes regenerar una nueva clave gratis en cualquier momento.' },
+      { q: '¿Son seguros mis datos?', a: 'Sí. Las claves API se almacenan como hashes SHA-256. La clave completa solo se muestra una vez durante la creación y nunca se almacena en texto plano.' },
+      { q: '¿Qué herramientas están disponibles vía API?', a: 'La API da acceso a compresión de imágenes, OCR y otras herramientas. Se añaden nuevos endpoints regularmente.' },
+      { q: '¿Puedo revocar mi clave API?', a: 'Sí, puedes revocar tu clave en cualquier momento desde la sección "Mis claves" buscando con tu email.' },
+    ],
+  },
+  de: {
+    howItWorksTitle: 'So funktioniert es',
+    howItWorksSteps: [
+      'Generieren Sie Ihren kostenlosen API-Schlüssel mit einem Klick — keine Anmeldung erforderlich',
+      'Kopieren Sie Ihren Schlüssel und fügen Sie ihn zu Ihren HTTP-Anfragen hinzu (Authorization: Bearer Header)',
+      'Rufen Sie Utilyx-Endpunkte (Bildkomprimierung, OCR usw.) mit Ihrem Schlüssel auf',
+      'Ihr Schlüssel läuft nach 5 Tagen automatisch ab — generieren Sie kostenlos einen neuen',
+    ],
+    apiDocsTitle: 'API-Dokumentation',
+    apiDocsIntro: 'Die Utilyx REST-API ermöglicht die direkte Integration unserer Tools in Ihre Anwendungen. Alle Anfragen erfordern einen gültigen API-Schlüssel im Header.',
+    apiEndpoints: [
+      { method: 'POST', path: '/api/api-keys', desc: 'Neuen kostenlosen API-Schlüssel generieren' },
+      { method: 'GET', path: '/api/api-keys/validate', desc: 'Prüfen, ob ein API-Schlüssel gültig ist' },
+      { method: 'POST', path: '/api/image-compress', desc: 'Ein Bild komprimieren (multipart/form-data)' },
+      { method: 'POST', path: '/api/ocr', desc: 'Text aus einem Bild extrahieren (OCR)' },
+      { method: 'GET', path: '/api/api-keys/features', desc: 'Verfügbare API-Funktionen auflisten' },
+    ],
+    authTitle: 'Authentifizierung',
+    authDesc: 'Übergeben Sie Ihren API-Schlüssel im Authorization- oder X-API-Key-Header jeder Anfrage:',
+    authExample: 'Authorization: Bearer utilyx_ihr_api_schluessel',
+    curlExamplesTitle: 'curl-Beispiele',
+    curlExamples: [
+      { label: 'Schlüssel generieren', curl: "curl -X POST https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"name\":\"Mein Schlüssel\",\"email\":\"sie@beispiel.de\"}'" },
+      { label: 'Schlüssel validieren', curl: "curl https://utilyx.app/api/api-keys/validate \\\n  -H 'Authorization: Bearer utilyx_ihr_api_schluessel'" },
+      { label: 'Schlüssel suchen', curl: "curl 'https://utilyx.app/api/api-keys?email=sie@beispiel.de'" },
+      { label: 'Schlüssel widerrufen', curl: "curl -X DELETE https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"id\":\"schluessel_id\",\"email\":\"sie@beispiel.de\"}'" },
+      { label: 'Bild komprimieren', curl: "curl -X POST https://utilyx.app/api/image-compress \\\n  -H 'Authorization: Bearer utilyx_ihr_api_schluessel' \\\n  -F 'file=@foto.jpg'" },
+      { label: 'OCR — Text extrahieren', curl: "curl -X POST https://utilyx.app/api/ocr \\\n  -H 'Authorization: Bearer utilyx_ihr_api_schluessel' \\\n  -F 'file=@dokument.png' \\\n  -F 'lang=deu'" },
+    ],
+    faqTitle: 'Häufig gestellte Fragen',
+    faqItems: [
+      { q: 'Wie erhalte ich einen kostenlosen API-Schlüssel?', a: 'Besuchen Sie diese Seite, geben Sie optional Ihre E-Mail ein und klicken Sie auf "Schlüssel generieren". Ihr Schlüssel wird sofort ohne Anmeldung erstellt.' },
+      { q: 'Wie viele Anfragen kann ich stellen?', a: 'Der kostenlose Schlüssel erlaubt 100 Anfragen pro Stunde pro Schlüssel. Dies reicht zum Testen der API und zur Automatisierung leichter Aufgaben.' },
+      { q: 'Wie lange gilt ein Schlüssel?', a: 'Der kostenlose API-Schlüssel läuft nach 5 Tagen automatisch ab. Sie können jederzeit einen neuen Schlüssel kostenlos generieren.' },
+      { q: 'Sind meine Daten sicher?', a: 'Ja. API-Schlüssel werden als SHA-256-Hashes gespeichert. Der vollständige Schlüssel wird nur einmal bei der Erstellung angezeigt und niemals im Klartext gespeichert.' },
+      { q: 'Welche Tools sind über die API zugänglich?', a: 'Die API bietet Zugang zu Bildkomprimierung, OCR und weiteren Tools. Neue Endpunkte werden regelmäßig hinzugefügt.' },
+      { q: 'Kann ich meinen API-Schlüssel widerrufen?', a: 'Ja, Sie können Ihren Schlüssel jederzeit über den Bereich "Meine Schlüssel" widerrufen, indem Sie nach Ihrer E-Mail suchen.' },
+    ],
+  },
+  ar: {
+    howItWorksTitle: 'كيف يعمل',
+    howItWorksSteps: [
+      'أنشئ مفتاح API المجاني بنقرة واحدة — بدون تسجيل',
+      'انسخ مفتاحك وأضفه إلى طلبات HTTP (رأس Authorization: Bearer)',
+      'استدعِ نقاط نهاية Utilyx (ضغط الصور، OCR، إلخ) بمفتاحك',
+      'ينتهي مفتاحك تلقائيًا بعد 5 أيام — أنشئ مفتاحًا جديدًا مجانًا',
+    ],
+    apiDocsTitle: 'توثيق API',
+    apiDocsIntro: 'يتيح لك REST API من Utilyx دمج أدواتنا مباشرة في تطبيقاتك. تتطلب جميع الطلبات مفتاح API صالح في الرأس.',
+    apiEndpoints: [
+      { method: 'POST', path: '/api/api-keys', desc: 'إنشاء مفتاح API مجاني جديد' },
+      { method: 'GET', path: '/api/api-keys/validate', desc: 'التحقق من صلاحية مفتاح API' },
+      { method: 'POST', path: '/api/image-compress', desc: 'ضغط صورة (multipart/form-data)' },
+      { method: 'POST', path: '/api/ocr', desc: 'استخراج النص من صورة (OCR)' },
+      { method: 'GET', path: '/api/api-keys/features', desc: 'عرض الميزات المتاحة' },
+    ],
+    authTitle: 'المصادقة',
+    authDesc: 'مرر مفتاح API في رأس Authorization أو X-API-Key لكل طلب:',
+    authExample: 'Authorization: Bearer utilyx_مفتاحك_هنا',
+    curlExamplesTitle: 'أمثلة curl',
+    curlExamples: [
+      { label: 'إنشاء مفتاح', curl: "curl -X POST https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"name\":\"مفتاحي\",\"email\":\"you@example.com\"}'" },
+      { label: 'التحقق من مفتاح', curl: "curl https://utilyx.app/api/api-keys/validate \\\n  -H 'Authorization: Bearer utilyx_مفتاحك_هنا'" },
+      { label: 'البحث عن مفاتيحك', curl: "curl 'https://utilyx.app/api/api-keys?email=you@example.com'" },
+      { label: 'إلغاء مفتاح', curl: "curl -X DELETE https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"id\":\"معرف_المفتاح\",\"email\":\"you@example.com\"}'" },
+      { label: 'ضغط صورة', curl: "curl -X POST https://utilyx.app/api/image-compress \\\n  -H 'Authorization: Bearer utilyx_مفتاحك_هنا' \\\n  -F 'file=@photo.jpg'" },
+      { label: 'OCR — استخراج النص', curl: "curl -X POST https://utilyx.app/api/ocr \\\n  -H 'Authorization: Bearer utilyx_مفتاحك_هنا' \\\n  -F 'file=@document.png' \\\n  -F 'lang=ara'" },
+    ],
+    faqTitle: 'الأسئلة الشائعة',
+    faqItems: [
+      { q: 'كيف أحصل على مفتاح API مجاني؟', a: 'قم بزيارة هذه الصفحة، أدخل بريدك الإلكتروني اختياريًا وانقر على "إنشاء مفتاح". يتم إنشاء مفتاحك فورًا بدون تسجيل أو بطاقة ائتمان.' },
+      { q: 'كم عدد الطلبات التي يمكنني تقديمها؟', a: 'يتيح المفتاح المجاني 100 طلب في الساعة لكل مفتاح. هذا كافٍ لاختبار API وأتمتة المهام الخفيفة.' },
+      { q: 'كم مدة صلاحية المفتاح؟', a: 'ينتهي مفتاح API المجاني تلقائيًا بعد 5 أيام. يمكنك إنشاء مفتاح جديد مجانًا في أي وقت.' },
+      { q: 'هل بياناتي آمنة؟', a: 'نعم. يتم تخزين مفاتيح API كتجزئة SHA-256. يظهر المفتاح الكامل مرة واحدة فقط ولا يتم تخزينه أبدًا بنص عادي.' },
+      { q: 'ما الأدوات المتاحة عبر API؟', a: 'توفر API الوصول إلى ضغط الصور والتعرف على النصوص (OCR) وأدوات أخرى. تتم إضافة نقاط نهاية جديدة بانتظام.' },
+      { q: 'هل يمكنني إلغاء مفتاحي؟', a: 'نعم، يمكنك إلغاء مفتاحك في أي وقت من قسم "مفاتيحي" بالبحث عبر بريدك الإلكتروني.' },
+    ],
+  },
+  pt: {
+    howItWorksTitle: 'Como funciona',
+    howItWorksSteps: [
+      'Gere sua chave API gratuita em um clique — sem cadastro necessário',
+      'Copie sua chave e adicione às suas requisições HTTP (header Authorization: Bearer)',
+      'Chame os endpoints do Utilyx (compressão de imagens, OCR, etc.) com sua chave',
+      'Sua chave expira automaticamente após 5 dias — regenere uma nova gratuitamente',
+    ],
+    apiDocsTitle: 'Documentação da API',
+    apiDocsIntro: 'A API REST do Utilyx permite integrar nossas ferramentas diretamente em seus aplicativos. Todas as requisições exigem uma chave API válida no header.',
+    apiEndpoints: [
+      { method: 'POST', path: '/api/api-keys', desc: 'Gerar uma nova chave API gratuita' },
+      { method: 'GET', path: '/api/api-keys/validate', desc: 'Verificar se uma chave API é válida' },
+      { method: 'POST', path: '/api/image-compress', desc: 'Comprimir uma imagem (multipart/form-data)' },
+      { method: 'POST', path: '/api/ocr', desc: 'Extrair texto de uma imagem (OCR)' },
+      { method: 'GET', path: '/api/api-keys/features', desc: 'Listar recursos disponíveis da API' },
+    ],
+    authTitle: 'Autenticação',
+    authDesc: 'Passe sua chave API no header Authorization ou X-API-Key de cada requisição:',
+    authExample: 'Authorization: Bearer utilyx_sua_chave_api',
+    curlExamplesTitle: 'Exemplos curl',
+    curlExamples: [
+      { label: 'Gerar uma chave', curl: "curl -X POST https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"name\":\"Minha chave\",\"email\":\"voce@exemplo.com\"}'" },
+      { label: 'Validar uma chave', curl: "curl https://utilyx.app/api/api-keys/validate \\\n  -H 'Authorization: Bearer utilyx_sua_chave_api'" },
+      { label: 'Buscar suas chaves', curl: "curl 'https://utilyx.app/api/api-keys?email=voce@exemplo.com'" },
+      { label: 'Revogar uma chave', curl: "curl -X DELETE https://utilyx.app/api/api-keys \\\n  -H 'Content-Type: application/json' \\\n  -d '{\"id\":\"id_da_chave\",\"email\":\"voce@exemplo.com\"}'" },
+      { label: 'Comprimir uma imagem', curl: "curl -X POST https://utilyx.app/api/image-compress \\\n  -H 'Authorization: Bearer utilyx_sua_chave_api' \\\n  -F 'file=@foto.jpg'" },
+      { label: 'OCR — Extrair texto', curl: "curl -X POST https://utilyx.app/api/ocr \\\n  -H 'Authorization: Bearer utilyx_sua_chave_api' \\\n  -F 'file=@documento.png' \\\n  -F 'lang=por'" },
+    ],
+    faqTitle: 'Perguntas frequentes',
+    faqItems: [
+      { q: 'Como obter uma chave API gratuita?', a: 'Acesse esta página, insira opcionalmente seu email e clique em "Gerar chave". Sua chave é criada instantaneamente, sem cadastro ou cartão de crédito.' },
+      { q: 'Quantas requisições posso fazer?', a: 'A chave gratuita permite 100 requisições por hora por chave. É suficiente para testar a API e automatizar tarefas leves.' },
+      { q: 'Quanto tempo dura uma chave?', a: 'A chave API gratuita expira automaticamente após 5 dias. Você pode regenerar uma nova chave gratuitamente a qualquer momento.' },
+      { q: 'Meus dados estão seguros?', a: 'Sim. As chaves API são armazenadas como hashes SHA-256. A chave completa é exibida apenas uma vez durante a criação e nunca é armazenada em texto plano.' },
+      { q: 'Quais ferramentas estão disponíveis via API?', a: 'A API dá acesso à compressão de imagens, OCR (reconhecimento de texto) e outras ferramentas. Novos endpoints são adicionados regularmente.' },
+      { q: 'Posso revogar minha chave API?', a: 'Sim, você pode revogar sua chave a qualquer momento na seção "Minhas chaves" pesquisando pelo email.' },
+    ],
+  },
+}
+
 export default function ApiKeysContent() {
   const locale = useLocale()
   const msg = messages[locale] || messages.en
+  const doc = docMessages[locale] || docMessages.en
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -645,7 +902,7 @@ export default function ApiKeysContent() {
                           disabled={revokingId === k.id}
                           onClick={() => handleRevoke(k.id)}
                         >
-                          {revokingId === k.key ? msg.revoking : msg.revoke}
+                          {revokingId === k.id ? msg.revoking : msg.revoke}
                         </Button>
                       )}
                       {(k.status === 'expired') && (
@@ -699,6 +956,127 @@ export default function ApiKeysContent() {
             </div>
           </DialogContent>
         </Dialog>
+
+        {/* SEO Documentation Section */}
+        <section className="mt-12 space-y-10">
+          {/* How it works */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="rounded-lg bg-primary/10 p-2">
+                <BookOpen className="h-5 w-5 text-primary" />
+              </div>
+              <h2 className="text-2xl font-bold">{doc.howItWorksTitle}</h2>
+            </div>
+            <ol className="space-y-3 ml-1">
+              {doc.howItWorksSteps.map((step, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary text-xs font-bold">{i + 1}</span>
+                  <span className="pt-0.5">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* API Documentation */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-lg">
+                <Code className="h-5 w-5 text-primary" />
+                {doc.apiDocsTitle}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground">{doc.apiDocsIntro}</p>
+
+              {/* Authentication */}
+              <div>
+                <h3 className="text-sm font-semibold mb-1 flex items-center gap-1.5">
+                  <Shield className="h-4 w-4 text-emerald-500" />
+                  {doc.authTitle}
+                </h3>
+                <p className="text-xs text-muted-foreground mb-2">{doc.authDesc}</p>
+                <div className="rounded-md bg-muted/60 border px-3 py-2">
+                  <code className="text-xs font-mono text-primary">{doc.authExample}</code>
+                </div>
+              </div>
+
+              {/* curl Examples */}
+              <div>
+                <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
+                  <Terminal className="h-4 w-4 text-primary" />
+                  {doc.curlExamplesTitle}
+                </h3>
+                <div className="space-y-2">
+                  {doc.curlExamples.map((ex, i) => (
+                    <div key={i} className="rounded-lg border bg-muted/30">
+                      <div className="flex items-center justify-between px-3 py-1.5 border-b bg-muted/50 rounded-t-lg">
+                        <span className="text-xs font-medium">{ex.label}</span>
+                        <button
+                          type="button"
+                          className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                          onClick={() => { navigator.clipboard.writeText(ex.curl) }}
+                        >
+                          <Copy className="h-3 w-3" />
+                        </button>
+                      </div>
+                      <pre className="px-3 py-2 overflow-x-auto text-xs font-mono text-muted-foreground leading-relaxed whitespace-pre-wrap break-all">
+                        {ex.curl}
+                      </pre>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Endpoints table */}
+              <div>
+                <h3 className="text-sm font-semibold mb-2 flex items-center gap-1.5">
+                  <Terminal className="h-4 w-4 text-primary" />
+                  Endpoints
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left py-1.5 pr-3 font-medium text-muted-foreground">Method</th>
+                        <th className="text-left py-1.5 pr-3 font-medium text-muted-foreground">Path</th>
+                        <th className="text-left py-1.5 font-medium text-muted-foreground">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {doc.apiEndpoints.map((ep, i) => (
+                        <tr key={i} className="border-b last:border-0">
+                          <td className="py-1.5 pr-3">
+                            <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${ep.method === 'GET' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'}`}>{ep.method}</span>
+                          </td>
+                          <td className="py-1.5 pr-3 font-mono text-primary">{ep.path}</td>
+                          <td className="py-1.5 text-muted-foreground">{ep.desc}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* FAQ */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="rounded-lg bg-primary/10 p-2">
+                <HelpCircle className="h-5 w-5 text-primary" />
+              </div>
+              <h2 className="text-2xl font-bold">{doc.faqTitle}</h2>
+            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {doc.faqItems.map((item, i) => (
+                <AccordionItem key={i} value={`faq-${i}`}>
+                  <AccordionTrigger className="text-sm text-left">{item.q}</AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground">{item.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
       </div>
     </div>
   )

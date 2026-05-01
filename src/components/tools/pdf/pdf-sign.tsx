@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useRef, useCallback, useEffect } from 'react'
 import {
   Type,
@@ -68,6 +70,7 @@ function uid(): string {
 
 // ── Component ────────────────────────────────────────────────────────
 export function PdfSign() {
+  const t = useTranslations('ToolsUI')
   // File state
   const [file, setFile] = useState<File | null>(null)
   const [numPages, setNumPages] = useState(0)
@@ -709,8 +712,8 @@ export function PdfSign() {
             multiple={false}
             onFiles={handleFiles}
             maxSize={50}
-            label="Glissez-déposez votre PDF ici"
-            sublabel="ou cliquez pour parcourir"
+            label={t("dropPdf")}
+            sublabel={t("orClickBrowse")}
             icon={<FileText className="h-8 w-8" />}
           />
         </CardContent>

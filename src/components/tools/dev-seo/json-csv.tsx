@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useMemo } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -110,6 +112,7 @@ function LineNumbers({ text }: { text: string }) {
 
 // ── Main component ───────────────────────────────────────────────────────
 export function JsonCsv() {
+  const t = useTranslations('ToolsUI')
   const [mode, setMode] = useState<'json-csv' | 'csv-json'>('json-csv')
   const [input, setInput] = useState('')
 
@@ -278,10 +281,10 @@ export function JsonCsv() {
                 <div className="flex items-center justify-between">
                   <Label className="text-sm font-medium">Entrée JSON</Label>
                   <div className="flex gap-1">
-                    <Button variant="ghost" size="sm" onClick={handleFormat} title="Formater">
+                    <Button variant="ghost" size="sm" onClick={handleFormat} title={t("format")}>
                       <Wand2 className="h-3.5 w-3.5" />
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={handleMinify} title="Minifier">
+                    <Button variant="ghost" size="sm" onClick={handleMinify} title={t("minify")}>
                       <Minimize2 className="h-3.5 w-3.5" />
                     </Button>
                   </div>
@@ -311,10 +314,10 @@ export function JsonCsv() {
                 <div className="flex items-center justify-between">
                   <Label className="text-sm font-medium">Sortie CSV</Label>
                   <div className="flex gap-1">
-                    <Button variant="ghost" size="sm" onClick={handleCopy} title="Copier">
+                    <Button variant="ghost" size="sm" onClick={handleCopy} title={t("copy")}>
                       <Copy className="h-3.5 w-3.5" />
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={handleDownload} title="Télécharger">
+                    <Button variant="ghost" size="sm" onClick={handleDownload} title={t("download")}>
                       <Download className="h-3.5 w-3.5" />
                     </Button>
                   </div>
@@ -373,10 +376,10 @@ export function JsonCsv() {
                 <div className="flex items-center justify-between">
                   <Label className="text-sm font-medium">Sortie JSON</Label>
                   <div className="flex gap-1">
-                    <Button variant="ghost" size="sm" onClick={handleCopy} title="Copier">
+                    <Button variant="ghost" size="sm" onClick={handleCopy} title={t("copy")}>
                       <Copy className="h-3.5 w-3.5" />
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={handleDownload} title="Télécharger">
+                    <Button variant="ghost" size="sm" onClick={handleDownload} title={t("download")}>
                       <Download className="h-3.5 w-3.5" />
                     </Button>
                   </div>

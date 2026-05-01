@@ -10,7 +10,9 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useToolsStore, modules, type ModuleId, type ToolId } from '@/lib/tools-store'
 import { routing, type Locale } from '@/i18n/routing'
 import { toolIdToPath, getPathForLocale } from '@/lib/seo-registry'
+import { useTranslatedModules } from '@/lib/use-translated-modules'
 import { AdBanner, AdInFeed, AdLeaderboard, AdStickyBottom, AdHomeGrid, AdSidebar } from '@/components/adsense'
+import { SiteFooter } from '@/components/layout/site-footer'
 
 
 // Existing tools
@@ -201,6 +203,10 @@ import {
   Link2Off,
   SplitSquareHorizontal,
   Clock,
+  Code2,
+  Play,
+  Database,
+  Regex,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -226,21 +232,7 @@ const localeLabels: Record<string, string> = {
 }
 
 /* ── Translated Modules Hook ─────────────────────────────────────────── */
-function useTranslatedModules() {
-  const t = useTranslations('Tools')
-  const tMod = useTranslations('Modules')
 
-  return modules.map(mod => ({
-    ...mod,
-    label: tMod(`${mod.id}.label`),
-    description: tMod(`${mod.id}.description`),
-    tools: mod.tools.map(tool => ({
-      ...tool,
-      label: t(`${tool.id}.label`),
-      description: t(`${tool.id}.description`),
-    })),
-  }))
-}
 
 /* ── Tool Loader ─────────────────────────────────────────────────────── */
 function ToolLoader({ label }: { label: string }) {
@@ -329,6 +321,12 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'vat-calculator': VatCalculator,
   'discount-calculator': dynamic(() => import('@/components/tools/calculators/discount-calculator').then(m => m.DiscountCalculator), { ssr: false, loading: () => <ToolLoader label="Discount Calculator" /> }),
   'time-converter': TimeConverter,
+  'html-interpreter': dynamic(() => import('@/components/tools/dev-seo/html-interpreter').then(m => m.HtmlInterpreter), { ssr: false, loading: () => <ToolLoader label="HTML Interpreter" /> }),
+  'css-interpreter': dynamic(() => import('@/components/tools/dev-seo/css-interpreter').then(m => m.CssInterpreter), { ssr: false, loading: () => <ToolLoader label="CSS Interpreter" /> }),
+  'js-interpreter': dynamic(() => import('@/components/tools/dev-seo/js-interpreter').then(m => m.JsInterpreter), { ssr: false, loading: () => <ToolLoader label="JS Console" /> }),
+  'sql-interpreter': dynamic(() => import('@/components/tools/dev-seo/sql-interpreter').then(m => m.SqlInterpreter), { ssr: false, loading: () => <ToolLoader label="SQL Interpreter" /> }),
+  'regex-interpreter': dynamic(() => import('@/components/tools/dev-seo/regex-interpreter').then(m => m.RegexInterpreter), { ssr: false, loading: () => <ToolLoader label="Regex Visualizer" /> }),
+  'markdown-interpreter': dynamic(() => import('@/components/tools/dev-seo/markdown-interpreter').then(m => m.MarkdownInterpreter), { ssr: false, loading: () => <ToolLoader label="Markdown Live" /> }),
 }
 
 const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -339,6 +337,7 @@ const toolIconMap: Record<string, React.ComponentType<{ className?: string }>> =
   FileCode, ArrowDownUp, Diff, Lock, Smartphone, Unlock, ShieldCheck,
   Volume2, Music, Film, VolumeX, Video,
   HardHat, Car, MessageCircle, Link2Off, SplitSquareHorizontal, Clock,
+  Code2, Play, Database, Regex,
 }
 
 toolIconMap['Image'] = ImageIcon
@@ -380,6 +379,7 @@ const moduleGradients: Record<string, string> = {
   image: 'from-emerald-500/20 via-teal-500/10 to-cyan-500/20',
   video: 'from-pink-500/20 via-rose-500/10 to-fuchsia-500/20',
   'dev-seo': 'from-violet-500/20 via-purple-500/10 to-fuchsia-500/20',
+  interpreters: 'from-orange-500/20 via-amber-500/10 to-yellow-500/20',
   'text-tools': 'from-blue-500/20 via-sky-500/10 to-cyan-500/20',
   generators: 'from-rose-500/20 via-pink-500/10 to-fuchsia-500/20',
   calculators: 'from-amber-500/20 via-orange-500/10 to-yellow-500/20',
@@ -390,6 +390,7 @@ const moduleIconColors: Record<string, string> = {
   image: 'text-emerald-500 bg-emerald-50 dark:bg-emerald-950/30',
   video: 'text-pink-500 bg-pink-50 dark:bg-pink-950/30',
   'dev-seo': 'text-violet-500 bg-violet-50 dark:bg-violet-950/30',
+  interpreters: 'text-orange-500 bg-orange-50 dark:bg-orange-950/30',
   'text-tools': 'text-blue-500 bg-blue-50 dark:bg-blue-950/30',
   generators: 'text-rose-500 bg-rose-50 dark:bg-rose-950/30',
   calculators: 'text-amber-500 bg-amber-50 dark:bg-amber-950/30',
@@ -400,6 +401,7 @@ const moduleIcons: Record<string, React.ComponentType<{ className?: string }>> =
   image: ImageIcon,
   video: Video,
   'dev-seo': Code,
+  interpreters: Terminal,
   'text-tools': Type,
   generators: Wand2,
   calculators: Calculator,
@@ -877,34 +879,6 @@ function HomePage() {
 }
 
 /* ── Footer Column ──────────────────────────────────────────────────── */
-function FooterColumn({ moduleId, title }: { moduleId: ModuleId; title: string }) {
-  const translatedModules = useTranslatedModules()
-  const pathname = usePathname()
-  const locale = pathname.split('/')[1] || 'fr'
-  const mod = translatedModules.find(m => m.id === moduleId)
-  if (!mod) return null
-  return (
-    <div>
-      <h3 className="text-sm font-semibold mb-3">{title}</h3>
-      <ul className="space-y-2">
-        {mod.tools.map(tool => {
-          const path = getPathForLocale(tool.id, locale)
-          return (
-            <li key={tool.id}>
-              <Link
-                href={path ? `/${locale}/${path.category}/${path.slug}` : `/${locale}`}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {tool.label}
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
-    </div>
-  )
-}
-
 /* ── Main App ────────────────────────────────────────────────────────── */
 export default function Home() {
   const { activeModule } = useToolsStore()
@@ -1035,56 +1009,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border/50 mt-auto">
-        <div className="container mx-auto px-4 py-8 sm:py-10">
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 mb-8">
-            <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-              <div className="flex items-center gap-2 font-bold text-lg mb-3">
-                <div className="rounded-lg bg-primary/10 p-1.5">
-                  <Sparkles className="h-4 w-4 text-primary" />
-                </div>
-                <span className="gradient-text">Utilyx</span>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {tFooter('tagline')}
-              </p>
-            </div>
-
-            <FooterColumn moduleId="pdf" title={tMod('pdf.label')} />
-            <FooterColumn moduleId="image" title={tMod('image.label')} />
-            <FooterColumn moduleId="video" title={tMod('video.label')} />
-            <FooterColumn moduleId="dev-seo" title={tMod('dev-seo.label')} />
-            <FooterColumn moduleId="text-tools" title={tMod('text-tools.label')} />
-            <FooterColumn moduleId="generators" title={tMod('generators.label')} />
-            <FooterColumn moduleId="calculators" title={tMod('calculators.label')} />
-          </div>
-
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-border/50">
-            <p className="text-xs text-muted-foreground">
-              {t('copyright', { year: new Date().getFullYear() })}
-            </p>
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <Link href={`/${locale}/api-keys`} className="hover:text-foreground transition-colors">{tFooter('apiKeys')}</Link>
-              <Link href={`/${locale}/privacy`} className="hover:text-foreground transition-colors">{tFooter('privacy')}</Link>
-              <Link href={`/${locale}/about`} className="hover:text-foreground transition-colors">{tFooter('about')}</Link>
-              <Link href={`/${locale}/terms`} className="hover:text-foreground transition-colors">{tFooter('terms')}</Link>
-              <Link href={`/${locale}/contact`} className="hover:text-foreground transition-colors">{tFooter('contact')}</Link>
-              <Link href={`/${locale}/mentions-legales`} className="hover:text-foreground transition-colors">{tFooter('legal')}</Link>
-            </div>
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <div className="flex items-center gap-1.5">
-                <Shield className="h-3 w-3 text-emerald-500" />
-                <span>{t('localData')}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Zap className="h-3 w-3 text-amber-500" />
-                <span>{t('noSignup')}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       {/* Sticky Bottom Ad — Mobile only */}
       <AdStickyBottom />

@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Volume1, Download, Loader2, RotateCcw, VolumeX } from 'lucide-react'
 import { toast } from 'sonner'
@@ -14,6 +16,7 @@ import { Switch } from '@/components/ui/switch'
 import { useFFmpeg } from './use-ffmpeg'
 
 export function VideoRemoveAudio() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [videoUrl, setVideoUrl] = useState('')
   const [isProcessing, setIsProcessing] = useState(false)
@@ -73,7 +76,7 @@ export function VideoRemoveAudio() {
       </CardHeader>
       <CardContent className="px-0 space-y-6">
         {!file ? (
-          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label="Glissez-déposez votre vidéo ici" sublabel="MP4, WebM, AVI, MOV — max 500 MB" />
+          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label={t("dropVideo")} sublabel={t("videoFormats")} />
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-between">

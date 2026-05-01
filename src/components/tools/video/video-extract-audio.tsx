@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback } from 'react'
 import { Music, Download, Loader2, RotateCcw } from 'lucide-react'
 import { toast } from 'sonner'
@@ -29,6 +31,7 @@ const BITRATE_OPTIONS = [
 ] as const
 
 export function VideoExtractAudio() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [audioFormat, setAudioFormat] = useState('mp3')
   const [bitrate, setBitrate] = useState('192k')
@@ -103,7 +106,7 @@ export function VideoExtractAudio() {
       </CardHeader>
       <CardContent className="px-0 space-y-6">
         {!file ? (
-          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label="Glissez-déposez votre vidéo ici" sublabel="MP4, WebM, AVI, MOV — max 500 MB" />
+          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label={t("dropVideo")} sublabel={t("videoFormats")} />
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-between">

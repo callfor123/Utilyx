@@ -1,9 +1,10 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { FileText, Download, Loader2, Minimize2, RotateCcw } from 'lucide-react'
+import { FileText, Loader2, Minimize2, RotateCcw } from 'lucide-react'
 import { PDFDocument } from 'pdf-lib'
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
 import { cn, formatFileSize, downloadBlob } from '@/lib/utils'
 import { DropZone } from '@/components/layout/drop-zone'
 import { Button } from '@/components/ui/button'
@@ -11,13 +12,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Slider } from '@/components/ui/slider'
 import { Progress } from '@/components/ui/progress'
 
-const COMPRESSION_LEVELS = [
-  { value: 1, label: 'Faible', ratio: 0.80 },
-  { value: 2, label: 'Moyen', ratio: 0.55 },
-  { value: 3, label: 'Fort', ratio: 0.35 },
-]
-
 export function PdfCompress() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [level, setLevel] = useState<number>(1)
   const [isCompressing, setIsCompressing] = useState(false)
@@ -27,18 +23,24 @@ export function PdfCompress() {
     savedPercent: number
   } | null>(null)
 
+  const compressionLevels = [
+    { value: 1, label: t('low'), ratio: 0.80 },
+    { value: 2, label: t('medium'), ratio: 0.55 },
+    { value: 3, label: t('high'), ratio: 0.35 },
+  ]
+
   const handleFiles = useCallback((files: File[]) => {
     const pdf = files.find((f) => f.type === 'application/pdf' || f.name.endsWith('.pdf'))
     if (pdf) {
       setFile(pdf)
       setResult(null)
     } else {
-      toast.error('Veuillez sélectionner un fichier PDF valide.')
+      toast.error(t('selectValidPdf'))
     }
-  }, [])
+  }, [t])
 
   const estimatedSize = file
-    ? Math.round(file.size * COMPRESSION_LEVELS[level - 1].ratio)
+    ? Math.round(file.size * compressionLevels[level - 1].ratio)
     : 0
 
   const handleCompress = async () => {
@@ -54,11 +56,9 @@ export function PdfCompress() {
       const newDoc = await PDFDocument.create()
 
       if (level === 1) {
-        // Level 1: Simply copy all pages (removes unused objects)
         const pages = await newDoc.copyPages(srcDoc, srcDoc.getPageIndices())
         pages.forEach((page) => newDoc.addPage(page))
       } else if (level === 2) {
-        // Level 2: Strip metadata + copy pages
         newDoc.setTitle('')
         newDoc.setAuthor('')
         newDoc.setSubject('')
@@ -68,7 +68,6 @@ export function PdfCompress() {
         const pages = await newDoc.copyPages(srcDoc, srcDoc.getPageIndices())
         pages.forEach((page) => newDoc.addPage(page))
       } else {
-        // Level 3: Strip metadata + copy pages + optimization
         newDoc.setTitle('')
         newDoc.setAuthor('')
         newDoc.setSubject('')
@@ -84,7 +83,7 @@ export function PdfCompress() {
         addDefaultPage: false,
       })
 
-      const blob = new Blob([compressedBytes], { type: 'application/pdf' })
+      const blob = new Blob([new Uint8Array(compressedBytes) as BlobPart], { type: 'application/pdf' })
       const compressedSize = blob.size
       const originalSize = file.size
       const savedPercent = Math.round((1 - compressedSize / originalSize) * 100)
@@ -92,16 +91,16 @@ export function PdfCompress() {
       setResult({ originalSize, compressedSize, savedPercent })
 
       const baseName = file.name.replace(/\.pdf$/i, '')
-      downloadBlob(blob, `${baseName}_compressé.pdf`)
+      downloadBlob(blob, `${baseName}${t('compressed')}.pdf`)
 
       if (savedPercent > 0) {
-        toast.success(`PDF compressé avec succès ! ${savedPercent}% de réduction.`)
+        toast.success(t('pdfCompressedSuccess', { percent: savedPercent }))
       } else {
-        toast.success('PDF optimisé avec succès !')
+        toast.success(t('pdfOptimizedSuccess'))
       }
     } catch (error) {
       console.error('Compression error:', error)
-      toast.error('Erreur lors de la compression du PDF.')
+      toast.error(t('pdfCompressError'))
     } finally {
       setIsCompressing(false)
     }
@@ -119,10 +118,10 @@ export function PdfCompress() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Minimize2 className="h-5 w-5" />
-            Compression PDF
+            {t('pdfCompression')}
           </CardTitle>
           <CardDescription>
-            Réduisez la taille de vos fichiers PDF en supprimant les données inutiles et les métadonnées.
+            {t('pdfCompressionDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -131,13 +130,12 @@ export function PdfCompress() {
               accept=".pdf"
               onFiles={handleFiles}
               maxSize={100}
-              label="Glissez-déposez votre PDF ici"
-              sublabel="ou cliquez pour parcourir"
+              label={t('dropPdf')}
+              sublabel={t('orClickBrowse')}
               icon={<FileText className="h-8 w-8" />}
             />
           ) : (
             <div className="space-y-6">
-              {/* File info */}
               <div className="flex items-center gap-4 rounded-lg border bg-muted/30 p-4">
                 <div className="rounded-lg bg-primary/10 p-2">
                   <FileText className="h-6 w-6 text-primary" />
@@ -145,7 +143,7 @@ export function PdfCompress() {
                 <div className="flex-1 min-w-0">
                   <p className="font-medium truncate">{file.name}</p>
                   <p className="text-sm text-muted-foreground">
-                    Taille originale : {formatFileSize(file.size)}
+                    {t('originalSize')} : {formatFileSize(file.size)}
                   </p>
                 </div>
                 <Button variant="ghost" size="sm" onClick={handleReset}>
@@ -153,12 +151,11 @@ export function PdfCompress() {
                 </Button>
               </div>
 
-              {/* Compression level */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label>Niveau de compression</Label>
+                  <Label>{t('compressionLevel')}</Label>
                   <span className="text-sm font-medium text-primary">
-                    {COMPRESSION_LEVELS[level - 1].label}
+                    {compressionLevels[level - 1].label}
                   </span>
                 </div>
                 <Slider
@@ -173,52 +170,50 @@ export function PdfCompress() {
                   className="w-full"
                 />
                 <div className="flex justify-between text-xs text-muted-foreground">
-                  <span>Faible</span>
-                  <span>Moyen</span>
-                  <span>Fort</span>
+                  <span>{t('low')}</span>
+                  <span>{t('medium')}</span>
+                  <span>{t('high')}</span>
                 </div>
               </div>
 
-              {/* Size comparison */}
               <div className="rounded-lg border p-4 space-y-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Taille originale</span>
+                  <span className="text-muted-foreground">{t('originalSize')}</span>
                   <span className="font-medium">{formatFileSize(file.size)}</span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Taille estimée</span>
+                  <span className="text-muted-foreground">{t('estimatedSize')}</span>
                   <span className="font-medium text-primary">
                     ~{formatFileSize(estimatedSize)}
                   </span>
                 </div>
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>Réduction estimée</span>
+                    <span>{t('estimatedReduction')}</span>
                     <span>
-                      {Math.round((1 - COMPRESSION_LEVELS[level - 1].ratio) * 100)}%
+                      {Math.round((1 - compressionLevels[level - 1].ratio) * 100)}%
                     </span>
                   </div>
                   <Progress
-                    value={COMPRESSION_LEVELS[level - 1].ratio * 100}
+                    value={compressionLevels[level - 1].ratio * 100}
                     className="h-2"
                   />
                 </div>
               </div>
 
-              {/* Result */}
               {result && (
                 <div className="rounded-lg border border-green-200 bg-green-50 dark:border-green-900 dark:bg-green-950/30 p-4 space-y-3">
                   <p className="text-sm font-medium text-green-800 dark:text-green-200">
-                    Compression terminée !
+                    {t('compressionDone')}
                   </p>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-green-700 dark:text-green-300">Taille finale</span>
+                    <span className="text-green-700 dark:text-green-300">{t('finalSize')}</span>
                     <span className="font-medium text-green-800 dark:text-green-200">
                       {formatFileSize(result.compressedSize)}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-green-700 dark:text-green-300">Espace économisé</span>
+                    <span className="text-green-700 dark:text-green-300">{t('spaceSaved')}</span>
                     <span className="font-medium text-green-800 dark:text-green-200">
                       {result.savedPercent > 0 ? `${result.savedPercent}%` : '0%'}
                     </span>
@@ -226,7 +221,6 @@ export function PdfCompress() {
                 </div>
               )}
 
-              {/* Actions */}
               <Button
                 onClick={handleCompress}
                 disabled={isCompressing}
@@ -236,12 +230,12 @@ export function PdfCompress() {
                 {isCompressing ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                    Compression en cours...
+                    {t('compressing')}
                   </>
                 ) : (
                   <>
                     <Minimize2 className="h-4 w-4 mr-2" />
-                    Compresser
+                    {t('compress')}
                   </>
                 )}
               </Button>

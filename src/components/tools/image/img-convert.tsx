@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback } from 'react'
 import {
   RefreshCw,
@@ -63,6 +65,7 @@ function getBaseName(filename: string): string {
 }
 
 export function ImgConvert() {
+  const t = useTranslations('ToolsUI')
   const [items, setItems] = useState<ConvertItem[]>([])
   const [outputFormat, setOutputFormat] = useState<string>('image/webp')
   const [isConverting, setIsConverting] = useState(false)
@@ -280,7 +283,7 @@ export function ImgConvert() {
           multiple
           onFiles={handleFiles}
           maxSize={50}
-          label="Glissez-déposez vos images ici"
+          label={t("dropImages")}
           sublabel="JPG, PNG, GIF, WebP, AVIF — plusieurs fichiers possibles"
           icon={<FileImage className="h-8 w-8" />}
         />

@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback } from 'react'
 import { Smartphone, Download, Loader2, RotateCcw, Image as ImageIcon, Archive, CheckCircle2 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -19,6 +21,7 @@ interface ConvertedFile {
 }
 
 export function HeicToJpg() {
+  const t = useTranslations('ToolsUI')
   const [files, setFiles] = useState<File[]>([])
   const [outputFormat, setOutputFormat] = useState<'image/jpeg' | 'image/png'>('image/jpeg')
   const [quality, setQuality] = useState(0.9)
@@ -154,7 +157,7 @@ export function HeicToJpg() {
               multiple
               onFiles={handleFiles}
               maxSize={100}
-              label="Glissez-déposez vos fichiers HEIC/HEIF ici"
+              label={t("dropHeic")}
               sublabel="ou cliquez pour parcourir — plusieurs fichiers possibles"
               icon={<Smartphone className="h-8 w-8" />}
             />

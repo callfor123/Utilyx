@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useMemo } from 'react'
 import { Clock } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -40,6 +42,7 @@ const UNIT_ICONS: Record<TimeUnit, string> = {
 }
 
 export function TimeConverter() {
+  const t = useTranslations('ToolsUI')
   const [fromUnit, setFromUnit] = useState<TimeUnit>('hours')
   const [inputValue, setInputValue] = useState('1')
 
@@ -111,7 +114,7 @@ export function TimeConverter() {
             <Label>Valeur en {TIME_UNITS[fromUnit].name.toLowerCase()}</Label>
             <Input
               type="number"
-              placeholder="Entrez une valeur"
+              placeholder={t("enterValue")}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               min="0"

@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef } from 'react'
 import {
   GripVertical,
@@ -31,6 +33,7 @@ function SortableItem({
   onDragOver,
   onDrop,
   isDragging,
+  t,
 }: {
   item: PdfFileItem
   index: number
@@ -39,6 +42,7 @@ function SortableItem({
   onDragOver: (e: React.DragEvent<HTMLDivElement>) => void
   onDrop: (e: React.DragEvent<HTMLDivElement>, index: number) => void
   isDragging: boolean
+  t: (key: string) => string
 }) {
   return (
     <div
@@ -70,7 +74,7 @@ function SortableItem({
           onRemove(item.id)
         }}
         className="rounded-full p-1 hover:bg-muted transition-colors"
-        aria-label="Supprimer"
+        aria-label={t("delete")}
       >
         <X className="h-4 w-4 text-muted-foreground hover:text-destructive" />
       </button>
@@ -79,6 +83,7 @@ function SortableItem({
 }
 
 export function PdfMerge() {
+  const t = useTranslations('ToolsUI')
   const [files, setFiles] = useState<PdfFileItem[]>([])
   const [isMerging, setIsMerging] = useState(false)
   const [loadingPages, setLoadingPages] = useState(true)
@@ -223,8 +228,8 @@ export function PdfMerge() {
             multiple
             onFiles={handleFiles}
             maxSize={100}
-            label="Glissez-déposez vos PDF ici"
-            sublabel="ou cliquez pour ajouter des fichiers"
+            label={t("dropPdfs")}
+            sublabel={t("orClickAdd")}
             icon={<Plus className="h-8 w-8" />}
           />
 
@@ -259,6 +264,7 @@ export function PdfMerge() {
                       onDragOver={handleDragOver}
                       onDrop={handleDrop}
                       isDragging={draggedIndex === index}
+                      t={t}
                     />
                   ))}
                 </div>

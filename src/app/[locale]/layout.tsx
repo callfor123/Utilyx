@@ -145,7 +145,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       apple: "/logo.png",
     },
     verification: {
-      google: 'vUtilyx-verify',
+      google: '724881d35d9b0a78',
     },
     other: {
       'google-adsense-account': ADSENSE_CLIENT,

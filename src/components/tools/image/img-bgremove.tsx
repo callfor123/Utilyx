@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useEffect } from 'react'
 import {
   FileImage,
@@ -29,6 +31,7 @@ import { Label } from '@/components/ui/label'
 type ProcessingState = 'idle' | 'processing' | 'success' | 'error'
 
 export function ImgBgRemove() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string>('')
   const [resultUrl, setResultUrl] = useState<string>('')
@@ -237,8 +240,8 @@ export function ImgBgRemove() {
             accept="image/*"
             onFiles={handleFiles}
             maxSize={25}
-            label="Glissez-déposez votre image ici"
-            sublabel="ou cliquez pour parcourir"
+            label={t("dropImage")}
+            sublabel={t("orClickBrowse")}
             icon={<FileImage className="h-8 w-8" />}
           />
         )}
@@ -270,7 +273,7 @@ export function ImgBgRemove() {
                   <div className="relative max-w-md w-full rounded-lg border overflow-hidden bg-[repeating-conic-gradient(#e5e7eb_0%_25%,white_0%_50%)] bg-[length:16px_16px]">
                     <img
                       src={previewUrl}
-                      alt="Image originale"
+                      alt={t("original")}
                       className="w-full h-auto max-h-72 object-contain"
                     />
                   </div>
@@ -328,7 +331,7 @@ export function ImgBgRemove() {
                   >
                     <img
                       src={resultUrl}
-                      alt="Sans arrière-plan"
+                      alt={t("noBackground")}
                       className="w-full h-auto max-h-72 object-contain"
                     />
                   </div>

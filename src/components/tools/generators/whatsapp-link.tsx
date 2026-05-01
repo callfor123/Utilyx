@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState } from 'react'
 import { MessageCircle, Copy, ExternalLink } from 'lucide-react'
 import { toast } from 'sonner'
@@ -89,10 +91,10 @@ export default function WhatsAppLinkGenerator() {
               {phone ? link : 'Entrez un numéro pour voir le lien'}
             </code>
             <div className="flex gap-2">
-              <Button onClick={handleCopy} disabled={!phone} size="icon" variant="outline" className="shrink-0" title="Copier le lien">
+              <Button onClick={handleCopy} disabled={!phone} size="icon" variant="outline" className="shrink-0" title={t("copyLink")}>
                 <Copy className="h-4 w-4" />
               </Button>
-              <Button onClick={handleTest} disabled={!phone} size="icon" variant="outline" className="shrink-0 group hover:bg-green-500 hover:text-white" title="Tester le lien">
+              <Button onClick={handleTest} disabled={!phone} size="icon" variant="outline" className="shrink-0 group hover:bg-green-500 hover:text-white" title={t("testLinkBtn")}>
                 <ExternalLink className="h-4 w-4 group-hover:block" />
               </Button>
             </div>

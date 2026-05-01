@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useMemo } from 'react'
 import { Tag } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -8,6 +10,7 @@ import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export function DiscountCalculator() {
+  const t = useTranslations('ToolsUI')
   const [tab, setTab] = useState<'single' | 'double'>('single')
   const [originalPrice, setOriginalPrice] = useState('')
   const [discountPct, setDiscountPct] = useState('')
@@ -132,7 +135,7 @@ export function DiscountCalculator() {
                     </div>
                     <Input
                       type="number"
-                      placeholder="Pourcentage personnalisé"
+                      placeholder={t("customPercentage")}
                       value={discountPct}
                       onChange={(e) => setDiscountPct(e.target.value)}
                       min="0"

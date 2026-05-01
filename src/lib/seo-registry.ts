@@ -1014,6 +1014,97 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     howTo: ['Sélectionnez l\'unité source (secondes, minutes, heures, jours, etc.)', 'Entrez la valeur à convertir dans le champ de saisie', 'Tous les résultats s\'affichent instantanément dans chaque unité', 'Consultez les formules de conversion affichées pour référence'],
     relatedSlugs: ['convertisseur-unites', 'chronometre', 'calculateur-age'],
   },
+  'interpreteur-html': {
+    toolId: 'html-interpreter', category: 'interpreters', slug: 'interpreteur-html',
+    title: 'Interpreteur HTML en Ligne Gratuit — Previsualisation en Temps Reel',
+    desc: 'Ecrivez et previsualisez votre code HTML en temps reel avec apercu Desktop et Mobile. Interpreteur HTML gratuit, sans inscription, 100% navigateur.',
+    h1: 'Interpreteur HTML en ligne gratuit avec previsualisation temps reel',
+    intro: 'Developpez et testez votre code HTML directement dans votre navigateur avec notre interpreteur interactif. Visualisez le rendu de vos balises HTML instantanement, que vous soyez en train d\'apprendre les bases du HTML ou de prototyper une page web. Basculez entre affichage Desktop et Mobile pour verifier la reactivite de votre code. Les etudiants en developpement web utilisent cet outil pour comprendre comment les balises HTML s\'affichent, les designers front-end pour valider leurs structures avant integration CSS, et les enseignants pour demontrer le fonctionnement du HTML. Le traitement s\'effectue entierement dans votre navigateur : votre code ne quitte jamais votre appareil. Le service est gratuit et sans inscription. Vous pouvez utiliser cet outil autant de fois que vous le souhaitez, sans limite quotidienne et sans avoir a creer de compte.',
+    faq: [
+      { q: 'Est-ce gratuit et sans inscription ?', a: 'Oui, 100% gratuit et sans inscription.' },
+      { q: 'Comment utiliser l\'interpreteur HTML ?', a: 'Ecrivez votre code HTML dans l\'editeur, l\'apercu se met a jour automatiquement. Basculez entre Desktop et Mobile.' },
+      { q: 'Puis-je voir le rendu sur mobile ?', a: 'Oui, cliquez sur Mobile pour voir votre HTML sur un ecran smartphone (375px).' },
+      { q: 'Mon code HTML est-il securise ?', a: 'Oui, le rendu s\'effectue dans un iframe isole (sandbox) dans votre navigateur. Aucune donnee n\'est envoyee a un serveur.' },
+    ],
+    howTo: ['Ecrivez votre code HTML dans l\'editeur', 'Visualisez le rendu en temps reel', 'Basculez entre Desktop et Mobile', 'Copiez votre code avec le bouton Copier'],
+    relatedSlugs: ['interpreteur-css', 'console-js-repl', 'interpreteur-markdown'],
+  },
+  'interpreteur-css': {
+    toolId: 'css-interpreter', category: 'interpreters', slug: 'interpreteur-css',
+    title: 'Interpreteur CSS en Ligne Gratuit — Visualiseur de Styles',
+    desc: 'Visualisez l\'effet de votre code CSS en temps reel avec apercu instantane Desktop et Mobile. Outil gratuit pour apprendre et tester le CSS.',
+    h1: 'Interpreteur CSS en ligne avec apercu visuel gratuit',
+    intro: 'Visualisez instantanement l\'impact de vos styles CSS sur une page web grace a notre interpreteur interactif. Personnalisez le code HTML d\'exemple pour voir comment vos styles s\'appliquent a differents elements, et basculez entre les vues Desktop et Mobile pour verifier la reactivite. Les debutants en CSS utilisent cet outil pour comprendre comment fonctionne chaque propriete, les designers front-end pour prototyper des mises en page, et les developpeurs pour debugger leurs feuilles de style. Le traitement s\'effectue entierement dans votre navigateur. Le service est gratuit et sans inscription.',
+    faq: [
+      { q: 'Est-ce gratuit ?', a: 'Oui, 100% gratuit et sans inscription.' },
+      { q: 'Comment tester mon CSS ?', a: 'Ecrivez votre CSS dans l\'editeur de gauche, ajustez le HTML d\'exemple a droite, et voyez le rendu instantanement.' },
+      { q: 'Puis-je tester les media queries ?', a: 'Oui, basculez vers la vue Mobile pour voir comment votre CSS reactit aux petits ecrans.' },
+      { q: 'Puis-je copier le code CSS genere ?', a: 'Oui, utilisez le bouton Copier pour recuperer votre code CSS.' },
+    ],
+    howTo: ['Ecrivez votre CSS dans l\'editeur', 'Personnalisez le HTML d\'exemple', 'Visualisez le rendu en temps reel', 'Testez en mode Desktop et Mobile'],
+    relatedSlugs: ['interpreteur-html', 'console-js-repl', 'css-gradient'],
+  },
+  'console-js-repl': {
+    toolId: 'js-interpreter', category: 'interpreters', slug: 'console-js-repl',
+    title: 'Console JavaScript REPL en Ligne Gratuit — Interpreteur JS',
+    desc: 'Testez et executez votre code JavaScript en temps reel. Console interactive avec affichage des resultats, gratuit, sans inscription.',
+    h1: 'Console JavaScript interactive (REPL) en ligne gratuite',
+    intro: 'Testez et executez votre code JavaScript directement dans votre navigateur avec notre console REPL interactive. Experimentez avec le langage JS, testez des fonctions, manipulez des objets, et voyez les resultats instantanement via console.log(). Idéal pour apprendre JavaScript, prototyper une logique, ou verifier la syntaxe. Les etudiants utilisent cette console pour comprendre les concepts de programmation, les developpeurs pour tester des algorithmes, et les enseignants pour demontrer le JavaScript en direct. Le code est execute dans votre navigateur. Le service est gratuit et sans inscription.',
+    faq: [
+      { q: 'Est-ce gratuit ?', a: 'Oui, 100% gratuit et sans inscription.' },
+      { q: 'Comment utiliser la console JS ?', a: 'Ecrivez votre code JavaScript, utilisez console.log() pour afficher, et cliquez Executer.' },
+      { q: 'Puis-je definir des fonctions ?', a: 'Oui, tout code JavaScript valide est supporte : fonctions, boucles, conditions, objets.' },
+      { q: 'Les erreurs sont-elles affichees ?', a: 'Oui, les erreurs sont affichees en rouge pour vous aider a debugger.' },
+    ],
+    howTo: ['Ecrivez votre code JavaScript', 'Cliquez Executer pour lancer le script', 'Consultez les resultats dans la console', 'Utilisez Effacer pour recommencer'],
+    relatedSlugs: ['interpreteur-html', 'interpreteur-css', 'visualiseur-regex'],
+  },
+  'interpreteur-sql': {
+    toolId: 'sql-interpreter', category: 'interpreters', slug: 'interpreteur-sql',
+    title: 'Interpreteur SQL en Ligne Gratuit — CRUD, Import CSV/XLSX, Export',
+    desc: 'Interpreteur SQL interactif avec operations CRUD (SELECT, INSERT, UPDATE, DELETE), import CSV/XLSX, export CSV/JSON/HTML, historique, exemples. Gratuit.',
+    h1: 'Interpreteur SQL interactif en ligne avec CRUD et import/export',
+    intro: 'Apprenez et testez vos requetes SQL avec notre interpreteur interactif complet. Supporte SELECT, INSERT, UPDATE, DELETE, CREATE TABLE, DROP TABLE et ALTER TABLE sur une base de donnees simulee en memoire. Importez vos propres donnees depuis des fichiers CSV ou Excel (XLSX/XLS) avec mapping automatique des colonnes. Exportez les resultats en CSV, JSON ou HTML. L\'editeur SQL integre offre une coloration syntaxique pour ecrire vos requetes confortablement. 14 exemples de requetes predefinies vous guident pour apprendre les bases du SQL. L\'historique conserve vos 50 dernieres requetes pour les reexecuter facilement. Un systeme de validation detecte les erreurs de syntaxe avec messages detailles et propose les tables/colonnes disponibles. La protection anti-injection bloque les operations dangereuses (DROP destructif, stacking). Le traitement s\'effectue entierement dans votre navigateur. Le service est gratuit et sans inscription.',
+    faq: [
+      { q: 'Quelles operations SQL sont supportees ?', a: 'SELECT (WHERE, ORDER BY, LIMIT, IN, LIKE, BETWEEN, agregats), INSERT, UPDATE, DELETE, CREATE TABLE, DROP TABLE, ALTER TABLE.' },
+      { q: 'Puis-je importer mes propres donnees ?', a: 'Oui, importez des fichiers CSV ou Excel (.xlsx, .xls). Les colonnes sont mappees automatiquement et une table est creee.' },
+      { q: 'Comment exporter les resultats ?', a: 'Cliquez sur les boutons CSV, JSON ou HTML pour telecharger les resultats dans le format souhaite.' },
+      { q: 'Est-ce securise ?', a: 'Oui, les operations dangereuses sont bloquees (DROP destructif, stacking de requetes, ATTACH DATABASE). Le code s\'execute uniquement dans votre navigateur.' },
+      { q: 'Comment reinitialiser la base ?', a: 'Cliquez sur le bouton "Reset DB" pour restaurer les donnees d\'exemple.' },
+    ],
+    howTo: ['Ecrivez votre requete SQL dans l\'editeur', 'Cliquez Executer pour lancer la requete', 'Consultez les resultats dans le tableau', 'Exportez en CSV, JSON ou HTML', 'Importez vos propres donnees CSV/XLSX'],
+    relatedSlugs: ['interpreteur-html', 'console-js-repl', 'json-csv'],
+  },
+  'visualiseur-regex': {
+    toolId: 'regex-interpreter', category: 'interpreters', slug: 'visualiseur-regex',
+    title: 'Visualiseur Regex en Ligne Gratuit — Testeur d\'Expressions Regulieres',
+    desc: 'Testez vos expressions regulieres avec surlignage visuel des correspondances et groupes captures. Outil gratuit pour debugger les regex.',
+    h1: 'Visualiseur et testeur d\'expressions regulieres en ligne',
+    intro: 'Debugguez et maitrisez vos expressions regulieres (regex) avec notre visualiseur interactif. Les correspondances sont surlignees en temps reel dans votre texte de test avec affichage detaille des groupes captures. Testez differents flags (g, i, m, s) et voyez immediatement l\'impact. Les developpeurs utilisent ce visualiseur pour valider les regex de validation d\'emails, les data scientists pour nettoyer des donnees textuelles, et les DevOps pour configurer des regles de filtrage. Le traitement s\'effectue entierement dans votre navigateur. Le service est gratuit et sans inscription.',
+    faq: [
+      { q: 'Est-ce gratuit ?', a: 'Oui, 100% gratuit et sans inscription.' },
+      { q: 'Comment fonctionne le surlignage ?', a: 'Les correspondances sont surlignees en jaune. Avec le flag g, toutes les occurrences sont surlignees.' },
+      { q: 'Qu\'est-ce qu\'un groupe capture ?', a: 'Les parentheses dans une regex creent des groupes. Ils sont affiches dans les resultats avec leur position et valeur.' },
+      { q: 'Quels flags sont supportes ?', a: 'g (global), i (insensible casse), m (multiligne), s (dotAll).' },
+    ],
+    howTo: ['Entrez votre expression reguliere', 'Choisissez vos flags', 'Saisissez votre texte de test', 'Les correspondances s\'affichent avec surlignage'],
+    relatedSlugs: ['interpreteur-html', 'console-js-repl', 'testeur-regex'],
+  },
+  'interpreteur-markdown': {
+    toolId: 'markdown-interpreter', category: 'interpreters', slug: 'interpreteur-markdown',
+    title: 'Interpreteur Markdown en Ligne Gratuit — Apercu en Direct',
+    desc: 'Ecrivez et previsualisez votre Markdown avec apercu en direct. Mode Code, Split et Apercu. Outil gratuit pour rediger en Markdown.',
+    h1: 'Interpreteur Markdown avec apercu en temps reel gratuit',
+    intro: 'Redigez vos documents en Markdown et visualisez le rendu HTML instantanement. Supporte les titres, gras, italique, listes, liens, images et code en ligne. Choisissez d\'afficher uniquement le code, uniquement l\'apercu, ou les deux en mode Split pour une redaction fluide. Les redacteurs techniques utilisent cet outil pour previsualiser leurs documentations, les developpeurs pour formater leurs README GitHub, et les blogueurs pour rediger leurs articles. Le traitement s\'effectue entierement dans votre navigateur. Le service est gratuit et sans inscription.',
+    faq: [
+      { q: 'Est-ce gratuit ?', a: 'Oui, 100% gratuit et sans inscription.' },
+      { q: 'Quelle syntaxe est supportee ?', a: 'Titres, gras, italique, listes, liens, images, code en ligne et blocs de code.' },
+      { q: 'Puis-je voir l\'apercu et le code en meme temps ?', a: 'Oui, utilisez le mode Split pour afficher l\'editeur et l\'apercu cote a cote.' },
+      { q: 'Comment copier le resultat ?', a: 'Utilisez le bouton Copier pour recuperer le code Markdown source.' },
+    ],
+    howTo: ['Ecrivez votre Markdown dans l\'editeur', 'Visualisez le rendu HTML en direct', 'Basculez entre Code, Split et Apercu', 'Copiez votre Markdown'],
+    relatedSlugs: ['markdown-preview', 'interpreteur-html', 'interpreteur-css'],
+  },
 }
 
 /**
@@ -1032,7 +1123,7 @@ export function getSlugsByCategory(category: string): string[] {
 }
 
 /** All valid categories */
-export const validCategories = ['pdf', 'image', 'video', 'dev-seo', 'text-tools', 'generators', 'calculators']
+export const validCategories = ['pdf', 'image', 'video', 'dev-seo', 'interpreters', 'text-tools', 'generators', 'calculators']
 
 /** Reverse lookup: toolId → { category, slug } for building URLs */
 export const toolIdToPath: Record<string, { category: string; slug: string }> = Object.fromEntries(
@@ -1097,6 +1188,12 @@ const localeSlugMap: Record<string, Record<string, string>> = {
   'calculateur-pourboire': { ar: 'حاسبة-البقشيش', de: 'trinkgeldrechner', en: 'tip-calculator', es: 'calculadora-propina', pt: 'calculadora-gorjeta' },
   'calculateur-remise': { ar: 'حاسبة-الخصم', de: 'rabattrechner', en: 'discount-calculator', es: 'calculadora-descuento', pt: 'calculadora-desconto' },
   'convertisseur-temps': { ar: 'محول-الوقت', de: 'zeitumrechner', en: 'time-converter', es: 'conversor-tiempo', pt: 'conversor-tempo' },
+  'interpreteur-html': { ar: 'مترجم-اتش-تي-ام-ال', de: 'html-interpreter', en: 'html-interpreter', es: 'interprete-html', pt: 'interpretador-html' },
+  'interpreteur-css': { ar: 'مترجم-سي-اس-اس', de: 'css-interpreter', en: 'css-interpreter', es: 'interprete-css', pt: 'interpretador-css' },
+  'console-js-repl': { ar: 'وحدة-تحكم-جافا-سكريبت', de: 'js-konsole-repl', en: 'js-console-repl', es: 'consola-js-repl', pt: 'consola-js-repl' },
+  'interpreteur-sql': { ar: 'مترجم-اس-كي-ال', de: 'sql-interpreter', en: 'sql-interpreter', es: 'interprete-sql', pt: 'interpretador-sql' },
+  'visualiseur-regex': { ar: 'متصور-ريجكس', de: 'regex-visualisierer', en: 'regex-visualizer', es: 'visualizador-regex', pt: 'visualizador-regex' },
+  'interpreteur-markdown': { ar: 'مترجم-ماركداون', de: 'markdown-interpreter', en: 'markdown-interpreter', es: 'interprete-markdown', pt: 'interpretador-markdown' },
 }
 /** Get locale-specific slug for a base slug */
 export function getSlugForLocale(baseSlug: string, locale: string): string {

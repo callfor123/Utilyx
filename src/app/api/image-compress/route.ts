@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { rateLimit, getClientIp } from '@/lib/rate-limit'
+import { validateApiKey } from '@/lib/api-key-auth'
 
 export const runtime = 'nodejs'
 export const maxDuration = 120
@@ -9,6 +10,15 @@ const ALLOWED_FORMATS = ['jpeg', 'jpg', 'png', 'webp', 'avif'] as const
 const MAX_DIMENSION = 10000
 
 export async function POST(request: NextRequest) {
+  // API key authentication
+  const authResult = await validateApiKey(request)
+  if (!authResult.valid) {
+    return NextResponse.json(
+      { error: authResult.error },
+      { status: 401 },
+    )
+  }
+
   // Rate limit: 20 requests per minute per IP
   const ip = getClientIp(request)
   const rl = rateLimit(ip, 20, 60_000)
@@ -21,7 +31,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const formData = await request.formData()
-    const file = formData.get('file') as File | null
+    const file = (formData.get('file') || formData.get('image')) as File | null
     const quality = parseInt(formData.get('quality') as string) || 80
     const format = (formData.get('format') as string) || 'jpeg'
     const width = formData.get('width') ? parseInt(formData.get('width') as string) : undefined

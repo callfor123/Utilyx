@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef } from 'react'
 import { Globe, Download, Copy, Loader2, RotateCcw, Archive, CheckCircle2 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -37,6 +39,7 @@ function generateHtmlSnippet(baseUrl: string): string {
 }
 
 export function FaviconGenerator() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [isGenerating, setIsGenerating] = useState(false)
@@ -219,7 +222,7 @@ export function FaviconGenerator() {
               accept="image/*"
               onFiles={handleFiles}
               maxSize={10}
-              label="Glissez-déposez votre logo/image ici"
+              label={t("dropLogo")}
               sublabel="PNG ou SVG recommandé (minimum 512x512px)"
               icon={<Globe className="h-8 w-8" />}
             />

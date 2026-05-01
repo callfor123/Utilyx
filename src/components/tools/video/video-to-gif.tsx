@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { Film, Download, Loader2, RotateCcw } from 'lucide-react'
 import { toast } from 'sonner'
@@ -23,6 +25,7 @@ const GIF_SIZES = [
 ] as const
 
 export function VideoToGif() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [videoUrl, setVideoUrl] = useState('')
   const [duration, setDuration] = useState(0)
@@ -106,7 +109,7 @@ export function VideoToGif() {
       </CardHeader>
       <CardContent className="px-0 space-y-6">
         {!file ? (
-          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label="Glissez-déposez votre vidéo ici" sublabel="MP4, WebM, AVI, MOV — max 500 MB" />
+          <DropZone accept="video/*" onFiles={handleFiles} maxSize={500} label={t("dropVideo")} sublabel={t("videoFormats")} />
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-between">

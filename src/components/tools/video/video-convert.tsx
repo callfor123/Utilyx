@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback } from 'react'
 import { RefreshCw, Download, Loader2, RotateCcw } from 'lucide-react'
 import { toast } from 'sonner'
@@ -23,6 +25,7 @@ const OUTPUT_FORMATS = [
 ] as const
 
 export function VideoConvert() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [outputFormat, setOutputFormat] = useState('mp4')
   const [isProcessing, setIsProcessing] = useState(false)
@@ -97,7 +100,7 @@ export function VideoConvert() {
       </CardHeader>
       <CardContent className="px-0 space-y-6">
         {!file ? (
-          <DropZone accept="video/*,.avi,.mkv,.flv,.wmv" onFiles={handleFiles} maxSize={500} label="Glissez-déposez votre vidéo ici" sublabel="MP4, WebM, AVI, MKV, MOV, FLV — max 500 MB" />
+          <DropZone accept="video/*,.avi,.mkv,.flv,.wmv" onFiles={handleFiles} maxSize={500} label={t("dropVideo")} sublabel={t("videoFormatsExtended")} />
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-between">

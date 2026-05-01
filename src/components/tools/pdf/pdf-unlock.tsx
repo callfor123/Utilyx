@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { useState, useCallback } from 'react'
 import { Unlock, Download, Loader2, RotateCcw, FileText, ShieldCheck, Eye } from 'lucide-react'
 import { PDFDocument } from 'pdf-lib'
@@ -12,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
 export function PdfUnlock() {
+  const t = useTranslations('ToolsUI')
   const [file, setFile] = useState<File | null>(null)
   const [password, setPassword] = useState('')
   const [isUnlocking, setIsUnlocking] = useState(false)
@@ -179,8 +182,8 @@ export function PdfUnlock() {
               accept=".pdf"
               onFiles={handleFiles}
               maxSize={100}
-              label="Glissez-déposez votre PDF protégé ici"
-              sublabel="ou cliquez pour parcourir"
+              label={t("dropPdfProtected")}
+              sublabel={t("orClickBrowse")}
               icon={<FileText className="h-8 w-8" />}
             />
           ) : (
@@ -207,7 +210,7 @@ export function PdfUnlock() {
                 <div className="relative">
                   <Input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Entrez le mot de passe du PDF"
+                    placeholder={t("enterPassword")}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleUnlock()}
