@@ -318,6 +318,26 @@
     "markdown-interpreter": {
       "label": "Markdown en Vivo",
       "description": "Interpretar Markdown con vista previa en directo"
+    },
+    "img-to-pdf": {
+      "label": "Imagen a PDF",
+      "description": "Convertir imágenes JPG, PNG, WebP a PDF multipágina"
+    },
+    "loan-calculator": {
+      "label": "Simulador de Crédito",
+      "description": "Calcular cuotas mensuales y tabla de amortización"
+    },
+    "code-minifier": {
+      "label": "Minificador de Código",
+      "description": "Minificar CSS, JavaScript y HTML para reducir el peso"
+    },
+    "json-yaml-converter": {
+      "label": "JSON ↔ YAML",
+      "description": "Convertir instantáneamente entre JSON y YAML"
+    },
+    "color-palette-generator": {
+      "label": "Paleta de Colores",
+      "description": "Generar paletas armónicas con exportación CSS"
     }
   },
   "Footer": {
@@ -636,7 +656,7 @@
     "errorImport": "Error de importación",
     "enterValue": "Introduce un valor",
     "enterPassword": "Introduce la contraseña del PDF",
-    "setPassword": "Establecer una contraseña",
+    "setPassword": "Establecer contraseña",
     "confirmPassword": "Confirmar contraseña",
     "customPercentage": "Porcentaje personalizado",
     "words": "Palabras",
@@ -705,7 +725,6 @@
     "text": "Texto",
     "draw": "Dibujar",
     "placeImage": "Colocar imagen",
-    "signDownload": "Aplicar y Descargar",
     "signErrorImg": "Error de integración de imagen en página {page}",
     "signErrorPdf": "Error al generar el PDF firmado",
     "signSuccess": "¡PDF firmado con éxito!",
@@ -730,8 +749,6 @@
     "unlocked": "_desbloqueado",
     "pdfProtect": "Proteger PDF",
     "pdfProtectDesc": "Añade protección por contraseña a tu PDF para restringir la apertura, impresión o copia.",
-    "setPassword": "Establecer contraseña",
-    "confirmPassword": "Confirmar contraseña",
     "passwordMismatch": "Las contraseñas no coinciden.",
     "protect": "Proteger",
     "protecting": "Protegiendo…",
@@ -844,7 +861,6 @@
     "heicToJpgDesc": "Convierte tus imágenes HEIC/HEIF de iPhone a JPG o PNG. Conversión por lotes soportada.",
     "dropHeicFiles": "Arrastra y suelta tus archivos HEIC/HEIF aquí",
     "orClickBrowseMulti": "o haz clic para explorar — varios archivos posibles",
-    "convertDownloadZip": "Convertir y Descargar (ZIP)",
     "heicConvertError": "Error al convertir las imágenes.",
     "heicZipError": "Error al crear el archivo ZIP.",
     "heicConvertSuccess": "¡Imágenes convertidas con éxito!",
@@ -953,7 +969,16 @@
     "sand": "Arena",
     "gravel": "Grava",
     "batches": "Batchs",
-    "copyLink": "Copiar enlace",
-    "testLinkBtn": "Probar enlace"
+    "testLinkBtn": "Probar enlace",
+    "imgToPdf": "Imagen a PDF",
+    "imgToPdfDesc": "Convierte tus imagenes JPG, PNG, WebP a PDF multipage gratis, 100% local.",
+    "loanCalc": "Calculadora de Prestamo",
+    "loanCalcDesc": "Calcula cuotas mensuales y tabla de amortizacion para cualquier prestamo.",
+    "codeMinifier": "Minificador CSS / JS / HTML",
+    "codeMinifierDesc": "Minifica tu CSS, JavaScript y HTML para acelerar tu sitio web.",
+    "jsonYaml": "Conversor JSON ↔ YAML",
+    "jsonYamlDesc": "Convierte instantaneamente entre JSON y YAML, bidireccional, 100% local.",
+    "colorPalette": "Generador de Paleta de Colores",
+    "colorPaletteDesc": "Genera paletas armonicas: analogica, complementaria, triadica con exportacion CSS."
   }
 }

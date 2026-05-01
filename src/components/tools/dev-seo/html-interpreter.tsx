@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Code2, Eye, Copy, Smartphone, Monitor } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -11,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea'
 export function HtmlInterpreter() {
   const [htmlCode, setHtmlCode] = useState('<!DOCTYPE html>\n<html>\n<head>\n  <title>Ma Page</title>\n</head>\n<body>\n  <h1>Bonjour le monde!</h1>\n  <p>Ceci est un exemple de code HTML.</p>\n</body>\n</html>')
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop')
+  const t = useTranslations('ToolsUI')
 
   return (
     <div className="space-y-6">
@@ -18,10 +20,10 @@ export function HtmlInterpreter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Code2 className="h-5 w-5" />
-            Interpreteur HTML
+            {t('htmlInterpreter')}
           </CardTitle>
           <CardDescription>
-            Ecrivez et previsualisez votre code HTML en temps reel. Outil gratuit en ligne pour tester et apprendre le HTML.
+            {t('htmlInterpreterDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

@@ -7,12 +7,14 @@ import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 export function JsonFormatter() {
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [error, setError] = useState('')
   const [view, setView] = useState<'formatted' | 'tree'>('formatted')
+  const t = useTranslations('ToolsUI')
 
   const handleFormat = () => {
     setError('')
@@ -57,11 +59,9 @@ export function JsonFormatter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Braces className="h-5 w-5" />
-            JSON Formatter
+            {t('jsonFormatter')}
           </CardTitle>
-          <CardDescription>
-            Formatez, validez et minifiez vos données JSON.
-          </CardDescription>
+          <CardDescription>{t('jsonFormatterDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>

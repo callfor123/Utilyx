@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Regex, Eye, Copy, Trash2 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -21,6 +22,7 @@ export function RegexInterpreter() {
   const [testString, setTestString] = useState('Date: 2025-04-30, autre date: 2026-01-15')
   const [matches, setMatches] = useState<MatchResult[]>([])
   const [error, setError] = useState('')
+  const t = useTranslations('ToolsUI')
 
   const handleTest = () => {
     setError('')
@@ -88,10 +90,10 @@ export function RegexInterpreter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Regex className="h-5 w-5" />
-            Testeur d'Expressions Regulieres
+            {t('regexTester')}
           </CardTitle>
           <CardDescription>
-            Testez et visualisez vos expressions regulieres avec surlignage en temps reel.
+            {t('regexTesterDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

@@ -1105,12 +1105,116 @@ export const seoRegistry: Record<string, ToolSeoEntry> = {
     howTo: ['Ecrivez votre Markdown dans l\'editeur', 'Visualisez le rendu HTML en direct', 'Basculez entre Code, Split et Apercu', 'Copiez votre Markdown'],
     relatedSlugs: ['markdown-preview', 'interpreteur-html', 'interpreteur-css'],
   },
+  'image-en-pdf': {
+    toolId: 'img-to-pdf', category: 'pdf', slug: 'image-en-pdf',
+    title: 'Image en PDF en Ligne Gratuit — Convertir JPG PNG en PDF',
+    desc: 'Convertissez vos images JPG, PNG, WebP en PDF en quelques secondes. Outil gratuit 100% local, sans inscription. Ajoutez plusieurs images et choisissez le format de page.',
+    h1: 'Convertir des images en PDF gratuitement en ligne',
+    intro: 'Transformez facilement vos photos et images en document PDF prêt à partager ou imprimer. Notre convertisseur image en PDF gratuit accepte les formats JPG, PNG, WebP, GIF et BMP. Ajoutez plusieurs images, réorganisez leur ordre par glisser-déposer, choisissez le format de page (A4, A3, Letter ou taille originale) et l\'orientation. Idéal pour les photographes qui souhaitent créer un portfolio PDF, les professionnels qui compilent des captures d\'écran en rapport, les étudiants qui regroupent des photos de cours, et les particuliers qui envoient plusieurs photos en un seul fichier. Le traitement s\'effectue entièrement dans votre navigateur grâce à la librairie PDF-lib : aucun fichier n\'est envoyé à un serveur distant. La conversion est gratuite, sans inscription et sans filigrane. Chaque image est ajustée pour s\'adapter à la page avec les marges choisies tout en conservant ses proportions.',
+    faq: [
+      { q: 'Quels formats d\'image puis-je convertir en PDF ?', a: 'JPG, JPEG, PNG, WebP, GIF, BMP et tous les formats d\'image supportés par votre navigateur. Plusieurs images peuvent être combinées en un seul PDF multipage.' },
+      { q: 'Puis-je convertir plusieurs images en un seul PDF ?', a: 'Oui, ajoutez autant d\'images que vous le souhaitez. Réorganisez leur ordre par glisser-déposer avant de générer le PDF. Chaque image devient une page du document.' },
+      { q: 'Mes fichiers sont-ils envoyés en ligne ?', a: 'Non, tout le traitement est 100% local dans votre navigateur. Aucun fichier n\'est transmis à nos serveurs. Vos images et le PDF généré restent sur votre appareil.' },
+      { q: 'Quel format de page choisir ?', a: 'A4 est recommandé pour la plupart des usages (documents, rapports). Choisissez "Taille originale" pour conserver les dimensions exactes de chaque image.' },
+      { q: 'La qualité des images est-elle préservée ?', a: 'Oui, les images sont intégrées en pleine résolution dans le PDF. L\'outil ne compresse pas les images, la qualité est identique à l\'originale.' },
+    ],
+    howTo: [
+      'Glissez vos images dans la zone de dépôt ou cliquez pour sélectionner les fichiers',
+      'Réorganisez l\'ordre des images par glisser-déposer si nécessaire',
+      'Choisissez le format de page, l\'orientation et la marge',
+      'Cliquez sur "Convertir en PDF" pour générer le document',
+      'Le PDF est téléchargé automatiquement sur votre appareil'
+    ],
+    relatedSlugs: ['compresser-pdf', 'fusionner-pdf', 'pdf-en-images'],
+  },
+  'simulateur-credit': {
+    toolId: 'loan-calculator', category: 'calculators', slug: 'simulateur-credit',
+    title: 'Simulateur de Crédit Gratuit — Calculer Mensualité Prêt',
+    desc: 'Calculez vos mensualités de crédit immobilier ou personnel gratuitement. Tableau d\'amortissement complet avec total d\'intérêts, sans inscription.',
+    h1: 'Simulateur de crédit : calculez vos mensualités gratuitement',
+    intro: 'Estimez rapidement le montant de vos mensualités de crédit immobilier, prêt personnel ou crédit auto grâce à notre simulateur en ligne gratuit. Entrez le montant emprunté, le taux d\'intérêt annuel et la durée du prêt pour obtenir instantanément la mensualité, le coût total du crédit et la part d\'intérêts. Le tableau d\'amortissement vous montre comment évolue la part de capital et d\'intérêts à chaque échéance. Cet outil de simulation est indispensable pour comparer des offres de prêt, évaluer votre capacité de remboursement avant de contacter une banque, ou simplement comprendre le mécanisme d\'amortissement d\'un crédit. Aucune donnée personnelle n\'est collectée. La simulation utilise la formule bancaire standard des prêts amortissables à taux fixe. Résultats instantanés sans inscription.',
+    faq: [
+      { q: 'Comment calculer mes mensualités de crédit ?', a: 'Entrez le montant du prêt, le taux d\'intérêt annuel et la durée en années. Le simulateur calcule instantanément la mensualité constante, le coût total et les intérêts.' },
+      { q: 'Quelle formule est utilisée ?', a: 'La formule des prêts amortissables à taux fixe : M = P × (r × (1+r)^n) / ((1+r)^n - 1), où P est le capital, r le taux mensuel et n le nombre de mensualités.' },
+      { q: 'Le simulateur inclut-il l\'assurance emprunteur ?', a: 'Non, le simulateur calcule uniquement les mensualités hors assurance. Pour un coût total réaliste, ajoutez le taux d\'assurance (généralement 0,1% à 0,4% du capital par an).' },
+      { q: 'Puis-je simuler un crédit immobilier et un crédit personnel ?', a: 'Oui, le simulateur fonctionne pour tout type de prêt amortissable : immobilier, auto, consommation, travaux. Adaptez simplement le montant, le taux et la durée.' },
+      { q: 'Les résultats sont-ils fiables ?', a: 'Les calculs utilisent la formule standard des prêts amortissables à taux fixe. Les résultats sont indicatifs et peuvent varier légèrement selon les pratiques de calcul de votre banque (taux effectif global, assurance, frais de dossier).' },
+    ],
+    howTo: [
+      'Saisissez le montant total du prêt en euros',
+      'Entrez le taux d\'intérêt annuel proposé par votre banque',
+      'Indiquez la durée du prêt en années',
+      'Consultez la mensualité, le total des intérêts et le coût total',
+      'Lisez le tableau d\'amortissement pour voir l\'évolution de votre dette'
+    ],
+    relatedSlugs: ['calculateur-tva', 'calculateur-remise', 'pourcentage'],
+  },
+  'minifier-code': {
+    toolId: 'code-minifier', category: 'dev-seo', slug: 'minifier-code',
+    title: 'Minifier CSS JS HTML en Ligne Gratuit — Réduire Code Web',
+    desc: 'Minifiez votre CSS, JavaScript et HTML en ligne gratuitement. Réduisez le poids de vos fichiers web jusqu\'à 80% pour accélérer votre site, sans inscription.',
+    h1: 'Minifier CSS, JavaScript et HTML en ligne gratuitement',
+    intro: 'Réduisez instantanément le poids de votre code CSS, JavaScript ou HTML en supprimant les commentaires, espaces inutiles et retours à la ligne. La minification de code est une technique d\'optimisation essentielle pour améliorer la vitesse de chargement de vos pages web et votre score Core Web Vitals. Un fichier CSS ou JS minifié peut être 50 à 80% plus léger que la version originale, réduisant ainsi le temps de chargement et améliorant l\'expérience utilisateur. Nos algorithmes de minification CSS suppriment les commentaires et compressent les sélecteurs, la minification JS retire les commentaires et espaces superflus, et la minification HTML élimine les espaces entre les balises. Tout se passe localement dans votre navigateur sans transmission de code à un serveur. Idéal pour les développeurs web qui préparent leur code pour la mise en production.',
+    faq: [
+      { q: 'Qu\'est-ce que la minification de code ?', a: 'La minification consiste à supprimer tous les caractères inutiles (espaces, retours à la ligne, commentaires) d\'un fichier source CSS, JavaScript ou HTML sans altérer son fonctionnement. Le résultat est un fichier plus léger qui se charge plus vite.' },
+      { q: 'Quelle réduction de taille puis-je espérer ?', a: 'En général, la minification réduit la taille d\'un fichier CSS de 20 à 50%, d\'un fichier JS de 30 à 70%, et d\'un fichier HTML de 10 à 30%, selon la quantité de commentaires et d\'espaces présents.' },
+      { q: 'Le code minifié reste-t-il fonctionnel ?', a: 'Oui, la minification est une transformation purement syntaxique. Le comportement du code est identique. Seule la lisibilité est réduite pour les humains (ce qui n\'a pas d\'importance en production).' },
+      { q: 'Puis-je déminifier un code pour le lire ?', a: 'Utilisez notre outil JSON Formatter ou un beautifier en ligne pour reformater du code minifié. La déminification (beautification) restaure l\'indentation et les sauts de ligne.' },
+      { q: 'Faut-il minifier en développement ou en production ?', a: 'La minification est réservée à la production. Conservez votre code source avec commentaires et indentation pour le développement. Minifiez automatiquement lors du déploiement via votre outil de build (Webpack, Vite, etc.).' },
+    ],
+    howTo: [
+      'Sélectionnez le type de code : CSS, JavaScript ou HTML',
+      'Collez votre code source dans le champ de gauche',
+      'Cliquez sur "Minifier" pour lancer le traitement',
+      'Copiez le code minifié depuis le champ de droite',
+      'Utilisez le code minifié dans vos fichiers de production'
+    ],
+    relatedSlugs: ['json-formatter', 'url-encode-decode', 'interpreteur-css'],
+  },
+  'json-yaml-convertisseur': {
+    toolId: 'json-yaml-converter', category: 'dev-seo', slug: 'json-yaml-convertisseur',
+    title: 'Convertisseur JSON YAML en Ligne Gratuit — JSON vers YAML',
+    desc: 'Convertissez JSON en YAML ou YAML en JSON instantanément en ligne. Outil bidirectionnel gratuit pour développeurs, sans inscription, 100% local.',
+    h1: 'Convertisseur JSON ↔ YAML en ligne gratuit',
+    intro: 'Convertissez facilement vos fichiers de configuration entre les formats JSON et YAML grâce à notre convertisseur bidirectionnel gratuit. Le format YAML est largement utilisé pour les fichiers de configuration (Docker Compose, Kubernetes, CI/CD, GitHub Actions) tandis que JSON est le format d\'échange standard des APIs REST. Notre outil prend en charge les structures imbriquées, tableaux, booléens, nombres et chaînes de caractères. La conversion JSON vers YAML produit un résultat lisible et bien indenté. La conversion YAML vers JSON génère un JSON formaté et valide. Tout le traitement s\'effectue localement dans votre navigateur, sans transmission de vos données à un serveur. Parfait pour les DevOps, les développeurs backend et les administrateurs système qui travaillent avec des fichiers de configuration au quotidien.',
+    faq: [
+      { q: 'Quelle est la différence entre JSON et YAML ?', a: 'JSON (JavaScript Object Notation) est un format d\'échange de données compact et largement supporté par les APIs. YAML (YAML Ain\'t Markup Language) est plus lisible par les humains et privilégié pour les fichiers de configuration. YAML est un superset de JSON.' },
+      { q: 'Puis-je convertir des fichiers YAML complexes ?', a: 'Oui, l\'outil supporte les structures imbriquées, tableaux, booléens, nombres, chaînes et valeurs nulles. Les cas YAML avancés (ancres, références) peuvent nécessiter une adaptation manuelle.' },
+      { q: 'Le convertisseur valide-t-il le JSON ?', a: 'Oui, si votre JSON est invalide, un message d\'erreur indique le problème de syntaxe. Vérifiez que votre JSON respecte la syntaxe standard (guillemets doubles, virgules, etc.).' },
+      { q: 'Puis-je inverser la conversion ?', a: 'Oui, utilisez le bouton "Inverser" pour basculer la direction et reconvertir le résultat dans le sens opposé, avec le résultat précédent comme nouvelle entrée.' },
+    ],
+    howTo: [
+      'Choisissez la direction : JSON → YAML ou YAML → JSON',
+      'Collez votre code source dans le champ de gauche',
+      'Cliquez sur "Convertir"',
+      'Copiez le résultat depuis le champ de droite',
+      'Utilisez le bouton "Inverser" pour convertir dans l\'autre sens'
+    ],
+    relatedSlugs: ['json-formatter', 'json-csv', 'interpreteur-sql'],
+  },
+  'generateur-palette-couleurs': {
+    toolId: 'color-palette-generator', category: 'generators', slug: 'generateur-palette-couleurs',
+    title: 'Générateur de Palette de Couleurs Gratuit — Palette CSS HEX',
+    desc: 'Générez des palettes de couleurs harmonieuses : analogique, complémentaire, triadique, monochromatique. Export CSS gratuit, sans inscription.',
+    h1: 'Générateur de palette de couleurs en ligne gratuit',
+    intro: 'Créez des palettes de couleurs harmonieuses et professionnelles en quelques clics. Choisissez une couleur de base et sélectionnez un schéma de couleurs : analogique (couleurs voisines sur la roue chromatique), complémentaire (couleurs opposées), triadique (trois couleurs équidistantes), tétradique (quatre couleurs en carré), monochromatique (variations de luminosité) ou split-complémentaire. Notre générateur de palette propose 5 couleurs harmonieuses avec leurs valeurs HEX, RGB et HSL. Exportez votre palette directement en fichier CSS avec les variables custom properties (--color-1, etc.) pour l\'intégrer immédiatement dans votre projet web. Idéal pour les designers, développeurs frontend, créateurs de contenu et toute personne cherchant une combinaison de couleurs cohérente pour un site web, une présentation ou une charte graphique.',
+    faq: [
+      { q: 'Qu\'est-ce qu\'un schéma de couleurs analogique ?', a: 'Un schéma analogique regroupe des couleurs adjacentes sur la roue chromatique (ex: bleu, bleu-vert, vert). Ces palettes sont harmonieuses et apaisantes, idéales pour des designs naturels.' },
+      { q: 'Comment utiliser la palette exportée en CSS ?', a: 'Cliquez sur "CSS" pour télécharger un fichier .css avec les variables --color-1 à --color-5. Intégrez ce fichier dans votre projet et utilisez var(--color-1) dans vos styles.' },
+      { q: 'Puis-je entrer une couleur HEX personnalisée ?', a: 'Oui, tapez directement votre code HEX (ex: #FF5733) ou utilisez le sélecteur de couleur pour choisir visuellement votre couleur de base.' },
+      { q: 'Comment copier une couleur de la palette ?', a: 'Cliquez sur la pastille de couleur ou sur l\'icône de copie à côté du code HEX pour copier la valeur dans votre presse-papiers.' },
+      { q: 'Quelle différence entre triadique et tétradique ?', a: 'Triadique : 3 couleurs à 120° d\'écart sur la roue, crée des palettes vibrantes. Tétradique : 4 couleurs à 90° d\'écart, offre plus de variété mais demande un équilibre visuel soigné.' },
+    ],
+    howTo: [
+      'Choisissez votre couleur de base avec le sélecteur ou en saisissant un code HEX',
+      'Sélectionnez le schéma de couleurs : analogique, complémentaire, triadique, etc.',
+      'Cliquez sur "Générer la palette" pour voir les 5 couleurs harmonieuses',
+      'Cliquez sur "Aléatoire" pour explorer des palettes au hasard',
+      'Exportez en CSS ou copiez les valeurs HEX individuellement'
+    ],
+    relatedSlugs: ['color-picker', 'convertisseur-couleurs', 'css-gradient'],
+  },
 }
-
-/**
- * Build a reverse lookup: slug → ToolSeoEntry
- * (already the keys are slugs, but this is explicit)
- */
 export function getToolBySlug(slug: string): ToolSeoEntry | undefined {
   return seoRegistry[slug]
 }
@@ -1188,6 +1292,11 @@ const localeSlugMap: Record<string, Record<string, string>> = {
   'calculateur-pourboire': { ar: 'حاسبة-البقشيش', de: 'trinkgeldrechner', en: 'tip-calculator', es: 'calculadora-propina', pt: 'calculadora-gorjeta' },
   'calculateur-remise': { ar: 'حاسبة-الخصم', de: 'rabattrechner', en: 'discount-calculator', es: 'calculadora-descuento', pt: 'calculadora-desconto' },
   'convertisseur-temps': { ar: 'محول-الوقت', de: 'zeitumrechner', en: 'time-converter', es: 'conversor-tiempo', pt: 'conversor-tempo' },
+  'image-en-pdf': { ar: 'صورة-الى-pdf', de: 'bild-zu-pdf', en: 'image-to-pdf', es: 'imagen-a-pdf', pt: 'imagem-para-pdf' },
+  'simulateur-credit': { ar: 'محاكي-القرض', de: 'kreditrechner', en: 'loan-calculator', es: 'simulador-credito', pt: 'simulador-credito' },
+  'minifier-code': { ar: 'تصغير-الكود', de: 'code-minifier', en: 'code-minifier', es: 'minificador-codigo', pt: 'minificador-codigo' },
+  'json-yaml-convertisseur': { ar: 'محول-json-yaml', de: 'json-yaml-konverter', en: 'json-yaml-converter', es: 'convertidor-json-yaml', pt: 'conversor-json-yaml' },
+  'generateur-palette-couleurs': { ar: 'مولد-لوحة-الالوان', de: 'farbpaletten-generator', en: 'color-palette-generator', es: 'generador-paleta-colores', pt: 'gerador-paleta-cores' },
   'interpreteur-html': { ar: 'مترجم-اتش-تي-ام-ال', de: 'html-interpreter', en: 'html-interpreter', es: 'interprete-html', pt: 'interpretador-html' },
   'interpreteur-css': { ar: 'مترجم-سي-اس-اس', de: 'css-interpreter', en: 'css-interpreter', es: 'interprete-css', pt: 'interpretador-css' },
   'console-js-repl': { ar: 'وحدة-تحكم-جافا-سكريبت', de: 'js-konsole-repl', en: 'js-console-repl', es: 'consola-js-repl', pt: 'consola-js-repl' },

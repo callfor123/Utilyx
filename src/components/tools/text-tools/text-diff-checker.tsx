@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 interface DiffLine {
   type: 'same' | 'added' | 'removed'
@@ -42,6 +43,7 @@ export function TextDiffChecker() {
   }, [textA, textB])
 
   const stats = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     const added = diff.filter(d => d.type === 'added').length
     const removed = diff.filter(d => d.type === 'removed').length
     const same = diff.filter(d => d.type === 'same').length
@@ -56,11 +58,9 @@ export function TextDiffChecker() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Diff className="h-5 w-5" />
-            Comparateur de Texte
+            {t('textDiff')}
           </CardTitle>
-          <CardDescription>
-            Comparez deux textes et visualisez les différences.
-          </CardDescription>
+          <CardDescription>{t('textDiffDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

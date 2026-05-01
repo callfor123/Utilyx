@@ -29,6 +29,7 @@ import {
 } from '@/components/ui/select'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Checkbox } from '@/components/ui/checkbox'
+import { useTranslations } from 'next-intl'
 
 // ── Types ─────────────────────────────────────────────────────────────────
 interface SitemapUrl {
@@ -278,6 +279,7 @@ export function SitemapRobots() {
   }, [])
 
   const handleDownload = useCallback((content: string, filename: string) => {
+  const t = useTranslations('ToolsUI')
     const blob = new Blob([content], { type: 'text/xml;charset=utf-8' })
     downloadBlob(blob, filename)
     toast.success('Fichier téléchargé')
@@ -288,11 +290,9 @@ export function SitemapRobots() {
       <CardHeader>
         <div className="flex items-center gap-2">
           <FileCode2 className="h-5 w-5 text-primary" />
-          <CardTitle className="text-xl">Sitemap XML &amp; Robots.txt</CardTitle>
+          <CardTitle className="text-xl">{t('sitemapRobots')}</CardTitle>
         </div>
-        <CardDescription>
-          Générez des fichiers sitemap et robots.txt optimisés pour le référencement
-        </CardDescription>
+        <CardDescription>{t('sitemapRobotsDesc')}</CardDescription>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="sitemap">

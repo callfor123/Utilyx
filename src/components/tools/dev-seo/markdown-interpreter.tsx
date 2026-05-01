@@ -7,10 +7,12 @@ import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 export function MarkdownInterpreter() {
   const [markdownCode, setMarkdownCode] = useState("# Titre Principal\n\nBienvenue dans l'interpreteur **Markdown** !\n\n## Sous-titre\n\n- Element 1\n- Element 2\n- Element 3\n\n[Visitez Google](https://www.google.com)\n\n`code en ligne`\n\n```javascript\nconst hello = \"world\";\nconsole.log(hello);\n```")
   const [viewMode, setViewMode] = useState<'preview' | 'code' | 'split'>('split')
+  const t = useTranslations('ToolsUI')
 
   const renderMarkdown = (text: string) => {
     let html = text
@@ -44,11 +46,9 @@ export function MarkdownInterpreter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5" />
-            Interpreteur Markdown
+            {t('markdownInterpreter')}
           </CardTitle>
-          <CardDescription>
-            Ecrivez et previsualisez votre Markdown en temps reel. Support de la syntaxe courante.
-          </CardDescription>
+          <CardDescription>{t('markdownInterpreterDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-2">

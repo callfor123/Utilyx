@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
+import { useTranslations } from 'next-intl'
 
 const LOREM_PARAGRAPHS = [
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
@@ -36,6 +37,7 @@ function generateSentence(): string {
 export function LoremIpsumGenerator() {
   const [count, setCount] = useState(3)
   const [type, setType] = useState<'paragraphs' | 'sentences' | 'words'>('paragraphs')
+  const t = useTranslations('ToolsUI')
 
   const output = (() => {
     const result: string[] = []
@@ -61,11 +63,9 @@ export function LoremIpsumGenerator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileText className="h-5 w-5" />
-            Générateur Lorem Ipsum
+            {t('loremIpsum')}
           </CardTitle>
-          <CardDescription>
-            Générez du texte placeholder pour vos maquettes et projets.
-          </CardDescription>
+          <CardDescription>{t('loremIpsumDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Type selector */}

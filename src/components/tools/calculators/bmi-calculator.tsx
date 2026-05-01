@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useTranslations } from 'next-intl'
 
 function getBMICategory(bmi: number): { label: string; color: string; bg: string; range: string } {
   if (bmi < 18.5) return { label: 'Insuffisance pondérale', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-500', range: '< 18.5' }
@@ -29,6 +30,7 @@ export function BmiCalculator() {
   const category = useMemo(() => bmi ? getBMICategory(bmi) : null, [bmi])
 
   const bmiPercent = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     if (!bmi) return 0
     return Math.min(100, (bmi / 40) * 100)
   }, [bmi])
@@ -39,11 +41,9 @@ export function BmiCalculator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Heart className="h-5 w-5" />
-            BMI Calculator
+            {t('bmiCalc')}
           </CardTitle>
-          <CardDescription>
-            Calculez votre indice de masse corporelle (IMC).
-          </CardDescription>
+          <CardDescription>{t('bmiCalcDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

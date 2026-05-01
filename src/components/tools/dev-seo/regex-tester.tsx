@@ -19,6 +19,7 @@ import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Separator } from '@/components/ui/separator'
+import { useTranslations } from 'next-intl'
 
 // ── Types ─────────────────────────────────────────────────────────────────
 interface MatchInfo {
@@ -118,6 +119,7 @@ export function RegexTester() {
   }, [pattern, flagG, flagI, flagM])
 
   const regexError = useMemo((): string | null => {
+  const t = useTranslations('ToolsUI')
     if (!pattern) return null
     try {
       let flags = ''
@@ -159,11 +161,9 @@ Emails : john.doe@company.co.uk, admin@test.org`
       <CardHeader>
         <div className="flex items-center gap-2">
           <Regex className="h-5 w-5 text-primary" />
-          <CardTitle className="text-xl">Testeur d'expressions régulières</CardTitle>
+          <CardTitle className="text-xl">{t('regexTester')}</CardTitle>
         </div>
-        <CardDescription>
-          Testez et déboguez vos expressions régulières en temps réel
-        </CardDescription>
+        <CardDescription>{t('regexTesterDesc')}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Pattern input */}

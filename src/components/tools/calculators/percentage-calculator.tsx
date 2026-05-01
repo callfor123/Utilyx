@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useTranslations } from 'next-intl'
 
 export function PercentageCalculator() {
   const [tab, setTab] = useState('of')
@@ -14,6 +15,7 @@ export function PercentageCalculator() {
   const [y, setY] = useState('')
 
   const results = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     const fx = parseFloat(x)
     const fy = parseFloat(y)
     if (isNaN(fx) || isNaN(fy) || fy === 0) return null
@@ -37,11 +39,9 @@ export function PercentageCalculator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Percent className="h-5 w-5" />
-            Percentage Calculator
+            {t('percentageCalc')}
           </CardTitle>
-          <CardDescription>
-            Tous les calculs de pourcentages dont vous avez besoin.
-          </CardDescription>
+          <CardDescription>{t('percentageCalcDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <Tabs value={tab} onValueChange={(v) => { setTab(v); clear() }}>

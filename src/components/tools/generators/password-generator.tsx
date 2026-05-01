@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Checkbox } from '@/components/ui/checkbox'
+import { useTranslations } from 'next-intl'
 
 function getStrength(pwd: string): { score: number; label: string; color: string; icon: React.ElementType } {
   let score = 0
@@ -56,6 +57,7 @@ export function PasswordGenerator() {
   useEffect(() => { generate() }, [generate])
 
   const strength = useMemo(() => getStrength(passwords[0] || ''), [passwords])
+  const t = useTranslations('ToolsUI')
 
   return (
     <div className="space-y-6">
@@ -63,11 +65,9 @@ export function PasswordGenerator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <KeyRound className="h-5 w-5" />
-            Password Generator
+            {t('passwordGenerator')}
           </CardTitle>
-          <CardDescription>
-            Générez des mots de passe sécurisés et aléatoires.
-          </CardDescription>
+          <CardDescription>{t('passwordGeneratorDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Options */}

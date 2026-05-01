@@ -318,6 +318,26 @@
     "time-converter": {
       "label": "Conversor de Tempo",
       "description": "Converter segundos, minutos, horas, dias, semanas, meses, anos"
+    },
+    "img-to-pdf": {
+      "label": "Imagem para PDF",
+      "description": "Converter imagens JPG, PNG, WebP em PDF de múltiplas páginas"
+    },
+    "loan-calculator": {
+      "label": "Calculadora de Empréstimo",
+      "description": "Calcular parcelas mensais e tabela de amortização"
+    },
+    "code-minifier": {
+      "label": "Minificador de Código",
+      "description": "Minificar CSS, JavaScript e HTML para reduzir o peso"
+    },
+    "json-yaml-converter": {
+      "label": "JSON ↔ YAML",
+      "description": "Converter instantaneamente entre JSON e YAML"
+    },
+    "color-palette-generator": {
+      "label": "Paleta de Cores",
+      "description": "Gerar paletas harmônicas com exportação CSS"
     }
   },
   "Footer": {
@@ -852,6 +872,12 @@
     "wordCounter": "Contador de Palavras",
     "wordCounterDesc": "Conte palavras, caracteres, frases e parágrafos do seu texto.",
     "pasteOrType": "Cole ou digite seu texto aqui...",
+    "htmlInterpreter": "Interpretador HTML",
+    "htmlInterpreterDesc": "Escreva e pré-visualize seu código HTML em tempo real. Ferramenta gratuita online para aprender e testar HTML.",
+    "cssInterpreter": "Interpretador CSS",
+    "cssInterpreterDesc": "Visualize o efeito do seu código CSS em tempo real. Ferramenta gratuita para aprender e testar estilos CSS.",
+    "jsConsole": "Console JavaScript (REPL)",
+    "jsConsoleDesc": "Teste e execute seu código JavaScript em tempo real. Ferramenta gratuita para aprender e testar JS.",
     "sqlInterpreter": "Interpretador SQL",
     "sqlInterpreterDesc": "Execute consultas SQL em dados tabulares (CSV, JSON) diretamente no seu navegador.",
     "filterResults": "Filtrar resultados...",
@@ -949,6 +975,46 @@
     "gravel": "Brita",
     "batches": "Lotes",
     "copyLink": "Copiar link",
-    "testLinkBtn": "Testar link"
+    "testLinkBtn": "Testar link",
+    "jsonFormatter": "Formatador JSON",
+    "jsonFormatterDesc": "Formate, valide e minifique seus dados JSON.",
+    "sitemapRobots": "Sitemap XML e Robots.txt",
+    "sitemapRobotsDesc": "Gere arquivos Sitemap e Robots.txt otimizados para SEO.",
+    "markdownInterpreter": "Interpretador Markdown",
+    "markdownInterpreterDesc": "Escreva e visualize seu Markdown em tempo real.",
+    "tipCalc": "Calculadora de Gorjeta",
+    "tipCalcDesc": "Calcule a gorjeta e a divisao entre os convidados.",
+    "percentageCalc": "Calculadora de Porcentagem",
+    "percentageCalcDesc": "Todos os calculos de porcentagem que voce precisa.",
+    "unitConverter": "Conversor de Unidades",
+    "unitConverterDesc": "Converta entre diferentes unidades de medida.",
+    "bmiCalc": "Calculadora de IMC",
+    "bmiCalcDesc": "Calcule seu indice de massa corporal (IMC).",
+    "vatCalc": "Calculadora de IVA",
+    "vatCalcDesc": "Calcule valores sem IVA, com IVA e o IVA a qualquer taxa.",
+    "ageCalc": "Calculadora de Idade",
+    "ageCalcDesc": "Calcule sua idade exata em anos, meses e dias.",
+    "base64": "Base64 Codificar / Decodificar",
+    "base64Desc": "Codifique texto em Base64 ou decodifique uma string Base64.",
+    "loremIpsum": "Gerador Lorem Ipsum",
+    "loremIpsumDesc": "Gere texto de preenchimento para seus modelos e projetos.",
+    "passwordGenerator": "Gerador de Senha",
+    "passwordGeneratorDesc": "Gere senhas seguras e aleatorias.",
+    "randomNumberGenerator": "Gerador de Numeros Aleatorios",
+    "randomNumberGeneratorDesc": "Gere um ou mais numeros aleatorios em um intervalo definido.",
+    "urlCleaner": "Limpador de Link (Anti-Rastreamento)",
+    "urlCleanerDesc": "Remova parametros de rastreamento indesejados para obter um link limpo.",
+    "uuidGenerator": "Gerador de UUID / GUID",
+    "uuidGeneratorDesc": "Gere UUIDs versao 4 perfeitamente aleatorios e seguros.",
+    "imgToPdf": "Imagem para PDF",
+    "imgToPdfDesc": "Converta imagens JPG, PNG, WebP para PDF de multiplas paginas, 100% local.",
+    "loanCalc": "Calculadora de Emprestimo",
+    "loanCalcDesc": "Calcule as parcelas do seu emprestimo com tabela de amortizacao completa.",
+    "codeMinifier": "Minificador CSS / JS / HTML",
+    "codeMinifierDesc": "Minifique seu CSS, JavaScript e HTML para acelerar seu site.",
+    "jsonYaml": "Conversor JSON ↔ YAML",
+    "jsonYamlDesc": "Converta instantaneamente entre JSON e YAML, bidirecional, 100% local.",
+    "colorPalette": "Gerador de Paleta de Cores",
+    "colorPaletteDesc": "Gere paletas harmonicas: analogica, complementar, triadica com exportacao CSS."
   }
 }

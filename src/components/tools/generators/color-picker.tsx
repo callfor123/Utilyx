@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useTranslations } from 'next-intl'
 
 function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
   const match = hex.replace('#', '').match(/^([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i)
@@ -52,6 +53,7 @@ export function ColorPicker() {
   const rgb = useMemo(() => hexToRgb(hex), [hex])
   const hsl = useMemo(() => rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : null, [rgb])
   const complementary = useMemo(() => getComplementary(hex), [hex])
+  const t = useTranslations('ToolsUI')
 
   const handleHexChange = (val: string) => {
     let v = val
@@ -65,11 +67,9 @@ export function ColorPicker() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Palette className="h-5 w-5" />
-            Color Picker
+            {t('colorPicker')}
           </CardTitle>
-          <CardDescription>
-            Sélectionnez une couleur et obtenez ses valeurs HEX, RGB, HSL.
-          </CardDescription>
+          <CardDescription>{t('colorPickerDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Color preview + picker */}

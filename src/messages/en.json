@@ -318,6 +318,26 @@
     "markdown-interpreter": {
       "label": "Markdown Live",
       "description": "Interpret Markdown with live preview"
+    },
+    "img-to-pdf": {
+      "label": "Image to PDF",
+      "description": "Convert JPG, PNG, WebP images to multi-page PDF"
+    },
+    "loan-calculator": {
+      "label": "Loan Calculator",
+      "description": "Calculate monthly payments and amortization schedule"
+    },
+    "code-minifier": {
+      "label": "Code Minifier",
+      "description": "Minify CSS, JavaScript and HTML to reduce page weight"
+    },
+    "json-yaml-converter": {
+      "label": "JSON ↔ YAML",
+      "description": "Instantly convert between JSON and YAML"
+    },
+    "color-palette-generator": {
+      "label": "Color Palette",
+      "description": "Generate harmonious palettes with CSS export"
     }
   },
   "Footer": {
@@ -552,7 +572,7 @@
     "faq2A": "The site is hosted by Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States.",
     "faq3Q": "How can I exercise my GDPR rights?",
     "faq3A": "You can exercise your rights of access, rectification, erasure and portability by contacting us at privacy@utilyx.app. You may also file a complaint with the relevant supervisory authority."
-    },
+  },
   "ToolsUI": {
     "dropPdf": "Drag and drop your PDF here",
     "dropPdfProtected": "Drag and drop your protected PDF here",
@@ -949,6 +969,16 @@
     "gravel": "Gravel",
     "batches": "Batches",
     "copyLink": "Copy link",
-    "testLinkBtn": "Test link"
+    "testLinkBtn": "Test link",
+    "imgToPdf": "Image to PDF",
+    "imgToPdfDesc": "Convert your JPG, PNG, WebP images to multi-page PDF, 100% local.",
+    "loanCalc": "Loan Calculator",
+    "loanCalcDesc": "Calculate your loan monthly payments with a complete amortization schedule.",
+    "codeMinifier": "CSS / JS / HTML Minifier",
+    "codeMinifierDesc": "Minify your CSS, JavaScript and HTML to speed up your website.",
+    "jsonYaml": "JSON ↔ YAML Converter",
+    "jsonYamlDesc": "Instantly convert between JSON and YAML, bidirectional, 100% local.",
+    "colorPalette": "Color Palette Generator",
+    "colorPaletteDesc": "Generate harmonious palettes: analogous, complementary, triadic with CSS export."
   }
 }

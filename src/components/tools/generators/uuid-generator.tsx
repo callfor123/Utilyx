@@ -8,11 +8,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useTranslations } from 'next-intl'
 
 export function UuidGenerator() {
   const [uuid, setUuid] = useState(crypto.randomUUID())
   const [count, setCount] = useState(1)
   const [bulkUuids, setBulkUuids] = useState<string[]>([])
+  const t = useTranslations('ToolsUI')
 
   const generateNew = () => {
     setUuid(crypto.randomUUID())
@@ -42,8 +44,8 @@ export function UuidGenerator() {
             <Fingerprint className="h-5 w-5 text-emerald-500" />
           </div>
           <div>
-            <CardTitle className="text-xl">Générateur d'UUID / GUID</CardTitle>
-            <CardDescription>Générez instantanément des UUID (Universally Unique Identifiers) version 4 parfaitement aléatoires et sécurisés.</CardDescription>
+            <CardTitle className="text-xl">{t('uuidGenerator')}</CardTitle>
+            <CardDescription>{t('uuidGeneratorDesc')}</CardDescription>
           </div>
         </div>
       </CardHeader>

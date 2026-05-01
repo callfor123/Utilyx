@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useTranslations } from 'next-intl'
 
 const VAT_RATES = [
   { label: 'FR 20%', value: 20 },
@@ -35,6 +36,7 @@ export function VatCalculator() {
   const rate = customRate !== '' ? parseFloat(customRate) : selectedRate
 
   const results = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     const a = parseFloat(amount)
     if (isNaN(a) || a <= 0 || isNaN(rate) || rate < 0) return null
 
@@ -60,11 +62,9 @@ export function VatCalculator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Receipt className="h-5 w-5" />
-            Calculateur de TVA
+            {t('vatCalc')}
           </CardTitle>
-          <CardDescription>
-            Calculez le montant HT, TTC et la TVA à partir de n&apos;importe quel taux.
-          </CardDescription>
+          <CardDescription>{t('vatCalcDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <Tabs value={tab} onValueChange={(v) => { setTab(v as 'fromTTC' | 'fromHT'); clear() }}>

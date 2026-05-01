@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { useTranslations } from 'next-intl'
 
 // Liste des paramètres de tracking les plus connus (Amazon, Facebook, Google, etc.)
 const trackingParams = new Set([
@@ -20,6 +21,7 @@ const trackingParams = new Set([
 
 export default function UrlCleaner() {
   const [url, setUrl] = useState('')
+  const t = useTranslations('ToolsUI')
 
   const getCleanUrl = () => {
     if (!url) return { clean: '', removed: 0 }
@@ -60,11 +62,9 @@ export default function UrlCleaner() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Link2Off className="w-5 h-5 text-indigo-500" />
-          Nettoyeur de Lien (Anti-Tracking)
+          {t('urlCleaner')}
         </CardTitle>
-        <CardDescription>
-          Retirez les paramètres de tracking indésirables (utm, fbclid, ref amazon...) pour obtenir un lien propre et neutre à partager.
-        </CardDescription>
+        <CardDescription>{t('urlCleanerDesc')}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="space-y-2">

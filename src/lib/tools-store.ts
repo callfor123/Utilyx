@@ -64,6 +64,11 @@ export type ToolId =
   | 'sql-interpreter'
   | 'regex-interpreter'
   | 'markdown-interpreter'
+  | 'img-to-pdf'
+  | 'loan-calculator'
+  | 'code-minifier'
+  | 'json-yaml-converter'
+  | 'color-palette-generator'
 
 export type ModuleId = 'pdf' | 'image' | 'video' | 'dev-seo' | 'interpreters' | 'text-tools' | 'generators' | 'calculators' | 'home'
 
@@ -102,6 +107,7 @@ export const modules: ModuleDef[] = [
       { id: 'pdf-sign', label: 'Signature PDF', icon: 'PenTool', description: 'Signez vos documents PDF en ligne : signature manuscrite, tapée ou importée, sans inscription ni serveur distant' },
       { id: 'pdf-unlock', label: 'Déverrouiller PDF', icon: 'Unlock', description: 'Retirez le mot de passe d\'un PDF protégé en un clic, traitement 100% local dans votre navigateur, sans inscription' },
       { id: 'pdf-protect', label: 'Protéger PDF', icon: 'ShieldCheck', description: 'Protégez vos PDF avec un mot de passe et chiffrement AES-256, gratuitement et sans inscription, 100% local' },
+      { id: 'img-to-pdf', label: 'Image en PDF', icon: 'FileImage', description: 'Convertissez vos images JPG, PNG, WebP en PDF multipage, 100% local' },
     ],
   },
   {
@@ -143,6 +149,8 @@ export const modules: ModuleDef[] = [
     description: 'Outils pour développeurs et SEO',
     tools: [
       { id: 'json-csv', label: 'JSON / CSV', icon: 'Braces', description: 'Convertissez et formatez vos données JSON et CSV, import/export Excel, gratuit en ligne' },
+      { id: 'code-minifier', label: 'Minifier Code', icon: 'Minimize2', description: 'Minifiez votre CSS, JavaScript et HTML pour réduire le poids de vos pages web' },
+      { id: 'json-yaml-converter', label: 'JSON ↔ YAML', icon: 'ArrowRightLeft', description: 'Convertissez instantanément entre JSON et YAML, bidirectionnel avec validation' },
       { id: 'regex-tester', label: 'Testeur Regex', icon: 'Terminal', description: 'Testez et débugguez vos expressions régulières en temps réel avec surlignage des correspondances' },
       { id: 'meta-tags', label: 'Meta Tags', icon: 'Search', description: 'Générez et prévisualisez les meta tags SEO et Open Graph pour votre site web' },
       { id: 'sitemap-robots', label: 'Sitemap / Robots.txt', icon: 'Globe', description: 'Générez un sitemap XML et un fichier robots.txt pour optimiser l\'indexation Google' },
@@ -195,6 +203,7 @@ export const modules: ModuleDef[] = [
       { id: 'whatsapp-link', label: 'Lien WhatsApp', icon: 'MessageCircle', description: 'Créez un lien direct wa.me vers WhatsApp avec message pré-rempli pour votre site' },
       { id: 'random-number-generator', label: 'Random Number', icon: 'Shuffle', description: 'Générez des nombres aléatoires cryptographiques avec plage personnalisable et sans doublons' },
       { id: 'color-converter', label: 'Convertisseur Couleurs', icon: 'Pipette', description: 'Convertissez les couleurs entre HEX, RGB, HSL et CMYK pour le web et l\'impression' },
+      { id: 'color-palette-generator', label: 'Palette de Couleurs', icon: 'Palette', description: 'Générez des palettes harmonieuses : analogique, complémentaire, triadique, monochromatique avec export CSS' },
     ],
   },
   {
@@ -215,6 +224,7 @@ export const modules: ModuleDef[] = [
       { id: 'vat-calculator', label: 'Calculateur TVA', icon: 'Receipt', description: 'Calculez instantanément le montant HT, TTC et la TVA avec taux français et internationaux' },
       { id: 'discount-calculator', label: 'Calculateur Remise', icon: 'Tag', description: 'Calculez le prix après remise, l\'économie réalisée et les doubles remises cumulatives' },
       { id: 'time-converter', label: 'Convertisseur de Temps', icon: 'Clock', description: 'Convertissez entre secondes, minutes, heures, jours, semaines, mois et années instantanément' },
+      { id: 'loan-calculator', label: 'Simulateur de Crédit', icon: 'TrendingDown', description: 'Calculez vos mensualités de crédit immobilier ou personnel avec tableau d\'amortissement complet' },
     ],
   },
 ]

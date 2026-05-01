@@ -8,11 +8,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 export function UrlEncodeDecode() {
   const [input, setInput] = useState('')
 
   const { encoded, decoded, error } = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     if (!input) return { encoded: '', decoded: '', error: '' }
     try {
       const enc = encodeURIComponent(input)
@@ -32,11 +34,9 @@ export function UrlEncodeDecode() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Link className="h-5 w-5" />
-            URL Encode / Decode
+            {t('urlEncodeDecode')}
           </CardTitle>
-          <CardDescription>
-            Encodez ou décodez des URLs en temps réel.
-          </CardDescription>
+          <CardDescription>{t('urlEncodeDecodeDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div>

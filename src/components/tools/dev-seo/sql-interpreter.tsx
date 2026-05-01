@@ -220,10 +220,10 @@ export function SqlInterpreter() {
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2">
             <Database className="h-5 w-5" />
-            Interpreteur SQL Interactif
+            {t('sqlInterpreter')}
           </CardTitle>
           <CardDescription>
-            Executez des requetes SQL (SELECT, INSERT, UPDATE, DELETE) sur une base simulee. Importez CSV/XLSX, exportez les resultats.
+            {t('sqlInterpreterDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

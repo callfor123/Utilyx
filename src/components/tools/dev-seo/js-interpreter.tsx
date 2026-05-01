@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Code2, Play, Copy, Trash2 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -12,6 +13,7 @@ export function JsInterpreter() {
   const [jsCode, setJsCode] = useState('console.log("Hello World");\n\nfunction addition(a, b) {\n  return a + b;\n}\n\nconsole.log("2 + 3 =", addition(2, 3));')
   const [output, setOutput] = useState('')
   const [error, setError] = useState('')
+  const t = useTranslations('ToolsUI')
 
   const handleRun = () => {
     setError('')
@@ -54,10 +56,10 @@ export function JsInterpreter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Code2 className="h-5 w-5" />
-            Console JavaScript (REPL)
+            {t('jsConsole')}
           </CardTitle>
           <CardDescription>
-            Testez et executez votre code JavaScript en temps reel. Outil gratuit pour apprendre et tester JS.
+            {t('jsConsoleDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

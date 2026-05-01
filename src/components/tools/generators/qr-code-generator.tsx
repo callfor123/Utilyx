@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useTranslations } from 'next-intl'
 
 const TABS = [
   { id: 'url', label: 'URL', icon: Link },
@@ -45,6 +46,7 @@ export function QrCodeGenerator() {
   const qrValue = getQrValue()
 
   useEffect(() => {
+  const t = useTranslations('ToolsUI')
     if (!qrValue) {
       setQrDataUrl('')
       return
@@ -83,11 +85,9 @@ export function QrCodeGenerator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <QrCode className="h-5 w-5" />
-            QR Code Generator
+            {t('qrCodeGenerator')}
           </CardTitle>
-          <CardDescription>
-            Générez des QR codes pour URLs, texte, WiFi, email et téléphone.
-          </CardDescription>
+          <CardDescription>{t('qrCodeDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <Tabs value={tab} onValueChange={setTab}>

@@ -7,6 +7,7 @@ import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 const ALGORITHMS = ['SHA-1', 'SHA-256', 'SHA-384', 'SHA-512'] as const
 
@@ -100,6 +101,7 @@ export function HashGenerator() {
   const [isComputing, setIsComputing] = useState(false)
 
   const computeAll = useCallback(async (input: string) => {
+  const t = useTranslations('ToolsUI')
     if (!input) { setHashes({}); return }
     setIsComputing(true)
     try {
@@ -124,11 +126,9 @@ export function HashGenerator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Hash className="h-5 w-5" />
-            Hash Generator
+            {t('hashGenerator')}
           </CardTitle>
-          <CardDescription>
-            Générez des hash MD5, SHA-1, SHA-256, SHA-384 et SHA-512.
-          </CardDescription>
+          <CardDescription>{t('hashDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div>

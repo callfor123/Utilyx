@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
+import { useTranslations } from 'next-intl'
 
 export function TipCalculator() {
   const [bill, setBill] = useState('')
@@ -13,6 +14,7 @@ export function TipCalculator() {
   const [people, setPeople] = useState(1)
 
   const results = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     const b = parseFloat(bill)
     const p = parseInt(String(people)) || 1
     if (isNaN(b) || b <= 0 || p <= 0) return null
@@ -30,11 +32,9 @@ export function TipCalculator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Percent className="h-5 w-5" />
-            Calculateur de Pourboire
+            {t('tipCalc')}
           </CardTitle>
-          <CardDescription>
-            Calculez le pourboire et la répartition entre convives.
-          </CardDescription>
+          <CardDescription>{t('tipCalcDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Bill amount */}

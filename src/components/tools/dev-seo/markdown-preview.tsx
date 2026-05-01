@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { FileCode, Copy, RotateCcw } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { marked } from 'marked'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/lib/utils'
@@ -44,6 +45,7 @@ function hello() {
 
 export function MarkdownPreview() {
   const [markdown, setMarkdown] = useState(DEFAULT_MD)
+  const t = useTranslations('ToolsUI')
 
   const html = useMemo(() => {
     try {
@@ -59,10 +61,10 @@ export function MarkdownPreview() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <FileCode className="h-5 w-5" />
-            Markdown Preview
+            {t('markdownPreview')}
           </CardTitle>
           <CardDescription>
-            Éditeur Markdown avec aperçu en direct.
+            {t('markdownPreviewDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

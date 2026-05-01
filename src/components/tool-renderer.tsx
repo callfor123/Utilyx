@@ -84,6 +84,11 @@ const toolComponentMap: Record<ToolId, React.ComponentType> = {
   'sql-interpreter': dynamic(() => import('@/components/tools/dev-seo/sql-interpreter').then(m => m.SqlInterpreter), { ssr: false, loading: () => <ToolLoader label="SQL Interpreter" /> }),
   'regex-interpreter': dynamic(() => import('@/components/tools/dev-seo/regex-interpreter').then(m => m.RegexInterpreter), { ssr: false, loading: () => <ToolLoader label="Regex Visualizer" /> }),
   'markdown-interpreter': dynamic(() => import('@/components/tools/dev-seo/markdown-interpreter').then(m => m.MarkdownInterpreter), { ssr: false, loading: () => <ToolLoader label="Markdown Live" /> }),
+  'img-to-pdf': dynamic(() => import('@/components/tools/pdf/img-to-pdf').then(m => m.ImgToPdf), { ssr: false, loading: () => <ToolLoader label="Image to PDF" /> }),
+  'loan-calculator': dynamic(() => import('@/components/tools/calculators/loan-calculator').then(m => m.LoanCalculator), { ssr: false, loading: () => <ToolLoader label="Loan Calculator" /> }),
+  'code-minifier': dynamic(() => import('@/components/tools/dev-seo/code-minifier').then(m => m.CodeMinifier), { ssr: false, loading: () => <ToolLoader label="Code Minifier" /> }),
+  'json-yaml-converter': dynamic(() => import('@/components/tools/dev-seo/json-yaml-converter').then(m => m.JsonYamlConverter), { ssr: false, loading: () => <ToolLoader label="JSON YAML" /> }),
+  'color-palette-generator': dynamic(() => import('@/components/tools/generators/color-palette-generator').then(m => m.ColorPaletteGenerator), { ssr: false, loading: () => <ToolLoader label="Color Palette" /> }),
 }
 
 export function ToolRenderer({ toolId }: { toolId: ToolId }) {

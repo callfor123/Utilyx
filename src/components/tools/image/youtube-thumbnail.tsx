@@ -7,11 +7,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { downloadBlob } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
 
 export function YoutubeThumbnailDownloader() {
   const [url, setUrl] = useState('')
   const [videoId, setVideoId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+  const t = useTranslations('ToolsUI')
 
   const extractVideoId = (inputUrl: string) => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -59,8 +61,8 @@ export function YoutubeThumbnailDownloader() {
             <Youtube className="h-5 w-5 text-red-500" />
           </div>
           <div>
-            <CardTitle className="text-xl">Téléchargeur de Miniatures YouTube</CardTitle>
-            <CardDescription>Obtenez instantanément la miniature d'une vidéo YouTube en haute définition (HD, SD).</CardDescription>
+            <CardTitle className="text-xl">{t('youtubeThumbnail')}</CardTitle>
+            <CardDescription>{t('youtubeThumbnailDesc')}</CardDescription>
           </div>
         </div>
       </CardHeader>

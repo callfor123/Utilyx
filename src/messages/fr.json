@@ -318,6 +318,26 @@
     "markdown-interpreter": {
       "label": "Markdown Live",
       "description": "Interpreter du Markdown avec apercu en direct"
+    },
+    "img-to-pdf": {
+      "label": "Image en PDF",
+      "description": "Convertir vos images JPG, PNG, WebP en PDF multipage"
+    },
+    "loan-calculator": {
+      "label": "Simulateur de Crédit",
+      "description": "Calculer vos mensualités et tableau d'amortissement"
+    },
+    "code-minifier": {
+      "label": "Minifier Code",
+      "description": "Minifier CSS, JavaScript et HTML pour réduire le poids"
+    },
+    "json-yaml-converter": {
+      "label": "JSON ↔ YAML",
+      "description": "Convertir instantanément entre JSON et YAML"
+    },
+    "color-palette-generator": {
+      "label": "Palette de Couleurs",
+      "description": "Générer des palettes harmonieuses avec export CSS"
     }
   },
   "Footer": {
@@ -705,7 +725,6 @@
     "text": "Texte",
     "draw": "Dessin",
     "placeImage": "Placer une image",
-    "signDownload": "Appliquer et Télécharger",
     "signErrorImg": "Erreur d'intégration d'image page {page}",
     "signErrorPdf": "Erreur lors de la génération du PDF signé",
     "signSuccess": "PDF signé avec succès !",
@@ -730,8 +749,6 @@
     "unlocked": "_déverrouillé",
     "pdfProtect": "Protéger un PDF",
     "pdfProtectDesc": "Ajoutez une protection par mot de passe à votre PDF pour restreindre l'ouverture, l'impression ou la copie.",
-    "setPassword": "Définir un mot de passe",
-    "confirmPassword": "Confirmer le mot de passe",
     "passwordMismatch": "Les mots de passe ne correspondent pas.",
     "protect": "Protéger",
     "protecting": "Protection…",
@@ -844,7 +861,6 @@
     "heicToJpgDesc": "Convertissez vos images HEIC/HEIF d'iPhone en JPG ou PNG. Conversion par lots prise en charge.",
     "dropHeicFiles": "Glissez-déposez vos fichiers HEIC/HEIF ici",
     "orClickBrowseMulti": "ou cliquez pour parcourir — plusieurs fichiers possibles",
-    "convertDownloadZip": "Convertir et Télécharger (ZIP)",
     "heicConvertError": "Erreur lors de la conversion des images.",
     "heicZipError": "Erreur lors de la création de l'archive ZIP.",
     "heicConvertSuccess": "Images converties avec succès !",
@@ -857,6 +873,12 @@
     "wordCounter": "Compteur de Mots",
     "wordCounterDesc": "Comptez les mots, caractères, phrases et paragraphes de votre texte.",
     "pasteOrType": "Collez ou tapez votre texte ici...",
+    "htmlInterpreter": "Interpréteur HTML",
+    "htmlInterpreterDesc": "Écrivez et prévisualisez votre code HTML en temps réel. Outil gratuit en ligne pour tester et apprendre le HTML.",
+    "cssInterpreter": "Interpréteur CSS",
+    "cssInterpreterDesc": "Visualisez l'effet de votre code CSS en temps réel. Outil gratuit pour apprendre et tester les styles CSS.",
+    "jsConsole": "Console JavaScript (REPL)",
+    "jsConsoleDesc": "Testez et exécutez votre code JavaScript en temps réel. Outil gratuit pour apprendre et tester JS.",
     "sqlInterpreter": "Interpréteur SQL",
     "sqlInterpreterDesc": "Exécutez des requêtes SQL sur des données tabulaires (CSV, JSON) directement dans votre navigateur.",
     "filterResults": "Filtrer les résultats...",
@@ -953,7 +975,46 @@
     "sand": "Sable",
     "gravel": "Gravier",
     "batches": "Gâchées",
-    "copyLink": "Copier le lien",
-    "testLinkBtn": "Tester le lien"
+    "testLinkBtn": "Tester le lien",
+    "jsonFormatter": "Formateur JSON",
+    "jsonFormatterDesc": "Formatez, validez et minifiez vos donnees JSON.",
+    "sitemapRobots": "Sitemap XML et Robots.txt",
+    "sitemapRobotsDesc": "Generez des fichiers sitemap et robots.txt optimises pour le referencement.",
+    "markdownInterpreter": "Interpreteur Markdown",
+    "markdownInterpreterDesc": "Ecrivez et previsualisez votre Markdown en temps reel.",
+    "tipCalc": "Calculateur de Pourboire",
+    "tipCalcDesc": "Calculez le pourboire et la repartition entre convives.",
+    "percentageCalc": "Calculateur de Pourcentage",
+    "percentageCalcDesc": "Tous les calculs de pourcentages dont vous avez besoin.",
+    "unitConverter": "Convertisseur d'Unites",
+    "unitConverterDesc": "Convertissez entre differentes unites de mesure.",
+    "bmiCalc": "Calculateur d'IMC",
+    "bmiCalcDesc": "Calculez votre indice de masse corporelle (IMC).",
+    "vatCalc": "Calculateur de TVA",
+    "vatCalcDesc": "Calculez le montant HT, TTC et la TVA a partir de n'importe quel taux.",
+    "ageCalc": "Calculateur d'Age",
+    "ageCalcDesc": "Calculez votre age exact en annees, mois et jours.",
+    "base64": "Base64 Encode / Decode",
+    "base64Desc": "Encodez du texte en Base64 ou decodez une chaine Base64.",
+    "loremIpsum": "Generateur Lorem Ipsum",
+    "loremIpsumDesc": "Generez du texte placeholder pour vos maquettes et projets.",
+    "passwordGenerator": "Generateur de Mot de Passe",
+    "passwordGeneratorDesc": "Generez des mots de passe securises et aleatoires.",
+    "randomNumberGenerator": "Generateur de Nombre Aleatoire",
+    "randomNumberGeneratorDesc": "Generez un ou plusieurs nombres aleatoires dans une plage donnee.",
+    "urlCleaner": "Nettoyeur de Lien (Anti-Tracking)",
+    "urlCleanerDesc": "Retirez les parametres de tracking indesirables pour obtenir un lien propre.",
+    "uuidGenerator": "Generateur d'UUID / GUID",
+    "uuidGeneratorDesc": "Generez des UUID version 4 aleatoires et securises.",
+    "imgToPdf": "Image en PDF",
+    "imgToPdfDesc": "Convertissez vos images JPG, PNG, WebP en PDF multipage, 100% local.",
+    "loanCalc": "Simulateur de Credit",
+    "loanCalcDesc": "Calculez vos mensualites de credit avec tableau d'amortissement complet.",
+    "codeMinifier": "Minifier CSS / JS / HTML",
+    "codeMinifierDesc": "Minifiez votre code CSS, JavaScript et HTML pour accelerer votre site.",
+    "jsonYaml": "Convertisseur JSON ↔ YAML",
+    "jsonYamlDesc": "Convertissez instantanement entre JSON et YAML, bidirectionnel, 100% local.",
+    "colorPalette": "Palette de Couleurs",
+    "colorPaletteDesc": "Generez des palettes harmonieuses : analogique, complementaire, triadique avec export CSS."
   }
 }

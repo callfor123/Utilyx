@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Palette, Eye, Copy, Smartphone, Monitor } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -12,6 +13,7 @@ export function CssInterpreter() {
   const [cssCode, setCssCode] = useState('body {\n  background-color: #f0f0f0;\n  font-family: Arial, sans-serif;\n}\n\nh1 {\n  color: #333;\n  text-align: center;\n}\n\n.container {\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 20px;\n}')
   const [htmlSample, setHtmlSample] = useState('<div class="container"><h1>Titre de la page</h1><p>Paragraphe de test avec du style CSS applique.</p></div>')
   const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop')
+  const t = useTranslations('ToolsUI')
 
   const previewHtml = `<!DOCTYPE html>
 <html>
@@ -29,10 +31,10 @@ export function CssInterpreter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Palette className="h-5 w-5" />
-            Interpreteur CSS
+            {t('cssInterpreter')}
           </CardTitle>
           <CardDescription>
-            Visualisez l'effet de votre code CSS en temps reel. Outil gratuit pour apprendre et tester les styles CSS.
+            {t('cssInterpreterDesc')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

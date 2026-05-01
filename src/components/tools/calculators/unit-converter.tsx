@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useTranslations } from 'next-intl'
 
 type Category = 'length' | 'weight' | 'temperature' | 'volume'
 
@@ -107,6 +108,7 @@ export function UnitConverter() {
   }
 
   const result = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     const val = parseFloat(inputValue)
     if (isNaN(val)) return null
     if (category === 'temperature') {
@@ -123,11 +125,9 @@ export function UnitConverter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <ArrowRightLeft className="h-5 w-5" />
-            Unit Converter
+            {t('unitConverter')}
           </CardTitle>
-          <CardDescription>
-            Convertissez entre différentes unités de mesure.
-          </CardDescription>
+          <CardDescription>{t('unitConverterDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Category selector */}

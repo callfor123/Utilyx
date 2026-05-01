@@ -7,6 +7,7 @@ import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 const STOP_WORDS = new Set([
   'le', 'la', 'les', 'de', 'des', 'un', 'une', 'et', 'en', 'est', 'dans', 'que', 'qui', 'a', 'à', 'pour',
@@ -57,6 +58,7 @@ export function WordCounter() {
   }, [text])
 
   const keywordDensity = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     if (stats.words === 0) return []
 
     const wordCounts = new Map<string, number>()
@@ -84,11 +86,9 @@ export function WordCounter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Hash className="h-5 w-5" />
-            Compteur de Mots
+            {t('wordCounter')}
           </CardTitle>
-          <CardDescription>
-            Comptez les mots, caractères, phrases et paragraphes en temps réel.
-          </CardDescription>
+          <CardDescription>{t('wordCounterDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <Textarea

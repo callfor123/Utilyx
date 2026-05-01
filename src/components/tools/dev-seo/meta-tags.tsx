@@ -21,6 +21,7 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import { useTranslations } from 'next-intl'
 
 // ── Character counter helper ──────────────────────────────────────────────
 function CharCounter({ current, max }: { current: number; max: number }) {
@@ -117,17 +118,16 @@ export function MetaTags() {
   // ── Derived values for previews ─────────────────────────────────────────
   const domain = useMemo(() => extractDomain(url), [url])
   const path = useMemo(() => extractPath(url), [url])
+  const t = useTranslations('ToolsUI')
 
   return (
     <Card className="w-full">
       <CardHeader>
         <div className="flex items-center gap-2">
           <Tags className="h-5 w-5 text-primary" />
-          <CardTitle className="text-xl">Générateur de balises meta</CardTitle>
+          <CardTitle className="text-xl">{t('metaTagsGenerator')}</CardTitle>
         </div>
-        <CardDescription>
-          Créez des balises meta SEO optimisées et visualisez les aperçus en temps réel
-        </CardDescription>
+        <CardDescription>{t('metaTagsDesc')}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -8,10 +8,12 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 export default function NameSplitter() {
   const [input, setInput] = useState('')
   const [separator, setSeparator] = useState(';')
+  const t = useTranslations('ToolsUI')
 
   const processNames = () => {
     const lines = input.split('\n').filter((line) => line.trim() !== '')
@@ -38,11 +40,9 @@ export default function NameSplitter() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <SplitSquareVertical className="w-5 h-5 text-blue-500" />
-          Séparateur Prénom / Nom
+          {t('nameSplitter')}
         </CardTitle>
-        <CardDescription>
-          Collez votre liste de noms complets avec espaces (un par ligne) pour générer automatiquement une liste "Prénom;Nom" compatible Excel ou CRM.
-        </CardDescription>
+        <CardDescription>{t('nameSplitterDesc')}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -7,12 +7,14 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { useTranslations } from 'next-intl'
 
 export default function MileageCalculator() {
   const [distance, setDistance] = useState('1000') // distance totale
   const [rate, setRate] = useState('0.60') // Taux d'indemnité par unité
   const [currency, setCurrency] = useState('€')
   const [unit, setUnit] = useState('km')
+  const t = useTranslations('ToolsUI')
 
   const d = Math.max(0, parseFloat(distance || '0'))
   const r = Math.max(0, parseFloat(rate || '0'))
@@ -24,11 +26,9 @@ export default function MileageCalculator() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Car className="w-5 h-5 text-indigo-500" />
-          Calculateur de Frais Kilométriques
+          {t('mileageCalculator')}
         </CardTitle>
-        <CardDescription>
-          Calculez vos indemnités kilométriques globales. Saisissez la distance et le taux de remboursement de votre pays ou entreprise.
-        </CardDescription>
+        <CardDescription>{t('mileageCalcDesc')}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         

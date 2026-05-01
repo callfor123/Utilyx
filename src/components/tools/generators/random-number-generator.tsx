@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
+import { useTranslations } from 'next-intl'
 
 export function RandomNumberGenerator() {
   const [min, setMin] = useState('1')
@@ -16,6 +17,7 @@ export function RandomNumberGenerator() {
   const [unique, setUnique] = useState(false)
 
   const generate = useCallback(() => {
+  const t = useTranslations('ToolsUI')
     const minNum = parseInt(min) || 1
     const maxNum = parseInt(max) || 100
     const lo = Math.min(minNum, maxNum)
@@ -43,11 +45,9 @@ export function RandomNumberGenerator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Shuffle className="h-5 w-5" />
-            Générateur de Nombre Aléatoire
+            {t('randomNumberGenerator')}
           </CardTitle>
-          <CardDescription>
-            Générez un ou plusieurs nombres aléatoires dans une plage donnée.
-          </CardDescription>
+          <CardDescription>{t('randomNumberGeneratorDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Range */}

@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useTranslations } from 'next-intl'
 
 export default function ConcreteCalculator() {
   const [calcMode, setCalcMode] = useState<'volume' | 'dimensions'>('dimensions')
@@ -21,6 +22,7 @@ export default function ConcreteCalculator() {
 
   // Dosage
   const [dosage, setDosage] = useState('350') // kg/m3
+  const t = useTranslations('ToolsUI')
 
   const calculatedVolume = calcMode === 'dimensions' 
     ? (parseFloat(length || '0') * parseFloat(width || '0') * (parseFloat(thickness || '0') / 100))
@@ -46,11 +48,9 @@ export default function ConcreteCalculator() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <HardHat className="w-5 h-5 text-orange-500" />
-          Calculateur de Dosage Béton
+          {t('concreteCalc')}
         </CardTitle>
-        <CardDescription>
-          Estimez rapidement les quantités de ciment, de sable, de gravier et d'eau nécessaires pour votre dalle ou vos fondations.
-        </CardDescription>
+        <CardDescription>{t('concreteCalcDesc')}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-8">
         

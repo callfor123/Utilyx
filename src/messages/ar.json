@@ -318,6 +318,26 @@
     "time-converter": {
       "label": "محول الوقت",
       "description": "تحويل الثواني والدقائق والساعات والأيام والأسابيع والأشهر والسنوات"
+    },
+    "img-to-pdf": {
+      "label": "صورة إلى PDF",
+      "description": "تحويل صور JPG وPNG وWebP إلى PDF متعدد الصفحات"
+    },
+    "loan-calculator": {
+      "label": "حاسبة القرض",
+      "description": "حساب الأقساط الشهرية وجدول الإطفاء"
+    },
+    "code-minifier": {
+      "label": "تصغير الكود",
+      "description": "تصغير CSS وJavaScript وHTML لتقليل حجم الصفحة"
+    },
+    "json-yaml-converter": {
+      "label": "JSON ↔ YAML",
+      "description": "التحويل الفوري بين JSON وYAML"
+    },
+    "color-palette-generator": {
+      "label": "لوحة الألوان",
+      "description": "إنشاء لوحات متناسقة مع تصدير CSS"
     }
   },
   "Footer": {
@@ -949,6 +969,16 @@
     "gravel": "الحصى",
     "batches": "الدفعات",
     "copyLink": "نسخ الرابط",
-    "testLinkBtn": "اختبار الرابط"
+    "testLinkBtn": "اختبار الرابط",
+    "imgToPdf": "صورة الى PDF",
+    "imgToPdfDesc": "حول صور JPG وPNG وWebP الى PDF متعدد الصفحات، 100% محلي.",
+    "loanCalc": "حاسبة القرض",
+    "loanCalcDesc": "احسب اقساطك الشهرية مع جدول الاطفاء الكامل.",
+    "codeMinifier": "تصغير CSS / JS / HTML",
+    "codeMinifierDesc": "صغّر CSS وJavaScript وHTML لتسريع موقعك الالكتروني.",
+    "jsonYaml": "محول JSON ↔ YAML",
+    "jsonYamlDesc": "حول فوريا بين JSON وYAML، ثنائي الاتجاه، 100% محلي.",
+    "colorPalette": "مولد لوحة الالوان",
+    "colorPaletteDesc": "انشئ لوحات متناسقة مع تصدير CSS لمشاريعك على الويب."
   }
 }

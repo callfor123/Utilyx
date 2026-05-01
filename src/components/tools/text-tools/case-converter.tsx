@@ -7,6 +7,7 @@ import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 const CASE_TYPES = [
   { id: 'upper', label: 'UPPERCASE', desc: 'Tout en majuscules' },
@@ -50,6 +51,7 @@ function convertCase(text: string, type: string): string {
 export function CaseConverter() {
   const [input, setInput] = useState('')
   const [activeCase, setActiveCase] = useState('upper')
+  const t = useTranslations('ToolsUI')
 
   const output = convertCase(input, activeCase)
 
@@ -59,11 +61,9 @@ export function CaseConverter() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <ArrowDownUp className="h-5 w-5" />
-            Convertisseur de Casse
+            {t('caseConverter')}
           </CardTitle>
-          <CardDescription>
-            Convertissez votre texte entre différents formats de casse.
-          </CardDescription>
+          <CardDescription>{t('caseConverterDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div>

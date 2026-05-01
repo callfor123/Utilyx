@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Input } from '@/components/ui/input'
+import { useTranslations } from 'next-intl'
 
 interface ColorStop {
   id: string
@@ -41,6 +42,7 @@ export function CssGradientGenerator() {
   }
 
   const cssCode = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     const sorted = [...stops].sort((a, b) => a.position - b.position)
     const stopsStr = sorted.map(s => `${s.color} ${s.position}%`).join(', ')
     if (type === 'linear') {
@@ -55,11 +57,9 @@ export function CssGradientGenerator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Paintbrush className="h-5 w-5" />
-            CSS Gradient Generator
+            {t('cssGradient')}
           </CardTitle>
-          <CardDescription>
-            Créez des dégradés CSS visuellement et copiez le code.
-          </CardDescription>
+          <CardDescription>{t('cssGradientDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Type */}

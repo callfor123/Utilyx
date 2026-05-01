@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useTranslations } from 'next-intl'
 
 const DAYS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
 const MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
@@ -14,6 +15,7 @@ export function AgeCalculator() {
   const [birthdate, setBirthdate] = useState('')
 
   const result = useMemo(() => {
+  const t = useTranslations('ToolsUI')
     if (!birthdate) return null
     const birth = new Date(birthdate)
     const now = new Date()
@@ -63,11 +65,9 @@ export function AgeCalculator() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calendar className="h-5 w-5" />
-            Age Calculator
+            {t('ageCalc')}
           </CardTitle>
-          <CardDescription>
-            Calculez votre âge exact en années, mois et jours.
-          </CardDescription>
+          <CardDescription>{t('ageCalcDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">

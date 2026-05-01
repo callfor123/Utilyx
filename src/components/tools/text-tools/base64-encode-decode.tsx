@@ -7,12 +7,14 @@ import { copyToClipboard } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
+import { useTranslations } from 'next-intl'
 
 export function Base64EncodeDecode() {
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
   const [mode, setMode] = useState<'encode' | 'decode'>('encode')
   const [error, setError] = useState('')
+  const t = useTranslations('ToolsUI')
 
   const handleConvert = () => {
     setError('')
@@ -39,11 +41,9 @@ export function Base64EncodeDecode() {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Lock className="h-5 w-5" />
-            Base64 Encode / Decode
+            {t('base64')}
           </CardTitle>
-          <CardDescription>
-            Encodez du texte en Base64 ou décodez une chaîne Base64.
-          </CardDescription>
+          <CardDescription>{t('base64Desc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Mode selector */}
